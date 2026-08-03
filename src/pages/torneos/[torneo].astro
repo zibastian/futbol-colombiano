@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import { TORNEOS } from '../../data/torneos';
+import { tablaPosiciones } from '../../lib/apifootball';
+import { slugify } from '../../lib/slug';
+
+export async function getStaticPaths() {
+  return TORNEOS.map((t) => ({ params: { torneo: t.slug }, props: { torneo: t } }));
+}
+
+const { torneo } = Astro.props;
+const tabla = await tablaPosiciones(torneo.ligaId, torneo.season);
+
+const notas = (await getCollection('noticias', ({ data }) => !data.draft))
+  .filter((n) => n.data.torneos.some((t) => slugify(t) === torneo.slug))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 12);
+
+const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.nombre} ${torneo.season}.`;
+---
+
+<Base title={`${torneo.nombre} ${torneo.season}: tabla de posiciones y noticias`} description={descripcion}>
+  <h1 class="seccion">{torneo.nombre} {torneo.season}</h1>
+
+  {
+    tabla.length > 0 ? (
+      <div class="tabla-wrap">
+        <table class="tabla-posiciones">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="equipo-col">Equipo</th>
+              <th>PJ</th>
+              <th>G</th>
+              <th>E</th>
+              <th>P</th>
+              <th>GF</th>
+              <th>GC</th>
+              <th>DG</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tabla.map((f) => (
+              <tr>
+                <td>{f.posicion}</td>
+                <td class="equipo-col">
+                  <a href={`/equipos/${slugify(f.equipo)}`}>
+                    <img src={f.logo} alt="" width="20" height="20" loading="lazy" /> {f.equipo}
+                  </a>
+                </td>
+                <td>{f.jugados}</td>
+                <td>{f.ganados}</td>
+                <td>{f.empatados}</td>
+                <td>{f.perdidos}</td>
+                <td>{f.golesFavor}</td>
+                <td>{f.golesContra}</td>
+                <td>{f.diferencia}</td>
+                <td class="pts">{f.puntos}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="nota-tabla">Actualizada automáticamente con cada publicación del sitio.</p>
+      </div>
+    ) : (
+      <p>La tabla de posiciones estará disponible próximamente.</p>
+    )
+  }
+
+  <h2 class="seccion" style="margin-top:2rem">Noticias de {torneo.nombre}</h2>
+  <div class="grilla-notas">
+    {
+      notas.map((nota) => (
+        <NotaCard
+          slug={nota.id.replace(/\.md$/, '')}
+          title={nota.data.title}
+          description={nota.data.description}
+          tipo={nota.data.tipo}
+          cover={nota.data.cover}
+          coverAlt={nota.data.coverAlt}
+        />
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .tabla-wrap { overflow-x: auto; }
+  .tabla-posiciones { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  .tabla-posiciones th, .tabla-posiciones td {
+    padding: 0.45rem 0.5rem; text-align: center; border-bottom: 1px solid var(--borde);
+  }
+  .tabla-posiciones thead th { background: var(--azul); color: #fff; }
+  .equipo-col { text-align: left !important; min-width: 200px; }
+  .equipo-col a { display: flex; align-items: center; gap: 0.5rem; color: var(--tinta); font-weight: 600; }
+  .tabla-posiciones tbody tr:nth-child(-n+8) td:first-child { font-weight: 700; color: var(--azul); }
+  .pts { font-weight: 800; }
+  .nota-tabla { font-size: 0.8rem; color: var(--gris); }
+</style>

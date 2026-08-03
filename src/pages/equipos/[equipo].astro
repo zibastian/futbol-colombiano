@@ -1,0 +1,120 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import { TORNEOS } from '../../data/torneos';
+import { tablaPosiciones, fixturesTemporada, ultimoYProximo } from '../../lib/apifootball';
+import { slugify } from '../../lib/slug';
+
+// Ficha de equipo (fase 1.5): posición, último y próximo partido + noticias por tag.
+// Se genera una ficha por cada equipo presente en las tablas de los torneos configurados.
+
+export async function getStaticPaths() {
+  const { TORNEOS } = await import('../../data/torneos');
+  const { tablaPosiciones, fixturesTemporada } = await import('../../lib/apifootball');
+  const paths = [];
+  for (const t of TORNEOS) {
+    const tabla = await tablaPosiciones(t.ligaId, t.season);
+    const fixtures = await fixturesTemporada(t.ligaId, t.season);
+    for (const fila of tabla) {
+      paths.push({
+        params: { equipo: slugify(fila.equipo) },
+        props: { fila, torneo: t, fixtures }
+      });
+    }
+  }
+  return paths;
+}
+
+const { fila, torneo, fixtures } = Astro.props;
+const { ultimo, proximo } = ultimoYProximo(fixtures, fila.equipoId);
+
+const notas = (await getCollection('noticias', ({ data }) => !data.draft))
+  .filter((n) => n.data.equipos.some((e) => slugify(e) === slugify(fila.equipo)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 12);
+
+const fmtFecha = (iso: string) =>
+  new Date(iso).toLocaleDateString('es-CO', {
+    weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit',
+    timeZone: 'America/Bogota'
+  });
+
+const equipoLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsTeam',
+  name: fila.equipo,
+  sport: 'Soccer',
+  logo: fila.logo,
+  memberOf: { '@type': 'SportsOrganization', name: torneo.nombre }
+};
+---
+
+<Base title={`${fila.equipo}: noticias, posición y próximos partidos`} description={`Ficha de ${fila.equipo}: posición en la ${torneo.nombre}, último resultado, próximo partido y todas las noticias.`}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(equipoLd)} />
+  </Fragment>
+
+  <div class="ficha-cabecera">
+    <img src={fila.logo} alt={`Escudo de ${fila.equipo}`} width="72" height="72" />
+    <div>
+      <h1>{fila.equipo}</h1>
+      <p class="dato-torneo">
+        <strong>{fila.posicion}°</strong> en la {torneo.nombre} · {fila.puntos} pts en {fila.jugados} partidos
+        ({fila.ganados}G {fila.empatados}E {fila.perdidos}P)
+      </p>
+    </div>
+  </div>
+
+  <div class="partidos">
+    {
+      ultimo && (
+        <div class="partido-card">
+          <span class="kicker">Último partido</span>
+          <p>
+            {ultimo.local} <strong>{ultimo.golesLocal}-{ultimo.golesVisitante}</strong> {ultimo.visitante}
+          </p>
+        </div>
+      )
+    }
+    {
+      proximo && (
+        <div class="partido-card">
+          <span class="kicker">Próximo partido</span>
+          <p>{proximo.local} vs. {proximo.visitante}</p>
+          <p class="fecha-partido">{fmtFecha(proximo.fecha)}</p>
+        </div>
+      )
+    }
+  </div>
+
+  <h2 class="seccion" style="margin-top:1.6rem">Noticias de {fila.equipo}</h2>
+  {notas.length === 0 && <p>Aún no hay noticias de {fila.equipo}. Pronto llegarán.</p>}
+  <div class="grilla-notas">
+    {
+      notas.map((nota) => (
+        <NotaCard
+          slug={nota.id.replace(/\.md$/, '')}
+          title={nota.data.title}
+          description={nota.data.description}
+          tipo={nota.data.tipo}
+          cover={nota.data.cover}
+          coverAlt={nota.data.coverAlt}
+        />
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .ficha-cabecera { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1rem; }
+  .ficha-cabecera h1 { margin: 0; font-size: 1.7rem; }
+  .dato-torneo { margin: 0.2rem 0 0; color: var(--gris); }
+  .partidos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .partido-card {
+    border: 1px solid var(--borde); border-radius: 10px; padding: 0.8rem 1rem;
+    background: var(--fondo-suave);
+  }
+  .partido-card p { margin: 0.3rem 0 0; font-size: 1.02rem; }
+  .fecha-partido { color: var(--gris); font-size: 0.88rem !important; text-transform: capitalize; }
+</style>
