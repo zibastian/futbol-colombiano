@@ -1,0 +1,52 @@
+# Configuración de Sveltia CMS (panel editorial en /admin)
+# Pendientes al conectar (ver README):
+#   1. Cambiar OWNER/REPO por tu usuario y repositorio de GitHub.
+#   2. Desplegar el worker de autenticación (sveltia-cms-auth) y poner su URL en base_url.
+
+backend:
+  name: github
+  repo: zibastian/futbol-colombiano
+  branch: main
+  base_url: https://TU-WORKER-AUTH.workers.dev
+
+# Flujo editorial: Borradores -> En revisión -> Listo (el gate humano)
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+locale: es
+
+collections:
+  - name: noticias
+    label: Noticias
+    label_singular: Nota
+    folder: src/content/noticias
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: Titular, widget: string, hint: 'Máx. 110 caracteres. Atractivo pero honesto.' }
+      - { name: description, label: Bajada, widget: text, hint: 'Resumen de 1-2 frases (máx. 200 caracteres).' }
+      - { name: pubDate, label: Fecha de publicación, widget: datetime }
+      - { name: updatedDate, label: Fecha de actualización, widget: datetime, required: false, hint: 'Solo al actualizar una nota existente.' }
+      - name: tipo
+        label: Tipo de nota
+        widget: select
+        options: [cronica, fichaje, previa, agenda, opinion, reporte, nota]
+        default: nota
+      - { name: equipos, label: Equipos, widget: list, required: false, hint: 'Genera enlaces a fichas. Ej: Atlético Nacional' }
+      - { name: torneos, label: Torneos, widget: list, required: false, hint: 'Ej: Liga BetPlay' }
+      - { name: jugadores, label: Jugadores, widget: list, required: false }
+      - { name: cover, label: Imagen de portada, widget: image, required: false }
+      - { name: coverAlt, label: Texto alternativo de la imagen, widget: string, required: false }
+      - name: fuente
+        label: Atribución (primicia de periodista)
+        widget: object
+        required: false
+        fields:
+          - { name: nombre, label: Periodista/medio, widget: string }
+          - { name: url, label: URL del post original, widget: string, required: false }
+      - { name: autor, label: Autor, widget: string, default: Redacción, hint: 'Nombre y apellido reales en notas de opinión.' }
+      - { name: draft, label: Borrador (no publicar), widget: boolean, default: false }
+      - { name: body, label: Cuerpo de la nota, widget: markdown }

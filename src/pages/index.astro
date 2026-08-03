@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import NotaCard from '../components/NotaCard.astro';
+
+const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Base>
+  <h1 class="seccion">Últimas noticias</h1>
+  <div class="grilla-notas">
+    {
+      notas.map((nota) => (
+        <NotaCard
+          slug={nota.id.replace(/\.md$/, '')}
+          title={nota.data.title}
+          description={nota.data.description}
+          tipo={nota.data.tipo}
+          cover={nota.data.cover}
+          coverAlt={nota.data.coverAlt}
+        />
+      ))
+    }
+  </div>
+</Base>

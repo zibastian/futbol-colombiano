@@ -1,0 +1,29 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  tipo: string;
+  cover?: string;
+  coverAlt?: string;
+}
+const { slug, title, description, tipo, cover, coverAlt } = Astro.props;
+const etiquetas: Record<string, string> = {
+  cronica: 'Crónica',
+  fichaje: 'Fichajes',
+  previa: 'Previa',
+  agenda: 'Agenda',
+  opinion: 'Opinión',
+  reporte: 'Reporte',
+  nota: 'Noticias'
+};
+---
+
+<article class="nota-card">
+  {cover && <a href={`/noticias/${slug}`}><img src={cover} alt={coverAlt || title} loading="lazy" /></a>}
+  <div class="cuerpo">
+    <span class="kicker">{etiquetas[tipo] || 'Noticias'}</span>
+    <h3><a href={`/noticias/${slug}`}>{title}</a></h3>
+    <p>{description}</p>
+  </div>
+</article>

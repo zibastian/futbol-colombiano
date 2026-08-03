@@ -1,0 +1,41 @@
+name: Build y deploy a Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+  # Cron para builds por lotes y refresco de fichas (activar en fase 1.5,
+  # cuando las fichas consuman datos de la API en cada build).
+  # OJO: si el repo es privado, un cron cada 15 min consume los 2.000 min/mes
+  # gratuitos de Actions. Repo público = minutos ilimitados.
+  # schedule:
+  #   - cron: '*/15 * * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build de Astro
+        run: npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Deploy a Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=futbol-colombiano

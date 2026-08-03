@@ -1,0 +1,92 @@
+---
+import { SITE } from '../config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  canonical?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image,
+  type = 'website',
+  canonical
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = image ? new URL(image, Astro.site).href : undefined;
+
+// JSON-LD global del sitio (Organization + WebSite)
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}#org`,
+      name: SITE.title,
+      url: SITE.url
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}#web`,
+      name: SITE.title,
+      url: SITE.url,
+      inLanguage: SITE.lang,
+      publisher: { '@id': `${SITE.url}#org` }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={SITE.locale} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="sitio">
+      <div class="contenedor barra">
+        <a href="/" class="logo" aria-label={SITE.title}>
+          Fútbol<span class="azul">Colombiano</span><span class="co">.com.co</span>
+        </a>
+        <nav class="principal" aria-label="Secciones">
+          <a href="/">Portada</a>
+          <a href="/tags/liga-betplay">Liga BetPlay</a>
+          <a href="/tags/colombianos-en-el-exterior">Exterior</a>
+        </nav>
+      </div>
+    </header>
+    <main class="contenedor">
+      <slot />
+    </main>
+    <footer class="sitio">
+      <div class="contenedor">
+        <p>© {new Date().getFullYear()} {SITE.title}. Información deportiva del fútbol profesional colombiano.</p>
+      </div>
+    </footer>
+  </body>
+</html>
