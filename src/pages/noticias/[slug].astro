@@ -73,7 +73,7 @@ const breadcrumbLd = {
       <p class="atribucion">
         Según reporta <strong>{d.fuente.nombre}</strong>
         {d.fuente.url && <> (<a href={d.fuente.url} rel="nofollow noopener" target="_blank">ver publicación original</a>)</>}.
-        Información en desarrollo hasta confirmación oficial.
+        {['reporte', 'fichaje'].includes(d.tipo) && ' Información en desarrollo hasta confirmación oficial.'}
       </p>
     )}
     <div class="cuerpo-nota">
