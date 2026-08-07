@@ -33,8 +33,20 @@ export interface Partido {
   golesVisitante: number | null;
 }
 
+let avisado = false;
+
 async function api(path: string): Promise<any[]> {
-  if (!KEY) return [];
+  if (!KEY) {
+    if (!avisado) {
+      console.warn(
+        '\n[api-football] FALTA API_FOOTBALL_KEY en las variables de BUILD.\n' +
+          '  Sin ella no se generan tablas de posiciones ni fichas de equipo.\n' +
+          '  Cloudflare: Settings -> Build -> Variables and Secrets (NO las del Worker).\n'
+      );
+      avisado = true;
+    }
+    return [];
+  }
   try {
     const res = await fetch(`${BASE}${path}`, { headers: { 'x-apisports-key': KEY } });
     if (!res.ok) {

@@ -83,3 +83,4 @@ footer.sitio {
   padding: 1.6rem 0; margin-top: 2rem; font-size: 0.88rem; color: var(--gris);
 }
 h1.seccion { font-size: 1.5rem; border-left: 5px solid var(--amarillo); padding-left: 0.7rem; }
+.build-info { font-size: 0.74rem; color: var(--gris); opacity: 0.75; margin-top: 0.4rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
