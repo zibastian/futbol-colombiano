@@ -66,16 +66,11 @@ const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.n
         <p class="nota-tabla">Actualizada automáticamente con cada publicación del sitio.</p>
       </div>
     ) : (
-      <p>La tabla de posiciones estará disponible próximamente.</p>
-      <p class="nota-tabla">
-        Los datos en vivo requieren el plan Pro de API-Football (el gratuito solo
-        llega hasta la temporada 2024). Para previsualizar el diseño:
-        <code>SEASON_OVERRIDE=2024 npm run dev</code>
-      </p>
+      <p class="intro-torneo">Toda la actualidad de la {torneo.nombre}: resultados, fichajes y análisis.</p>
     )
   }
 
-  <h2 class="seccion" style="margin-top:2rem">Noticias de {torneo.nombre}</h2>
+  <h2 class="seccion" style={tabla.length ? 'margin-top:2rem' : ''}>Noticias de {torneo.nombre}</h2>
   <div class="grilla-notas">
     {
       notas.map((nota) => (
@@ -104,4 +99,5 @@ const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.n
   .tabla-posiciones tbody tr:nth-child(-n+8) td:first-child { font-weight: 700; color: var(--azul); }
   .pts { font-weight: 800; }
   .nota-tabla { font-size: 0.8rem; color: var(--gris); }
+  .intro-torneo { color: var(--gris); margin-top: 0; }
 </style>
