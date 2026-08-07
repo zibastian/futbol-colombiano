@@ -54,7 +54,12 @@ async function api(path: string): Promise<any[]> {
       return [];
     }
     const json = await res.json();
-    return json.response || [];
+    if (json.errors && Object.keys(json.errors).length) {
+      console.warn(`[api-football] ${path} -> errores:`, JSON.stringify(json.errors));
+    }
+    const datos = json.response || [];
+    console.log(`[api-football] ${path} -> ${datos.length} resultados`);
+    return datos;
   } catch (e) {
     console.warn(`[api-football] error en ${path}:`, e);
     return [];
