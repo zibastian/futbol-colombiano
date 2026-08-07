@@ -56,3 +56,17 @@ Dominio ~$1/mes · Créditos Anthropic $10-25 · X API $10-15 · API imágenes $
 
 ## 16. Marca y activos históricos
 El sitio existió hace ~10 años como FutbolColombiano.com.co. Pendiente: verificar recuperación del dominio (la antigüedad y backlinks históricos son ventaja SEO) y de las cuentas de redes sociales originales (antigüedad suma).
+
+## 17. CORRECCIÓN — API-Football plan Free no sirve para temporada actual
+Verificado el 7/8/2026 con `npm run datos:test`:
+- Plan Free: 100 req/día, pero **bloquea las temporadas recientes**. Mensaje literal de la API:
+  "Free plans do not have access to this season, try from 2022 to 2024."
+- Consecuencias: tablas de posiciones, fichas de equipo y crónicas con goles/eventos
+  NO funcionan con el plan gratuito (devuelven 0 resultados sin error HTTP).
+- Opciones: (a) plan Pro USD $19/mes (7.500 req/día, temporada actual);
+  (b) posponer las secciones de datos y arrancar solo con noticias;
+  (c) evaluar proveedores alternativos (Sportmonks cobra por liga; TheSportsDB
+  gratuito no es confiable para tablas en vivo).
+- Mientras tanto: `SEASON_OVERRIDE=2024 npm run dev` permite previsualizar el
+  diseño con datos reales de 2024 en local, sin publicar datos viejos.
+- Esto corrige el supuesto de los planes v5/v6 ("API-Football free suficiente al inicio").

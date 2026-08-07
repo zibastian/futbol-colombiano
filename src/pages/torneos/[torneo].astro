@@ -67,6 +67,11 @@ const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.n
       </div>
     ) : (
       <p>La tabla de posiciones estará disponible próximamente.</p>
+      <p class="nota-tabla">
+        Los datos en vivo requieren el plan Pro de API-Football (el gratuito solo
+        llega hasta la temporada 2024). Para previsualizar el diseño:
+        <code>SEASON_OVERRIDE=2024 npm run dev</code>
+      </p>
     )
   }
 
