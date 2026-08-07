@@ -10,7 +10,7 @@ y deploy automático a Cloudflare Pages. Base de la plataforma multi-proyecto.
 - **Hubs por tag** (fase 1.5): equipos, torneos y jugadores mencionados en el frontmatter generan páginas hub automáticamente (`/tags/...`).
 - **Sveltia CMS** en `/admin`: flujo editorial Borradores → En revisión → Listo (el gate humano).
 - **Script de escudos** (`npm run escudos`): descarga los escudos de Primera A y B desde API-Football y los normaliza a 256×256 + 64×64 centrados.
-- **Workflow de deploy** (GitHub Actions → Cloudflare Pages) con cron preparado para fase 1.5.
+- **Deploy automático**: Cloudflare construye y publica con cada push a `main` (config en `wrangler.jsonc`).
 - `docs/investigacion.md`: toda la investigación del proyecto, versionada en Git.
 
 ## Puesta en marcha (checklist etapa 0)
@@ -28,19 +28,32 @@ npm install
 npm run dev        # http://localhost:4321
 ```
 
-### 3. Cloudflare Pages
-1. Crear cuenta en Cloudflare (gratis).
-2. Crear el proyecto: Workers & Pages → Create → Pages → nombre `futbol-colombiano`.
-3. Crear un API Token (perfil → API Tokens → plantilla "Edit Cloudflare Workers"/Pages) y copiar el Account ID (dashboard, barra lateral).
-4. En GitHub → Settings → Secrets and variables → Actions:
-   - Secret `CLOUDFLARE_API_TOKEN`
-   - Secret `CLOUDFLARE_ACCOUNT_ID`
-   - Variable `SITE_URL` = `https://futbol-colombiano.pages.dev` (cambiar al conectar dominio)
-5. Push a `main` → el workflow construye y despliega. El sitio queda en `https://futbol-colombiano.pages.dev`.
+### 3. Cloudflare (Workers con assets estáticos)
+Cloudflare fusionó Pages dentro de Workers: los proyectos nuevos se crean en
+Workers & Pages y el dominio queda como `*.workers.dev`. Mismo plan gratuito,
+mismo ancho de banda ilimitado.
+
+**Cloudflare construye directo desde el repo** (no hace falta GitHub Actions ni
+API tokens). Por eso las variables del build se cargan EN CLOUDFLARE:
+
+Workers & Pages → `futbol-colombiano` → Settings → **Build → Variables and Secrets**:
+
+| Variable | Valor | Para qué |
+|---|---|---|
+| `API_FOOTBALL_KEY` | tu key de api-football.com | tablas de posiciones y fichas de equipo |
+| `SITE_URL` | `https://futbol-colombiano.seskassner.workers.dev` | canonical, sitemaps y RSS |
+
+> Sin `API_FOOTBALL_KEY` el build no genera las fichas de equipo y las tablas
+> muestran "disponible próximamente".
+
+`wrangler.jsonc` fija el despliegue como **assets estáticos**. No lo borres: sin
+él, el autoconfig de Cloudflare instala el adaptador de Astro y convierte el
+sitio a modo servidor (mode: "server"), que es justo lo que este proyecto evita.
 
 ### 4. Dominio (cuando esté confirmado)
 - Verificar disponibilidad/recuperación de `futbolcolombiano.com.co`.
-- Conectarlo en Pages → Custom domains; actualizar `SITE_URL` (variable de Actions), `src/config.ts` y `public/robots.txt`.
+- Conectarlo en el proyecto → Custom domains; actualizar la variable `SITE_URL`
+  en Cloudflare y `src/config.ts` (robots.txt y sitemaps se generan solos).
 
 ### 5. Panel editorial (Sveltia)
 1. Editar `public/admin/config.yml`: cambiar `OWNER/REPO` por tu repo.
