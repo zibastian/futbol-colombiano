@@ -17,7 +17,10 @@ if (!KEY) {
 
 // IDs de liga en API-Football: 239 = Primera A, 240 = Primera B (Colombia)
 const LIGAS = [239, 240];
-const SEASON = process.env.SEASON || String(new Date().getFullYear());
+// Los escudos no cambian de una temporada a otra, así que usamos una temporada
+// accesible con el plan Free (que bloquea la actual: "try from 2022 to 2024").
+// Con plan Pro: SEASON=2026 npm run escudos
+const SEASON = process.env.SEASON || '2024';
 const OUT = 'public/escudos';
 
 async function api(path) {
@@ -48,7 +51,14 @@ let total = 0;
 
 for (const liga of LIGAS) {
   console.log(`Liga ${liga}, temporada ${SEASON}...`);
-  const equipos = await api(`teams?league=${liga}&season=${SEASON}`);
+  let equipos = [];
+  try {
+    equipos = await api(`teams?league=${liga}&season=${SEASON}`);
+  } catch (e) {
+    console.error(`  No se pudo consultar la liga ${liga}: ${e.message}`);
+    console.error('  Si el error es del plan, probar: SEASON=2024 npm run escudos');
+    continue;
+  }
   for (const { team } of equipos) {
     try {
       const res = await fetch(team.logo);
