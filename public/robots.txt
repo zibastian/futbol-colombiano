@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-Sitemap: https://futbol-colombiano.pages.dev/sitemap-index.xml
-Sitemap: https://futbol-colombiano.pages.dev/news-sitemap.xml

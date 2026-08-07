@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // La URL del sitio se toma de src/config.ts manualmente aquí
 // (Astro necesita el valor en tiempo de config).
-const SITE_URL = process.env.SITE_URL || 'https://futbol-colombiano.pages.dev';
+const SITE_URL = process.env.SITE_URL || 'https://futbol-colombiano.seskassner.workers.dev';
 
 export default defineConfig({
   site: SITE_URL,
@@ -14,6 +14,7 @@ export default defineConfig({
     })
   ],
   build: {
-    format: 'file'
+    // 'directory' + trailingSlash never => URLs limpias sin .html en el canonical
+    format: 'directory'
   }
 });

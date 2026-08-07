@@ -6,7 +6,7 @@ export const SITE = {
   description:
     'Noticias del fútbol profesional colombiano: Liga BetPlay, Copa Colombia, colombianos en el exterior, Libertadores y Sudamericana.',
   // Cambiar cuando el dominio esté confirmado (futbolcolombiano.com.co u otro):
-  url: 'https://futbol-colombiano.pages.dev',
+  url: 'https://futbol-colombiano.seskassner.workers.dev',
   locale: 'es_CO',
   lang: 'es',
   author: 'Fútbol Colombiano',
