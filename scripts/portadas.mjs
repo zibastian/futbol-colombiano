@@ -131,23 +131,35 @@ async function logoTorneo(slug) {
 async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.map(escudoBase64))).filter(Boolean);
-  const ancho = 92;
-  const inicio = 1200 - escudos.length * ancho - 40;
+
+  // Geometría: primero se reserva el espacio de los escudos y del logo,
+  // y el título se ajusta al ancho que queda (nunca se pisan).
+  const tam = 66;              // lado de cada escudo
+  const paso = 84;             // separación entre escudos
+  const anchoPanel = escudos.length ? escudos.length * paso + 26 : 0;
+  const panelX = 1200 - anchoPanel - 40;
+  const xTexto = logo ? 240 : 70;
+  const disponible = (escudos.length ? panelX - 34 : 1140) - xTexto;
+
+  // Barlow Condensed en mayúsculas ocupa ~0.47em por carácter
+  const tamTitulo = Math.max(34, Math.min(62, Math.floor(disponible / (titulo.length * 0.47))));
+
   const fila = escudos
-    .map((d, i) => `<image href="${d}" x="${inicio + i * ancho}" y="150" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>`)
+    .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${130 - tam / 2 + 33}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
     .join('\n  ');
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260">
   <rect width="1200" height="260" fill="${bg}"/>
   <rect width="1200" height="6" fill="#F2C200"/>
-  <g opacity="0.08">
-    <circle cx="1080" cy="70" r="120" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-    <line x1="960" y1="70" x2="1200" y2="70" stroke="#FFFFFF" stroke-width="3"/>
+  <g opacity="0.07">
+    <circle cx="600" cy="130" r="150" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="600" y1="-20" x2="600" y2="280" stroke="#FFFFFF" stroke-width="3"/>
   </g>
-  ${logo ? `<image href="${logo}" x="60" y="55" width="150" height="150" preserveAspectRatio="xMidYMid meet"/>` : ''}
-  <text x="${logo ? 235 : 70}" y="86" font-family="Barlow Condensed, Oswald, sans-serif" font-size="26" font-weight="700" fill="${acento}" letter-spacing="4">${esc(kicker)}</text>
-  <text x="${logo ? 235 : 70}" y="152" font-family="Barlow Condensed, Oswald, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" letter-spacing="1">${esc(titulo)}</text>
-  <text x="${logo ? 235 : 70}" y="196" font-family="Inter, system-ui, sans-serif" font-size="23" fill="#C3CFE0">${esc(sub)}</text>
-  <rect x="${inicio - 24}" y="140" width="${escudos.length * ancho + 44}" height="94" rx="10" fill="#FFFFFF" opacity="0.1"/>
+  ${logo ? `<image href="${logo}" x="62" y="52" width="152" height="152" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  <text x="${xTexto}" y="92" font-family="Barlow Condensed, Oswald, sans-serif" font-size="25" font-weight="700" fill="${acento}" letter-spacing="4">${esc(kicker)}</text>
+  <text x="${xTexto}" y="${92 + tamTitulo + 8}" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${esc(titulo)}</text>
+  <text x="${xTexto}" y="${92 + tamTitulo + 46}" font-family="Inter, system-ui, sans-serif" font-size="21" fill="#C3CFE0">${esc(sub)}</text>
+  ${escudos.length ? `<rect x="${panelX}" y="120" width="${anchoPanel}" height="92" rx="10" fill="#FFFFFF" opacity="0.1"/>` : ''}
   ${fila}
 </svg>
 `;
@@ -155,13 +167,13 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
 
 const banners = [
   ['liga-betplay.svg', { slug: 'liga-betplay', kicker: 'PRIMERA DIVISIÓN', titulo: 'LIGA BETPLAY', sub: 'Tabla, goleadores y descenso',
-    equipos: ['Atletico Nacional', 'Millonarios', 'America de Cali', 'Santa Fe', 'Junior', 'Independiente Medellin'] }],
+    equipos: ['Atletico Nacional', 'Millonarios', 'America de Cali', 'Santa Fe', 'Junior'] }],
   ['torneo-betplay.svg', { slug: 'torneo-betplay', kicker: 'SEGUNDA DIVISIÓN', titulo: 'TORNEO BETPLAY', sub: 'La pelea por el ascenso', bg: '#14498F',
-    equipos: ['Cucuta', 'Real Cartagena', 'Union Magdalena', 'Huila', 'Quindio', 'Patriotas'] }],
+    equipos: ['Cucuta', 'Real Cartagena', 'Union Magdalena', 'Huila', 'Quindio'] }],
   ['copa-betplay.svg', { slug: 'copa-betplay', kicker: 'TODO EL AÑO', titulo: 'COPA BETPLAY', sub: 'Primera y segunda división se cruzan', bg: '#0F6E56',
-    equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Huila', 'Once Caldas', 'Real Cartagena'] }],
+    equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Huila', 'Once Caldas'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
-    equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Deportivo Cali', 'Santa Fe'] }],
+    equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Santa Fe'] }],
   ['colombianos-en-el-exterior.svg', { slug: 'colombianos-en-el-exterior', kicker: 'SEGUIMIENTO DIARIO', titulo: 'COLOMBIANOS EN EL EXTERIOR', sub: 'Europa, MLS, Brasil y Argentina', bg: '#B3271E', equipos: [] }],
   ['opinion.svg', { slug: 'opinion', kicker: 'COLUMNAS FIRMADAS', titulo: 'OPINIÓN', sub: 'Cada firma, su mirada', bg: '#0B2C5E', equipos: [] }],
   ['noticias.svg', { slug: 'noticias', kicker: 'ACTUALIDAD', titulo: 'NOTICIAS', sub: 'Todo el fútbol profesional colombiano', bg: '#14161A', equipos: [] }]
