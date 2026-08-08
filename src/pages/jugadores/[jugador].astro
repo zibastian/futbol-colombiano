@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import { jugadorDestacadoPorSlug, JUGADORES_DESTACADOS } from '../../data/jugadores';
+import creditos from '../../data/fotos-creditos.json';
 import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
@@ -35,6 +36,10 @@ const destacado = jugadorDestacadoPorSlug(slug);
 const ordenadas = notas.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const iniciales = (destacado?.nombre || nombre).split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase();
 
+// Foto de Wikimedia Commons (npm run fotos). La licencia exige mostrar el crédito.
+const credito = destacado ? (creditos as Record<string, any>)[destacado.slug] : undefined;
+const foto = credito ? `/jugadores/${destacado!.slug}.jpg` : null;
+
 const jugadorLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -65,7 +70,24 @@ const jugadorLd = {
   {
     destacado ? (
       <section class="ficha-jugador" style={`--acento:${destacado.color}`}>
-        <div class="retrato" aria-hidden="true"><span>{iniciales}</span></div>
+        <div class="retrato-bloque">
+          {foto ? (
+            <img class="retrato-foto" src={foto} alt={`Retrato de ${destacado.nombre}`} width="150" height="150" />
+          ) : (
+            <div class="retrato" aria-hidden="true"><span>{iniciales}</span></div>
+          )}
+          {credito && (
+            <p class="credito-foto">
+              Foto: {credito.autor} ·{' '}
+              {credito.licenciaUrl ? (
+                <a href={credito.licenciaUrl} rel="nofollow noopener" target="_blank">{credito.licencia}</a>
+              ) : (
+                credito.licencia
+              )}{' '}
+              (<a href={credito.fuente} rel="nofollow noopener" target="_blank">Wikimedia Commons</a>)
+            </p>
+          )}
+        </div>
         <div class="ficha-info">
           <span class="kicker">{destacado.vigente ? 'Jugador en activo' : 'Leyenda del fútbol colombiano'}</span>
           <h1>{destacado.nombre}</h1>
@@ -135,8 +157,18 @@ const jugadorLd = {
     border: 1px solid var(--borde); border-top: 5px solid var(--acento);
     border-radius: 10px; padding: 1.4rem 1.5rem; margin-bottom: 1.8rem;
   }
+  .retrato-bloque { flex-shrink: 0; width: 150px; }
+  .retrato-foto {
+    width: 150px; height: 150px; border-radius: 10px; object-fit: cover;
+    border: 3px solid var(--acento);
+  }
+  .credito-foto {
+    font-size: 0.66rem; color: var(--gris-claro); line-height: 1.3;
+    margin: 0.35rem 0 0; word-break: break-word;
+  }
+  .credito-foto a { color: var(--gris); }
   .retrato {
-    width: 118px; height: 118px; border-radius: 10px; background: var(--acento);
+    width: 150px; height: 150px; border-radius: 10px; background: var(--acento);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     font-family: var(--condensada); font-size: 2.8rem; font-weight: 700; color: #fff;
   }

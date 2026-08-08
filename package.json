@@ -10,6 +10,7 @@
     "escudos": "node scripts/escudos.mjs",
     "datos:test": "node scripts/diagnostico-api.mjs",
     "portadas": "node scripts/portadas.mjs",
+    "fotos": "node scripts/fotos.mjs",
     "demo:limpiar": "node scripts/limpiar-demo.mjs"
   },
   "dependencies": {

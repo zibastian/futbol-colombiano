@@ -9,3 +9,6 @@ dist/
 .wrangler/
 .dev.vars
 worker-configuration.d.ts
+
+# Fotos descargadas de Wikimedia (se regeneran con: npm run fotos)
+public/jugadores/

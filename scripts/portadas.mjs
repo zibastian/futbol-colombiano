@@ -116,6 +116,44 @@ async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
 `;
 }
 
+/** Banner de sección: título + franja con los escudos reales de los equipos. */
+async function piezaBanner({ kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
+  const escudos = (await Promise.all(equipos.map(escudoBase64))).filter(Boolean);
+  const ancho = 92;
+  const inicio = 1200 - escudos.length * ancho - 40;
+  const fila = escudos
+    .map((d, i) => `<image href="${d}" x="${inicio + i * ancho}" y="150" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>`)
+    .join('\n  ');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260">
+  <rect width="1200" height="260" fill="${bg}"/>
+  <rect width="1200" height="6" fill="#F2C200"/>
+  <g opacity="0.08">
+    <circle cx="1080" cy="70" r="120" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="960" y1="70" x2="1200" y2="70" stroke="#FFFFFF" stroke-width="3"/>
+  </g>
+  <text x="70" y="86" font-family="Barlow Condensed, Oswald, sans-serif" font-size="26" font-weight="700" fill="${acento}" letter-spacing="4">${esc(kicker)}</text>
+  <text x="70" y="152" font-family="Barlow Condensed, Oswald, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" letter-spacing="1">${esc(titulo)}</text>
+  <text x="70" y="196" font-family="Inter, system-ui, sans-serif" font-size="23" fill="#C3CFE0">${esc(sub)}</text>
+  <rect x="${inicio - 24}" y="140" width="${escudos.length * ancho + 44}" height="94" rx="10" fill="#FFFFFF" opacity="0.1"/>
+  ${fila}
+</svg>
+`;
+}
+
+const banners = [
+  ['liga-betplay.svg', { kicker: 'PRIMERA DIVISIÓN', titulo: 'LIGA BETPLAY', sub: 'Tabla, goleadores y descenso',
+    equipos: ['Atletico Nacional', 'Millonarios', 'America de Cali', 'Santa Fe', 'Junior', 'Independiente Medellin'] }],
+  ['torneo-betplay.svg', { kicker: 'SEGUNDA DIVISIÓN', titulo: 'TORNEO BETPLAY', sub: 'La pelea por el ascenso', bg: '#14498F',
+    equipos: ['Cucuta', 'Real Cartagena', 'Union Magdalena', 'Huila', 'Quindio', 'Patriotas'] }],
+  ['copa-betplay.svg', { kicker: 'TODO EL AÑO', titulo: 'COPA BETPLAY', sub: 'Primera y segunda división se cruzan', bg: '#0F6E56',
+    equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Huila', 'Once Caldas', 'Real Cartagena'] }],
+  ['fichajes.svg', { kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
+    equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Deportivo Cali', 'Santa Fe'] }],
+  ['colombianos-en-el-exterior.svg', { kicker: 'SEGUIMIENTO DIARIO', titulo: 'COLOMBIANOS EN EL EXTERIOR', sub: 'Europa, MLS, Brasil y Argentina', bg: '#B3271E', equipos: [] }],
+  ['opinion.svg', { kicker: 'COLUMNAS FIRMADAS', titulo: 'OPINIÓN', sub: 'Cada firma, su mirada', bg: '#0B2C5E', equipos: [] }],
+  ['noticias.svg', { kicker: 'ACTUALIDAD', titulo: 'NOTICIAS', sub: 'Todo el fútbol profesional colombiano', bg: '#14161A', equipos: [] }]
+];
+
 const piezas = [
   ['cronica.svg', piezaPartido, { kicker: 'CRÓNICA', local: 'Atletico Nacional', visitante: 'Junior', marcador: '2-1', sub: 'Fecha 3 · Atanasio Girardot' }],
   ['previa.svg', piezaPartido, { kicker: 'PREVIA', local: 'Millonarios', visitante: 'Independiente Santa Fe', marcador: 'VS', sub: 'Domingo 8:00 p.m. · El Campín', bg: '#1B4C9E' }],
@@ -129,6 +167,12 @@ const piezas = [
 for (const [archivo, fn, args] of piezas) {
   await writeFile(`${OUT}/${archivo}`, await fn(args));
   console.log(`  ok ${archivo}`);
+}
+
+await mkdir('public/banners', { recursive: true });
+for (const [archivo, args] of banners) {
+  await writeFile(`public/banners/${archivo}`, await piezaBanner(args));
+  console.log(`  ok banners/${archivo}`);
 }
 
 // Portada genérica de respaldo (vive fuera de /demo: se usa siempre que una nota no traiga imagen)
