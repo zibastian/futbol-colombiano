@@ -7,7 +7,9 @@ const SITE_URL = process.env.SITE_URL || 'https://futbol-colombiano.seskassner.w
 
 export default defineConfig({
   site: SITE_URL,
-  trailingSlash: 'never',
+  // 'ignore': /liga-betplay y /liga-betplay/ resuelven igual.
+  // Con 'never' el servidor de preview devuelve 404 en las rutas por carpeta.
+  trailingSlash: 'ignore',
   // Las notas publicadas antes del nuevo esquema de URLs conservan su enlace.
   redirects: {
     '/noticias/2026-08-07-luis-diaz-gol-bayern-munich-aston-villa':
