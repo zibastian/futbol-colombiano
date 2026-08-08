@@ -5,6 +5,7 @@
     <circle cx="1080" cy="70" r="120" fill="none" stroke="#FFFFFF" stroke-width="3"/>
     <line x1="960" y1="70" x2="1200" y2="70" stroke="#FFFFFF" stroke-width="3"/>
   </g>
+  
   <text x="70" y="86" font-family="Barlow Condensed, Oswald, sans-serif" font-size="26" font-weight="700" fill="#F2C200" letter-spacing="4">MERCADO DE PASES</text>
   <text x="70" y="152" font-family="Barlow Condensed, Oswald, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" letter-spacing="1">FICHAJES</text>
   <text x="70" y="196" font-family="Inter, system-ui, sans-serif" font-size="23" fill="#C3CFE0">Llegadas, salidas y rumores del FPC</text>
