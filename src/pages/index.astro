@@ -3,25 +3,74 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import NotaCard from '../components/NotaCard.astro';
 
+const etiquetas: Record<string, string> = {
+  cronica: 'Crónica',
+  fichaje: 'Fichajes',
+  previa: 'Previa',
+  agenda: 'Agenda',
+  opinion: 'Opinión',
+  reporte: 'Reporte',
+  nota: 'Noticias'
+};
+
 const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const principal = notas[0];
+const laterales = notas.slice(1, 5);
+const resto = notas.slice(5);
+const slug = (n: any) => n.id.replace(/\.md$/, '');
 ---
 
 <Base>
-  <h1 class="seccion">Últimas noticias</h1>
-  <div class="grilla-notas">
-    {
-      notas.map((nota) => (
-        <NotaCard
-          slug={nota.id.replace(/\.md$/, '')}
-          title={nota.data.title}
-          description={nota.data.description}
-          tipo={nota.data.tipo}
-          cover={nota.data.cover}
-          coverAlt={nota.data.coverAlt}
-        />
-      ))
-    }
-  </div>
+  {
+    principal && (
+      <section class="portada">
+        <article class="nota-principal">
+          {principal.data.cover && (
+            <a href={`/noticias/${slug(principal)}`}>
+              <img class="cubierta" src={principal.data.cover} alt={principal.data.coverAlt || principal.data.title} />
+            </a>
+          )}
+          <span class="kicker">{etiquetas[principal.data.tipo] || 'Noticias'}</span>
+          <h2><a href={`/noticias/${slug(principal)}`}>{principal.data.title}</a></h2>
+          <p>{principal.data.description}</p>
+        </article>
+
+        {laterales.length > 0 && (
+          <aside class="columna-lateral" aria-label="Últimas noticias">
+            {laterales.map((nota) => (
+              <div class="item-lateral">
+                <span class="kicker">{etiquetas[nota.data.tipo] || 'Noticias'}</span>
+                <h3><a href={`/noticias/${slug(nota)}`}>{nota.data.title}</a></h3>
+              </div>
+            ))}
+          </aside>
+        )}
+      </section>
+    )
+  }
+
+  {
+    resto.length > 0 && (
+      <>
+        <h2 class="seccion" style="margin-top:2.4rem">Más noticias</h2>
+        <div class="grilla-notas">
+          {resto.map((nota) => (
+            <NotaCard
+              slug={slug(nota)}
+              title={nota.data.title}
+              description={nota.data.description}
+              tipo={nota.data.tipo}
+              cover={nota.data.cover}
+              coverAlt={nota.data.coverAlt}
+            />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  {notas.length === 0 && <p>Aún no hay noticias publicadas.</p>}
 </Base>

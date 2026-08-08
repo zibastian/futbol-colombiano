@@ -72,12 +72,13 @@ const siteLd = {
     <header class="sitio">
       <div class="contenedor barra">
         <a href="/" class="logo" aria-label={SITE.title}>
-          Fútbol<span class="azul">Colombiano</span><span class="co">.com.co</span>
+          Fútbol<span class="amarillo">Colombiano</span><span class="co">.com.co</span>
         </a>
         <nav class="principal" aria-label="Secciones">
           <a href="/">Portada</a>
           <a href="/torneos/liga-betplay">Liga BetPlay</a>
           <a href="/torneos/torneo-betplay">Torneo BetPlay</a>
+          <a href="/tags/colombianos-en-el-exterior">Exterior</a>
         </nav>
       </div>
     </header>
@@ -86,7 +87,11 @@ const siteLd = {
     </main>
     <footer class="sitio">
       <div class="contenedor">
-        <p>© {new Date().getFullYear()} {SITE.title}. Información deportiva del fútbol profesional colombiano.</p>
+        <p>
+          <strong>Fútbol<span style="color:var(--amarillo)">Colombiano</span></strong> ·
+          Noticias, fichajes y análisis del fútbol profesional colombiano.
+        </p>
+        <p>© {new Date().getFullYear()} {SITE.title}. Todos los derechos reservados.</p>
         <p class="build-info">
           v{BUILD.version} · {BUILD.commit} · build {BUILD.fecha} · {BUILD.datos}
         </p>
