@@ -16,10 +16,23 @@ const OUT = 'public/jugadores';
 // Licencias que permiten uso comercial (con atribución)
 const PERMITIDAS = /^(cc0|cc[- ]by([- ]sa)?([- ][0-9.]+)?|public domain|pd-)/i;
 
-async function api(params) {
+const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Commons limita las peticiones seguidas (error 429). Vamos despacio y,
+// si aun así nos frena, reintentamos esperando cada vez más.
+async function api(params, intento = 1) {
   const url = `${API}?${new URLSearchParams({ ...params, format: 'json', origin: '*' })}`;
   const res = await fetch(url, { headers: { 'User-Agent': UA } });
+
+  if (res.status === 429 || res.status === 503) {
+    if (intento > 4) throw new Error(`Commons ${res.status} tras varios reintentos`);
+    const espera = 2000 * intento;
+    console.log(`  (Commons pidió esperar, reintento en ${espera / 1000}s...)`);
+    await esperar(espera);
+    return api(params, intento + 1);
+  }
   if (!res.ok) throw new Error(`Commons ${res.status}`);
+  await esperar(700); // ritmo amable entre consultas
   return res.json();
 }
 
@@ -52,22 +65,37 @@ async function datosArchivo(titulo) {
 
 const jugadores = JSON.parse(await readFile('scripts/jugadores-fotos.json', 'utf8'));
 await mkdir(OUT, { recursive: true });
-const creditos = {};
+
+// Conserva lo ya descargado: si el script se corta, al repetirlo no se pierde nada
+// y se saltan los jugadores que ya tienen foto.
+let creditos = {};
+try {
+  creditos = JSON.parse(await readFile('src/data/fotos-creditos.json', 'utf8'));
+} catch {}
 
 for (const j of jugadores) {
+  if (creditos[j.slug] && !process.env.FORZAR) {
+    console.log(`\n${j.nombre}\n  ya tiene foto (usa FORZAR=1 para rehacerla)`);
+    continue;
+  }
   console.log(`\n${j.nombre}`);
   let elegido = null;
-  const candidatos = j.archivo ? [j.archivo] : await buscarArchivo(j.busqueda || j.nombre);
 
-  for (const titulo of candidatos) {
-    const d = await datosArchivo(titulo);
-    if (!d) continue;
-    if (!PERMITIDAS.test(d.licencia)) {
-      console.log(`  ✗ ${titulo} — licencia no apta (${d.licencia || 'desconocida'})`);
-      continue;
+  try {
+    const candidatos = j.archivo ? [j.archivo] : await buscarArchivo(j.busqueda || j.nombre);
+    for (const titulo of candidatos) {
+      const d = await datosArchivo(titulo);
+      if (!d) continue;
+      if (!PERMITIDAS.test(d.licencia)) {
+        console.log(`  ✗ ${titulo} — licencia no apta (${d.licencia || 'desconocida'})`);
+        continue;
+      }
+      elegido = { titulo, ...d };
+      break;
     }
-    elegido = { titulo, ...d };
-    break;
+  } catch (e) {
+    // Un fallo con un jugador no debe tumbar toda la corrida
+    console.log(`  error consultando Commons: ${e.message}`);
   }
 
   if (!elegido) {
@@ -89,6 +117,7 @@ for (const j of jugadores) {
       licenciaUrl: elegido.licenciaUrl,
       fuente: elegido.paginaDescripcion
     };
+    await writeFile('src/data/fotos-creditos.json', JSON.stringify(creditos, null, 2));
     console.log(`  ✓ ${elegido.titulo}`);
     console.log(`    ${elegido.autor} · ${elegido.licencia}`);
   } catch (e) {
