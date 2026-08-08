@@ -34,6 +34,16 @@ const noticias = defineCollection({
     seccion: z
       .enum(['liga-betplay', 'torneo-betplay', 'copa-betplay', 'colombianos-en-el-exterior', 'fichajes', 'opinion', 'noticias'])
       .optional(),
+    // Foto de Getty embebida dentro del cuerpo de la nota (uso editorial).
+    // Datos que entrega el botón "Insertar" de Getty Images.
+    getty: z
+      .object({
+        id: z.string(),
+        sig: z.string(),
+        items: z.string(),
+        pie: z.string().optional()
+      })
+      .optional(),
     // Datos del jugador para las tarjetas de "colombianos en el exterior"
     exterior: z
       .object({

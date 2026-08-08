@@ -1,0 +1,58 @@
+---
+// Foto embebida de Getty Images (uso editorial, sin costo).
+//
+// Cómo obtener los datos: en gettyimages.com filtrar por "Embeddable images",
+// abrir la foto, botón "Insertar" y copiar el código. De ahí salen id, sig e items.
+//
+// Ventajas: fotos de partidos recientes, legal y gratis para uso editorial
+// (Getty admite sitios que monetizan con Google Ads).
+// Límites: no se puede descargar ni editar, no sirve como imagen de portada ni
+// para redes sociales, y Getty puede retirar la foto cuando quiera. Por eso se usa
+// DENTRO de la nota, nunca como cover.
+interface Props {
+  id: string;      // identificador del widget
+  sig: string;     // firma que entrega Getty
+  items: string;   // id(s) de la(s) foto(s)
+  alto?: number;
+  pie?: string;
+}
+const { id, sig, items, alto = 480, pie } = Astro.props;
+---
+
+<figure class="foto-getty">
+  <div class="getty-marco" style={`min-height:${alto}px`}>
+    <a
+      id={id}
+      class="gie-single"
+      href={`https://www.gettyimages.com/detail/${items}`}
+      target="_blank"
+      rel="noopener"
+    >Ver foto en Getty Images</a>
+  </div>
+  {pie && <figcaption>{pie}</figcaption>}
+</figure>
+
+<script is:inline define:vars={{ id, sig, items, alto }}>
+  window.gie =
+    window.gie ||
+    function (c) {
+      (gie.q = gie.q || []).push(c);
+    };
+  gie(function () {
+    gie.widgets.load({ id, sig, w: '100%', h: `${alto}px`, items, caption: true, tld: 'com', is360: false });
+  });
+</script>
+<script is:inline async src="https://embed-cdn.gettyimages.com/widgets.js" charset="utf-8"></script>
+
+<style>
+  .foto-getty { margin: 1.6rem 0; }
+  .getty-marco {
+    background: var(--fondo-suave); border: 1px solid var(--borde);
+    border-radius: 8px; overflow: hidden; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .getty-marco a { color: var(--gris); font-size: 0.9rem; }
+  .foto-getty figcaption {
+    font-size: 0.82rem; color: var(--gris); margin-top: 0.4rem; line-height: 1.4;
+  }
+</style>

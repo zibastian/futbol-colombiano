@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Anuncio from '../../components/Anuncio.astro';
+import FotoGetty from '../../components/FotoGetty.astro';
+import creditos from '../../data/fotos-creditos.json';
 import NotaCard from '../../components/NotaCard.astro';
 import { SITE } from '../../config';
 import { seccionDeNota, seccionPorSlug } from '../../data/secciones';
@@ -24,6 +26,9 @@ const { Content } = await render(nota);
 const d = nota.data;
 const seccion = seccionPorSlug(seccionDeNota(d));
 const columnista = columnistaPorNombre(d.autor);
+// Crédito de la portada cuando viene del banco de imágenes libres (/fotos)
+const claveFoto = d.cover?.startsWith('/fotos/') ? `foto:${d.cover.split('/').pop()?.replace('.jpg','')}` : null;
+const creditoPortada = claveFoto ? (creditos as Record<string, any>)[claveFoto] : undefined;
 
 const fmt = (date: Date) =>
   date.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' });
@@ -100,7 +105,16 @@ const breadcrumbLd = {
       </p>
     )}
 
+    {creditoPortada && (
+      <p class="credito-portada">
+        Foto: {creditoPortada.autor} · {creditoPortada.licencia}
+        (<a href={creditoPortada.fuente} rel="nofollow noopener" target="_blank">fuente</a>)
+      </p>
+    )}
+
     <div class="cuerpo-nota"><Content /></div>
+
+    {d.getty && <FotoGetty id={d.getty.id} sig={d.getty.sig} items={d.getty.items} pie={d.getty.pie} />}
 
     <Anuncio formato="in-article" />
 
@@ -144,4 +158,6 @@ const breadcrumbLd = {
   .miga a:hover { color: var(--azul); }
   .miga span { margin: 0 0.3rem; }
   .relacionadas { max-width: 1100px; margin: 2.5rem auto 0; }
+  .credito-portada { font-size: 0.75rem; color: var(--gris-claro); margin: -0.7rem 0 1.2rem; }
+  .credito-portada a { color: var(--gris); }
 </style>
