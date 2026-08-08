@@ -5,9 +5,10 @@ import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import { urlNota } from '../../lib/rutas';
 
-const POR_PAGINA = 12;
-
 export async function getStaticPaths() {
+  // Astro ejecuta getStaticPaths aislada del resto del módulo:
+  // todo lo que use debe declararse aquí adentro.
+  const POR_PAGINA = 12;
   const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
