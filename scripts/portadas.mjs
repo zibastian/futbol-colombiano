@@ -141,11 +141,13 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
   const xTexto = logo ? 240 : 70;
   const disponible = (escudos.length ? panelX - 34 : 1140) - xTexto;
 
-  // Barlow Condensed en mayúsculas ocupa ~0.47em por carácter
-  const tamTitulo = Math.max(34, Math.min(62, Math.floor(disponible / (titulo.length * 0.47))));
+  // Barlow Condensed bold en mayúsculas ocupa ~0.52em por carácter.
+  // Se usa esa medida con margen para garantizar que el título nunca alcance
+  // el panel de escudos, por largo que sea el nombre del torneo.
+  const tamTitulo = Math.max(32, Math.min(58, Math.floor(disponible / (titulo.length * 0.52))));
 
   const fila = escudos
-    .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${130 - tam / 2 + 33}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
+    .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${120 + (92 - tam) / 2}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
     .join('\n  ');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260">
