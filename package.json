@@ -12,7 +12,8 @@
     "portadas": "node scripts/portadas.mjs",
     "fotos": "node scripts/fotos.mjs",
     "demo:limpiar": "node scripts/limpiar-demo.mjs",
-    "imagen": "node scripts/imagen.mjs"
+    "imagen": "node scripts/imagen.mjs",
+    "logos": "node scripts/logos-torneo.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",

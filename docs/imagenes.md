@@ -41,3 +41,12 @@ banner lo incorpora automáticamente; si no, usa el balón tricolor de la marca.
 ## 7. A futuro: fotógrafo propio
 Acreditación de Dimayor + freelance local (~USD 50-150 por partido). Fotos propias,
 exclusivas y sin límites de uso. Es la única forma de diferenciarse de verdad.
+
+### Preparar un logo de torneo
+
+1. Guardar la imagen original (aunque tenga fondo blanco) en
+   `public/torneos/originales/liga-betplay.png`
+2. `npm run logos` — quita el fondo blanco, recorta y normaliza a 600px
+3. `npm run portadas` — regenera los banners con el logo incorporado
+
+Slugs válidos: `liga-betplay`, `torneo-betplay`, `copa-betplay`.
