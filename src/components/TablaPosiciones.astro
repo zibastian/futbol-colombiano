@@ -13,46 +13,58 @@ interface Props {
   compacta?: boolean;
 }
 const { filas, titulo, destacar, clasifican = 8, compacta = false } = Astro.props;
+
+// Las comparaciones con "<" o "<=" deben resolverse aquí y NUNCA en el template:
+// el compilador de Astro lee el "<" como apertura de etiqueta.
+const filasPreparadas = filas.map((f) => {
+  const eq = buscarEquipo(f.equipo);
+  return {
+    ...f,
+    equipoRef: eq,
+    escudo: escudoDe(eq, 64),
+    clasifica: f.posicion <= clasifican,
+    esDestacado: Boolean(eq && destacar && eq.slug === destacar),
+    dgTexto: f.dg > 0 ? `+${f.dg}` : String(f.dg)
+  };
+});
 ---
 
-<div class={`tabla-bloque ${compacta ? "compacta" : ""}`}>
+<div class={`tabla-bloque ${compacta ? 'compacta' : ''}`}>
   {titulo && <h3 class="tabla-titulo">{titulo}</h3>}
   <div class="tabla-wrap">
     <table class="tabla-posiciones">
       <thead>
         <tr>
           <th>#</th><th class="equipo-col">Equipo</th><th>PJ</th>
-          {!compacta && <><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th></>}
+          {!compacta && <Fragment><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th></Fragment>}
           <th>DG</th><th>Pts</th>
         </tr>
       </thead>
       <tbody>
         {
-          filas.map((f) => {
-            const eq = buscarEquipo(f.equipo);
-            const escudo = escudoDe(eq, 64);
-            const url = eq ? `/equipos/${eq.slug}` : null;
-            const esDestacado = eq && destacar && eq.slug === destacar;
-            return (
-              <tr class={esDestacado ? 'destacado' : ''}>
-                <td class={f.posicion <= clasifican ? 'pos clasifica' : 'pos'}>{f.posicion}</td>
-                <td class="equipo-col">
-                  {url ? (
-                    <a href={url}>
-                      {escudo && <img src={escudo} alt="" width="22" height="22" loading="lazy" />}
-                      <span>{eq!.nombre}</span>
-                    </a>
-                  ) : (
-                    <span class="sin-ficha">{f.equipo}</span>
-                  )}
-                </td>
-                <td>{f.pj}</td>
-                {!compacta && <><td>{f.g}</td><td>{f.e}</td><td>{f.p}</td><td>{f.gf}</td><td>{f.gc}</td></>}
-                <td>{f.dg > 0 ? `+${f.dg}` : f.dg}</td>
-                <td class="pts">{f.pts}</td>
-              </tr>
-            );
-          })
+          filasPreparadas.map((f) => (
+            <tr class={f.esDestacado ? 'destacado' : ''}>
+              <td class={f.clasifica ? 'pos clasifica' : 'pos'}>{f.posicion}</td>
+              <td class="equipo-col">
+                {f.equipoRef ? (
+                  <a href={`/equipos/${f.equipoRef.slug}`}>
+                    {f.escudo && <img src={f.escudo} alt="" width="22" height="22" loading="lazy" />}
+                    <span>{f.equipoRef.nombre}</span>
+                  </a>
+                ) : (
+                  <span class="sin-ficha">{f.equipo}</span>
+                )}
+              </td>
+              <td>{f.pj}</td>
+              {!compacta && (
+                <Fragment>
+                  <td>{f.g}</td><td>{f.e}</td><td>{f.p}</td><td>{f.gf}</td><td>{f.gc}</td>
+                </Fragment>
+              )}
+              <td>{f.dgTexto}</td>
+              <td class="pts">{f.pts}</td>
+            </tr>
+          ))
         }
       </tbody>
     </table>
@@ -67,10 +79,10 @@ const { filas, titulo, destacar, clasifican = 8, compacta = false } = Astro.prop
   }
   .tabla-wrap { overflow-x: auto; border: 1px solid var(--borde); border-radius: 8px; }
   .tabla-posiciones { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 520px; }
+  .tabla-posiciones th, .tabla-posiciones td { padding: 0.45rem 0.5rem; text-align: center; }
   .compacta .tabla-posiciones { min-width: 0; font-size: 0.84rem; }
   .compacta .equipo-col { min-width: 0; }
   .compacta .tabla-posiciones th, .compacta .tabla-posiciones td { padding: 0.4rem 0.3rem; }
-  .tabla-posiciones th, .tabla-posiciones td { padding: 0.45rem 0.5rem; text-align: center; }
   .tabla-posiciones thead th {
     background: var(--azul); color: #fff; font-family: var(--condensada);
     font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;

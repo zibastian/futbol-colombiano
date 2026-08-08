@@ -4,7 +4,22 @@ import { buscarEquipo, escudoDe } from '../data/equipos';
 interface Fila { posicion: number; equipo: string; puntos: number; partidos: number; promedio: number }
 interface Props { filas: Fila[]; destacar?: string; enZona?: number }
 const { filas, destacar, enZona = 2 } = Astro.props;
+
+// OJO: las comparaciones con "<" o "<=" NO pueden ir dentro del template —
+// el compilador de Astro las lee como la apertura de una etiqueta.
+// Todo lo calculado va aquí arriba.
 // La tabla llega ordenada de peor a mejor promedio: la zona roja son los primeros.
+const filasPreparadas = filas.map((f) => {
+  const eq = buscarEquipo(f.equipo);
+  return {
+    ...f,
+    equipoRef: eq,
+    escudo: escudoDe(eq, 64),
+    enRiesgo: f.posicion <= enZona,
+    esDestacado: Boolean(eq && destacar && eq.slug === destacar),
+    promedioTexto: f.promedio.toFixed(3)
+  };
+});
 ---
 
 <div class="descenso">
@@ -15,29 +30,24 @@ const { filas, destacar, enZona = 2 } = Astro.props;
       </thead>
       <tbody>
         {
-          filas.map((f) => {
-            const eq = buscarEquipo(f.equipo);
-            const escudo = escudoDe(eq, 64);
-            const zona = f.posicion <= enZona;
-            return (
-              <tr class={`${zona ? 'en-zona' : ''} ${eq && destacar === eq.slug ? 'destacado' : ''}`}>
-                <td class="pos">{f.posicion}</td>
-                <td class="equipo-col">
-                  {eq ? (
-                    <a href={`/equipos/${eq.slug}`}>
-                      {escudo && <img src={escudo} alt="" width="20" height="20" loading="lazy" />}
-                      <span>{eq.nombre}</span>
-                    </a>
-                  ) : (
-                    <span>{f.equipo}</span>
-                  )}
-                </td>
-                <td>{f.partidos}</td>
-                <td>{f.puntos}</td>
-                <td class="prom">{f.promedio.toFixed(3)}</td>
-              </tr>
-            );
-          })
+          filasPreparadas.map((f) => (
+            <tr class={`${f.enRiesgo ? 'en-zona' : ''} ${f.esDestacado ? 'destacado' : ''}`}>
+              <td class="pos">{f.posicion}</td>
+              <td class="equipo-col">
+                {f.equipoRef ? (
+                  <a href={`/equipos/${f.equipoRef.slug}`}>
+                    {f.escudo && <img src={f.escudo} alt="" width="20" height="20" loading="lazy" />}
+                    <span>{f.equipoRef.nombre}</span>
+                  </a>
+                ) : (
+                  <span>{f.equipo}</span>
+                )}
+              </td>
+              <td>{f.partidos}</td>
+              <td>{f.puntos}</td>
+              <td class="prom">{f.promedioTexto}</td>
+            </tr>
+          ))
         }
       </tbody>
     </table>
