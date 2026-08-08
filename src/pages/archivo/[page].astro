@@ -24,6 +24,9 @@ export async function getStaticPaths() {
 }
 
 const { notas, pagina, totalPaginas } = Astro.props;
+// Las comparaciones se resuelven aquí: Astro lee un "<" del template como etiqueta.
+const hayAnterior = pagina > 1;
+const haySiguiente = totalPaginas > pagina;
 ---
 
 <Base
@@ -31,9 +34,9 @@ const { notas, pagina, totalPaginas } = Astro.props;
   description="Todas las noticias del fútbol colombiano publicadas en el portal, de la más reciente a la más antigua."
 >
   <Fragment slot="head">
-    {pagina > 1 && <link rel="prev" href={`/archivo/${pagina - 1}`} />}
-    {pagina < totalPaginas && <link rel="next" href={`/archivo/${pagina + 1}`} />}
-    {pagina > 1 && <meta name="robots" content="noindex, follow" />}
+    {hayAnterior && <link rel="prev" href={`/archivo/${pagina - 1}`} />}
+    {haySiguiente && <link rel="next" href={`/archivo/${pagina + 1}`} />}
+    {hayAnterior && <meta name="robots" content="noindex, follow" />}
   </Fragment>
 
   <h1 class="seccion">Archivo de noticias</h1>
@@ -55,9 +58,9 @@ const { notas, pagina, totalPaginas } = Astro.props;
   <Anuncio formato="horizontal" />
 
   <nav class="paginacion" aria-label="Paginación">
-    {pagina > 1 && <a href={`/archivo/${pagina - 1}`}>← Anteriores</a>}
+    {hayAnterior && <a href={`/archivo/${pagina - 1}`}>← Anteriores</a>}
     <span>{pagina} / {totalPaginas}</span>
-    {pagina < totalPaginas && <a href={`/archivo/${pagina + 1}`}>Siguientes →</a>}
+    {haySiguiente && <a href={`/archivo/${pagina + 1}`}>Siguientes →</a>}
   </nav>
 </Base>
 
