@@ -141,10 +141,10 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
   const xTexto = logo ? 240 : 70;
   const disponible = (escudos.length ? panelX - 34 : 1140) - xTexto;
 
-  // Barlow Condensed bold en mayúsculas ocupa ~0.52em por carácter.
-  // Se usa esa medida con margen para garantizar que el título nunca alcance
-  // el panel de escudos, por largo que sea el nombre del torneo.
-  const tamTitulo = Math.max(32, Math.min(58, Math.floor(disponible / (titulo.length * 0.52))));
+  // Ancho real medido sobre el render: Barlow Condensed bold en mayúsculas
+  // ocupa ~0.64em por carácter (el letter-spacing suma otro poco). Se calcula
+  // con 0.68 para dejar aire y que el título nunca alcance el panel de escudos.
+  const tamTitulo = Math.max(30, Math.min(56, Math.floor(disponible / (titulo.length * 0.68))));
 
   const fila = escudos
     .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${120 + (92 - tam) / 2}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
