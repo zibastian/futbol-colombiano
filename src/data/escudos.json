@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1144,
+    "nombre": "Águilas Doradas",
+    "slug": "aguilas-doradas",
+    "liga": 239
+  },
+  {
+    "id": 1141,
+    "nombre": "Alianza Valledupar",
+    "slug": "alianza-valledupar",
+    "liga": 239
+  },
+  {
+    "id": 1138,
+    "nombre": "America de Cali",
+    "slug": "america-de-cali",
+    "liga": 239
+  },
+  {
+    "id": 1137,
+    "nombre": "Atletico Nacional",
+    "slug": "atletico-nacional",
+    "liga": 239
+  },
+  {
+    "id": 1466,
+    "nombre": "Barranquilla",
+    "slug": "barranquilla",
+    "liga": 240
+  },
+  {
+    "id": 1458,
+    "nombre": "Bogota FC",
+    "slug": "bogota-fc",
+    "liga": 240
+  },
+  {
+    "id": 1131,
+    "nombre": "Bucaramanga",
+    "slug": "bucaramanga",
+    "liga": 239
+  },
+  {
+    "id": 1132,
+    "nombre": "Chico",
+    "slug": "chico",
+    "liga": 239
+  },
+  {
+    "id": 1470,
+    "nombre": "Cucuta",
+    "slug": "cucuta",
+    "liga": 240
+  },
+  {
+    "id": 1468,
+    "nombre": "Depor FC",
+    "slug": "depor-fc",
+    "liga": 240
+  },
+  {
+    "id": 1142,
+    "nombre": "Deportes Tolima",
+    "slug": "deportes-tolima",
+    "liga": 239
+  },
+  {
+    "id": 1127,
+    "nombre": "Deportivo Cali",
+    "slug": "deportivo-cali",
+    "liga": 239
+  },
+  {
+    "id": 1126,
+    "nombre": "Deportivo Pasto",
+    "slug": "deportivo-pasto",
+    "liga": 239
+  },
+  {
+    "id": 1462,
+    "nombre": "Deportivo Pereira",
+    "slug": "deportivo-pereira",
+    "liga": 239
+  },
+  {
+    "id": 1129,
+    "nombre": "Envigado",
+    "slug": "envigado",
+    "liga": 239
+  },
+  {
+    "id": 1147,
+    "nombre": "Fortaleza FC",
+    "slug": "fortaleza-fc",
+    "liga": 239
+  },
+  {
+    "id": 1130,
+    "nombre": "Huila",
+    "slug": "huila",
+    "liga": 240
+  },
+  {
+    "id": 1128,
+    "nombre": "Independiente Medellin",
+    "slug": "independiente-medellin",
+    "liga": 239
+  },
+  {
+    "id": 1134,
+    "nombre": "Internacional de Bogota",
+    "slug": "internacional-de-bogota",
+    "liga": 239
+  },
+  {
+    "id": 23326,
+    "nombre": "Internacional Palmira",
+    "slug": "internacional-palmira",
+    "liga": 240
+  },
+  {
+    "id": 1133,
+    "nombre": "Jaguares",
+    "slug": "jaguares",
+    "liga": 239
+  },
+  {
+    "id": 1135,
+    "nombre": "Junior",
+    "slug": "junior",
+    "liga": 239
+  },
+  {
+    "id": 1143,
+    "nombre": "Leones FC",
+    "slug": "leones-fc",
+    "liga": 240
+  },
+  {
+    "id": 1464,
+    "nombre": "Llaneros",
+    "slug": "llaneros",
+    "liga": 240
+  },
+  {
+    "id": 1125,
+    "nombre": "Millonarios",
+    "slug": "millonarios",
+    "liga": 239
+  },
+  {
+    "id": 1136,
+    "nombre": "Once Caldas",
+    "slug": "once-caldas",
+    "liga": 239
+  },
+  {
+    "id": 1469,
+    "nombre": "Orsomarso",
+    "slug": "orsomarso",
+    "liga": 240
+  },
+  {
+    "id": 1140,
+    "nombre": "Patriotas",
+    "slug": "patriotas",
+    "liga": 239
+  },
+  {
+    "id": 1460,
+    "nombre": "Popayan",
+    "slug": "popayan",
+    "liga": 240
+  },
+  {
+    "id": 1461,
+    "nombre": "Quindio",
+    "slug": "quindio",
+    "liga": 240
+  },
+  {
+    "id": 1459,
+    "nombre": "Real Cartagena",
+    "slug": "real-cartagena",
+    "liga": 240
+  },
+  {
+    "id": 1463,
+    "nombre": "Real Santander",
+    "slug": "real-santander",
+    "liga": 240
+  },
+  {
+    "id": 22099,
+    "nombre": "Real Soacha",
+    "slug": "real-soacha",
+    "liga": 240
+  },
+  {
+    "id": 1139,
+    "nombre": "Santa Fe",
+    "slug": "santa-fe",
+    "liga": 239
+  },
+  {
+    "id": 1145,
+    "nombre": "Tigres FC",
+    "slug": "tigres-fc",
+    "liga": 240
+  },
+  {
+    "id": 1465,
+    "nombre": "Union Magdalena",
+    "slug": "union-magdalena",
+    "liga": 240
+  }
+]
