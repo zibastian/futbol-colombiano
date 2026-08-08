@@ -10,5 +10,5 @@ dist/
 .dev.vars
 worker-configuration.d.ts
 
-# Fotos descargadas de Wikimedia (se regeneran con: npm run fotos)
-public/jugadores/
+# Las fotos de public/jugadores/ SÍ se versionan: son pocas, pesan poco y así
+# el sitio no depende de Wikimedia en cada build.

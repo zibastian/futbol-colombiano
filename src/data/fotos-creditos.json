@@ -1,1 +1,44 @@
-{}
+{
+  "carlos-valderrama": {
+    "autor": "Biser Todorov",
+    "licencia": "CC BY 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Carlos_Valderrama_2016.jpg"
+  },
+  "faustino-asprilla": {
+    "autor": "TELURO PRODUCCIONES",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Tino_Asprilla_en_2019_01.jpg"
+  },
+  "radamel-falcao-garcia": {
+    "autor": "Gilzetbase",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Radamel_Falcao_Garc%C3%ADa_(cropped).jpg"
+  },
+  "james-rodriguez": {
+    "autor": "Canal 10 Gold",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:James_al_natural_-_Series,_02.jpg"
+  },
+  "luis-diaz": {
+    "autor": "crop by Indopug",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Luis_D%C3%ADaz_(portrait).jpg"
+  },
+  "freddy-rincon": {
+    "autor": "El Gato Arce Arce",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Freddy_Rincon.jpg"
+  },
+  "rene-higuita": {
+    "autor": "Isolinamajul",
+    "licencia": "Public domain",
+    "licenciaUrl": "",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ren%C3%A9_Higuita,_2007.jpg"
+  }
+}
