@@ -6,8 +6,10 @@
 //   horizontal  -> banner ancho (portada, entre bloques)
 //   rectangulo  -> 300x250 (columna lateral)
 //   in-article  -> dentro del cuerpo de la nota
+// 'in-feed' es el formato oficial de AdSense para listados y grillas de noticias:
+// el anuncio se muestra como una tarjeta más dentro del flujo.
 interface Props {
-  formato?: 'horizontal' | 'rectangulo' | 'in-article';
+  formato?: 'horizontal' | 'rectangulo' | 'in-article' | 'in-feed';
   etiqueta?: string;
 }
 const { formato = 'horizontal', etiqueta = 'Publicidad' } = Astro.props;
@@ -17,12 +19,14 @@ const CLIENTE = 'ca-pub-XXXXXXXXXXXXXXXX';
 const SLOTS: Record<string, string> = {
   horizontal: '0000000001',
   rectangulo: '0000000002',
-  'in-article': '0000000003'
+  'in-article': '0000000003',
+  'in-feed': '0000000004'
 };
 const alturas: Record<string, string> = {
   horizontal: '90px',
   rectangulo: '250px',
-  'in-article': '280px'
+  'in-article': '280px',
+  'in-feed': '300px'
 };
 ---
 
@@ -35,7 +39,8 @@ const alturas: Record<string, string> = {
         style="display:block"
         data-ad-client={CLIENTE}
         data-ad-slot={SLOTS[formato]}
-        data-ad-format={formato === 'in-article' ? 'fluid' : 'auto'}
+        data-ad-format={formato === 'in-article' || formato === 'in-feed' ? 'fluid' : 'auto'}
+        data-ad-layout={formato === 'in-feed' ? 'in-article' : undefined}
         data-full-width-responsive="true"
       />
     ) : (
@@ -60,4 +65,7 @@ const alturas: Record<string, string> = {
     color: var(--gris); font-size: 0.84rem;
   }
   .anuncio-rectangulo .anuncio-dummy { max-width: 300px; margin: 0 auto; }
+  /* in-feed: se comporta como una tarjeta más de la grilla */
+  .anuncio-in-feed { margin: 0; }
+  .anuncio-in-feed .anuncio-dummy { border-radius: 8px; }
 </style>

@@ -100,6 +100,8 @@ const equipoLd = {
     </section>
   )}
 
+  {tabla.length > 0 && (goles.length > 0 || asistencias.length > 0) && <Anuncio formato="horizontal" />}
+
   {(goles.length > 0 || asistencias.length > 0) && (
     <section class="bloque-stats">
       <h2 class="seccion">Goleadores y asistencias del equipo</h2>

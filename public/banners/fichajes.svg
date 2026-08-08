@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260">
+  <rect width="1200" height="260" fill="#14161A"/>
+  <rect width="1200" height="6" fill="#F2C200"/>
+  <clipPath id="b"><circle cx="1055" cy="140" r="105"/></clipPath>
+  <g clip-path="url(#b)" opacity="0.14">
+    <rect x="950" y="35" width="210" height="105" fill="#F2C200"/>
+    <rect x="950" y="140" width="210" height="53" fill="#1B4C9E"/>
+    <rect x="950" y="193" width="210" height="53" fill="#C8102E"/>
+  </g>
+  <g opacity="0.07">
+    <circle cx="180" cy="130" r="96" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="180" y1="34" x2="180" y2="226" stroke="#FFFFFF" stroke-width="3"/>
+  </g>
+  <text x="70" y="92" font-family="Barlow Condensed, Oswald, sans-serif" font-size="26" font-weight="700" fill="#F2C200" letter-spacing="4">MERCADO DE PASES</text>
+  <text x="70" y="160" font-family="Barlow Condensed, Oswald, sans-serif" font-size="66" font-weight="700" fill="#FFFFFF" letter-spacing="1">FICHAJES</text>
+  <text x="70" y="200" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#C3CFE0">Llegadas, salidas y rumores del FPC</text>
+</svg>

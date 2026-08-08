@@ -98,7 +98,9 @@ const descensoBase: FilaDescenso[] = [
   { equipo: 'Llaneros', puntos: 24, partidos: 38 }
 ];
 
+// Orden invertido a propósito: arriba los que están al borde del descenso,
+// que es la información que el hincha busca en esta tabla.
 export const tablaDescenso = descensoBase
   .map((f) => ({ ...f, promedio: f.puntos / f.partidos }))
-  .sort((a, b) => b.promedio - a.promedio)
+  .sort((a, b) => a.promedio - b.promedio)
   .map((f, i) => ({ posicion: i + 1, ...f }));

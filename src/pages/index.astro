@@ -54,15 +54,19 @@ const hayMas = notas.length > LIMITE_PORTADA;
         <Anuncio formato="horizontal" />
         <h2 class="seccion">Más noticias</h2>
         <div class="grilla-notas">
-          {resto.map((nota) => (
-            <NotaCard
-              url={urlNota(nota)}
-              title={nota.data.title}
-              description={nota.data.description}
-              tipo={nota.data.tipo}
-              cover={nota.data.cover}
-              coverAlt={nota.data.coverAlt}
-            />
+          {resto.map((nota, i) => (
+            <>
+              <NotaCard
+                url={urlNota(nota)}
+                title={nota.data.title}
+                description={nota.data.description}
+                tipo={nota.data.tipo}
+                cover={nota.data.cover}
+                coverAlt={nota.data.coverAlt}
+              />
+              {/* AdSense in-feed: el anuncio ocupa el lugar de una tarjeta más */}
+              {i === 2 && <Anuncio formato="in-feed" />}
+            </>
           ))}
         </div>
         {hayMas && <p class="ver-mas"><a href="/archivo/1">Ver todo el archivo de noticias →</a></p>}

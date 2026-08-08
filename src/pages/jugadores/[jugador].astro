@@ -3,12 +3,14 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
+import { jugadorDestacadoPorSlug, JUGADORES_DESTACADOS } from '../../data/jugadores';
 import { urlNota } from '../../lib/rutas';
-import { slugify } from '../../lib/slug';
 
 export async function getStaticPaths() {
   const { slugify } = await import('../../lib/slug');
+  const { JUGADORES_DESTACADOS } = await import('../../data/jugadores');
   const notas = await getCollection('noticias', ({ data }) => !data.draft);
+
   const mapa = new Map<string, { nombre: string; notas: typeof notas }>();
   for (const nota of notas) {
     for (const j of nota.data.jugadores) {
@@ -17,31 +19,83 @@ export async function getStaticPaths() {
       mapa.get(slug)!.notas.push(nota);
     }
   }
+  // Las leyendas tienen ficha propia aunque todavía no tengan notas
+  for (const j of JUGADORES_DESTACADOS) {
+    if (!mapa.has(j.slug)) mapa.set(j.slug, { nombre: j.nombre, notas: [] });
+  }
+
   return [...mapa.entries()].map(([slug, { nombre, notas }]) => ({
     params: { jugador: slug },
-    props: { nombre, notas }
+    props: { slug, nombre, notas }
   }));
 }
 
-const { nombre, notas } = Astro.props;
+const { slug, nombre, notas } = Astro.props;
+const destacado = jugadorDestacadoPorSlug(slug);
 const ordenadas = notas.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const iniciales = (destacado?.nombre || nombre).split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase();
 
 const jugadorLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: nombre,
-  jobTitle: 'Futbolista'
+  name: destacado?.nombre || nombre,
+  jobTitle: 'Futbolista',
+  ...(destacado
+    ? {
+        alternateName: destacado.apodo,
+        birthDate: destacado.nacimiento,
+        birthPlace: destacado.origen,
+        description: destacado.descripcion,
+        affiliation: destacado.clubes.map((c) => ({ '@type': 'SportsTeam', name: c }))
+      }
+    : {})
 };
 ---
 
-<Base title={`${nombre}: últimas noticias`} description={`Todas las noticias sobre ${nombre} en el fútbol colombiano y en el exterior.`}>
+<Base
+  title={destacado ? `${destacado.nombre}: biografía, trayectoria y noticias` : `${nombre}: últimas noticias`}
+  description={destacado
+    ? `${destacado.descripcion.slice(0, 155)}…`
+    : `Todas las noticias sobre ${nombre} en el fútbol colombiano y en el exterior.`}
+>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jugadorLd)} />
   </Fragment>
 
-  <h1 class="seccion">{nombre}</h1>
-  <p class="intro-seccion">Todas las noticias sobre {nombre}.</p>
+  {
+    destacado ? (
+      <section class="ficha-jugador" style={`--acento:${destacado.color}`}>
+        <div class="retrato" aria-hidden="true"><span>{iniciales}</span></div>
+        <div class="ficha-info">
+          <span class="kicker">{destacado.vigente ? 'Jugador en activo' : 'Leyenda del fútbol colombiano'}</span>
+          <h1>{destacado.nombre}</h1>
+          {destacado.apodo && <p class="apodo">«{destacado.apodo}»</p>}
+          <p class="descripcion">{destacado.descripcion}</p>
+          <p class="logro"><strong>Hito:</strong> {destacado.logro}</p>
+          <dl class="datos-jugador">
+            <div><dt>Posición</dt><dd>{destacado.posicion}</dd></div>
+            <div><dt>Nacimiento</dt><dd>{destacado.nacimiento}</dd></div>
+            <div><dt>Origen</dt><dd>{destacado.origen}</dd></div>
+          </dl>
+          <div class="trayectoria">
+            <span class="etiqueta">Trayectoria</span>
+            <div class="clubes">{destacado.clubes.map((c) => <span class="club">{c}</span>)}</div>
+          </div>
+          {destacado.seleccion && (
+            <p class="seleccion"><strong>Selección Colombia:</strong> {destacado.seleccion}</p>
+          )}
+        </div>
+      </section>
+    ) : (
+      <>
+        <h1 class="seccion">{nombre}</h1>
+        <p class="intro-seccion">Todas las noticias sobre {nombre}.</p>
+      </>
+    )
+  }
 
+  <h2 class="seccion">{destacado ? `Noticias de ${destacado.nombre}` : 'Últimas noticias'}</h2>
+  {ordenadas.length === 0 && <p>Todavía no hay notas publicadas sobre {destacado?.nombre || nombre}.</p>}
   <div class="grilla-notas">
     {ordenadas.map((n) => (
       <NotaCard
@@ -56,8 +110,71 @@ const jugadorLd = {
   </div>
 
   <Anuncio formato="horizontal" />
+
+  {
+    destacado && (
+      <section class="otras-leyendas">
+        <h2 class="seccion">Otras figuras del fútbol colombiano</h2>
+        <div class="grilla-leyendas">
+          {JUGADORES_DESTACADOS.filter((j) => j.slug !== destacado.slug).slice(0, 6).map((j) => (
+            <a class="leyenda" href={`/jugadores/${j.slug}`} style={`--acento:${j.color}`}>
+              <span class="leyenda-nombre">{j.nombre}</span>
+              <span class="leyenda-pos">{j.posicion}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
 </Base>
 
 <style>
   .intro-seccion { color: var(--gris); margin: -0.4rem 0 1.4rem; }
+  .ficha-jugador {
+    display: flex; gap: 1.6rem; align-items: flex-start; background: var(--papel);
+    border: 1px solid var(--borde); border-top: 5px solid var(--acento);
+    border-radius: 10px; padding: 1.4rem 1.5rem; margin-bottom: 1.8rem;
+  }
+  .retrato {
+    width: 118px; height: 118px; border-radius: 10px; background: var(--acento);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: var(--condensada); font-size: 2.8rem; font-weight: 700; color: #fff;
+  }
+  .ficha-info h1 { font-family: var(--serif); font-size: 2.1rem; margin: 0.1rem 0 0.1rem; letter-spacing: -0.5px; }
+  .apodo { font-family: var(--serif); font-style: italic; color: var(--acento); margin: 0 0 0.7rem; font-size: 1.1rem; }
+  .descripcion { margin: 0 0 0.7rem; line-height: 1.6; max-width: 660px; }
+  .logro {
+    margin: 0 0 1rem; padding: 0.5rem 0.8rem; background: var(--fondo-suave);
+    border-left: 3px solid var(--amarillo); font-size: 0.95rem; max-width: 660px;
+  }
+  .datos-jugador { display: flex; flex-wrap: wrap; gap: 1.6rem; margin: 0 0 1rem; }
+  .datos-jugador dt {
+    font-family: var(--condensada); font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--gris-claro);
+  }
+  .datos-jugador dd { margin: 0; font-weight: 600; }
+  .etiqueta {
+    display: block; font-family: var(--condensada); font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.8px; color: var(--gris-claro); margin-bottom: 0.3rem;
+  }
+  .clubes { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .club {
+    background: var(--fondo-suave); border: 1px solid var(--borde); border-radius: 999px;
+    padding: 0.15rem 0.65rem; font-size: 0.83rem; color: var(--tinta);
+  }
+  .seleccion { margin: 0.9rem 0 0; font-size: 0.95rem; color: var(--gris); max-width: 660px; }
+  .otras-leyendas { margin-top: 1.5rem; }
+  .grilla-leyendas { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.8rem; }
+  .leyenda {
+    display: block; background: var(--papel); border: 1px solid var(--borde);
+    border-left: 4px solid var(--acento); border-radius: 0 8px 8px 0; padding: 0.6rem 0.8rem; color: var(--tinta);
+  }
+  .leyenda:hover { background: var(--fondo-suave); text-decoration: none; }
+  .leyenda-nombre { display: block; font-family: var(--serif); font-weight: 700; font-size: 1rem; }
+  .leyenda-pos { display: block; font-size: 0.8rem; color: var(--gris); }
+  @media (max-width: 640px) {
+    .ficha-jugador { flex-direction: column; align-items: center; text-align: center; }
+    .descripcion, .logro, .seleccion { text-align: left; }
+    .datos-jugador, .clubes { justify-content: center; }
+  }
 </style>

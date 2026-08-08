@@ -4,7 +4,7 @@ import { buscarEquipo, escudoDe } from '../data/equipos';
 interface Fila { posicion: number; equipo: string; puntos: number; partidos: number; promedio: number }
 interface Props { filas: Fila[]; destacar?: string; enZona?: number }
 const { filas, destacar, enZona = 2 } = Astro.props;
-const limite = filas.length - enZona; // los últimos puestos son zona de descenso
+// La tabla llega ordenada de peor a mejor promedio: la zona roja son los primeros.
 ---
 
 <div class="descenso">
@@ -18,7 +18,7 @@ const limite = filas.length - enZona; // los últimos puestos son zona de descen
           filas.map((f) => {
             const eq = buscarEquipo(f.equipo);
             const escudo = escudoDe(eq, 64);
-            const zona = f.posicion > limite;
+            const zona = f.posicion <= enZona;
             return (
               <tr class={`${zona ? 'en-zona' : ''} ${eq && destacar === eq.slug ? 'destacado' : ''}`}>
                 <td class="pos">{f.posicion}</td>

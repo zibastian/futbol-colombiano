@@ -11,6 +11,10 @@ export interface Columnista {
   bio: string;
   temas: string[];
   color: string;        // color de acento de su ficha
+  /** Si sigue a un club en particular (columnistas de equipo) */
+  equipo?: string;
+  /** Su tono cambia según el momento del equipo: ánimo si va bien, exigencia si va mal */
+  tonoAdaptativo?: boolean;
 }
 
 export const COLUMNISTAS: Columnista[] = [
@@ -37,6 +41,44 @@ export const COLUMNISTAS: Columnista[] = [
     bio: 'Sigue a los juveniles antes de que sean noticia: torneos sub-20, debuts, procesos de formación y el negocio de las transferencias de jugadores jóvenes. Defiende que el mejor negocio del FPC es formar, no comprar.',
     temas: ['Divisiones menores', 'Juveniles', 'Formación'],
     color: '#1D9E75'
+  },
+  {
+    slug: 'el-calvo-de-aqui',
+    nombre: 'El Calvo de Aquí',
+    linea: 'Solo hablo de los que mueven el país. Los demás, con respeto, no venden.',
+    bio: 'Polémico por convicción. Se ocupa únicamente de los grandes —Nacional, Millonarios, América, Junior— porque sostiene que ahí está el fútbol que le importa a la gente. Reparte sin anestesia: técnicos, directivos, refuerzos que no rinden. No le tiembla la mano para decir que un ídolo ya no da más, ni para defender una postura impopular hasta el final.',
+    temas: ['Los grandes', 'Polémica', 'Mercado'],
+    color: '#993C1D'
+  },
+  {
+    slug: 'verde-y-blanco',
+    nombre: 'Verde y Blanco',
+    linea: 'Todo lo que pasa en Nacional, contado sin filtro.',
+    bio: 'Sigue a Atlético Nacional partido a partido. Cuando el equipo gana, celebra y explica por qué funciona; cuando pierde, exige y señala responsables con nombre propio. Su lealtad es con la camiseta, no con la dirigencia de turno.',
+    temas: ['Atlético Nacional'],
+    equipo: 'atletico-nacional',
+    tonoAdaptativo: true,
+    color: '#1D9E75'
+  },
+  {
+    slug: 'azul-y-blanco',
+    nombre: 'Azul y Blanco',
+    linea: 'La vida en El Campín, fecha por fecha.',
+    bio: 'Cubre a Millonarios con la exigencia de quien creció esperando el próximo título. Reconoce el buen momento sin exagerarlo y cuestiona el mal momento sin sepultar al equipo. Le interesa el proceso, no solo el resultado del domingo.',
+    temas: ['Millonarios'],
+    equipo: 'millonarios',
+    tonoAdaptativo: true,
+    color: '#0B2C5E'
+  },
+  {
+    slug: 'rojo-escarlata',
+    nombre: 'Rojo Escarlata',
+    linea: 'La Mechita, con memoria y con exigencia.',
+    bio: 'Escribe sobre América de Cali con la historia siempre presente: los tres subcampeonatos de Libertadores, el descenso y el regreso. Celebra los buenos momentos con euforia y confronta los malos recordando lo que este club supo ser.',
+    temas: ['América de Cali'],
+    equipo: 'america-de-cali',
+    tonoAdaptativo: true,
+    color: '#B3271E'
   }
 ];
 

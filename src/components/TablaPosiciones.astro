@@ -15,7 +15,7 @@ interface Props {
 const { filas, titulo, destacar, clasifican = 8, compacta = false } = Astro.props;
 ---
 
-<div class="tabla-bloque">
+<div class={`tabla-bloque ${compacta ? "compacta" : ""}`}>
   {titulo && <h3 class="tabla-titulo">{titulo}</h3>}
   <div class="tabla-wrap">
     <table class="tabla-posiciones">
@@ -67,6 +67,9 @@ const { filas, titulo, destacar, clasifican = 8, compacta = false } = Astro.prop
   }
   .tabla-wrap { overflow-x: auto; border: 1px solid var(--borde); border-radius: 8px; }
   .tabla-posiciones { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 520px; }
+  .compacta .tabla-posiciones { min-width: 0; font-size: 0.84rem; }
+  .compacta .equipo-col { min-width: 0; }
+  .compacta .tabla-posiciones th, .compacta .tabla-posiciones td { padding: 0.4rem 0.3rem; }
   .tabla-posiciones th, .tabla-posiciones td { padding: 0.45rem 0.5rem; text-align: center; }
   .tabla-posiciones thead th {
     background: var(--azul); color: #fff; font-family: var(--condensada);
