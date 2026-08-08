@@ -2,8 +2,10 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NotaCard from '../../components/NotaCard.astro';
+import Anuncio from '../../components/Anuncio.astro';
 import { TORNEOS } from '../../data/torneos';
 import { tablaPosiciones } from '../../lib/apifootball';
+import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
 import { slugify } from '../../lib/slug';
 
 export async function getStaticPaths() {
@@ -11,66 +13,87 @@ export async function getStaticPaths() {
 }
 
 const { torneo } = Astro.props;
-const tabla = await tablaPosiciones(torneo.ligaId, torneo.season);
+
+// Escudos: permite mostrar el logo junto a cada equipo de la tabla
+let escudos: any[] = [];
+try {
+  const mod = await import('../../data/escudos.json');
+  escudos = (mod.default || mod) as any[];
+} catch {
+  escudos = [];
+}
+const escudoDe = (nombre: string) => {
+  const s = slugify(nombre);
+  const eq = escudos.find((e) => e.slug === s) || escudos.find((e) => e.slug.includes(s) || s.includes(e.slug));
+  return eq ? `/escudos/64/${eq.id}.png` : null;
+};
+
+const real = await tablaPosiciones(torneo.ligaId, torneo.season);
+const usarDemo = real.length === 0 && TABLA_DEMO && torneo.slug === 'liga-betplay';
+
+const filas = real.length
+  ? real.map((f) => ({
+      posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados,
+      e: f.empatados, p: f.perdidos, gf: f.golesFavor, gc: f.golesContra,
+      dg: f.diferencia, pts: f.puntos
+    }))
+  : usarDemo
+  ? tablaDemo
+  : [];
 
 const notas = (await getCollection('noticias', ({ data }) => !data.draft))
   .filter((n) => n.data.torneos.some((t) => slugify(t) === torneo.slug))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 12);
-
-const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.nombre} ${torneo.season}.`;
 ---
 
-<Base title={`${torneo.nombre} ${torneo.season}: tabla de posiciones y noticias`} description={descripcion}>
+<Base
+  title={`${torneo.nombre} ${torneo.season}: tabla de posiciones y noticias`}
+  description={`Tabla de posiciones, resultados y noticias de la ${torneo.nombre} ${torneo.season}.`}
+>
   <h1 class="seccion">{torneo.nombre} {torneo.season}</h1>
 
   {
-    tabla.length > 0 ? (
-      <div class="tabla-wrap">
-        <table class="tabla-posiciones">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th class="equipo-col">Equipo</th>
-              <th>PJ</th>
-              <th>G</th>
-              <th>E</th>
-              <th>P</th>
-              <th>GF</th>
-              <th>GC</th>
-              <th>DG</th>
-              <th>Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tabla.map((f) => (
+    filas.length > 0 ? (
+      <>
+        {usarDemo && <p class="aviso-demo">Tabla de ejemplo para validar el diseño — aún no conectada a datos en vivo.</p>}
+        <div class="tabla-wrap">
+          <table class="tabla-posiciones">
+            <thead>
               <tr>
-                <td>{f.posicion}</td>
-                <td class="equipo-col">
-                  <a href={`/equipos/${slugify(f.equipo)}`}>
-                    <img src={f.logo} alt="" width="20" height="20" loading="lazy" /> {f.equipo}
-                  </a>
-                </td>
-                <td>{f.jugados}</td>
-                <td>{f.ganados}</td>
-                <td>{f.empatados}</td>
-                <td>{f.perdidos}</td>
-                <td>{f.golesFavor}</td>
-                <td>{f.golesContra}</td>
-                <td>{f.diferencia}</td>
-                <td class="pts">{f.puntos}</td>
+                <th>#</th><th class="equipo-col">Equipo</th><th>PJ</th><th>G</th>
+                <th>E</th><th>P</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <p class="nota-tabla">Actualizada automáticamente con cada publicación del sitio.</p>
-      </div>
+            </thead>
+            <tbody>
+              {filas.map((f) => (
+                <tr>
+                  <td class="pos">{f.posicion}</td>
+                  <td class="equipo-col">
+                    <a href={`/equipos/${slugify(f.equipo)}`}>
+                      {escudoDe(f.equipo) && <img src={escudoDe(f.equipo)} alt="" width="22" height="22" loading="lazy" />}
+                      <span>{f.equipo}</span>
+                    </a>
+                  </td>
+                  <td>{f.pj}</td><td>{f.g}</td><td>{f.e}</td><td>{f.p}</td>
+                  <td>{f.gf}</td><td>{f.gc}</td><td>{f.dg > 0 ? `+${f.dg}` : f.dg}</td>
+                  <td class="pts">{f.pts}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="nota-tabla">Los ocho primeros clasifican a cuadrangulares.</p>
+      </>
     ) : (
       <p class="intro-torneo">Toda la actualidad de la {torneo.nombre}: resultados, fichajes y análisis.</p>
     )
   }
 
-  <h2 class="seccion" style={tabla.length ? 'margin-top:2rem' : ''}>Noticias de {torneo.nombre}</h2>
+  <Anuncio formato="horizontal" />
+
+  <h2 class="seccion">Noticias de {torneo.nombre}</h2>
+  {notas.length === 0 && <p>Aún no hay noticias de este torneo.</p>}
   <div class="grilla-notas">
     {
       notas.map((nota) => (
@@ -88,16 +111,26 @@ const descripcion = `Tabla de posiciones, resultados y noticias de la ${torneo.n
 </Base>
 
 <style>
-  .tabla-wrap { overflow-x: auto; }
-  .tabla-posiciones { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
-  .tabla-posiciones th, .tabla-posiciones td {
-    padding: 0.45rem 0.5rem; text-align: center; border-bottom: 1px solid var(--borde);
+  .tabla-wrap { overflow-x: auto; border: 1px solid var(--borde); border-radius: 8px; }
+  .tabla-posiciones { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 620px; }
+  .tabla-posiciones th, .tabla-posiciones td { padding: 0.5rem 0.55rem; text-align: center; }
+  .tabla-posiciones thead th {
+    background: var(--azul); color: #fff; font-family: var(--condensada);
+    font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600;
   }
-  .tabla-posiciones thead th { background: var(--azul); color: #fff; }
-  .equipo-col { text-align: left !important; min-width: 200px; }
-  .equipo-col a { display: flex; align-items: center; gap: 0.5rem; color: var(--tinta); font-weight: 600; }
-  .tabla-posiciones tbody tr:nth-child(-n+8) td:first-child { font-weight: 700; color: var(--azul); }
-  .pts { font-weight: 800; }
-  .nota-tabla { font-size: 0.8rem; color: var(--gris); }
+  .tabla-posiciones tbody tr:nth-child(odd) { background: #fff; }
+  .tabla-posiciones tbody tr:nth-child(even) { background: var(--fondo-suave); }
+  .tabla-posiciones tbody tr:hover { background: #eef3fa; }
+  .equipo-col { text-align: left !important; min-width: 230px; }
+  .equipo-col a { display: flex; align-items: center; gap: 0.55rem; color: var(--tinta); font-weight: 600; }
+  .equipo-col img { width: 22px; height: 22px; object-fit: contain; }
+  .pos { font-family: var(--condensada); font-size: 1rem; font-weight: 700; color: var(--gris); }
+  .tabla-posiciones tbody tr:nth-child(-n + 8) .pos { color: #fff; background: var(--azul); }
+  .pts { font-weight: 700; font-size: 1rem; }
+  .nota-tabla { font-size: 0.8rem; color: var(--gris); margin-top: 0.5rem; }
+  .aviso-demo {
+    background: #fff8e1; border-left: 4px solid var(--amarillo);
+    padding: 0.5rem 0.85rem; font-size: 0.85rem; color: #6b5900; margin: 0 0 0.8rem;
+  }
   .intro-torneo { color: var(--gris); margin-top: 0; }
 </style>

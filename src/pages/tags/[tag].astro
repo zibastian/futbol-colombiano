@@ -12,12 +12,23 @@ const slugify = (s: string) =>
 export async function getStaticPaths() {
   const slugifyLocal = (s: string) =>
     s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  // Equipos y torneos ya tienen su propia ficha: no se duplican como tag.
+  let propios = new Set<string>();
+  try {
+    const mod = await import('../../data/escudos.json');
+    for (const e of (mod.default || mod) as any[]) propios.add(e.slug);
+  } catch {}
+  const { TORNEOS } = await import('../../data/torneos');
+  for (const t of TORNEOS) propios.add(t.slug);
+
   const notas = await getCollection('noticias', ({ data }) => !data.draft);
   const mapa = new Map<string, { nombre: string; notas: typeof notas }>();
   for (const nota of notas) {
     const tags = [...nota.data.equipos, ...nota.data.torneos, ...nota.data.jugadores];
     for (const t of tags) {
       const slug = slugifyLocal(t);
+      if (propios.has(slug)) continue;
       if (!mapa.has(slug)) mapa.set(slug, { nombre: t, notas: [] });
       mapa.get(slug)!.notas.push(nota);
     }

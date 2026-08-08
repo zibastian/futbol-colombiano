@@ -1,0 +1,63 @@
+---
+// Espacio publicitario. Hoy muestra un marcador (dummy); al aprobar AdSense
+// solo hay que poner el data-ad-client/slot y quitar ADSENSE_ACTIVO = false.
+//
+// formatos:
+//   horizontal  -> banner ancho (portada, entre bloques)
+//   rectangulo  -> 300x250 (columna lateral)
+//   in-article  -> dentro del cuerpo de la nota
+interface Props {
+  formato?: 'horizontal' | 'rectangulo' | 'in-article';
+  etiqueta?: string;
+}
+const { formato = 'horizontal', etiqueta = 'Publicidad' } = Astro.props;
+
+const ADSENSE_ACTIVO = false;
+const CLIENTE = 'ca-pub-XXXXXXXXXXXXXXXX';
+const SLOTS: Record<string, string> = {
+  horizontal: '0000000001',
+  rectangulo: '0000000002',
+  'in-article': '0000000003'
+};
+const alturas: Record<string, string> = {
+  horizontal: '90px',
+  rectangulo: '250px',
+  'in-article': '280px'
+};
+---
+
+<aside class={`anuncio anuncio-${formato}`} aria-label={etiqueta}>
+  <span class="anuncio-tag">{etiqueta}</span>
+  {
+    ADSENSE_ACTIVO ? (
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={CLIENTE}
+        data-ad-slot={SLOTS[formato]}
+        data-ad-format={formato === 'in-article' ? 'fluid' : 'auto'}
+        data-full-width-responsive="true"
+      />
+    ) : (
+      <div class="anuncio-dummy" style={`height:${alturas[formato]}`}>
+        <span>Espacio publicitario · {formato}</span>
+      </div>
+    )
+  }
+</aside>
+
+<style>
+  .anuncio { margin: 1.8rem 0; text-align: center; }
+  .anuncio-tag {
+    display: block; font-family: var(--condensada); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 1.2px; color: var(--gris-claro);
+    margin-bottom: 0.3rem;
+  }
+  .anuncio-dummy {
+    display: flex; align-items: center; justify-content: center;
+    background: repeating-linear-gradient(45deg, #f0ece2, #f0ece2 12px, #e8e3d6 12px, #e8e3d6 24px);
+    border: 1px dashed var(--borde); border-radius: 6px;
+    color: var(--gris); font-size: 0.84rem;
+  }
+  .anuncio-rectangulo .anuncio-dummy { max-width: 300px; margin: 0 auto; }
+</style>

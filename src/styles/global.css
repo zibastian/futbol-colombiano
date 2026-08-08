@@ -53,7 +53,8 @@ nav.principal a {
 }
 nav.principal a:hover { color: #fff; border-bottom-color: var(--amarillo); text-decoration: none; }
 
-main { padding: 1.6rem 0 3rem; }
+main { padding: 2.6rem 0 3rem; }
+@media (max-width: 640px) { main { padding-top: 1.8rem; } }
 
 /* ---------- Titulares de sección ---------- */
 h1.seccion, h2.seccion {
@@ -131,6 +132,8 @@ article.nota .bajada {
   color: var(--tinta); font-weight: 500;
 }
 .tags a:hover { background: var(--azul); border-color: var(--azul); color: #fff; text-decoration: none; }
+.tags a.tag-equipo { display: inline-flex; align-items: center; gap: 0.4rem; padding-left: 0.45rem; }
+.tags a.tag-equipo img { width: 20px; height: 20px; object-fit: contain; }
 
 /* ---------- Bloques de datos (sello editorial) ---------- */
 .datos-clave {

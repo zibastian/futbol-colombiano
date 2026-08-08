@@ -1,7 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Anuncio from '../../components/Anuncio.astro';
 import { SITE } from '../../config';
+import { TORNEOS } from '../../data/torneos';
 
 export async function getStaticPaths() {
   const notas = await getCollection('noticias', ({ data }) => !data.draft);
@@ -21,7 +23,34 @@ const fmt = (date: Date) =>
 const slugify = (s: string) =>
   s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
-const tags = [...d.equipos, ...d.torneos, ...d.jugadores];
+// Los tags de equipo llevan a su ficha (/equipos), los de torneo a su página
+// (/torneos) y el resto a la página de tag. Un solo destino por entidad: sin
+// páginas duplicadas y todo el enlazado interno apunta a los hubs reales.
+let escudos: any[] = [];
+try {
+  const mod = await import('../../data/escudos.json');
+  escudos = (mod.default || mod) as any[];
+} catch {
+  escudos = [];
+}
+const buscarEquipo = (nombre: string) => {
+  const s = slugify(nombre);
+  return escudos.find((e) => e.slug === s) || escudos.find((e) => e.slug.includes(s) || s.includes(e.slug));
+};
+
+const tags = [
+  ...d.equipos.map((nombre) => {
+    const eq = buscarEquipo(nombre);
+    return eq
+      ? { nombre, url: `/equipos/${eq.slug}`, escudo: `/escudos/64/${eq.id}.png` }
+      : { nombre, url: `/tags/${slugify(nombre)}`, escudo: null };
+  }),
+  ...d.torneos.map((nombre) => {
+    const t = TORNEOS.find((x) => x.slug === slugify(nombre));
+    return { nombre, url: t ? `/torneos/${t.slug}` : `/tags/${slugify(nombre)}`, escudo: null };
+  }),
+  ...d.jugadores.map((nombre) => ({ nombre, url: `/tags/${slugify(nombre)}`, escudo: null }))
+];
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
 // JSON-LD NewsArticle — con datePublished y dateModified (señal SEO clave)
@@ -79,9 +108,17 @@ const breadcrumbLd = {
     <div class="cuerpo-nota">
       <Content />
     </div>
+
+    <Anuncio formato="in-article" />
+
     {tags.length > 0 && (
       <div class="tags">
-        {tags.map((t) => <a href={`/tags/${slugify(t)}`}>{t}</a>)}
+        {tags.map((t) => (
+          <a href={t.url} class={t.escudo ? 'tag-equipo' : ''}>
+            {t.escudo && <img src={t.escudo} alt="" width="20" height="20" loading="lazy" />}
+            {t.nombre}
+          </a>
+        ))}
       </div>
     )}
   </article>

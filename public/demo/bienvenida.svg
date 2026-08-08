@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="#14161A"/>
+  <rect width="1200" height="675" fill="#1B4C9E"/>
   <rect x="0" y="0" width="1200" height="8" fill="#F2C200"/>
   <clipPath id="b"><circle cx="1020" cy="510" r="145"/></clipPath>
   <g clip-path="url(#b)" opacity="0.15">
@@ -7,9 +7,9 @@
     <rect x="875" y="510" width="290" height="73" fill="#1B4C9E"/>
     <rect x="875" y="583" width="290" height="73" fill="#C8102E"/>
   </g>
-  <text x="80" y="170" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">FICHAJES</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="86" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="80" y="300">QUINTERO AL DIM</tspan></text>
-  <text x="80" y="406" font-family="Inter, system-ui, sans-serif" font-size="32" fill="#C3CFE0">Negociación en curso</text>
+  <text x="80" y="170" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">EL PORTAL</text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="68" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="80" y="262">VUELVE EL FÚTBOL</tspan><tspan x="80" y="338">NUESTRO</tspan></text>
+  <text x="80" y="426" font-family="Inter, system-ui, sans-serif" font-size="32" fill="#C3CFE0">Cobertura total del FPC</text>
   <g transform="translate(80,585)">
     <clipPath id="l"><circle cx="24" cy="0" r="24"/></clipPath>
     <g clip-path="url(#l)">

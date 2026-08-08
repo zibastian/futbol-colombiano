@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import NotaCard from '../components/NotaCard.astro';
+import Anuncio from '../components/Anuncio.astro';
 
 const etiquetas: Record<string, string> = {
   cronica: 'Crónica',
@@ -28,11 +29,13 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
     principal && (
       <section class="portada">
         <article class="nota-principal">
-          {principal.data.cover && (
-            <a href={`/noticias/${slug(principal)}`}>
-              <img class="cubierta" src={principal.data.cover} alt={principal.data.coverAlt || principal.data.title} />
-            </a>
-          )}
+          <a href={`/noticias/${slug(principal)}`}>
+            <img
+              class="cubierta"
+              src={principal.data.cover || '/portada-default.svg'}
+              alt={principal.data.coverAlt || principal.data.title}
+            />
+          </a>
           <span class="kicker">{etiquetas[principal.data.tipo] || 'Noticias'}</span>
           <h2><a href={`/noticias/${slug(principal)}`}>{principal.data.title}</a></h2>
           <p>{principal.data.description}</p>
@@ -46,6 +49,7 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
                 <h3><a href={`/noticias/${slug(nota)}`}>{nota.data.title}</a></h3>
               </div>
             ))}
+            <Anuncio formato="rectangulo" />
           </aside>
         )}
       </section>
@@ -55,7 +59,8 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
   {
     resto.length > 0 && (
       <>
-        <h2 class="seccion" style="margin-top:2.4rem">Más noticias</h2>
+        <Anuncio formato="horizontal" />
+        <h2 class="seccion">Más noticias</h2>
         <div class="grilla-notas">
           {resto.map((nota) => (
             <NotaCard
