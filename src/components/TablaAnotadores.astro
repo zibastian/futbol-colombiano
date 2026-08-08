@@ -1,0 +1,65 @@
+---
+import { buscarEquipo, escudoDe } from '../data/equipos';
+import { slugify } from '../lib/slug';
+
+interface Fila { jugador: string; equipo: string; cantidad: number; partidos: number }
+interface Props {
+  filas: Fila[];
+  titulo: string;
+  unidad: 'Goles' | 'Asist.';
+  limite?: number;
+  mostrarEquipo?: boolean;
+}
+const { filas, titulo, unidad, limite = 10, mostrarEquipo = true } = Astro.props;
+const visibles = filas.slice(0, limite);
+---
+
+{
+  visibles.length > 0 && (
+    <div class="anotadores">
+      <h3 class="anotadores-titulo">{titulo}</h3>
+      <ol class="lista-anotadores">
+        {visibles.map((f, i) => {
+          const eq = buscarEquipo(f.equipo);
+          const escudo = escudoDe(eq, 64);
+          return (
+            <li>
+              <span class="puesto">{i + 1}</span>
+              {escudo && <img src={escudo} alt="" width="20" height="20" loading="lazy" />}
+              <span class="nombre">
+                <a href={`/jugadores/${slugify(f.jugador)}`}>{f.jugador}</a>
+                {mostrarEquipo && eq && <em>{eq.nombre}</em>}
+              </span>
+              <span class="cantidad">{f.cantidad}<i>{unidad}</i></span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  )
+}
+
+<style>
+  .anotadores { background: var(--papel); border: 1px solid var(--borde); border-radius: 8px; padding: 0.9rem 1rem; }
+  .anotadores-titulo {
+    font-family: var(--condensada); font-size: 1.05rem; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--azul); margin: 0 0 0.6rem;
+    padding-bottom: 0.4rem; border-bottom: 2px solid var(--amarillo);
+  }
+  .lista-anotadores { list-style: none; margin: 0; padding: 0; }
+  .lista-anotadores li {
+    display: flex; align-items: center; gap: 0.55rem;
+    padding: 0.4rem 0; border-bottom: 1px solid var(--borde); font-size: 0.9rem;
+  }
+  .lista-anotadores li:last-child { border-bottom: 0; }
+  .puesto {
+    font-family: var(--condensada); font-weight: 700; color: var(--gris-claro);
+    min-width: 1.1rem; text-align: center;
+  }
+  .lista-anotadores img { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+  .nombre { flex: 1; line-height: 1.2; }
+  .nombre a { color: var(--tinta); font-weight: 600; }
+  .nombre em { display: block; font-style: normal; font-size: 0.76rem; color: var(--gris); }
+  .cantidad { font-family: var(--condensada); font-size: 1.25rem; font-weight: 700; color: var(--azul); }
+  .cantidad i { font-style: normal; font-size: 0.6rem; color: var(--gris-claro); margin-left: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px; }
+</style>

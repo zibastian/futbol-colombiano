@@ -8,7 +8,7 @@ torneos: ["Liga BetPlay"]
 jugadores: []
 cover: "/demo/opinion.svg"
 coverAlt: "Columna de opinión sobre el arbitraje"
-autor: "Nombre del columnista"
+autor: "La Tribuna"
 demo: true
 draft: false
 ---

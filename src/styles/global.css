@@ -108,8 +108,13 @@ article.nota h1 {
   font-family: var(--serif); font-size: 2.15rem; line-height: 1.15;
   margin: 0.4rem 0 0.7rem; letter-spacing: -0.6px;
 }
+article.nota .cubierta-nota {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover;
+  border-radius: 8px; margin: 0.2rem 0 1rem;
+}
 article.nota .bajada {
   font-size: 1.12rem; color: var(--gris); margin: 0 0 1rem; line-height: 1.5;
+  font-family: var(--serif); font-style: italic;
 }
 .fechas {
   font-size: 0.82rem; color: var(--gris); margin: 0 0 1.2rem;

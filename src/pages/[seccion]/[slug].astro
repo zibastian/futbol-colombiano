@@ -6,6 +6,7 @@ import NotaCard from '../../components/NotaCard.astro';
 import { SITE } from '../../config';
 import { seccionDeNota, seccionPorSlug } from '../../data/secciones';
 import { buscarEquipo, escudoDe } from '../../data/equipos';
+import { columnistaPorNombre } from '../../data/columnistas';
 import { slugify } from '../../lib/slug';
 import { urlNota, slugDeArchivo } from '../../lib/rutas';
 
@@ -22,6 +23,7 @@ const { nota, todas } = Astro.props;
 const { Content } = await render(nota);
 const d = nota.data;
 const seccion = seccionPorSlug(seccionDeNota(d));
+const columnista = columnistaPorNombre(d.autor);
 
 const fmt = (date: Date) =>
   date.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' });
@@ -83,13 +85,13 @@ const breadcrumbLd = {
 
   <article class="nota">
     <h1>{d.title}</h1>
+    <img class="cubierta-nota" src={d.cover || '/portada-default.svg'} alt={d.coverAlt || d.title} />
     <p class="bajada">{d.description}</p>
     <p class="fechas">
-      Por {d.autor} · Publicado el <time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time>
+      Por {columnista ? <a href={`/columnistas/${columnista.slug}`}>{columnista.nombre}</a> : d.autor} ·
+      Publicado el <time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time>
       {d.updatedDate && (<> · Actualizado el <time datetime={d.updatedDate.toISOString()}>{fmt(d.updatedDate)}</time></>)}
     </p>
-    <img src={d.cover || '/portada-default.svg'} alt={d.coverAlt || d.title} />
-
     {d.fuente && (
       <p class="atribucion">
         Según reporta <strong>{d.fuente.nombre}</strong>

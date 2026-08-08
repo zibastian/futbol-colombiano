@@ -4,9 +4,14 @@ import Base from '../../layouts/Base.astro';
 import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import TablaPosiciones from '../../components/TablaPosiciones.astro';
+import TablaAnotadores from '../../components/TablaAnotadores.astro';
 import { EQUIPOS, buscarEquipo, escudoDe } from '../../data/equipos';
 import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
 import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
+import {
+  ESTADISTICAS_DEMO, goleadoresLiga, asistenciasLiga,
+  goleadoresTorneo, asistenciasTorneo
+} from '../../data/estadisticas-demo';
 import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
@@ -35,6 +40,16 @@ if (equipo.division === 'A' && TABLA_DEMO) {
     tituloTabla = `Torneo BetPlay · ${grupo.nombre}`;
   }
 }
+
+// Goleadores y asistentes SOLO de este equipo
+const delEquipo = (lista: any[]) =>
+  lista.filter((f) => buscarEquipo(f.equipo)?.slug === equipo.slug);
+const goles = ESTADISTICAS_DEMO
+  ? delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo)
+  : [];
+const asistencias = ESTADISTICAS_DEMO
+  ? delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
+  : [];
 
 const equipoLd = {
   '@context': 'https://schema.org',
@@ -85,6 +100,16 @@ const equipoLd = {
     </section>
   )}
 
+  {(goles.length > 0 || asistencias.length > 0) && (
+    <section class="bloque-stats">
+      <h2 class="seccion">Goleadores y asistencias del equipo</h2>
+      <div class="grilla-stats">
+        {goles.length > 0 && <TablaAnotadores filas={goles} titulo="Goleadores" unidad="Goles" mostrarEquipo={false} />}
+        {asistencias.length > 0 && <TablaAnotadores filas={asistencias} titulo="Asistencias" unidad="Asist." mostrarEquipo={false} />}
+      </div>
+    </section>
+  )}
+
   <Anuncio formato="horizontal" />
 
   <h2 class="seccion">Noticias de {equipo.nombre}</h2>
@@ -125,6 +150,8 @@ const equipoLd = {
   }
   .datos-equipo dd { margin: 0; font-weight: 600; font-size: 0.98rem; }
   .bloque-tabla { margin-bottom: 1.2rem; }
+  .bloque-stats { margin-bottom: 1.4rem; }
+  .grilla-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
   .aviso-demo {
     background: #fff8e1; border-left: 4px solid var(--amarillo); padding: 0.5rem 0.85rem;
     font-size: 0.85rem; color: #6b5900; margin: 0 auto 0.9rem; max-width: 760px;

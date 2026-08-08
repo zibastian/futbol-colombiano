@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import Anuncio from '../../components/Anuncio.astro';
+import { columnistaPorNombre } from '../../data/columnistas';
+import { urlNota } from '../../lib/rutas';
+
+export async function getStaticPaths() {
+  const { COLUMNISTAS } = await import('../../data/columnistas');
+  return COLUMNISTAS.map((c) => ({ params: { columnista: c.slug }, props: { columnista: c } }));
+}
+
+const { columnista } = Astro.props;
+
+const notas = (await getCollection('noticias', ({ data }) => !data.draft))
+  .filter((n) => columnistaPorNombre(n.data.autor)?.slug === columnista.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const iniciales = columnista.nombre
+  .split(' ')
+  .map((p) => p[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+
+const perfilLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: columnista.nombre,
+    description: columnista.bio,
+    knowsAbout: columnista.temas
+  }
+};
+---
+
+<Base title={`${columnista.nombre} — columnista`} description={`${columnista.linea} ${columnista.bio}`}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(perfilLd)} />
+  </Fragment>
+
+  <section class="perfil" style={`--acento:${columnista.color}`}>
+    <div class="avatar">{iniciales}</div>
+    <div class="perfil-info">
+      <span class="kicker">Columnista</span>
+      <h1>{columnista.nombre}</h1>
+      <p class="linea">{columnista.linea}</p>
+      <p class="bio">{columnista.bio}</p>
+      <div class="temas">
+        {columnista.temas.map((t) => <span class="tema">{t}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <h2 class="seccion">Columnas de {columnista.nombre}</h2>
+  {notas.length === 0 && <p>Todavía no hay columnas publicadas con esta firma.</p>}
+  <div class="grilla-notas">
+    {notas.map((n) => (
+      <NotaCard
+        url={urlNota(n)}
+        title={n.data.title}
+        description={n.data.description}
+        tipo={n.data.tipo}
+        cover={n.data.cover}
+        coverAlt={n.data.coverAlt}
+      />
+    ))}
+  </div>
+
+  <Anuncio formato="horizontal" />
+</Base>
+
+<style>
+  .perfil {
+    display: flex; gap: 1.5rem; align-items: flex-start; background: var(--papel);
+    border: 1px solid var(--borde); border-top: 5px solid var(--acento);
+    border-radius: 10px; padding: 1.4rem 1.5rem; margin-bottom: 1.8rem;
+  }
+  .avatar {
+    width: 96px; height: 96px; border-radius: 50%; background: var(--acento);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-family: var(--condensada); font-size: 2.4rem; font-weight: 700; flex-shrink: 0;
+  }
+  .perfil-info h1 { font-family: var(--serif); font-size: 2rem; margin: 0.1rem 0 0.3rem; letter-spacing: -0.5px; }
+  .linea { margin: 0 0 0.7rem; font-family: var(--serif); font-style: italic; color: var(--acento); font-size: 1.05rem; }
+  .bio { margin: 0 0 0.9rem; line-height: 1.6; max-width: 640px; }
+  .temas { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .tema {
+    background: var(--fondo-suave); border: 1px solid var(--borde); border-radius: 999px;
+    padding: 0.2rem 0.7rem; font-family: var(--condensada); font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.5px; color: var(--gris);
+  }
+  @media (max-width: 640px) {
+    .perfil { flex-direction: column; align-items: center; text-align: center; }
+    .bio { text-align: left; }
+    .temas { justify-content: center; }
+  }
+</style>

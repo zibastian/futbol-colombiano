@@ -1,0 +1,67 @@
+---
+import { buscarEquipo, escudoDe } from '../data/equipos';
+
+interface Fila { posicion: number; equipo: string; puntos: number; partidos: number; promedio: number }
+interface Props { filas: Fila[]; destacar?: string; enZona?: number }
+const { filas, destacar, enZona = 2 } = Astro.props;
+const limite = filas.length - enZona; // los últimos puestos son zona de descenso
+---
+
+<div class="descenso">
+  <div class="tabla-wrap">
+    <table class="tabla-descenso">
+      <thead>
+        <tr><th>#</th><th class="equipo-col">Equipo</th><th>PJ</th><th>Pts</th><th>Prom.</th></tr>
+      </thead>
+      <tbody>
+        {
+          filas.map((f) => {
+            const eq = buscarEquipo(f.equipo);
+            const escudo = escudoDe(eq, 64);
+            const zona = f.posicion > limite;
+            return (
+              <tr class={`${zona ? 'en-zona' : ''} ${eq && destacar === eq.slug ? 'destacado' : ''}`}>
+                <td class="pos">{f.posicion}</td>
+                <td class="equipo-col">
+                  {eq ? (
+                    <a href={`/equipos/${eq.slug}`}>
+                      {escudo && <img src={escudo} alt="" width="20" height="20" loading="lazy" />}
+                      <span>{eq.nombre}</span>
+                    </a>
+                  ) : (
+                    <span>{f.equipo}</span>
+                  )}
+                </td>
+                <td>{f.partidos}</td>
+                <td>{f.puntos}</td>
+                <td class="prom">{f.promedio.toFixed(3)}</td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="leyenda"><span class="muestra"></span> Zona de descenso a la segunda división</p>
+</div>
+
+<style>
+  .descenso { max-width: 620px; margin: 0 auto 1rem; }
+  .tabla-wrap { overflow-x: auto; border: 1px solid var(--borde); border-radius: 8px; }
+  .tabla-descenso { border-collapse: collapse; width: 100%; font-size: 0.87rem; min-width: 420px; }
+  .tabla-descenso th, .tabla-descenso td { padding: 0.42rem 0.5rem; text-align: center; }
+  .tabla-descenso thead th {
+    background: var(--azul); color: #fff; font-family: var(--condensada);
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+  }
+  .tabla-descenso tbody tr:nth-child(even) { background: var(--fondo-suave); }
+  .tabla-descenso tbody tr.en-zona { background: #fdeceb !important; }
+  .tabla-descenso tbody tr.destacado { background: #fff6d6 !important; font-weight: 700; }
+  .equipo-col { text-align: left !important; min-width: 180px; }
+  .equipo-col a { display: flex; align-items: center; gap: 0.5rem; color: var(--tinta); font-weight: 600; }
+  .equipo-col img { width: 20px; height: 20px; object-fit: contain; }
+  .pos { font-family: var(--condensada); font-weight: 700; color: var(--gris); }
+  .prom { font-weight: 700; }
+  .leyenda { font-size: 0.78rem; color: var(--gris); display: flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; }
+  .muestra { width: 14px; height: 14px; background: #fdeceb; border: 1px solid #f0a9a4; display: inline-block; border-radius: 3px; }
+</style>

@@ -11,5 +11,6 @@ const SEASON =
 
 export const TORNEOS = [
   { slug: 'liga-betplay', nombre: 'Liga BetPlay', ligaId: 239, season: SEASON },
-  { slug: 'torneo-betplay', nombre: 'Torneo BetPlay', ligaId: 240, season: SEASON }
+  { slug: 'torneo-betplay', nombre: 'Torneo BetPlay', ligaId: 240, season: SEASON },
+  { slug: 'copa-betplay', nombre: 'Copa BetPlay', ligaId: 241, season: SEASON }
 ];
