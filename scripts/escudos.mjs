@@ -47,7 +47,17 @@ async function normalizar(buffer) {
 }
 
 await mkdir(`${OUT}/64`, { recursive: true });
+await mkdir('src/data', { recursive: true });
 let total = 0;
+const manifiesto = [];
+
+const aSlug = (s) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
 for (const liga of LIGAS) {
   console.log(`Liga ${liga}, temporada ${SEASON}...`);
@@ -66,6 +76,7 @@ for (const liga of LIGAS) {
       const { grande, chico } = await normalizar(buffer);
       await writeFile(`${OUT}/${team.id}.png`, grande);
       await writeFile(`${OUT}/64/${team.id}.png`, chico);
+      manifiesto.push({ id: team.id, nombre: team.name, slug: aSlug(team.name), liga });
       console.log(`  OK ${team.name} (id ${team.id})`);
       total++;
     } catch (e) {
@@ -74,4 +85,9 @@ for (const liga of LIGAS) {
   }
 }
 
+// El manifiesto permite generar las fichas de equipo sin depender de la API
+// en cada build (nombre, slug y ruta del escudo por ID).
+manifiesto.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+await writeFile('src/data/escudos.json', JSON.stringify(manifiesto, null, 2));
 console.log(`Listo: ${total} escudos normalizados en ${OUT}/`);
+console.log(`Manifiesto: src/data/escudos.json (${manifiesto.length} equipos)`);

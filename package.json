@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "escudos": "node scripts/escudos.mjs",
-    "datos:test": "node scripts/diagnostico-api.mjs"
+    "datos:test": "node scripts/diagnostico-api.mjs",
+    "demo:limpiar": "node scripts/limpiar-demo.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",

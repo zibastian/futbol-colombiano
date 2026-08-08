@@ -30,6 +30,8 @@ const noticias = defineCollection({
       .optional(),
     // Autor humano (obligatorio en opinión):
     autor: z.string().default('Redacción'),
+    // Notas de ejemplo para validar el diseño. Se borran con: npm run demo:limpiar
+    demo: z.boolean().default(false),
     draft: z.boolean().default(false)
   })
 });

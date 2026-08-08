@@ -6,34 +6,57 @@ import { TORNEOS } from '../../data/torneos';
 import { tablaPosiciones, fixturesTemporada, ultimoYProximo } from '../../lib/apifootball';
 import { slugify } from '../../lib/slug';
 
-// Ficha de equipo (fase 1.5): posición, último y próximo partido + noticias por tag.
-// Se genera una ficha por cada equipo presente en las tablas de los torneos configurados.
+// Ficha de equipo. Las páginas se generan desde el manifiesto de escudos
+// (src/data/escudos.json, creado por `npm run escudos`), así existen aunque
+// la API no esté disponible. Cuando hay plan Pro, se enriquecen con
+// posición, último y próximo partido.
 
 export async function getStaticPaths() {
+  const { slugify } = await import('../../lib/slug');
+  let equipos: any[] = [];
+  try {
+    const mod = await import('../../data/escudos.json');
+    equipos = (mod.default || mod) as any[];
+  } catch {
+    equipos = [];
+  }
+
   const { TORNEOS } = await import('../../data/torneos');
   const { tablaPosiciones, fixturesTemporada } = await import('../../lib/apifootball');
-  const paths = [];
+  const datos: Record<string, any> = {};
   for (const t of TORNEOS) {
     const tabla = await tablaPosiciones(t.ligaId, t.season);
+    if (!tabla.length) continue;
     const fixtures = await fixturesTemporada(t.ligaId, t.season);
-    for (const fila of tabla) {
-      paths.push({
-        params: { equipo: slugify(fila.equipo) },
-        props: { fila, torneo: t, fixtures }
-      });
-    }
+    for (const fila of tabla) datos[slugify(fila.equipo)] = { fila, torneo: t, fixtures };
   }
-  return paths;
+
+  // Si no hay manifiesto, caemos a lo que entregue la API
+  if (!equipos.length) {
+    equipos = Object.entries(datos).map(([slug, d]: any) => ({
+      id: d.fila.equipoId,
+      nombre: d.fila.equipo,
+      slug
+    }));
+  }
+
+  return equipos.map((e) => ({
+    params: { equipo: e.slug },
+    props: { equipo: e, extra: datos[e.slug] || null }
+  }));
 }
 
-const { fila, torneo, fixtures } = Astro.props;
-const { ultimo, proximo } = ultimoYProximo(fixtures, fila.equipoId);
+const { equipo, extra } = Astro.props;
+const { ultimo, proximo } = extra
+  ? ultimoYProximo(extra.fixtures, extra.fila.equipoId)
+  : { ultimo: null, proximo: null };
 
 const notas = (await getCollection('noticias', ({ data }) => !data.draft))
-  .filter((n) => n.data.equipos.some((e) => slugify(e) === slugify(fila.equipo)))
+  .filter((n) => n.data.equipos.some((e) => slugify(e) === equipo.slug))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 12);
 
+const escudo = `/escudos/${equipo.id}.png`;
 const fmtFecha = (iso: string) =>
   new Date(iso).toLocaleDateString('es-CO', {
     weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit',
@@ -43,53 +66,57 @@ const fmtFecha = (iso: string) =>
 const equipoLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsTeam',
-  name: fila.equipo,
+  name: equipo.nombre,
   sport: 'Soccer',
-  logo: fila.logo,
-  memberOf: { '@type': 'SportsOrganization', name: torneo.nombre }
+  logo: escudo
 };
 ---
 
-<Base title={`${fila.equipo}: noticias, posición y próximos partidos`} description={`Ficha de ${fila.equipo}: posición en la ${torneo.nombre}, último resultado, próximo partido y todas las noticias.`}>
+<Base
+  title={`${equipo.nombre}: noticias, plantilla y resultados`}
+  description={`Toda la información de ${equipo.nombre}: últimas noticias, fichajes, resultados y próximos partidos.`}
+>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(equipoLd)} />
   </Fragment>
 
   <div class="ficha-cabecera">
-    <img src={fila.logo} alt={`Escudo de ${fila.equipo}`} width="72" height="72" />
+    <img src={escudo} alt={`Escudo de ${equipo.nombre}`} width="76" height="76" />
     <div>
-      <h1>{fila.equipo}</h1>
-      <p class="dato-torneo">
-        <strong>{fila.posicion}°</strong> en la {torneo.nombre} · {fila.puntos} pts en {fila.jugados} partidos
-        ({fila.ganados}G {fila.empatados}E {fila.perdidos}P)
-      </p>
+      <h1>{equipo.nombre}</h1>
+      {extra ? (
+        <p class="dato-torneo">
+          <strong>{extra.fila.posicion}°</strong> en la {extra.torneo.nombre} · {extra.fila.puntos} pts en{' '}
+          {extra.fila.jugados} partidos ({extra.fila.ganados}G {extra.fila.empatados}E {extra.fila.perdidos}P)
+        </p>
+      ) : (
+        <p class="dato-torneo">Fútbol Profesional Colombiano</p>
+      )}
     </div>
   </div>
 
-  <div class="partidos">
-    {
-      ultimo && (
-        <div class="partido-card">
-          <span class="kicker">Último partido</span>
-          <p>
-            {ultimo.local} <strong>{ultimo.golesLocal}-{ultimo.golesVisitante}</strong> {ultimo.visitante}
-          </p>
-        </div>
-      )
-    }
-    {
-      proximo && (
-        <div class="partido-card">
-          <span class="kicker">Próximo partido</span>
-          <p>{proximo.local} vs. {proximo.visitante}</p>
-          <p class="fecha-partido">{fmtFecha(proximo.fecha)}</p>
-        </div>
-      )
-    }
-  </div>
+  {
+    (ultimo || proximo) && (
+      <div class="partidos">
+        {ultimo && (
+          <div class="partido-card">
+            <span class="kicker">Último partido</span>
+            <p>{ultimo.local} <strong>{ultimo.golesLocal}-{ultimo.golesVisitante}</strong> {ultimo.visitante}</p>
+          </div>
+        )}
+        {proximo && (
+          <div class="partido-card">
+            <span class="kicker">Próximo partido</span>
+            <p>{proximo.local} vs. {proximo.visitante}</p>
+            <p class="fecha-partido">{fmtFecha(proximo.fecha)}</p>
+          </div>
+        )}
+      </div>
+    )
+  }
 
-  <h2 class="seccion" style="margin-top:1.6rem">Noticias de {fila.equipo}</h2>
-  {notas.length === 0 && <p>Aún no hay noticias de {fila.equipo}. Pronto llegarán.</p>}
+  <h2 class="seccion" style="margin-top:1.8rem">Noticias de {equipo.nombre}</h2>
+  {notas.length === 0 && <p>Aún no hay noticias de {equipo.nombre}. Pronto llegarán.</p>}
   <div class="grilla-notas">
     {
       notas.map((nota) => (
@@ -107,14 +134,15 @@ const equipoLd = {
 </Base>
 
 <style>
-  .ficha-cabecera { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1rem; }
-  .ficha-cabecera h1 { margin: 0; font-size: 1.7rem; }
-  .dato-torneo { margin: 0.2rem 0 0; color: var(--gris); }
-  .partidos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .partido-card {
-    border: 1px solid var(--borde); border-radius: 10px; padding: 0.8rem 1rem;
-    background: var(--fondo-suave);
+  .ficha-cabecera {
+    display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem;
+    padding-bottom: 1.1rem; border-bottom: 2px solid var(--tinta);
   }
+  .ficha-cabecera img { width: 76px; height: 76px; object-fit: contain; }
+  .ficha-cabecera h1 { margin: 0; font-family: var(--serif); font-size: 1.9rem; letter-spacing: -0.4px; }
+  .dato-torneo { margin: 0.25rem 0 0; color: var(--gris); font-size: 0.95rem; }
+  .partidos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .partido-card { border: 1px solid var(--borde); border-radius: 8px; padding: 0.85rem 1rem; background: var(--fondo-suave); }
   .partido-card p { margin: 0.3rem 0 0; font-size: 1.02rem; }
   .fecha-partido { color: var(--gris); font-size: 0.88rem !important; text-transform: capitalize; }
 </style>

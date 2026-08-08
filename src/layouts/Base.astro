@@ -1,6 +1,7 @@
 ---
 import { SITE } from '../config';
 import { BUILD } from '../lib/buildinfo';
+import Logo from '../components/Logo.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -53,6 +54,8 @@ const siteLd = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0B2C5E" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
 
@@ -72,7 +75,7 @@ const siteLd = {
     <header class="sitio">
       <div class="contenedor barra">
         <a href="/" class="logo" aria-label={SITE.title}>
-          Fútbol<span class="amarillo">Colombiano</span><span class="co">.com.co</span>
+          <Logo variante="claro" />
         </a>
         <nav class="principal" aria-label="Secciones">
           <a href="/">Portada</a>
@@ -87,10 +90,8 @@ const siteLd = {
     </main>
     <footer class="sitio">
       <div class="contenedor">
-        <p>
-          <strong>Fútbol<span style="color:var(--amarillo)">Colombiano</span></strong> ·
-          Noticias, fichajes y análisis del fútbol profesional colombiano.
-        </p>
+        <div style="margin-bottom:0.7rem"><Logo variante="claro" tamano={34} /></div>
+        <p>Noticias, fichajes y análisis del fútbol profesional colombiano.</p>
         <p>© {new Date().getFullYear()} {SITE.title}. Todos los derechos reservados.</p>
         <p class="build-info">
           v{BUILD.version} · {BUILD.commit} · build {BUILD.fecha} · {BUILD.datos}

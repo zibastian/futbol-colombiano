@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#14161A"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#F2C200"/>
+  <clipPath id="b"><circle cx="1010" cy="500" r="150"/></clipPath>
+  <g clip-path="url(#b)" opacity="0.16">
+    <rect x="860" y="350" width="300" height="150" fill="#F2C200"/>
+    <rect x="860" y="500" width="300" height="75" fill="#1B4C9E"/>
+    <rect x="860" y="575" width="300" height="75" fill="#C8102E"/>
+  </g>
+  <text x="80" y="200" font-family="Barlow Condensed, Oswald, sans-serif" font-size="40" font-weight="700" fill="#F2C200" letter-spacing="4">LIGA BETPLAY</text>
+  <text x="80" y="310" font-family="Barlow Condensed, Oswald, sans-serif" font-size="86" font-weight="700" fill="#FFFFFF" letter-spacing="1">AMÉRICA GOLEÓ 7-0</text>
+  <text x="80" y="375" font-family="Inter, system-ui, sans-serif" font-size="34" fill="#C3CFE0">Fecha 2 · Pascual Guerrero</text>
+  <g transform="translate(80,540)">
+    <clipPath id="l"><circle cx="26" cy="0" r="26"/></clipPath>
+    <g clip-path="url(#l)">
+      <rect x="0" y="-26" width="52" height="26" fill="#F2C200"/>
+      <rect x="0" y="0" width="52" height="13" fill="#1B4C9E"/>
+      <rect x="0" y="13" width="52" height="13" fill="#C8102E"/>
+    </g>
+    <circle cx="26" cy="0" r="26" fill="none" stroke="#FDFCF9" stroke-width="2.5"/>
+    <text x="68" y="-4" font-family="Barlow Condensed, Oswald, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" letter-spacing="1">FÚTBOL</text>
+    <text x="68" y="20" font-family="Barlow Condensed, Oswald, sans-serif" font-size="28" font-weight="700" fill="#F2C200" letter-spacing="1">COLOMBIANO</text>
+  </g>
+</svg>

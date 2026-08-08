@@ -1,0 +1,41 @@
+---
+// Logo: balón tricolor + nombre en dos líneas (Barlow Condensed).
+// variante "claro" para la cabecera azul, "oscuro" para fondos claros.
+interface Props {
+  variante?: 'claro' | 'oscuro';
+  tamano?: number;
+}
+const { variante = 'claro', tamano = 44 } = Astro.props;
+const borde = variante === 'claro' ? '#FDFCF9' : '#14161A';
+const linea1 = variante === 'claro' ? '#FFFFFF' : '#14161A';
+const linea2 = variante === 'claro' ? '#F2C200' : '#0B2C5E';
+---
+
+<span class="logo-lockup">
+  <span class="logo-bola" style={`width:${tamano}px;height:${tamano}px;border-color:${borde}`} aria-hidden="true">
+    <i style="height:50%;background:#F2C200"></i>
+    <i style="height:25%;background:#1B4C9E"></i>
+    <i style="height:25%;background:#C8102E"></i>
+  </span>
+  <span class="logo-texto">
+    <span style={`color:${linea1}`}>FÚTBOL</span>
+    <span style={`color:${linea2}`}>COLOMBIANO</span>
+  </span>
+</span>
+
+<style>
+  .logo-lockup { display: inline-flex; align-items: center; gap: 0.65rem; }
+  .logo-bola {
+    border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    border-width: 2px; border-style: solid; display: block;
+  }
+  .logo-bola i { display: block; }
+  .logo-texto {
+    display: flex; flex-direction: column; line-height: 0.98;
+    font-family: var(--condensada); font-weight: 700;
+    font-size: 1.62rem; letter-spacing: 0.4px;
+  }
+  @media (max-width: 520px) {
+    .logo-texto { font-size: 1.32rem; }
+  }
+</style>
