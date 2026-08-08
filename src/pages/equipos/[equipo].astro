@@ -2,147 +2,136 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NotaCard from '../../components/NotaCard.astro';
-import { TORNEOS } from '../../data/torneos';
-import { tablaPosiciones, fixturesTemporada, ultimoYProximo } from '../../lib/apifootball';
-import { slugify } from '../../lib/slug';
-
-// Ficha de equipo. Las páginas se generan desde el manifiesto de escudos
-// (src/data/escudos.json, creado por `npm run escudos`), así existen aunque
-// la API no esté disponible. Cuando hay plan Pro, se enriquecen con
-// posición, último y próximo partido.
+import Anuncio from '../../components/Anuncio.astro';
+import TablaPosiciones from '../../components/TablaPosiciones.astro';
+import { EQUIPOS, buscarEquipo, escudoDe } from '../../data/equipos';
+import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
+import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
+import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
-  const { slugify } = await import('../../lib/slug');
-  let equipos: any[] = [];
-  try {
-    const mod = await import('../../data/escudos.json');
-    equipos = (mod.default || mod) as any[];
-  } catch {
-    equipos = [];
-  }
-
-  const { TORNEOS } = await import('../../data/torneos');
-  const { tablaPosiciones, fixturesTemporada } = await import('../../lib/apifootball');
-  const datos: Record<string, any> = {};
-  for (const t of TORNEOS) {
-    const tabla = await tablaPosiciones(t.ligaId, t.season);
-    if (!tabla.length) continue;
-    const fixtures = await fixturesTemporada(t.ligaId, t.season);
-    for (const fila of tabla) datos[slugify(fila.equipo)] = { fila, torneo: t, fixtures };
-  }
-
-  // Si no hay manifiesto, caemos a lo que entregue la API
-  if (!equipos.length) {
-    equipos = Object.entries(datos).map(([slug, d]: any) => ({
-      id: d.fila.equipoId,
-      nombre: d.fila.equipo,
-      slug
-    }));
-  }
-
-  return equipos.map((e) => ({
-    params: { equipo: e.slug },
-    props: { equipo: e, extra: datos[e.slug] || null }
-  }));
+  const { EQUIPOS } = await import('../../data/equipos');
+  return EQUIPOS.map((e) => ({ params: { equipo: e.slug }, props: { equipo: e } }));
 }
 
-const { equipo, extra } = Astro.props;
-const { ultimo, proximo } = extra
-  ? ultimoYProximo(extra.fixtures, extra.fila.equipoId)
-  : { ultimo: null, proximo: null };
+const { equipo } = Astro.props;
+const escudo = escudoDe(equipo, 256);
 
 const notas = (await getCollection('noticias', ({ data }) => !data.draft))
-  .filter((n) => n.data.equipos.some((e) => slugify(e) === equipo.slug))
+  .filter((n) => n.data.equipos.some((e) => buscarEquipo(e)?.slug === equipo.slug))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 12);
 
-const escudo = `/escudos/${equipo.id}.png`;
-const fmtFecha = (iso: string) =>
-  new Date(iso).toLocaleDateString('es-CO', {
-    weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit',
-    timeZone: 'America/Bogota'
-  });
+// Tabla donde aparece el equipo, con su fila resaltada
+let tabla: any[] = [];
+let tituloTabla = '';
+if (equipo.division === 'A' && TABLA_DEMO) {
+  tabla = tablaDemo;
+  tituloTabla = 'Liga BetPlay';
+} else if (GRUPOS_DEMO) {
+  const grupo = gruposDemo.find((g) => g.filas.some((f) => buscarEquipo(f.equipo)?.slug === equipo.slug));
+  if (grupo) {
+    tabla = grupo.filas;
+    tituloTabla = `Torneo BetPlay · ${grupo.nombre}`;
+  }
+}
 
 const equipoLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsTeam',
-  name: equipo.nombre,
+  name: equipo.oficial,
+  alternateName: equipo.nombre,
   sport: 'Soccer',
-  logo: escudo
+  ...(escudo ? { logo: escudo } : {}),
+  ...(equipo.estadio ? { location: { '@type': 'Place', name: equipo.estadio, address: equipo.ciudad } } : {}),
+  ...(equipo.fundacion ? { foundingDate: String(equipo.fundacion) } : {}),
+  description: equipo.descripcion
 };
 ---
 
 <Base
-  title={`${equipo.nombre}: noticias, plantilla y resultados`}
-  description={`Toda la información de ${equipo.nombre}: últimas noticias, fichajes, resultados y próximos partidos.`}
+  title={`${equipo.nombre}: noticias, plantilla y posición`}
+  description={`${equipo.descripcion} Últimas noticias, resultados y posición de ${equipo.nombre} en el fútbol colombiano.`}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(equipoLd)} />
   </Fragment>
 
-  <div class="ficha-cabecera">
-    <img src={escudo} alt={`Escudo de ${equipo.nombre}`} width="76" height="76" />
-    <div>
+  <section class="ficha-cabecera">
+    {escudo ? (
+      <img class="escudo" src={escudo} alt={`Escudo de ${equipo.nombre}`} width="120" height="120" />
+    ) : (
+      <div class="escudo-vacio" aria-hidden="true"><span>{equipo.nombre.slice(0, 2).toUpperCase()}</span></div>
+    )}
+    <div class="ficha-info">
+      <span class="kicker">{equipo.division === 'A' ? 'Liga BetPlay' : 'Torneo BetPlay'}</span>
       <h1>{equipo.nombre}</h1>
-      {extra ? (
-        <p class="dato-torneo">
-          <strong>{extra.fila.posicion}°</strong> en la {extra.torneo.nombre} · {extra.fila.puntos} pts en{' '}
-          {extra.fila.jugados} partidos ({extra.fila.ganados}G {extra.fila.empatados}E {extra.fila.perdidos}P)
-        </p>
-      ) : (
-        <p class="dato-torneo">Fútbol Profesional Colombiano</p>
-      )}
+      <p class="oficial">{equipo.oficial}{equipo.apodo && <> · <em>{equipo.apodo}</em></>}</p>
+      <p class="descripcion">{equipo.descripcion}</p>
+      <dl class="datos-equipo">
+        <div><dt>Ciudad</dt><dd>{equipo.ciudad}</dd></div>
+        {equipo.estadio && <div><dt>Estadio</dt><dd>{equipo.estadio}</dd></div>}
+        {equipo.fundacion && <div><dt>Fundación</dt><dd>{equipo.fundacion}</dd></div>}
+        <div><dt>División</dt><dd>{equipo.division === 'A' ? 'Primera A' : 'Primera B'}</dd></div>
+      </dl>
     </div>
-  </div>
+  </section>
 
-  {
-    (ultimo || proximo) && (
-      <div class="partidos">
-        {ultimo && (
-          <div class="partido-card">
-            <span class="kicker">Último partido</span>
-            <p>{ultimo.local} <strong>{ultimo.golesLocal}-{ultimo.golesVisitante}</strong> {ultimo.visitante}</p>
-          </div>
-        )}
-        {proximo && (
-          <div class="partido-card">
-            <span class="kicker">Próximo partido</span>
-            <p>{proximo.local} vs. {proximo.visitante}</p>
-            <p class="fecha-partido">{fmtFecha(proximo.fecha)}</p>
-          </div>
-        )}
-      </div>
-    )
-  }
+  {tabla.length > 0 && (
+    <section class="bloque-tabla">
+      <h2 class="seccion">Posición en el torneo</h2>
+      <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+      <TablaPosiciones filas={tabla} titulo={tituloTabla} destacar={equipo.slug} compacta={true} clasifican={equipo.division === 'A' ? 8 : 2} />
+    </section>
+  )}
 
-  <h2 class="seccion" style="margin-top:1.8rem">Noticias de {equipo.nombre}</h2>
+  <Anuncio formato="horizontal" />
+
+  <h2 class="seccion">Noticias de {equipo.nombre}</h2>
   {notas.length === 0 && <p>Aún no hay noticias de {equipo.nombre}. Pronto llegarán.</p>}
   <div class="grilla-notas">
-    {
-      notas.map((nota) => (
-        <NotaCard
-          slug={nota.id.replace(/\.md$/, '')}
-          title={nota.data.title}
-          description={nota.data.description}
-          tipo={nota.data.tipo}
-          cover={nota.data.cover}
-          coverAlt={nota.data.coverAlt}
-        />
-      ))
-    }
+    {notas.map((n) => (
+      <NotaCard
+        url={urlNota(n)}
+        title={n.data.title}
+        description={n.data.description}
+        tipo={n.data.tipo}
+        cover={n.data.cover}
+        coverAlt={n.data.coverAlt}
+      />
+    ))}
   </div>
 </Base>
 
 <style>
   .ficha-cabecera {
-    display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem;
-    padding-bottom: 1.1rem; border-bottom: 2px solid var(--tinta);
+    display: flex; gap: 1.6rem; align-items: flex-start; background: var(--papel);
+    border: 1px solid var(--borde); border-radius: 10px; padding: 1.4rem 1.5rem;
+    border-top: 5px solid var(--azul); margin-bottom: 1.8rem;
   }
-  .ficha-cabecera img { width: 76px; height: 76px; object-fit: contain; }
-  .ficha-cabecera h1 { margin: 0; font-family: var(--serif); font-size: 1.9rem; letter-spacing: -0.4px; }
-  .dato-torneo { margin: 0.25rem 0 0; color: var(--gris); font-size: 0.95rem; }
-  .partidos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .partido-card { border: 1px solid var(--borde); border-radius: 8px; padding: 0.85rem 1rem; background: var(--fondo-suave); }
-  .partido-card p { margin: 0.3rem 0 0; font-size: 1.02rem; }
-  .fecha-partido { color: var(--gris); font-size: 0.88rem !important; text-transform: capitalize; }
+  .escudo { width: 120px; height: 120px; object-fit: contain; flex-shrink: 0; }
+  .escudo-vacio {
+    width: 120px; height: 120px; border-radius: 50%; background: var(--fondo-suave);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: var(--condensada); font-size: 2.4rem; color: var(--azul); font-weight: 700;
+  }
+  .ficha-info h1 { font-family: var(--serif); font-size: 2rem; margin: 0.1rem 0 0.2rem; letter-spacing: -0.5px; }
+  .oficial { margin: 0 0 0.6rem; color: var(--gris); font-size: 0.92rem; }
+  .descripcion { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.6; max-width: 640px; }
+  .datos-equipo { display: flex; flex-wrap: wrap; gap: 1.6rem; margin: 0; }
+  .datos-equipo dt {
+    font-family: var(--condensada); font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--gris-claro);
+  }
+  .datos-equipo dd { margin: 0; font-weight: 600; font-size: 0.98rem; }
+  .bloque-tabla { margin-bottom: 1.2rem; }
+  .aviso-demo {
+    background: #fff8e1; border-left: 4px solid var(--amarillo); padding: 0.5rem 0.85rem;
+    font-size: 0.85rem; color: #6b5900; margin: 0 auto 0.9rem; max-width: 760px;
+  }
+  @media (max-width: 640px) {
+    .ficha-cabecera { flex-direction: column; align-items: center; text-align: center; }
+    .datos-equipo { justify-content: center; }
+    .descripcion { text-align: left; }
+  }
 </style>

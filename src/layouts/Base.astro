@@ -2,6 +2,7 @@
 import { SITE } from '../config';
 import { BUILD } from '../lib/buildinfo';
 import Logo from '../components/Logo.astro';
+import { SECCIONES } from '../data/secciones';
 import '../styles/global.css';
 
 interface Props {
@@ -79,9 +80,7 @@ const siteLd = {
         </a>
         <nav class="principal" aria-label="Secciones">
           <a href="/">Portada</a>
-          <a href="/torneos/liga-betplay">Liga BetPlay</a>
-          <a href="/torneos/torneo-betplay">Torneo BetPlay</a>
-          <a href="/tags/colombianos-en-el-exterior">Exterior</a>
+          {SECCIONES.filter((s) => s.enMenu).map((s) => <a href={`/${s.slug}`}>{s.nombre}</a>)}
         </nav>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { SITE } from '../config';
+import { urlNota } from '../lib/rutas';
 
 export async function GET(context) {
   const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
@@ -14,7 +15,7 @@ export async function GET(context) {
       title: nota.data.title,
       description: nota.data.description,
       pubDate: nota.data.pubDate,
-      link: `/noticias/${nota.id.replace(/\.md$/, '')}`
+      link: urlNota(nota)
     })),
     customData: `<language>es-co</language>`
   });

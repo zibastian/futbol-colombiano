@@ -9,6 +9,13 @@ jugadores: ["Luis Díaz"]
 cover: "/demo/exterior.svg"
 coverAlt: "Luis Díaz con el Bayern Múnich"
 autor: "Redacción"
+exterior:
+  jugador: "Luis Díaz"
+  club: "Bayern Múnich"
+  pais: "Alemania"
+  minutos: 78
+  goles: 0
+  asistencias: 1
 demo: true
 draft: false
 ---

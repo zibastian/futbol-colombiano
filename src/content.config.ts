@@ -30,6 +30,21 @@ const noticias = defineCollection({
       .optional(),
     // Autor humano (obligatorio en opinión):
     autor: z.string().default('Redacción'),
+    // Sección de la URL (/{seccion}/{slug}). Si se omite, se deduce del contenido.
+    seccion: z
+      .enum(['liga-betplay', 'torneo-betplay', 'copa-colombia', 'colombianos-en-el-exterior', 'fichajes', 'opinion', 'noticias'])
+      .optional(),
+    // Datos del jugador para las tarjetas de "colombianos en el exterior"
+    exterior: z
+      .object({
+        jugador: z.string(),
+        club: z.string(),
+        pais: z.string(),
+        minutos: z.number().optional(),
+        goles: z.number().optional(),
+        asistencias: z.number().optional()
+      })
+      .optional(),
     // Notas de ejemplo para validar el diseño. Se borran con: npm run demo:limpiar
     demo: z.boolean().default(false),
     draft: z.boolean().default(false)

@@ -1,13 +1,13 @@
 ---
 interface Props {
-  slug: string;
+  url: string;
   title: string;
   description: string;
   tipo: string;
   cover?: string;
   coverAlt?: string;
 }
-const { slug, title, description, tipo, cover, coverAlt } = Astro.props;
+const { url, title, description, tipo, cover, coverAlt } = Astro.props;
 // Ninguna tarjeta queda sin imagen: si la nota no trae portada, se usa la genérica.
 const imagen = cover || '/portada-default.svg';
 const etiquetas: Record<string, string> = {
@@ -22,10 +22,10 @@ const etiquetas: Record<string, string> = {
 ---
 
 <article class="nota-card">
-  <a href={`/noticias/${slug}`}><img src={imagen} alt={coverAlt || title} loading="lazy" /></a>
+  <a href={url}><img src={imagen} alt={coverAlt || title} loading="lazy" /></a>
   <div class="cuerpo">
     <span class="kicker">{etiquetas[tipo] || 'Noticias'}</span>
-    <h3><a href={`/noticias/${slug}`}>{title}</a></h3>
+    <h3><a href={url}>{title}</a></h3>
     <p>{description}</p>
   </div>
 </article>

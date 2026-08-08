@@ -53,8 +53,10 @@ nav.principal a {
 }
 nav.principal a:hover { color: #fff; border-bottom-color: var(--amarillo); text-decoration: none; }
 
-main { padding: 2.6rem 0 3rem; }
-@media (max-width: 640px) { main { padding-top: 1.8rem; } }
+/* main lleva la clase .contenedor: hay que ganarle en especificidad,
+   si no, el padding lateral de .contenedor borra el espacio superior. */
+main.contenedor { padding-top: 2.4rem; padding-bottom: 3rem; }
+@media (max-width: 640px) { main.contenedor { padding-top: 1.6rem; } }
 
 /* ---------- Titulares de sección ---------- */
 h1.seccion, h2.seccion {

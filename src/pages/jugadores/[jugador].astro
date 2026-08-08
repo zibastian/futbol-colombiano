@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import Anuncio from '../../components/Anuncio.astro';
+import { urlNota } from '../../lib/rutas';
+import { slugify } from '../../lib/slug';
+
+export async function getStaticPaths() {
+  const { slugify } = await import('../../lib/slug');
+  const notas = await getCollection('noticias', ({ data }) => !data.draft);
+  const mapa = new Map<string, { nombre: string; notas: typeof notas }>();
+  for (const nota of notas) {
+    for (const j of nota.data.jugadores) {
+      const slug = slugify(j);
+      if (!mapa.has(slug)) mapa.set(slug, { nombre: j, notas: [] });
+      mapa.get(slug)!.notas.push(nota);
+    }
+  }
+  return [...mapa.entries()].map(([slug, { nombre, notas }]) => ({
+    params: { jugador: slug },
+    props: { nombre, notas }
+  }));
+}
+
+const { nombre, notas } = Astro.props;
+const ordenadas = notas.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const jugadorLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: nombre,
+  jobTitle: 'Futbolista'
+};
+---
+
+<Base title={`${nombre}: últimas noticias`} description={`Todas las noticias sobre ${nombre} en el fútbol colombiano y en el exterior.`}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jugadorLd)} />
+  </Fragment>
+
+  <h1 class="seccion">{nombre}</h1>
+  <p class="intro-seccion">Todas las noticias sobre {nombre}.</p>
+
+  <div class="grilla-notas">
+    {ordenadas.map((n) => (
+      <NotaCard
+        url={urlNota(n)}
+        title={n.data.title}
+        description={n.data.description}
+        tipo={n.data.tipo}
+        cover={n.data.cover}
+        coverAlt={n.data.coverAlt}
+      />
+    ))}
+  </div>
+
+  <Anuncio formato="horizontal" />
+</Base>
+
+<style>
+  .intro-seccion { color: var(--gris); margin: -0.4rem 0 1.4rem; }
+</style>

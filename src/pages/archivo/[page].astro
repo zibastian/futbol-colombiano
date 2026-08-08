@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import Anuncio from '../../components/Anuncio.astro';
+import { urlNota } from '../../lib/rutas';
+
+const POR_PAGINA = 12;
+
+export async function getStaticPaths() {
+  const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const total = Math.max(1, Math.ceil(notas.length / POR_PAGINA));
+  return Array.from({ length: total }, (_, i) => ({
+    params: { page: String(i + 1) },
+    props: {
+      notas: notas.slice(i * POR_PAGINA, (i + 1) * POR_PAGINA),
+      pagina: i + 1,
+      totalPaginas: total
+    }
+  }));
+}
+
+const { notas, pagina, totalPaginas } = Astro.props;
+---
+
+<Base
+  title={pagina === 1 ? 'Archivo de noticias' : `Archivo de noticias — página ${pagina}`}
+  description="Todas las noticias del fútbol colombiano publicadas en el portal, de la más reciente a la más antigua."
+>
+  <Fragment slot="head">
+    {pagina > 1 && <link rel="prev" href={`/archivo/${pagina - 1}`} />}
+    {pagina < totalPaginas && <link rel="next" href={`/archivo/${pagina + 1}`} />}
+    {pagina > 1 && <meta name="robots" content="noindex, follow" />}
+  </Fragment>
+
+  <h1 class="seccion">Archivo de noticias</h1>
+  <p class="intro-seccion">Página {pagina} de {totalPaginas}</p>
+
+  <div class="grilla-notas">
+    {notas.map((n) => (
+      <NotaCard
+        url={urlNota(n)}
+        title={n.data.title}
+        description={n.data.description}
+        tipo={n.data.tipo}
+        cover={n.data.cover}
+        coverAlt={n.data.coverAlt}
+      />
+    ))}
+  </div>
+
+  <Anuncio formato="horizontal" />
+
+  <nav class="paginacion" aria-label="Paginación">
+    {pagina > 1 && <a href={`/archivo/${pagina - 1}`}>← Anteriores</a>}
+    <span>{pagina} / {totalPaginas}</span>
+    {pagina < totalPaginas && <a href={`/archivo/${pagina + 1}`}>Siguientes →</a>}
+  </nav>
+</Base>
+
+<style>
+  .intro-seccion { color: var(--gris); margin: -0.4rem 0 1.4rem; }
+  .paginacion {
+    display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+    font-family: var(--condensada); font-size: 1.05rem; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-top: 1rem;
+  }
+  .paginacion span { color: var(--gris); }
+</style>

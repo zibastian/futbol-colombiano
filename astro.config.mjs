@@ -8,9 +8,14 @@ const SITE_URL = process.env.SITE_URL || 'https://futbol-colombiano.seskassner.w
 export default defineConfig({
   site: SITE_URL,
   trailingSlash: 'never',
+  // Las notas publicadas antes del nuevo esquema de URLs conservan su enlace.
+  redirects: {
+    '/noticias/2026-08-07-luis-diaz-gol-bayern-munich-aston-villa':
+      '/colombianos-en-el-exterior/2026-08-07-luis-diaz-gol-bayern-munich-aston-villa'
+  },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/admin')
+      filter: (page) => !page.includes('/admin') && !page.includes('/archivo/')
     })
   ],
   build: {

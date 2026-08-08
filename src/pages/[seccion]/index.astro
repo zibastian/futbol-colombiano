@@ -1,0 +1,148 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NotaCard from '../../components/NotaCard.astro';
+import Anuncio from '../../components/Anuncio.astro';
+import TablaPosiciones from '../../components/TablaPosiciones.astro';
+import { SECCIONES, seccionDeNota } from '../../data/secciones';
+import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
+import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
+import { tablaPosiciones } from '../../lib/apifootball';
+import { TORNEOS } from '../../data/torneos';
+import { urlNota } from '../../lib/rutas';
+
+export async function getStaticPaths() {
+  const { SECCIONES } = await import('../../data/secciones');
+  return SECCIONES.map((s) => ({ params: { seccion: s.slug }, props: { seccion: s } }));
+}
+
+const { seccion } = Astro.props;
+const LIMITE = 18; // el resto vive en /archivo — la portada no crece sin control
+
+const todas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const notas = todas.filter((n) => seccionDeNota(n.data) === seccion.slug);
+const visibles = notas.slice(0, LIMITE);
+
+// Tabla de posiciones cuando la sección es un torneo
+const torneo = TORNEOS.find((t) => t.slug === seccion.slug);
+const real = torneo ? await tablaPosiciones(torneo.ligaId, torneo.season) : [];
+const filasReales = real.map((f) => ({
+  posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados, e: f.empatados,
+  p: f.perdidos, gf: f.golesFavor, gc: f.golesContra, dg: f.diferencia, pts: f.puntos
+}));
+const usarTablaDemo = seccion.slug === 'liga-betplay' && !filasReales.length && TABLA_DEMO;
+const usarGruposDemo = seccion.slug === 'torneo-betplay' && !filasReales.length && GRUPOS_DEMO;
+const hayDatos = filasReales.length > 0 || usarTablaDemo || usarGruposDemo;
+
+// Tarjetas de rendimiento para "colombianos en el exterior":
+// una por jugador, con los datos de su última nota.
+const fichasExterior =
+  seccion.slug === 'colombianos-en-el-exterior'
+    ? Object.values(
+        notas.reduce((acc: Record<string, any>, n) => {
+          const e = n.data.exterior;
+          if (e && !acc[e.jugador]) acc[e.jugador] = { ...e, url: urlNota(n) };
+          return acc;
+        }, {})
+      )
+    : [];
+---
+
+<Base
+  title={seccion.slug === 'liga-betplay' ? 'Liga BetPlay: tabla de posiciones y noticias' : seccion.nombre}
+  description={seccion.descripcion}
+>
+  <h1 class="seccion">{seccion.nombre}</h1>
+  <p class="intro-seccion">{seccion.descripcion}</p>
+
+  {hayDatos && (
+    <>
+      {(usarTablaDemo || usarGruposDemo) && (
+        <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+      )}
+      {filasReales.length > 0 && <TablaPosiciones filas={filasReales} />}
+      {usarTablaDemo && <TablaPosiciones filas={tablaDemo} />}
+      {usarGruposDemo && gruposDemo.map((g) => (
+        <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={2} compacta={true} />
+      ))}
+      {usarGruposDemo && (
+        <p class="nota-tabla">Los dos primeros de cada grupo avanzan a la siguiente fase.</p>
+      )}
+    </>
+  )}
+
+  {
+    seccion.slug === 'colombianos-en-el-exterior' && fichasExterior.length > 0 && (
+      <section class="tablero-exterior">
+        <h2 class="seccion">Rendimiento de la jornada</h2>
+        <div class="grilla-jugadores">
+          {fichasExterior.map((j) => (
+            <a class="ficha-jugador" href={j.url}>
+              <div class="jugador-cabecera">
+                <span class="jugador-nombre">{j.jugador}</span>
+                <span class="jugador-club">{j.club} · {j.pais}</span>
+              </div>
+              <div class="jugador-stats">
+                <div><strong>{j.minutos ?? '—'}</strong><span>Minutos</span></div>
+                <div><strong>{j.goles ?? 0}</strong><span>Goles</span></div>
+                <div><strong>{j.asistencias ?? 0}</strong><span>Asist.</span></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <Anuncio formato="horizontal" />
+
+  <h2 class="seccion">Últimas noticias</h2>
+  {visibles.length === 0 && <p>Aún no hay notas en esta sección.</p>}
+  <div class="grilla-notas">
+    {visibles.map((n) => (
+      <NotaCard
+        url={urlNota(n)}
+        title={n.data.title}
+        description={n.data.description}
+        tipo={n.data.tipo}
+        cover={n.data.cover}
+        coverAlt={n.data.coverAlt}
+      />
+    ))}
+  </div>
+
+  {notas.length > LIMITE && (
+    <p class="ver-mas"><a href="/archivo/1">Ver todo el archivo de noticias →</a></p>
+  )}
+</Base>
+
+<style>
+  .intro-seccion { color: var(--gris); margin: -0.4rem 0 1.4rem; max-width: 720px; }
+  .aviso-demo {
+    background: #fff8e1; border-left: 4px solid var(--amarillo);
+    padding: 0.5rem 0.85rem; font-size: 0.85rem; color: #6b5900;
+    margin: 0 auto 0.9rem; max-width: 760px;
+  }
+  .nota-tabla { font-size: 0.82rem; color: var(--gris); text-align: center; }
+  .ver-mas { margin-top: 1.6rem; font-family: var(--condensada); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .tablero-exterior { margin-bottom: 1.6rem; }
+  .grilla-jugadores {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem;
+  }
+  .ficha-jugador {
+    display: block; background: var(--azul); border-radius: 10px; padding: 0.9rem 1rem;
+    color: #fff; border-top: 4px solid var(--amarillo);
+  }
+  .ficha-jugador:hover { text-decoration: none; background: #143a75; }
+  .jugador-nombre {
+    display: block; font-family: var(--condensada); font-size: 1.32rem;
+    font-weight: 700; letter-spacing: 0.4px; line-height: 1.1;
+  }
+  .jugador-club { display: block; font-size: 0.8rem; color: #a9bcd8; margin-bottom: 0.7rem; }
+  .jugador-stats { display: flex; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.6rem; }
+  .jugador-stats strong { display: block; font-family: var(--condensada); font-size: 1.4rem; line-height: 1; color: var(--amarillo); }
+  .jugador-stats span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.6px; color: #a9bcd8; }
+</style>

@@ -3,25 +3,23 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import NotaCard from '../components/NotaCard.astro';
 import Anuncio from '../components/Anuncio.astro';
+import { urlNota } from '../lib/rutas';
 
 const etiquetas: Record<string, string> = {
-  cronica: 'Crónica',
-  fichaje: 'Fichajes',
-  previa: 'Previa',
-  agenda: 'Agenda',
-  opinion: 'Opinión',
-  reporte: 'Reporte',
-  nota: 'Noticias'
+  cronica: 'Crónica', fichaje: 'Fichajes', previa: 'Previa', agenda: 'Agenda',
+  opinion: 'Opinión', reporte: 'Reporte', nota: 'Noticias'
 };
+
+const LIMITE_PORTADA = 13; // 1 principal + 3 laterales + 9 en grilla
 
 const notas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const principal = notas[0];
-const laterales = notas.slice(1, 5);
-const resto = notas.slice(5);
-const slug = (n: any) => n.id.replace(/\.md$/, '');
+const laterales = notas.slice(1, 4);
+const resto = notas.slice(4, LIMITE_PORTADA);
+const hayMas = notas.length > LIMITE_PORTADA;
 ---
 
 <Base>
@@ -29,29 +27,23 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
     principal && (
       <section class="portada">
         <article class="nota-principal">
-          <a href={`/noticias/${slug(principal)}`}>
-            <img
-              class="cubierta"
-              src={principal.data.cover || '/portada-default.svg'}
-              alt={principal.data.coverAlt || principal.data.title}
-            />
+          <a href={urlNota(principal)}>
+            <img class="cubierta" src={principal.data.cover || '/portada-default.svg'} alt={principal.data.coverAlt || principal.data.title} />
           </a>
           <span class="kicker">{etiquetas[principal.data.tipo] || 'Noticias'}</span>
-          <h2><a href={`/noticias/${slug(principal)}`}>{principal.data.title}</a></h2>
+          <h2><a href={urlNota(principal)}>{principal.data.title}</a></h2>
           <p>{principal.data.description}</p>
         </article>
 
-        {laterales.length > 0 && (
-          <aside class="columna-lateral" aria-label="Últimas noticias">
-            {laterales.map((nota) => (
-              <div class="item-lateral">
-                <span class="kicker">{etiquetas[nota.data.tipo] || 'Noticias'}</span>
-                <h3><a href={`/noticias/${slug(nota)}`}>{nota.data.title}</a></h3>
-              </div>
-            ))}
-            <Anuncio formato="rectangulo" />
-          </aside>
-        )}
+        <aside class="columna-lateral" aria-label="Últimas noticias">
+          {laterales.map((nota) => (
+            <div class="item-lateral">
+              <span class="kicker">{etiquetas[nota.data.tipo] || 'Noticias'}</span>
+              <h3><a href={urlNota(nota)}>{nota.data.title}</a></h3>
+            </div>
+          ))}
+          <Anuncio formato="rectangulo" />
+        </aside>
       </section>
     )
   }
@@ -64,7 +56,7 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
         <div class="grilla-notas">
           {resto.map((nota) => (
             <NotaCard
-              slug={slug(nota)}
+              url={urlNota(nota)}
               title={nota.data.title}
               description={nota.data.description}
               tipo={nota.data.tipo}
@@ -73,9 +65,17 @@ const slug = (n: any) => n.id.replace(/\.md$/, '');
             />
           ))}
         </div>
+        {hayMas && <p class="ver-mas"><a href="/archivo/1">Ver todo el archivo de noticias →</a></p>}
       </>
     )
   }
 
   {notas.length === 0 && <p>Aún no hay noticias publicadas.</p>}
 </Base>
+
+<style>
+  .ver-mas {
+    margin-top: 1.6rem; font-family: var(--condensada); font-size: 1.05rem;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+</style>

@@ -7,6 +7,13 @@ equipos: ["Bayern Múnich"]
 torneos: []
 jugadores: ["Luis Díaz"]
 autor: "Redacción"
+exterior:
+  jugador: "Luis Díaz"
+  club: "Bayern Múnich"
+  pais: "Alemania"
+  minutos: 27
+  goles: 1
+  asistencias: 0
 draft: false
 ---
 

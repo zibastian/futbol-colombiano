@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { SITE } from '../config';
+import { urlNota } from '../lib/rutas';
 
 // Sitemap de Google News: solo notas de las últimas 48 horas.
 // Referenciado en robots.txt. Requisito para aparecer en Google News.
@@ -14,7 +15,7 @@ export async function GET(context) {
   const urls = notas
     .map(
       (n) => `  <url>
-    <loc>${site}/noticias/${n.id.replace(/\.md$/, '')}</loc>
+    <loc>${site}${urlNota(n)}</loc>
     <news:news>
       <news:publication>
         <news:name>${SITE.title}</news:name>

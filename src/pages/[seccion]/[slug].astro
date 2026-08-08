@@ -2,58 +2,47 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Anuncio from '../../components/Anuncio.astro';
+import NotaCard from '../../components/NotaCard.astro';
 import { SITE } from '../../config';
-import { TORNEOS } from '../../data/torneos';
+import { seccionDeNota, seccionPorSlug } from '../../data/secciones';
+import { buscarEquipo, escudoDe } from '../../data/equipos';
+import { slugify } from '../../lib/slug';
+import { urlNota, slugDeArchivo } from '../../lib/rutas';
 
 export async function getStaticPaths() {
+  const { seccionDeNota } = await import('../../data/secciones');
   const notas = await getCollection('noticias', ({ data }) => !data.draft);
   return notas.map((nota) => ({
-    params: { slug: nota.id.replace(/\.md$/, '') },
-    props: { nota }
+    params: { seccion: seccionDeNota(nota.data), slug: nota.id.replace(/\.md$/, '') },
+    props: { nota, todas: notas }
   }));
 }
 
-const { nota } = Astro.props;
+const { nota, todas } = Astro.props;
 const { Content } = await render(nota);
 const d = nota.data;
+const seccion = seccionPorSlug(seccionDeNota(d));
 
 const fmt = (date: Date) =>
   date.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' });
-
-const slugify = (s: string) =>
-  s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-
-// Los tags de equipo llevan a su ficha (/equipos), los de torneo a su página
-// (/torneos) y el resto a la página de tag. Un solo destino por entidad: sin
-// páginas duplicadas y todo el enlazado interno apunta a los hubs reales.
-let escudos: any[] = [];
-try {
-  const mod = await import('../../data/escudos.json');
-  escudos = (mod.default || mod) as any[];
-} catch {
-  escudos = [];
-}
-const buscarEquipo = (nombre: string) => {
-  const s = slugify(nombre);
-  return escudos.find((e) => e.slug === s) || escudos.find((e) => e.slug.includes(s) || s.includes(e.slug));
-};
 
 const tags = [
   ...d.equipos.map((nombre) => {
     const eq = buscarEquipo(nombre);
     return eq
-      ? { nombre, url: `/equipos/${eq.slug}`, escudo: `/escudos/64/${eq.id}.png` }
-      : { nombre, url: `/tags/${slugify(nombre)}`, escudo: null };
+      ? { nombre: eq.nombre, url: `/equipos/${eq.slug}`, escudo: escudoDe(eq, 64) }
+      : { nombre, url: null, escudo: null };
   }),
-  ...d.torneos.map((nombre) => {
-    const t = TORNEOS.find((x) => x.slug === slugify(nombre));
-    return { nombre, url: t ? `/torneos/${t.slug}` : `/tags/${slugify(nombre)}`, escudo: null };
-  }),
-  ...d.jugadores.map((nombre) => ({ nombre, url: `/tags/${slugify(nombre)}`, escudo: null }))
-];
+  ...d.jugadores.map((nombre) => ({ nombre, url: `/jugadores/${slugify(nombre)}`, escudo: null }))
+].filter((t) => t.url);
+
+const relacionadas = todas
+  .filter((n) => n.id !== nota.id && seccionDeNota(n.data) === seccion?.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
-// JSON-LD NewsArticle — con datePublished y dateModified (señal SEO clave)
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
@@ -63,10 +52,10 @@ const articleLd = {
   mainEntityOfPage: canonicalURL,
   datePublished: d.pubDate.toISOString(),
   dateModified: (d.updatedDate || d.pubDate).toISOString(),
+  articleSection: seccion?.nombre,
   author: { '@type': d.autor === 'Redacción' ? 'Organization' : 'Person', name: d.autor },
   publisher: { '@id': `${SITE.url}#org` },
-  ...(d.cover ? { image: [new URL(d.cover, Astro.site).href] } : {}),
-  ...(tags.length ? { keywords: tags.join(', ') } : {})
+  ...(d.cover ? { image: [new URL(d.cover, Astro.site).href] } : {})
 };
 
 const breadcrumbLd = {
@@ -74,7 +63,8 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Portada', item: SITE.url },
-    { '@type': 'ListItem', position: 2, name: d.title, item: canonicalURL }
+    ...(seccion ? [{ '@type': 'ListItem', position: 2, name: seccion.nombre, item: `${SITE.url}/${seccion.slug}` }] : []),
+    { '@type': 'ListItem', position: 3, name: d.title, item: canonicalURL }
   ]
 };
 ---
@@ -87,17 +77,19 @@ const breadcrumbLd = {
     {d.updatedDate && <meta property="article:modified_time" content={d.updatedDate.toISOString()} />}
   </Fragment>
 
+  <nav class="miga" aria-label="Ruta">
+    <a href="/">Portada</a> <span>›</span> {seccion && <a href={`/${seccion.slug}`}>{seccion.nombre}</a>}
+  </nav>
+
   <article class="nota">
-    <span class="kicker">{d.tipo}</span>
     <h1>{d.title}</h1>
     <p class="bajada">{d.description}</p>
     <p class="fechas">
       Por {d.autor} · Publicado el <time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time>
-      {d.updatedDate && (
-        <> · Actualizado el <time datetime={d.updatedDate.toISOString()}>{fmt(d.updatedDate)}</time></>
-      )}
+      {d.updatedDate && (<> · Actualizado el <time datetime={d.updatedDate.toISOString()}>{fmt(d.updatedDate)}</time></>)}
     </p>
-    {d.cover && <img src={d.cover} alt={d.coverAlt || d.title} />}
+    <img src={d.cover || '/portada-default.svg'} alt={d.coverAlt || d.title} />
+
     {d.fuente && (
       <p class="atribucion">
         Según reporta <strong>{d.fuente.nombre}</strong>
@@ -105,9 +97,8 @@ const breadcrumbLd = {
         {['reporte', 'fichaje'].includes(d.tipo) && ' Información en desarrollo hasta confirmación oficial.'}
       </p>
     )}
-    <div class="cuerpo-nota">
-      <Content />
-    </div>
+
+    <div class="cuerpo-nota"><Content /></div>
 
     <Anuncio formato="in-article" />
 
@@ -122,4 +113,33 @@ const breadcrumbLd = {
       </div>
     )}
   </article>
+
+  {
+    relacionadas.length > 0 && (
+      <section class="relacionadas">
+        <h2 class="seccion">Más de {seccion?.nombre}</h2>
+        <div class="grilla-notas">
+          {relacionadas.map((n) => (
+            <NotaCard
+              url={urlNota(n)}
+              title={n.data.title}
+              description={n.data.description}
+              tipo={n.data.tipo}
+              cover={n.data.cover}
+              coverAlt={n.data.coverAlt}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
 </Base>
+
+<style>
+  .miga { max-width: 720px; margin: 0 auto 0.8rem; font-family: var(--condensada);
+    font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gris); }
+  .miga a { color: var(--gris); }
+  .miga a:hover { color: var(--azul); }
+  .miga span { margin: 0 0.3rem; }
+  .relacionadas { max-width: 1100px; margin: 2.5rem auto 0; }
+</style>
