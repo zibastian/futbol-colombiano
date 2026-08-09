@@ -1,0 +1,116 @@
+---
+// Navegación en dos niveles.
+// Móvil: botón hamburguesa (sin JavaScript, con checkbox) y submenú desplegado.
+// Escritorio: barra horizontal con un desplegable en "Competiciones".
+import { MENU } from '../data/secciones';
+---
+
+<input type="checkbox" id="abrir-menu" class="menu-toggle" />
+<label for="abrir-menu" class="menu-boton" aria-label="Abrir menú">
+  <span></span><span></span><span></span>
+</label>
+
+<nav class="principal" aria-label="Secciones">
+  <ul class="nivel-1">
+    {
+      MENU.map((item) => (
+        <li class={item.hijos ? 'con-hijos' : ''}>
+          {item.url ? (
+            <a href={item.url}>{item.nombre}</a>
+          ) : (
+            <span class="grupo">{item.nombre}<i aria-hidden="true">▾</i></span>
+          )}
+          {item.hijos && (
+            <ul class="nivel-2">
+              {item.hijos.map((h) =>
+                h.proximamente ? (
+                  <li><span class="proximamente">{h.nombre}<em>Pronto</em></span></li>
+                ) : (
+                  <li><a href={h.url}>{h.nombre}</a></li>
+                )
+              )}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .menu-toggle, .menu-boton { display: none; }
+
+  .principal ul { list-style: none; margin: 0; padding: 0; }
+  .nivel-1 { display: flex; align-items: center; gap: 1.25rem; }
+  .nivel-1 > li { position: relative; }
+
+  .principal a, .grupo {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    color: #dbe4f0; font-family: var(--condensada); font-size: 1.05rem;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 0.25rem 0; border-bottom: 2px solid transparent; cursor: pointer;
+  }
+  .principal a:hover, .con-hijos:hover .grupo, .con-hijos:focus-within .grupo {
+    color: #fff; border-bottom-color: var(--amarillo); text-decoration: none;
+  }
+  .grupo i { font-style: normal; font-size: 0.7em; }
+
+  /* Desplegable de escritorio */
+  .nivel-2 {
+    position: absolute; top: 100%; left: 0; min-width: 230px; z-index: 40;
+    background: var(--azul); border-top: 3px solid var(--amarillo);
+    border-radius: 0 0 8px 8px; padding: 0.4rem 0;
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  }
+  .con-hijos:hover .nivel-2, .con-hijos:focus-within .nivel-2 {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .nivel-2 li { display: block; }
+  .nivel-2 a, .nivel-2 .proximamente {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.45rem 1rem; border-bottom: 0; width: 100%; font-size: 1rem;
+  }
+  .nivel-2 a:hover { background: #14498f; border-bottom-color: transparent; }
+  .proximamente { color: #8fa3c0; cursor: default; }
+  .proximamente em {
+    font-style: normal; font-family: var(--sans); font-size: 0.62rem;
+    text-transform: uppercase; letter-spacing: 0.6px; color: var(--azul);
+    background: var(--amarillo); border-radius: 999px; padding: 0.1rem 0.45rem;
+  }
+
+  @media (max-width: 900px) {
+    .menu-boton {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 42px; height: 42px; cursor: pointer; padding: 8px;
+    }
+    .menu-boton span {
+      display: block; height: 3px; background: #fff; border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .menu-toggle:checked ~ .menu-boton span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle:checked ~ .menu-boton span:nth-child(2) { opacity: 0; }
+    .menu-toggle:checked ~ .menu-boton span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .principal {
+      display: none; width: 100%; order: 3;
+      border-top: 1px solid rgba(255, 255, 255, 0.15); margin-top: 0.7rem; padding-top: 0.5rem;
+    }
+    .menu-toggle:checked ~ .principal { display: block; }
+
+    .nivel-1 { flex-direction: column; align-items: stretch; gap: 0; }
+    .nivel-1 > li { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .principal a, .grupo { padding: 0.75rem 0.2rem; width: 100%; border-bottom: 0; font-size: 1.1rem; }
+    .grupo { color: var(--amarillo); }
+    .grupo i { display: none; }
+
+    /* En móvil el submenú va siempre visible, indentado */
+    .nivel-2 {
+      position: static; opacity: 1; visibility: visible; transform: none;
+      box-shadow: none; border-top: 0; padding: 0 0 0.4rem 0.9rem; min-width: 0;
+      background: transparent;
+    }
+    .nivel-2 a, .nivel-2 .proximamente { padding: 0.5rem 0.2rem; font-size: 1rem; }
+  }
+</style>

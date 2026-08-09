@@ -47,6 +47,33 @@ export const SECCIONES: Seccion[] = [
 
 export const seccionPorSlug = (slug: string) => SECCIONES.find((s) => s.slug === slug);
 
+/** Menú de navegación en dos niveles. Las competiciones se agrupan para no
+ *  saturar la barra (sobre todo en móvil). */
+export interface ItemMenu {
+  nombre: string;
+  url?: string;
+  proximamente?: boolean;
+  hijos?: ItemMenu[];
+}
+
+export const MENU: ItemMenu[] = [
+  { nombre: 'Portada', url: '/' },
+  { nombre: 'Liga BetPlay', url: '/liga-betplay' },
+  {
+    nombre: 'Competiciones',
+    hijos: [
+      { nombre: 'Liga BetPlay', url: '/liga-betplay' },
+      { nombre: 'Torneo BetPlay', url: '/torneo-betplay' },
+      { nombre: 'Copa BetPlay', url: '/copa-betplay' },
+      { nombre: 'Copa Libertadores', proximamente: true },
+      { nombre: 'Copa Sudamericana', proximamente: true }
+    ]
+  },
+  { nombre: 'Colombianos en el exterior', url: '/colombianos-en-el-exterior' },
+  { nombre: 'Fichajes', url: '/fichajes' },
+  { nombre: 'Opinión', url: '/opinion' }
+];
+
 const aSlug = (s: string) =>
   s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');

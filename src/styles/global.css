@@ -41,17 +41,10 @@ img { max-width: 100%; height: auto; display: block; }
 header.sitio { background: var(--azul); border-bottom: 3px solid var(--amarillo); }
 header.sitio .barra {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; padding: 0.85rem 0; flex-wrap: wrap;
+  gap: 1rem; padding: 0.85rem 0; flex-wrap: wrap; position: relative;
 }
 .logo { display: inline-block; }
 .logo:hover { text-decoration: none; }
-nav.principal { display: flex; gap: 1.3rem; flex-wrap: wrap; }
-nav.principal a {
-  color: #dbe4f0; font-family: var(--condensada); font-size: 1.05rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.6px; padding: 0.2rem 0;
-  border-bottom: 2px solid transparent;
-}
-nav.principal a:hover { color: #fff; border-bottom-color: var(--amarillo); text-decoration: none; }
 
 /* main lleva la clase .contenedor: hay que ganarle en especificidad,
    si no, el padding lateral de .contenedor borra el espacio superior. */

@@ -33,6 +33,7 @@ const hayMas = notas.length > LIMITE_PORTADA;
           <span class="kicker">{etiquetas[principal.data.tipo] || 'Noticias'}</span>
           <h2><a href={urlNota(principal)}>{principal.data.title}</a></h2>
           <p>{principal.data.description}</p>
+          <div class="solo-movil"><Anuncio formato="rectangulo" /></div>
         </article>
 
         <aside class="columna-lateral" aria-label="Últimas noticias">
@@ -42,7 +43,7 @@ const hayMas = notas.length > LIMITE_PORTADA;
               <h3><a href={urlNota(nota)}>{nota.data.title}</a></h3>
             </div>
           ))}
-          <Anuncio formato="rectangulo" />
+          <div class="solo-escritorio"><Anuncio formato="rectangulo" /></div>
         </aside>
       </section>
     )
@@ -77,6 +78,13 @@ const hayMas = notas.length > LIMITE_PORTADA;
 </Base>
 
 <style>
+  /* En móvil la columna lateral cae debajo del hero: el rectángulo se muestra
+     antes de los titulares para que los dos anuncios no queden pegados. */
+  .solo-movil { display: none; }
+  @media (max-width: 820px) {
+    .solo-movil { display: block; }
+    .solo-escritorio { display: none; }
+  }
   .ver-mas {
     margin-top: 1.6rem; font-family: var(--condensada); font-size: 1.05rem;
     text-transform: uppercase; letter-spacing: 0.5px;

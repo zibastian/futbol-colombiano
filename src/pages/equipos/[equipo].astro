@@ -92,6 +92,8 @@ const equipoLd = {
     </div>
   </section>
 
+  <Anuncio formato="horizontal" />
+
   {tabla.length > 0 && (
     <section class="bloque-tabla">
       <h2 class="seccion">Posición en el torneo</h2>
@@ -99,8 +101,6 @@ const equipoLd = {
       <TablaPosiciones filas={tabla} titulo={tituloTabla} destacar={equipo.slug} compacta={true} clasifican={equipo.division === 'A' ? 8 : 2} />
     </section>
   )}
-
-  {tabla.length > 0 && (goles.length > 0 || asistencias.length > 0) && <Anuncio formato="horizontal" />}
 
   {(goles.length > 0 || asistencias.length > 0) && (
     <section class="bloque-stats">

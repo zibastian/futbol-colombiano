@@ -116,6 +116,8 @@ const jugadorLd = {
     )
   }
 
+  <Anuncio formato="horizontal" />
+
   <h2 class="seccion">{destacado ? `Noticias de ${destacado.nombre}` : 'Últimas noticias'}</h2>
   {ordenadas.length === 0 && <p>Todavía no hay notas publicadas sobre {destacado?.nombre || nombre}.</p>}
   <div class="grilla-notas">
@@ -130,8 +132,6 @@ const jugadorLd = {
       />
     ))}
   </div>
-
-  <Anuncio formato="horizontal" />
 
   {
     destacado && (

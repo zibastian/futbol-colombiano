@@ -167,6 +167,44 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
 `;
 }
 
+/** Banner en versión móvil: proporción más alta, logo centrado arriba y
+ *  tipografía grande, para que no quede una franja diminuta en el teléfono. */
+async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
+  const logo = slug ? await logoTorneo(slug) : null;
+  const escudos = (await Promise.all(equipos.slice(0, 5).map(escudoBase64))).filter(Boolean);
+  const W = 800, H = 460;
+
+  // El título se parte en líneas de ~11 caracteres y se ajusta al ancho
+  const lineas = partirTitulo(titulo, 11);
+  const tamTitulo = Math.min(76, Math.floor((W - 90) / (Math.max(...lineas.map((l) => l.length)) * 0.64)));
+  const yTitulo = logo ? 250 : 190;
+  const tspans = lineas
+    .map((l, i) => `<tspan x="${W / 2}" y="${yTitulo + i * (tamTitulo + 6)}">${esc(l)}</tspan>`)
+    .join('');
+  const yBase = yTitulo + lineas.length * (tamTitulo + 6);
+
+  const paso = 74;
+  const inicio = (W - escudos.length * paso) / 2;
+  const fila = escudos
+    .map((d, i) => `<image href="${d}" x="${inicio + i * paso + 6}" y="${yBase + 42}" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>`)
+    .join('\n  ');
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <rect width="${W}" height="${H}" fill="${bg}"/>
+  <rect width="${W}" height="8" fill="#F2C200"/>
+  <g opacity="0.07">
+    <circle cx="${W / 2}" cy="${H / 2}" r="190" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="${W / 2}" y1="0" x2="${W / 2}" y2="${H}" stroke="#FFFFFF" stroke-width="4"/>
+  </g>
+  ${logo ? `<image href="${logo}" x="${W / 2 - 65}" y="42" width="130" height="130" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  <text x="${W / 2}" y="${logo ? 208 : 130}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5">${esc(kicker)}</text>
+  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${tspans}</text>
+  <text x="${W / 2}" y="${yBase + 20}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#C3CFE0">${esc(sub)}</text>
+  ${fila}
+</svg>
+`;
+}
+
 const banners = [
   ['liga-betplay.svg', { slug: 'liga-betplay', kicker: 'PRIMERA DIVISIÓN', titulo: 'LIGA BETPLAY', sub: 'Tabla, goleadores y descenso',
     equipos: ['Atletico Nacional', 'Millonarios', 'America de Cali', 'Santa Fe', 'Junior'] }],
@@ -199,7 +237,8 @@ for (const [archivo, fn, args] of piezas) {
 await mkdir('public/banners', { recursive: true });
 for (const [archivo, args] of banners) {
   await writeFile(`public/banners/${archivo}`, await piezaBanner(args));
-  console.log(`  ok banners/${archivo}`);
+  await writeFile(`public/banners/${archivo.replace('.svg', '-movil.svg')}`, await piezaBannerMovil(args));
+  console.log(`  ok banners/${archivo} (+ versión móvil)`);
 }
 
 // Portada genérica de respaldo (vive fuera de /demo: se usa siempre que una nota no traiga imagen)
