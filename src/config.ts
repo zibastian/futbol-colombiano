@@ -5,8 +5,9 @@ export const SITE = {
   title: 'Fútbol Colombiano',
   description:
     'Noticias del fútbol profesional colombiano: Liga BetPlay, Copa Colombia, colombianos en el exterior, Libertadores y Sudamericana.',
-  // Cambiar cuando el dominio esté confirmado (futbolcolombiano.com.co u otro):
-  url: 'https://futbol-colombiano.seskassner.workers.dev',
+  // Dominio propio. Si algún día se libera futbolcolombiano.com.co, se cambia
+  // aquí y se dejan redirecciones 301 desde el .net (no se pierde autoridad SEO).
+  url: 'https://futbolcolombiano.net',
   locale: 'es_CO',
   lang: 'es',
   author: 'Fútbol Colombiano',

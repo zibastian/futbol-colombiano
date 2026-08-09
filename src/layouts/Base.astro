@@ -22,6 +22,11 @@ const {
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+
+// Cloudflare Web Analytics: sin cookies, sin recolección de datos personales y sin
+// banner de consentimiento. Da páginas vistas, visitas y visitantes únicos.
+// Si no hay token configurado no se inyecta nada (así el dev local queda limpio).
+const cfToken = import.meta.env.CF_ANALYTICS_TOKEN || process.env.CF_ANALYTICS_TOKEN;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 
@@ -70,6 +75,13 @@ const siteLd = {
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
 
     <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+    {cfToken && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: cfToken })}
+      />
+    )}
     <slot name="head" />
   </head>
   <body>

@@ -41,7 +41,8 @@ Workers & Pages → `futbol-colombiano` → Settings → **Build → Variables a
 | Variable | Valor | Para qué |
 |---|---|---|
 | `API_FOOTBALL_KEY` | tu key de api-football.com | tablas de posiciones y fichas de equipo |
-| `SITE_URL` | `https://futbol-colombiano.seskassner.workers.dev` | canonical, sitemaps y RSS |
+| `SITE_URL` | `https://futbolcolombiano.net` | canonical, sitemaps y RSS |
+| `CF_ANALYTICS_TOKEN` | token de Cloudflare Web Analytics | métricas de audiencia (opcional) |
 
 > Sin `API_FOOTBALL_KEY` el build no genera las fichas de equipo y las tablas
 > muestran "disponible próximamente".
@@ -50,10 +51,19 @@ Workers & Pages → `futbol-colombiano` → Settings → **Build → Variables a
 él, el autoconfig de Cloudflare instala el adaptador de Astro y convierte el
 sitio a modo servidor (mode: "server"), que es justo lo que este proyecto evita.
 
-### 4. Dominio (cuando esté confirmado)
-- Verificar disponibilidad/recuperación de `futbolcolombiano.com.co`.
-- Conectarlo en el proyecto → Custom domains; actualizar la variable `SITE_URL`
-  en Cloudflare y `src/config.ts` (robots.txt y sitemaps se generan solos).
+### 4. Dominio
+Dominio en uso: **futbolcolombiano.net** (ya comprado). Conectarlo en el proyecto →
+Custom domains y dejar `SITE_URL` apuntando ahí. `robots.txt`, canonical y sitemaps
+se generan solos desde `src/config.ts`.
+
+> Si más adelante se libera `futbolcolombiano.com.co`, se cambia `src/config.ts` y se
+> deja una redirección 301 desde el `.net`: así la autoridad SEO acumulada se traslada
+> en vez de perderse.
+
+### 4b. Métricas de audiencia (Cloudflare Web Analytics)
+Cloudflare → **Analytics & Logs → Web Analytics → Add a site**. Copiar el token del
+snippet y cargarlo como variable `CF_ANALYTICS_TOKEN` en el build. Sin token, el sitio
+no inyecta nada. No usa cookies, así que no requiere banner de consentimiento.
 
 ### 5. Panel editorial (Sveltia)
 1. Editar `public/admin/config.yml`: cambiar `OWNER/REPO` por tu repo.
