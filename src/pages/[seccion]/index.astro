@@ -15,7 +15,8 @@ import {
 } from '../../data/estadisticas-demo';
 import { tablaPosiciones } from '../../lib/apifootball';
 import { TORNEOS } from '../../data/torneos';
-import { COLUMNISTAS } from '../../data/columnistas';
+import { COLUMNISTAS_GENERALES, COLUMNISTAS_DE_EQUIPO } from '../../data/columnistas';
+import { EQUIPOS, escudoDe } from '../../data/equipos';
 import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
@@ -75,6 +76,13 @@ const fichasExterior =
     : [];
 
 const hayDatos = tablaUnica.length > 0 || grupos.length > 0;
+
+// Las firmas de club se agrupan por equipo: son 41 y en una sola grilla plana
+// no se encuentra nada. Cada club aparece una vez, con sus una o dos voces.
+const firmasPorEquipo = EQUIPOS.map((eq) => ({
+  equipo: eq,
+  firmas: COLUMNISTAS_DE_EQUIPO.filter((c) => c.equipo === eq.slug)
+})).filter((g) => g.firmas.length > 0);
 ---
 
 <Base
@@ -160,12 +168,34 @@ const hayDatos = tablaUnica.length > 0 || grupos.length > 0;
       <section class="firmas">
         <h2 class="seccion">Nuestros columnistas</h2>
         <div class="grilla-firmas">
-          {COLUMNISTAS.map((c) => (
+          {COLUMNISTAS_GENERALES.map((c) => (
             <a class="firma" href={`/columnistas/${c.slug}`} style={`--acento:${c.color}`}>
               <span class="firma-avatar">{c.nombre.slice(0, 2).toUpperCase()}</span>
               <span class="firma-nombre">{c.nombre}</span>
               <span class="firma-linea">{c.linea}</span>
             </a>
+          ))}
+        </div>
+
+        <h2 class="seccion firmas-club">Una voz por club</h2>
+        <p class="nota-tabla">
+          Cada equipo tiene su columnista. Los cinco de mayor hinchada llevan dos:
+          una firma de tribuna y otra que analiza en frío, para que un mismo partido
+          se pueda leer desde dos miradas que no siempre coinciden.
+        </p>
+        <div class="grilla-clubes">
+          {firmasPorEquipo.map((g) => (
+            <div class="club-firmas">
+              <span class="club-nombre">
+                {escudoDe(g.equipo, 64) && <img src={escudoDe(g.equipo, 64)} alt="" width="22" height="22" loading="lazy" />}
+                {g.equipo.nombre}
+              </span>
+              {g.firmas.map((c) => (
+                <a class="firma-mini" href={`/columnistas/${c.slug}`} style={`--acento:${c.color}`}>
+                  {c.nombre}
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </section>
@@ -195,6 +225,26 @@ const hayDatos = tablaUnica.length > 0 || grupos.length > 0;
 </Base>
 
 <style>
+  .firmas-club { margin-top: 2rem; }
+  .grilla-clubes {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.9rem;
+  }
+  .club-firmas {
+    background: var(--papel); border: 1px solid var(--borde); border-radius: 8px; padding: 0.6rem 0.75rem;
+  }
+  .club-nombre {
+    display: flex; align-items: center; gap: 0.4rem; font-family: var(--condensada);
+    font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--gris); margin-bottom: 0.35rem;
+  }
+  .club-nombre img { width: 22px; height: 22px; object-fit: contain; }
+  .firma-mini {
+    display: block; font-family: var(--serif); font-weight: 700; font-size: 0.98rem;
+    color: var(--tinta); border-left: 3px solid var(--acento); padding: 0.15rem 0 0.15rem 0.5rem;
+    margin-top: 0.2rem;
+  }
+  .firma-mini:hover { text-decoration: none; color: var(--acento); }
+
   .banner-seccion { margin: 0 0 1rem; border-radius: 10px; overflow: hidden; }
   .banner-seccion img { width: 100%; height: auto; display: block; }
   .visualmente-oculto {
