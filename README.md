@@ -61,9 +61,17 @@ se generan solos desde `src/config.ts`.
 > en vez de perderse.
 
 ### 4b. Métricas de audiencia (Cloudflare Web Analytics)
-Cloudflare → **Analytics & Logs → Web Analytics → Add a site**. Copiar el token del
-snippet y cargarlo como variable `CF_ANALYTICS_TOKEN` en el build. Sin token, el sitio
-no inyecta nada. No usa cookies, así que no requiere banner de consentimiento.
+Cloudflare → **Analytics & Logs → Web Analytics → Add a site**.
+
+Si el sitio queda en **Automatic setup** (el dominio pasa por el proxy de Cloudflare),
+no hay token ni snippet que copiar: Cloudflare inyecta el beacon en el borde. No hay
+nada que hacer en el código y la variable `CF_ANALYTICS_TOKEN` se deja sin definir.
+
+El token solo existe en el modo **manual**, que se usa cuando el sitio no pasa por el
+proxy de Cloudflare. En ese caso se carga como variable de build `CF_ANALYTICS_TOKEN` y
+el layout inyecta el beacon.
+
+No usa cookies, así que no requiere banner de consentimiento.
 
 ### 5. Panel editorial (Sveltia)
 1. Editar `public/admin/config.yml`: cambiar `OWNER/REPO` por tu repo.

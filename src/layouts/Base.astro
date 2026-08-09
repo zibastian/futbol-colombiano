@@ -23,9 +23,12 @@ const {
 
 const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 
-// Cloudflare Web Analytics: sin cookies, sin recolección de datos personales y sin
-// banner de consentimiento. Da páginas vistas, visitas y visitantes únicos.
-// Si no hay token configurado no se inyecta nada (así el dev local queda limpio).
+// Cloudflare Web Analytics: sin cookies, sin datos personales y sin banner de
+// consentimiento. Da páginas vistas, visitas y visitantes únicos.
+// En "Automatic setup" (el dominio pasa por el proxy de Cloudflare) el beacon lo
+// inyecta Cloudflare en el borde y NO hace falta token: esta variable queda vacía.
+// Solo se usa si algún día se pasa a modo manual o el sitio sale del proxy —
+// entonces sí hay que pegar el token, si no, no se mide nada.
 const cfToken = import.meta.env.CF_ANALYTICS_TOKEN || process.env.CF_ANALYTICS_TOKEN;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;

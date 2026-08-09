@@ -13,7 +13,7 @@ const base: FilaDemo[] = [
   { equipo: 'Millonarios', pj: 3, g: 3, e: 0, p: 0, gf: 5, gc: 1 },
   { equipo: 'Independiente Santa Fe', pj: 3, g: 2, e: 1, p: 0, gf: 7, gc: 2 },
   { equipo: 'Atlético Nacional', pj: 3, g: 2, e: 1, p: 0, gf: 6, gc: 3 },
-  { equipo: 'Junior de Barranquilla', pj: 3, g: 1, e: 1, p: 1, gf: 4, gc: 4 },
+  { equipo: 'Atlético Junior', pj: 3, g: 1, e: 1, p: 1, gf: 4, gc: 4 },
   { equipo: 'Deportes Tolima', pj: 3, g: 1, e: 1, p: 1, gf: 3, gc: 3 },
   { equipo: 'Independiente Medellín', pj: 3, g: 1, e: 1, p: 1, gf: 4, gc: 4 },
   { equipo: 'Once Caldas', pj: 3, g: 1, e: 1, p: 1, gf: 3, gc: 3 },

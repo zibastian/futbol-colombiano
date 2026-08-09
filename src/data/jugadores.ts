@@ -56,7 +56,7 @@ export const JUGADORES_DESTACADOS: JugadorDestacado[] = [
   {
     slug: 'luis-diaz', nombre: 'Luis Díaz', apodo: 'Lucho',
     posicion: 'Extremo izquierdo', nacimiento: '1997', origen: 'Barrancas, La Guajira',
-    clubes: ['Barranquilla FC', 'Junior de Barranquilla', 'Porto', 'Liverpool', 'Bayern Múnich'],
+    clubes: ['Barranquilla FC', 'Atlético Junior', 'Porto', 'Liverpool', 'Bayern Múnich'],
     seleccion: 'Goleador de la Copa América 2021 junto a Messi; figura de la final de 2024.',
     logro: 'Campeón de la FA Cup, la Carabao Cup y la Premier League con el Liverpool.',
     descripcion: 'Salió de la Guajira y de los torneos indígenas para convertirse en uno de los extremos más desequilibrantes de Europa. Su uno contra uno, su ritmo y su capacidad de definir con ambas piernas lo hicieron figura en la Premier League antes de dar el salto a la Bundesliga.',
