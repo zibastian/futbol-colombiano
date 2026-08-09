@@ -43,8 +43,8 @@ export const asistenciasLiga: Anotador[] = [
 ];
 
 export const goleadoresTorneo: Anotador[] = [
-  { jugador: 'Jhon Córdoba', equipo: 'Cúcuta Deportivo', cantidad: 4, partidos: 4 },
-  { jugador: 'Andrés Sarmiento', equipo: 'Atlético Huila', cantidad: 3, partidos: 4 },
+  { jugador: 'Jhon Córdoba', equipo: 'Real Cartagena', cantidad: 4, partidos: 4 },
+  { jugador: 'Andrés Sarmiento', equipo: 'Independiente Yumbo', cantidad: 3, partidos: 4 },
   { jugador: 'Carlos Peralta', equipo: 'Real Cartagena', cantidad: 3, partidos: 4 },
   { jugador: 'Julián Quiñones', equipo: 'Deportes Quindío', cantidad: 2, partidos: 4 },
   { jugador: 'Miguel Nazarith', equipo: 'Unión Magdalena', cantidad: 2, partidos: 4 },
@@ -52,24 +52,24 @@ export const goleadoresTorneo: Anotador[] = [
 ];
 
 export const asistenciasTorneo: Anotador[] = [
-  { jugador: 'Sebastián Ramírez', equipo: 'Cúcuta Deportivo', cantidad: 3, partidos: 4 },
+  { jugador: 'Sebastián Ramírez', equipo: 'Real Cartagena', cantidad: 3, partidos: 4 },
   { jugador: 'Óscar Estupiñán', equipo: 'Deportes Quindío', cantidad: 2, partidos: 4 },
-  { jugador: 'Kevin Rendón', equipo: 'Atlético Huila', cantidad: 2, partidos: 4 },
+  { jugador: 'Kevin Rendón', equipo: 'Independiente Yumbo', cantidad: 2, partidos: 4 },
   { jugador: 'Camilo Ayala', equipo: 'Bogotá FC', cantidad: 1, partidos: 4 },
   { jugador: 'Daniel Hernández', equipo: 'Leones', cantidad: 1, partidos: 4 }
 ];
 
 export const goleadoresCopa: Anotador[] = [
   { jugador: 'Dayro Moreno', equipo: 'Once Caldas', cantidad: 3, partidos: 4 },
-  { jugador: 'Jhon Córdoba', equipo: 'Cúcuta Deportivo', cantidad: 3, partidos: 4 },
+  { jugador: 'Jhon Córdoba', equipo: 'Real Cartagena', cantidad: 3, partidos: 4 },
   { jugador: 'Luis Sandoval', equipo: 'Junior de Barranquilla', cantidad: 2, partidos: 3 },
-  { jugador: 'Andrés Sarmiento', equipo: 'Atlético Huila', cantidad: 2, partidos: 4 },
+  { jugador: 'Andrés Sarmiento', equipo: 'Independiente Yumbo', cantidad: 2, partidos: 4 },
   { jugador: 'Marco Pérez', equipo: 'Deportes Tolima', cantidad: 2, partidos: 4 }
 ];
 
 export const asistenciasCopa: Anotador[] = [
   { jugador: 'Fabián Sambueza', equipo: 'Junior de Barranquilla', cantidad: 2, partidos: 3 },
-  { jugador: 'Sebastián Ramírez', equipo: 'Cúcuta Deportivo', cantidad: 2, partidos: 4 },
+  { jugador: 'Sebastián Ramírez', equipo: 'Real Cartagena', cantidad: 2, partidos: 4 },
   { jugador: 'Jhon Vásquez', equipo: 'Once Caldas', cantidad: 2, partidos: 4 },
   { jugador: 'Larry Vásquez', equipo: 'Deportes Tolima', cantidad: 1, partidos: 4 }
 ];
@@ -89,8 +89,8 @@ const descensoBase: FilaDescenso[] = [
   { equipo: 'Águilas Doradas', puntos: 134, partidos: 114 },
   { equipo: 'Deportivo Cali', puntos: 130, partidos: 114 },
   { equipo: 'Jaguares de Córdoba', puntos: 126, partidos: 114 },
-  { equipo: 'La Equidad', puntos: 124, partidos: 114 },
-  { equipo: 'Envigado', puntos: 120, partidos: 114 },
+  { equipo: 'Internacional de Bogotá', puntos: 124, partidos: 114 },
+  { equipo: 'Real Cartagena', puntos: 120, partidos: 114 },
   { equipo: 'Alianza', puntos: 118, partidos: 114 },
   { equipo: 'Deportivo Pasto', puntos: 116, partidos: 114 },
   { equipo: 'Boyacá Chicó', puntos: 96, partidos: 114 },

@@ -21,7 +21,7 @@ const grupos: { nombre: string; equipos: FilaGrupo[] }[] = [
   {
     nombre: 'Grupo B',
     equipos: [
-      { equipo: 'Atlético Huila', pj: 4, g: 3, e: 0, p: 1, gf: 7, gc: 3 },
+      { equipo: 'Independiente Yumbo', pj: 4, g: 3, e: 0, p: 1, gf: 7, gc: 3 },
       { equipo: 'Deportes Quindío', pj: 4, g: 2, e: 2, p: 0, gf: 6, gc: 2 },
       { equipo: 'Deportivo Popayán', pj: 4, g: 1, e: 1, p: 2, gf: 4, gc: 5 },
       { equipo: 'Orsomarso', pj: 4, g: 1, e: 1, p: 2, gf: 3, gc: 5 },

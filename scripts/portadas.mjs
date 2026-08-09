@@ -256,7 +256,7 @@ const banners = [
   ['liga-betplay.svg', { slug: 'liga-betplay', kicker: 'PRIMERA DIVISIÓN', titulo: 'LIGA BETPLAY', sub: 'Tabla, goleadores y descenso',
     equipos: ['Atletico Nacional', 'Millonarios', 'America de Cali', 'Santa Fe', 'Junior'] }],
   ['torneo-betplay.svg', { slug: 'torneo-betplay', kicker: 'SEGUNDA DIVISIÓN', titulo: 'TORNEO BETPLAY', sub: 'La pelea por el ascenso', bg: '#14498F',
-    equipos: ['Cucuta', 'Real Cartagena', 'Union Magdalena', 'Huila', 'Quindio'] }],
+    equipos: ['Envigado', 'Real Cartagena', 'Union Magdalena', 'Patriotas', 'Quindio'] }],
   ['copa-betplay.svg', { slug: 'copa-betplay', kicker: 'TODO EL AÑO', titulo: 'COPA BETPLAY', sub: 'Primera y segunda división se cruzan', bg: '#0F6E56',
     equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Huila', 'Once Caldas'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
