@@ -15,21 +15,21 @@ import { MENU } from '../data/secciones';
     {
       MENU.map((item) => (
         <li class={item.hijos ? 'con-hijos' : ''}>
-          {item.url ? (
-            <a href={item.url}>{item.nombre}</a>
+          {item.hijos ? (
+            <details class="grupo-desplegable">
+              <summary class="grupo">{item.nombre}<i aria-hidden="true">▾</i></summary>
+              <ul class="nivel-2">
+                {item.hijos.map((h) =>
+                  h.proximamente ? (
+                    <li><span class="proximamente">{h.nombre}<em>Pronto</em></span></li>
+                  ) : (
+                    <li><a href={h.url}>{h.nombre}</a></li>
+                  )
+                )}
+              </ul>
+            </details>
           ) : (
-            <span class="grupo">{item.nombre}<i aria-hidden="true">▾</i></span>
-          )}
-          {item.hijos && (
-            <ul class="nivel-2">
-              {item.hijos.map((h) =>
-                h.proximamente ? (
-                  <li><span class="proximamente">{h.nombre}<em>Pronto</em></span></li>
-                ) : (
-                  <li><a href={h.url}>{h.nombre}</a></li>
-                )
-              )}
-            </ul>
+            <a href={item.url}>{item.nombre}</a>
           )}
         </li>
       ))
@@ -44,7 +44,7 @@ import { MENU } from '../data/secciones';
   .nivel-1 { display: flex; align-items: center; gap: 1.25rem; }
   .nivel-1 > li { position: relative; }
 
-  .principal a, .grupo {
+  .principal a, .grupo, .proximamente {
     display: inline-flex; align-items: center; gap: 0.25rem;
     color: #dbe4f0; font-family: var(--condensada); font-size: 1.05rem;
     font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px;
@@ -54,6 +54,9 @@ import { MENU } from '../data/secciones';
     color: #fff; border-bottom-color: var(--amarillo); text-decoration: none;
   }
   .grupo i { font-style: normal; font-size: 0.7em; }
+  .grupo-desplegable { display: inline-block; }
+  .grupo-desplegable summary { list-style: none; }
+  .grupo-desplegable summary::-webkit-details-marker { display: none; }
 
   /* Desplegable de escritorio */
   .nivel-2 {
@@ -66,6 +69,13 @@ import { MENU } from '../data/secciones';
   }
   .con-hijos:hover .nivel-2, .con-hijos:focus-within .nivel-2 {
     opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  /* En escritorio el estado abierto/cerrado del <details> no altera el diseño:
+     el submenú es absoluto y se controla solo con hover/foco. */
+  @media (min-width: 901px) {
+    .grupo-desplegable[open] .nivel-2 { opacity: 0; visibility: hidden; }
+    .grupo-desplegable[open]:hover .nivel-2,
+    .grupo-desplegable[open]:focus-within .nivel-2 { opacity: 1; visibility: visible; }
   }
   .nivel-2 li { display: block; }
   .nivel-2 a, .nivel-2 .proximamente {
@@ -101,11 +111,14 @@ import { MENU } from '../data/secciones';
 
     .nivel-1 { flex-direction: column; align-items: stretch; gap: 0; }
     .nivel-1 > li { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-    .principal a, .grupo { padding: 0.75rem 0.2rem; width: 100%; border-bottom: 0; font-size: 1.1rem; }
+    .principal a, .grupo, .proximamente { padding: 0.75rem 0.2rem; width: 100%; border-bottom: 0; font-size: 1.1rem; }
     .grupo { color: var(--amarillo); }
-    .grupo i { display: none; }
 
-    /* En móvil el submenú va siempre visible, indentado */
+    /* En móvil el submenú arranca colapsado y se abre al tocar "Competiciones" */
+    .grupo-desplegable { display: block; width: 100%; }
+    .grupo-desplegable summary { display: flex; justify-content: space-between; align-items: center; }
+    .grupo-desplegable summary i { display: inline-block; transition: transform 0.2s ease; }
+    .grupo-desplegable[open] summary i { transform: rotate(180deg); }
     .nivel-2 {
       position: static; opacity: 1; visibility: visible; transform: none;
       box-shadow: none; border-top: 0; padding: 0 0 0.4rem 0.9rem; min-width: 0;

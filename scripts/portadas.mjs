@@ -167,39 +167,54 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
 `;
 }
 
-/** Banner en versión móvil: proporción más alta, logo centrado arriba y
- *  tipografía grande, para que no quede una franja diminuta en el teléfono. */
+/** Banner en versión móvil: el alto se calcula sumando los bloques, así nada
+ *  se pisa ni queda cortado por más largo que sea el nombre del torneo. */
 async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.slice(0, 5).map(escudoBase64))).filter(Boolean);
-  const W = 800, H = 460;
+  const W = 800;
+  const MARGEN = 46;
 
-  // El título se parte en líneas de ~11 caracteres y se ajusta al ancho
-  const lineas = partirTitulo(titulo, 11);
-  const tamTitulo = Math.min(76, Math.floor((W - 90) / (Math.max(...lineas.map((l) => l.length)) * 0.64)));
-  const yTitulo = logo ? 250 : 190;
+  // El título se parte en líneas y su tamaño se ajusta al ancho disponible
+  const lineas = partirTitulo(titulo, 12);
+  const masLarga = Math.max(...lineas.map((l) => l.length));
+  const tamTitulo = Math.min(78, Math.floor((W - 120) / (masLarga * 0.64)));
+  const altoLinea = Math.round(tamTitulo * 1.05);
+
+  // Composición vertical: cada bloque se apila debajo del anterior
+  let y = MARGEN;
+  const yLogo = y;
+  if (logo) y += 150 + 26;
+  const yKicker = y + 26;          // baseline del kicker
+  y = yKicker + 26;
+  const yTitulo = y + tamTitulo;   // baseline de la primera línea
+  y = yTitulo + (lineas.length - 1) * altoLinea + 20;
+  const ySub = y + 24;
+  y = ySub + 20;
+  const yEscudos = escudos.length ? y + 22 : y;
+  const H = (escudos.length ? yEscudos + 66 : y) + MARGEN;
+
   const tspans = lineas
-    .map((l, i) => `<tspan x="${W / 2}" y="${yTitulo + i * (tamTitulo + 6)}">${esc(l)}</tspan>`)
+    .map((l, i) => `<tspan x="${W / 2}" y="${yTitulo + i * altoLinea}">${esc(l)}</tspan>`)
     .join('');
-  const yBase = yTitulo + lineas.length * (tamTitulo + 6);
 
-  const paso = 74;
+  const paso = 78;
   const inicio = (W - escudos.length * paso) / 2;
   const fila = escudos
-    .map((d, i) => `<image href="${d}" x="${inicio + i * paso + 6}" y="${yBase + 42}" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>`)
+    .map((d, i) => `<image href="${d}" x="${inicio + i * paso + 8}" y="${yEscudos}" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>`)
     .join('\n  ');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
   <rect width="${W}" height="${H}" fill="${bg}"/>
   <rect width="${W}" height="8" fill="#F2C200"/>
-  <g opacity="0.07">
-    <circle cx="${W / 2}" cy="${H / 2}" r="190" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-    <line x1="${W / 2}" y1="0" x2="${W / 2}" y2="${H}" stroke="#FFFFFF" stroke-width="4"/>
+  <g opacity="0.06">
+    <circle cx="${W / 2}" cy="${H / 2}" r="${Math.min(W, H) * 0.42}" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="60" y1="${H / 2}" x2="${W - 60}" y2="${H / 2}" stroke="#FFFFFF" stroke-width="4"/>
   </g>
-  ${logo ? `<image href="${logo}" x="${W / 2 - 65}" y="42" width="130" height="130" preserveAspectRatio="xMidYMid meet"/>` : ''}
-  <text x="${W / 2}" y="${logo ? 208 : 130}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5">${esc(kicker)}</text>
+  ${logo ? `<image href="${logo}" x="${W / 2 - 75}" y="${yLogo}" width="150" height="150" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  <text x="${W / 2}" y="${yKicker}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5">${esc(kicker)}</text>
   <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${tspans}</text>
-  <text x="${W / 2}" y="${yBase + 20}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#C3CFE0">${esc(sub)}</text>
+  <text x="${W / 2}" y="${ySub}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">${esc(sub)}</text>
   ${fila}
 </svg>
 `;

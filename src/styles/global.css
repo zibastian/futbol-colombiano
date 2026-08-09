@@ -36,6 +36,7 @@ a:hover { text-decoration: underline; }
 img { max-width: 100%; height: auto; display: block; }
 
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1.1rem; }
+@media (max-width: 640px) { .contenedor { padding: 0 1.25rem; } }
 
 /* ---------- Cabecera ---------- */
 header.sitio { background: var(--azul); border-bottom: 3px solid var(--amarillo); }
