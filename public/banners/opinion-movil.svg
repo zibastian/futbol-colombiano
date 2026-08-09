@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460">
-  <rect width="800" height="460" fill="#0B2C5E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 286" width="800" height="286">
+  <rect width="800" height="286" fill="#0B2C5E"/>
   <rect width="800" height="8" fill="#F2C200"/>
-  <g opacity="0.07">
-    <circle cx="400" cy="230" r="190" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-    <line x1="400" y1="0" x2="400" y2="460" stroke="#FFFFFF" stroke-width="4"/>
+  <g opacity="0.06">
+    <circle cx="400" cy="143" r="120.11999999999999" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="60" y1="143" x2="740" y2="143" stroke="#FFFFFF" stroke-width="4"/>
   </g>
   
-  <text x="400" y="130" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">COLUMNAS FIRMADAS</text>
-  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="76" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="190">OPINIÓN</tspan></text>
-  <text x="400" y="292" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#C3CFE0">Cada firma, su mirada</text>
+  <text x="400" y="72" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">COLUMNAS FIRMADAS</text>
+  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="176">OPINIÓN</tspan></text>
+  <text x="400" y="220" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">Cada firma, su mirada</text>
   
 </svg>

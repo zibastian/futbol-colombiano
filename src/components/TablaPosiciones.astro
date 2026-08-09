@@ -35,9 +35,9 @@ const filasPreparadas = filas.map((f) => {
     <table class="tabla-posiciones">
       <thead>
         <tr>
-          <th>#</th><th class="equipo-col">Equipo</th><th>PJ</th>
-          {!compacta && <Fragment><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th></Fragment>}
-          <th>DG</th><th>Pts</th>
+          <th>#</th><th class="equipo-col">Equipo</th><th class="col-pj">PJ</th>
+          {!compacta && <Fragment><th>G</th><th>E</th><th>P</th><th class="col-goles">GF</th><th class="col-goles">GC</th></Fragment>}
+          <th class="col-dg">DG</th><th>Pts</th>
         </tr>
       </thead>
       <tbody>
@@ -55,13 +55,14 @@ const filasPreparadas = filas.map((f) => {
                   <span class="sin-ficha">{f.equipo}</span>
                 )}
               </td>
-              <td>{f.pj}</td>
+              <td class="col-pj">{f.pj}</td>
               {!compacta && (
                 <Fragment>
-                  <td>{f.g}</td><td>{f.e}</td><td>{f.p}</td><td>{f.gf}</td><td>{f.gc}</td>
+                  <td>{f.g}</td><td>{f.e}</td><td>{f.p}</td>
+                  <td class="col-goles">{f.gf}</td><td class="col-goles">{f.gc}</td>
                 </Fragment>
               )}
-              <td>{f.dgTexto}</td>
+              <td class="col-dg">{f.dgTexto}</td>
               <td class="pts">{f.pts}</td>
             </tr>
           ))
@@ -98,4 +99,21 @@ const filasPreparadas = filas.map((f) => {
   .pos { font-family: var(--condensada); font-weight: 700; color: var(--gris); }
   .pos.clasifica { color: #fff; background: var(--azul); }
   .pts { font-weight: 700; }
+
+  /* Columnas que se van cayendo segun el ancho: en un telefono lo unico que
+     se lee de un vistazo es ganados/empatados/perdidos y los puntos.
+     Asi la tabla entra completa y no hay que arrastrarla de lado. */
+  @media (max-width: 860px) {
+    .col-goles { display: none; }
+    .tabla-posiciones { min-width: 460px; }
+  }
+  @media (max-width: 640px) {
+    .col-pj, .col-dg { display: none; }
+    .tabla-posiciones { min-width: 0; font-size: 0.85rem; }
+    .tabla-posiciones th, .tabla-posiciones td { padding: 0.45rem 0.25rem; }
+    .equipo-col { min-width: 0; }
+    .equipo-col a { gap: 0.35rem; }
+    .equipo-col img { width: 20px; height: 20px; }
+    .tabla-wrap { overflow-x: visible; }
+  }
 </style>

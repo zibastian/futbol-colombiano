@@ -53,7 +53,7 @@ import { MENU } from '../data/secciones';
   .principal a:hover, .con-hijos:hover .grupo, .con-hijos:focus-within .grupo {
     color: #fff; border-bottom-color: var(--amarillo); text-decoration: none;
   }
-  .grupo i { font-style: normal; font-size: 0.7em; }
+  .grupo i { font-style: normal; font-size: 0.7em; line-height: 1; }
   .grupo-desplegable { display: inline-block; }
   .grupo-desplegable summary { list-style: none; }
   .grupo-desplegable summary::-webkit-details-marker { display: none; }
@@ -117,7 +117,11 @@ import { MENU } from '../data/secciones';
     /* En móvil el submenú arranca colapsado y se abre al tocar "Competiciones" */
     .grupo-desplegable { display: block; width: 100%; }
     .grupo-desplegable summary { display: flex; justify-content: space-between; align-items: center; }
-    .grupo-desplegable summary i { display: inline-block; transition: transform 0.2s ease; }
+    /* La flecha es el unico indicio de que el grupo se abre: en movil va grande */
+    .grupo-desplegable summary i {
+      display: inline-block; font-size: 1.5rem; line-height: 1;
+      padding: 0 0.15rem; transition: transform 0.2s ease;
+    }
     .grupo-desplegable[open] summary i { transform: rotate(180deg); }
     .nivel-2 {
       position: static; opacity: 1; visibility: visible; transform: none;

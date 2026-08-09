@@ -36,13 +36,18 @@ a:hover { text-decoration: underline; }
 img { max-width: 100%; height: auto; display: block; }
 
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1.1rem; }
-@media (max-width: 640px) { .contenedor { padding: 0 1.25rem; } }
+/* En pantallas chicas el contenido necesita mas aire contra el borde:
+   se sube el padding y se refuerza en la barra (gana en especificidad). */
+@media (max-width: 640px) { .contenedor { padding: 0 1.15rem; } }
 
 /* ---------- Cabecera ---------- */
 header.sitio { background: var(--azul); border-bottom: 3px solid var(--amarillo); }
 header.sitio .barra {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem; padding: 0.85rem 0; flex-wrap: wrap; position: relative;
+}
+@media (max-width: 640px) {
+  header.sitio .barra { padding-left: 1.15rem; padding-right: 1.15rem; }
 }
 .logo { display: inline-block; }
 .logo:hover { text-decoration: none; }

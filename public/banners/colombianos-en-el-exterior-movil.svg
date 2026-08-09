@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460">
-  <rect width="800" height="460" fill="#B3271E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <rect width="800" height="450" fill="#B3271E"/>
   <rect width="800" height="8" fill="#F2C200"/>
-  <g opacity="0.07">
-    <circle cx="400" cy="230" r="190" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-    <line x1="400" y1="0" x2="400" y2="460" stroke="#FFFFFF" stroke-width="4"/>
+  <g opacity="0.06">
+    <circle cx="400" cy="225" r="189" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="60" y1="225" x2="740" y2="225" stroke="#FFFFFF" stroke-width="4"/>
   </g>
   
-  <text x="400" y="130" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">SEGUIMIENTO DIARIO</text>
-  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="76" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="190">COLOMBIANOS</tspan><tspan x="400" y="272">EN EL</tspan><tspan x="400" y="354">EXTERIOR</tspan></text>
-  <text x="400" y="456" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#C3CFE0">Europa, MLS, Brasil y Argentina</text>
+  <text x="400" y="72" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">SEGUIMIENTO DIARIO</text>
+  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="176">COLOMBIANOS</tspan><tspan x="400" y="258">EN EL</tspan><tspan x="400" y="340">EXTERIOR</tspan></text>
+  <text x="400" y="384" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">Europa, MLS, Brasil y Argentina</text>
   
 </svg>
