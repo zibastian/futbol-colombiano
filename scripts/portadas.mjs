@@ -41,6 +41,30 @@ async function escudoBase64(nombre) {
 
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
+/* Ancho del texto dentro del SVG
+ * ------------------------------
+ * Un SVG que se carga como <img> queda aislado de la pagina: NO puede usar las
+ * webfonts del sitio. El navegador sustituye Barlow Condensed por su sans por
+ * defecto, que es bastante mas ancha, y el titulo se desborda o pisa los escudos.
+ * Por eso no alcanza con estimar el ancho: hay que fijarlo.
+ *
+ * textLength le dice al navegador el ancho exacto que debe ocupar la linea y el
+ * ajusta los glifos, use la fuente que use. Como el objetivo se calcula con las
+ * proporciones de Barlow Condensed, el texto ademas queda condensado: se parece
+ * al diseno en vez de depender de que fuente tenga el telefono.
+ */
+const EM_TITULO = 0.55; // ancho medio por caracter, Barlow Condensed bold en mayusculas
+const EM_ANCHA = 0.75;  // el mismo texto en la sans de reemplazo (Helvetica/Roboto)
+
+/** Ancho objetivo de una linea de titulo. */
+const anchoTitulo = (txt, tam) => Math.round(txt.length * tam * EM_TITULO);
+
+/** Cuerpo de texto que solo se comprime si no cabe (kicker, bajadas). */
+function limitar(txt, tam, anchoMax, em = EM_ANCHA, extra = 0) {
+  const estimado = txt.length * tam * em + extra;
+  return estimado > anchoMax ? ` textLength="${Math.round(anchoMax)}" lengthAdjust="spacingAndGlyphs"` : '';
+}
+
 function partirTitulo(t, ancho = 17) {
   const palabras = t.split(' ');
   const lineas = [];
@@ -81,7 +105,7 @@ async function piezaPartido({ kicker, local, visitante, marcador, sub, bg = '#0B
   ${img(a, 190)}
   ${img(b, 820)}
   <text x="600" y="380" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${marcador.length > 3 ? 76 : 104}" font-weight="700" fill="#FFFFFF">${esc(marcador)}</text>
-  <text x="600" y="470" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#C3CFE0">${esc(sub)}</text>
+  <text x="600" y="470" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#C3CFE0"${limitar(sub, 30, 1040, 0.55)}>${esc(sub)}</text>
   ${marca}
 </svg>
 `;
@@ -94,7 +118,7 @@ async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
   const tam = lineas.length === 1 ? 82 : 64;
   const y0 = lineas.length === 1 ? 320 : 280;
   const tspans = lineas
-    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 8)}">${esc(l)}</tspan>`)
+    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 8)}" textLength="${Math.min(anchoTitulo(l, tam), 700)}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
     .join('');
   const marcaAgua = d
     ? `<image href="${d}" x="820" y="230" width="300" height="300" opacity="0.9" preserveAspectRatio="xMidYMid meet"/>`
@@ -141,10 +165,10 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
   const xTexto = logo ? 240 : 70;
   const disponible = (escudos.length ? panelX - 34 : 1140) - xTexto;
 
-  // Ancho real medido sobre el render: Barlow Condensed bold en mayúsculas
-  // ocupa ~0.64em por carácter (el letter-spacing suma otro poco). Se calcula
-  // con 0.68 para dejar aire y que el título nunca alcance el panel de escudos.
-  const tamTitulo = Math.max(30, Math.min(56, Math.floor(disponible / (titulo.length * 0.68))));
+  // El título se dimensiona con las proporciones de Barlow Condensed y luego se
+  // fija con textLength, así el render no depende de la fuente del navegador.
+  const tamTitulo = Math.max(30, Math.min(56, Math.floor(disponible / (titulo.length * EM_TITULO))));
+  const anchoT = Math.min(anchoTitulo(titulo, tamTitulo), disponible);
 
   const fila = escudos
     .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${120 + (92 - tam) / 2}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
@@ -158,9 +182,9 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
     <line x1="600" y1="-20" x2="600" y2="280" stroke="#FFFFFF" stroke-width="3"/>
   </g>
   ${logo ? `<image href="${logo}" x="62" y="52" width="152" height="152" preserveAspectRatio="xMidYMid meet"/>` : ''}
-  <text x="${xTexto}" y="92" font-family="Barlow Condensed, Oswald, sans-serif" font-size="25" font-weight="700" fill="${acento}" letter-spacing="4">${esc(kicker)}</text>
-  <text x="${xTexto}" y="${92 + tamTitulo + 8}" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${esc(titulo)}</text>
-  <text x="${xTexto}" y="${92 + tamTitulo + 46}" font-family="Inter, system-ui, sans-serif" font-size="21" fill="#C3CFE0">${esc(sub)}</text>
+  <text x="${xTexto}" y="92" font-family="Barlow Condensed, Oswald, sans-serif" font-size="25" font-weight="700" fill="${acento}" letter-spacing="4"${limitar(kicker, 25, disponible, EM_ANCHA, kicker.length * 4)}>${esc(kicker)}</text>
+  <text x="${xTexto}" y="${92 + tamTitulo + 8}" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" textLength="${anchoT}" lengthAdjust="spacingAndGlyphs">${esc(titulo)}</text>
+  <text x="${xTexto}" y="${92 + tamTitulo + 46}" font-family="Inter, system-ui, sans-serif" font-size="21" fill="#C3CFE0"${limitar(sub, 21, disponible, 0.55)}>${esc(sub)}</text>
   ${escudos.length ? `<rect x="${panelX}" y="120" width="${anchoPanel}" height="92" rx="10" fill="#FFFFFF" opacity="0.1"/>` : ''}
   ${fila}
 </svg>
@@ -173,29 +197,37 @@ async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = 
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.slice(0, 5).map(escudoBase64))).filter(Boolean);
   const W = 800;
-  const MARGEN = 46;
+  const MARGEN = 36;
 
-  // El título se parte en líneas y su tamaño se ajusta al ancho disponible
-  const lineas = partirTitulo(titulo, 12);
+  // Se corta en líneas largas a propósito: partir de más ("TORNEO / BETPLAY")
+  // deja renglones cortos que estiran el banner sin necesidad.
+  const lineas = partirTitulo(titulo, 15);
   const masLarga = Math.max(...lineas.map((l) => l.length));
-  const tamTitulo = Math.min(78, Math.floor((W - 120) / (masLarga * 0.64)));
+  const util = W - 2 * MARGEN - 28;   // 700 px de caja de texto
+  const tamTitulo = Math.min(78, Math.floor(util / (masLarga * EM_TITULO)));
   const altoLinea = Math.round(tamTitulo * 1.05);
 
   // Composición vertical: cada bloque se apila debajo del anterior
+  const LOGO = 118;
   let y = MARGEN;
   const yLogo = y;
-  if (logo) y += 150 + 26;
-  const yKicker = y + 26;          // baseline del kicker
-  y = yKicker + 26;
+  if (logo) y += LOGO + 16;
+  const yKicker = y + 24;          // baseline del kicker
+  y = yKicker + 20;
   const yTitulo = y + tamTitulo;   // baseline de la primera línea
-  y = yTitulo + (lineas.length - 1) * altoLinea + 20;
-  const ySub = y + 24;
-  y = ySub + 20;
-  const yEscudos = escudos.length ? y + 22 : y;
-  const H = (escudos.length ? yEscudos + 66 : y) + MARGEN;
+  y = yTitulo + (lineas.length - 1) * altoLinea + 16;
+  const ySub = y + 22;
+  y = ySub + 16;
+  const yEscudos = escudos.length ? y + 18 : y;
+  const H = (escudos.length ? yEscudos + 62 : y) + MARGEN;
 
+  // Cada línea lleva su propio textLength: así ninguna se sale del banner y las
+  // proporciones son las mismas en cualquier teléfono.
   const tspans = lineas
-    .map((l, i) => `<tspan x="${W / 2}" y="${yTitulo + i * altoLinea}">${esc(l)}</tspan>`)
+    .map((l, i) => {
+      const ancho = Math.min(anchoTitulo(l, tamTitulo), util);
+      return `<tspan x="${W / 2}" y="${yTitulo + i * altoLinea}" textLength="${ancho}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`;
+    })
     .join('');
 
   const paso = 78;
@@ -211,10 +243,10 @@ async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = 
     <circle cx="${W / 2}" cy="${H / 2}" r="${Math.min(W, H) * 0.42}" fill="none" stroke="#FFFFFF" stroke-width="4"/>
     <line x1="60" y1="${H / 2}" x2="${W - 60}" y2="${H / 2}" stroke="#FFFFFF" stroke-width="4"/>
   </g>
-  ${logo ? `<image href="${logo}" x="${W / 2 - 75}" y="${yLogo}" width="150" height="150" preserveAspectRatio="xMidYMid meet"/>` : ''}
-  <text x="${W / 2}" y="${yKicker}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5">${esc(kicker)}</text>
+  ${logo ? `<image href="${logo}" x="${W / 2 - LOGO / 2}" y="${yLogo}" width="${LOGO}" height="${LOGO}" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  <text x="${W / 2}" y="${yKicker}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5"${limitar(kicker, 30, util, EM_ANCHA, kicker.length * 5)}>${esc(kicker)}</text>
   <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${tspans}</text>
-  <text x="${W / 2}" y="${ySub}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">${esc(sub)}</text>
+  <text x="${W / 2}" y="${ySub}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0"${limitar(sub, 25, util, 0.55)}>${esc(sub)}</text>
   ${fila}
 </svg>
 `;

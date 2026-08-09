@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 286" width="800" height="286">
-  <rect width="800" height="286" fill="#14161A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 248" width="800" height="248">
+  <rect width="800" height="248" fill="#14161A"/>
   <rect width="800" height="8" fill="#F2C200"/>
   <g opacity="0.06">
-    <circle cx="400" cy="143" r="120.11999999999999" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-    <line x1="60" y1="143" x2="740" y2="143" stroke="#FFFFFF" stroke-width="4"/>
+    <circle cx="400" cy="124" r="104.16" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <line x1="60" y1="124" x2="740" y2="124" stroke="#FFFFFF" stroke-width="4"/>
   </g>
   
-  <text x="400" y="72" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">ACTUALIDAD</text>
-  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="176">NOTICIAS</tspan></text>
-  <text x="400" y="220" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">Todo el fútbol profesional colombiano</text>
+  <text x="400" y="60" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">ACTUALIDAD</text>
+  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="158" textLength="343" lengthAdjust="spacingAndGlyphs">NOTICIAS</tspan></text>
+  <text x="400" y="196" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">Todo el fútbol profesional colombiano</text>
   
 </svg>

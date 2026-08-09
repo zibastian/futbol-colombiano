@@ -8,7 +8,7 @@
          <rect x="875" y="583" width="290" height="73" fill="#C8102E"/>
        </g>
   <text x="80" y="180" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">OPINIÓN</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="80" y="280">EL VAR NO ES EL</tspan><tspan x="80" y="352">PROBLEMA</tspan></text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="80" y="280" textLength="528" lengthAdjust="spacingAndGlyphs">EL VAR NO ES EL</tspan><tspan x="80" y="352" textLength="282" lengthAdjust="spacingAndGlyphs">PROBLEMA</tspan></text>
   <text x="80" y="438" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#C3CFE0">Columna</text>
   <g transform="translate(80,585)">
     <clipPath id="l"><circle cx="24" cy="0" r="24"/></clipPath>
