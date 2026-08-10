@@ -1,0 +1,134 @@
+---
+// La final del FPC no es una tabla: son dos partidos y un marcador global.
+// Sirve igual antes de jugarse (muestra día y estadio) que después (muestra
+// el global y el campeón), porque es la misma pieza en los dos momentos.
+import { buscarEquipo, escudoDe } from '../data/equipos';
+import type { Final } from '../data/fases';
+
+interface Props {
+  final: Final;
+  titulo?: string;
+}
+const { final, titulo = 'La final' } = Astro.props;
+
+// OJO: ninguna comparación puede ir en el template — el compilador de Astro lee
+// el "<" como apertura de etiqueta. Todo se resuelve acá arriba.
+const ficha = (nombre: string) => {
+  const eq = buscarEquipo(nombre);
+  return { nombre: eq?.nombre ?? nombre, slug: eq?.slug, escudo: escudoDe(eq, 256) };
+};
+
+const partidos = [
+  { rotulo: 'Ida', ...final.ida },
+  { rotulo: 'Vuelta', ...final.vuelta }
+].map((p) => {
+  const jugado = p.golesLocal !== null && p.golesVisitante !== null;
+  return {
+    ...p,
+    jugado,
+    marcador: jugado ? `${p.golesLocal} - ${p.golesVisitante}` : 'vs',
+    local: ficha(p.local),
+    visitante: ficha(p.visitante)
+  };
+});
+
+// El global se arma sobre los dos finalistas, no sobre local y visitante:
+// cambian de lado entre la ida y la vuelta.
+const a = ficha(final.ida.local);
+const b = ficha(final.ida.visitante);
+const completa = partidos.every((p) => p.jugado);
+
+function golesDe(nombre: string): number {
+  return partidos.reduce((suma, p) => {
+    if (!p.jugado) return suma;
+    if (p.local.nombre === nombre) return suma + (p.golesLocal ?? 0);
+    if (p.visitante.nombre === nombre) return suma + (p.golesVisitante ?? 0);
+    return suma;
+  }, 0);
+}
+
+const golesA = golesDe(a.nombre);
+const golesB = golesDe(b.nombre);
+const campeon = !completa ? null : golesA > golesB ? a : golesB > golesA ? b : null;
+const empatadaEnGlobal = completa && !campeon;
+---
+
+<section class="llave">
+  <h2 class="seccion">{titulo}</h2>
+
+  <div class="partidos">
+    {
+      partidos.map((p) => (
+        <article class={p.jugado ? 'partido jugado' : 'partido'}>
+          <span class="rotulo">{p.rotulo}</span>
+          <div class="cruce">
+            <span class="lado">
+              {p.local.escudo && <img src={p.local.escudo} alt="" width="46" height="46" loading="lazy" />}
+              <span class="nombre">{p.local.nombre}</span>
+            </span>
+            <span class="marcador">{p.marcador}</span>
+            <span class="lado derecha">
+              {p.visitante.escudo && <img src={p.visitante.escudo} alt="" width="46" height="46" loading="lazy" />}
+              <span class="nombre">{p.visitante.nombre}</span>
+            </span>
+          </div>
+          <p class="cuando">{p.cuando}{p.estadio ? ` · ${p.estadio}` : ''}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  {
+    completa ? (
+      <p class="global">
+        Global: <strong>{a.nombre} {golesA} - {golesB} {b.nombre}</strong>
+        {campeon && <span class="campeon">Campeón: {campeon.nombre}</span>}
+        {empatadaEnGlobal && <span class="campeon">Se define desde el punto penal</span>}
+      </p>
+    ) : (
+      <p class="global pendiente">
+        Cierra de local <strong>{final.ventajaLocalia}</strong> por mejor ubicación en la reclasificación.
+      </p>
+    )
+  }
+</section>
+
+<style>
+  .llave { margin-bottom: 1.6rem; }
+  .partidos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .partidos { grid-template-columns: 1fr; } }
+
+  .partido {
+    background: var(--papel); border: 1px solid var(--borde);
+    border-top: 4px solid var(--azul); border-radius: 10px; padding: 0.9rem 1rem;
+  }
+  .partido.jugado { border-top-color: var(--amarillo); }
+  .rotulo {
+    display: block; font-family: var(--condensada); font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--gris-claro); margin-bottom: 0.5rem;
+  }
+  .cruce { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .lado { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; flex: 1; min-width: 0; }
+  .lado img { width: 46px; height: 46px; object-fit: contain; }
+  .nombre {
+    font-family: var(--condensada); font-size: 0.95rem; text-transform: uppercase;
+    letter-spacing: 0.3px; text-align: center; line-height: 1.1; color: var(--tinta);
+  }
+  .marcador {
+    font-family: var(--serif); font-weight: 700; font-size: 1.7rem;
+    color: var(--azul); flex-shrink: 0; padding: 0 0.4rem;
+  }
+  .cuando {
+    margin: 0.7rem 0 0; padding-top: 0.6rem; border-top: 1px solid var(--borde);
+    font-size: 0.8rem; color: var(--gris); text-align: center;
+  }
+  .global {
+    margin: 1rem 0 0; padding: 0.75rem 1rem; background: var(--fondo-suave);
+    border-left: 4px solid var(--amarillo); font-size: 0.98rem;
+  }
+  .global.pendiente { border-left-color: var(--azul); color: var(--gris); }
+  .campeon {
+    display: block; margin-top: 0.3rem; font-family: var(--condensada);
+    font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--azul);
+  }
+</style>

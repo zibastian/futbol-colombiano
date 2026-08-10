@@ -17,6 +17,10 @@ const notas = (await getCollection('noticias', ({ data }) => !data.draft))
   .filter((n) => columnistaPorNombre(n.data.autor)?.slug === columnista.slug)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
+// Las comparaciones con "<" NO pueden ir en el template: Astro las lee como
+// apertura de etiqueta. Se resuelven acá.
+const sinMaterial = notas.length < 2;
+
 const iniciales = columnista.nombre
   .split(' ')
   .map((p) => p[0])
@@ -41,7 +45,7 @@ const perfilLd = {
     <script type="application/ld+json" set:html={JSON.stringify(perfilLd)} />
     {/* Una firma sin columnas es una página sin contenido propio: se deja fuera
         del índice hasta que tenga material. Cuando publique, entra sola. */}
-    {notas.length < 2 && <meta name="robots" content="noindex, follow" />}
+    {sinMaterial && <meta name="robots" content="noindex, follow" />}
   </Fragment>
 
   <section class="perfil" style={`--acento:${columnista.color}`}>

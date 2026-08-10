@@ -6,6 +6,7 @@ import Anuncio from '../../components/Anuncio.astro';
 import TablaPosiciones from '../../components/TablaPosiciones.astro';
 import TablaAnotadores from '../../components/TablaAnotadores.astro';
 import TablaDescenso from '../../components/TablaDescenso.astro';
+import LlaveFinal from '../../components/LlaveFinal.astro';
 import { seccionDeNota } from '../../data/secciones';
 import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
 import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
@@ -15,6 +16,7 @@ import {
 } from '../../data/estadisticas-demo';
 import { tablaPosiciones } from '../../lib/apifootball';
 import { TORNEOS } from '../../data/torneos';
+import { faseDe, faseAlcanzada, NOMBRE_FASE, FASES_DEMO, cuadrangulares, FINAL_DEMO } from '../../data/fases';
 import { COLUMNISTAS_GENERALES, COLUMNISTAS_DE_EQUIPO } from '../../data/columnistas';
 import { EQUIPOS, escudoDe } from '../../data/equipos';
 import { urlNota } from '../../lib/rutas';
@@ -75,7 +77,17 @@ const fichasExterior =
       ).slice(0, 6)
     : [];
 
-const hayDatos = tablaUnica.length > 0 || grupos.length > 0;
+// --- Fases del torneo ---
+// Un torneo largo pasa por tres momentos y cada uno se lee distinto. La fase
+// vigente va primero; las ya jugadas se conservan más abajo porque la gente
+// sigue consultando el todos contra todos durante los cuadrangulares.
+const esTorneoLargo = Boolean(torneo) && esLiga;
+const fase = esTorneoLargo ? faseDe(seccion.slug) : 'todos-contra-todos';
+const hayCuadrangulares = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'cuadrangulares');
+const hayFinal = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'final');
+const gruposFase = hayCuadrangulares ? cuadrangulares() : [];
+
+const hayDatos = tablaUnica.length > 0 || grupos.length > 0 || gruposFase.length > 0;
 
 // Las firmas de club se agrupan por equipo: son 41 y en una sola grilla plana
 // no se encuentra nada. Cada club aparece una vez, con sus una o dos voces.
@@ -102,9 +114,37 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
     <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
   )}
 
+  {esTorneoLargo && (
+    <p class="fase-actual">
+      Fase actual: <strong>{NOMBRE_FASE[fase]}</strong>
+    </p>
+  )}
+
+  {hayFinal && <LlaveFinal final={FINAL_DEMO} />}
+
+  {gruposFase.length > 0 && (
+    <>
+      <h2 class="seccion">Cuadrangulares semifinales</h2>
+      <p class="nota-tabla">
+        Los ocho clasificados se reparten en dos grupos y juegan ida y vuelta.
+        El líder de cada cuadrangular avanza a la final.
+      </p>
+      <div class="grilla-grupos">
+        {gruposFase.map((g) => (
+          <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={1} compacta={true} />
+        ))}
+      </div>
+    </>
+  )}
+
   {tablaUnica.length > 0 && (
     <>
-      <h2 class="seccion">Tabla de posiciones</h2>
+      <h2 class="seccion">{esTorneoLargo ? 'Todos contra todos' : 'Tabla de posiciones'}</h2>
+      {esTorneoLargo && (
+        <p class="nota-tabla">
+          19 fechas. Los ocho primeros clasifican a los cuadrangulares semifinales.
+        </p>
+      )}
       <TablaPosiciones filas={tablaUnica} clasifican={8} />
     </>
   )}
@@ -225,6 +265,14 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
 </Base>
 
 <style>
+  .fase-actual {
+    display: inline-block; margin: -0.4rem 0 1.2rem; padding: 0.35rem 0.85rem;
+    background: var(--azul); color: #fff; border-radius: 999px;
+    font-family: var(--condensada); font-size: 0.95rem;
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
+  .fase-actual strong { color: var(--amarillo); font-weight: 700; }
+
   .firmas-club { margin-top: 2rem; }
   .grilla-clubes {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.9rem;
