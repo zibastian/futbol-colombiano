@@ -13,7 +13,8 @@
     "fotos": "node scripts/fotos.mjs",
     "demo:limpiar": "node scripts/limpiar-demo.mjs",
     "imagen": "node scripts/imagen.mjs",
-    "logos": "node scripts/logos-torneo.mjs"
+    "logos": "node scripts/logos-torneo.mjs",
+    "columnistas:exportar": "node --experimental-strip-types --import ./scripts/registrar-ts.mjs scripts/exportar-columnistas.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",

@@ -11,6 +11,7 @@ y deploy automático a Cloudflare Pages. Base de la plataforma multi-proyecto.
 - **Sveltia CMS** en `/admin`: flujo editorial Borradores → En revisión → Listo (el gate humano).
 - **Script de escudos** (`npm run escudos`): descarga los escudos de Primera A y B desde API-Football y los normaliza a 256×256 + 64×64 centrados.
 - **Deploy automático**: Cloudflare construye y publica con cada push a `main` (config en `wrangler.jsonc`).
+- **Nómina de columnistas** (`npm run columnistas:exportar`): exporta las 47 firmas a la fábrica de agentes, para que la voz que usa el agente sea la misma que se publica en la ficha.
 - `docs/investigacion.md`: toda la investigación del proyecto, versionada en Git.
 
 ## Puesta en marcha (checklist etapa 0)
