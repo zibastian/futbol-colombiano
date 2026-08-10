@@ -36,9 +36,12 @@ const perfilLd = {
 };
 ---
 
-<Base title={`${columnista.nombre} — columnista`} description={`${columnista.linea} ${columnista.bio}`}>
+<Base title={`${columnista.nombre} — columnista`} description={columnista.metaDescription}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(perfilLd)} />
+    {/* Una firma sin columnas es una página sin contenido propio: se deja fuera
+        del índice hasta que tenga material. Cuando publique, entra sola. */}
+    {notas.length < 2 && <meta name="robots" content="noindex, follow" />}
   </Fragment>
 
   <section class="perfil" style={`--acento:${columnista.color}`}>
