@@ -259,6 +259,8 @@ const banners = [
     equipos: ['Envigado', 'Real Cartagena', 'Union Magdalena', 'Patriotas', 'Quindio'] }],
   ['copa-betplay.svg', { slug: 'copa-betplay', kicker: 'TODO EL AÑO', titulo: 'COPA BETPLAY', sub: 'Primera y segunda división se cruzan', bg: '#0F6E56',
     equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Patriotas', 'Once Caldas'] }],
+  ['liga-femenina.svg', { slug: 'liga-femenina', kicker: 'FÚTBOL FEMENINO', titulo: 'LIGA FEMENINA', sub: 'Tabla, goleadoras y asistencias', bg: '#7E1B45',
+    equipos: ['Atletico Nacional', 'America de Cali', 'Santa Fe', 'Deportivo Cali', 'Millonarios'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
     equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Santa Fe'] }],
   ['colombianos-en-el-exterior.svg', { slug: 'colombianos-en-el-exterior', kicker: 'SEGUIMIENTO DIARIO', titulo: 'COLOMBIANOS EN EL EXTERIOR', sub: 'Europa, MLS, Brasil y Argentina', bg: '#B3271E', equipos: [] }],

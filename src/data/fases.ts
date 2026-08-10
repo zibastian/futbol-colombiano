@@ -29,7 +29,9 @@ export const NOMBRE_FASE: Record<Fase, string> = {
 /** Fase en la que está hoy cada torneo. */
 export const FASE_ACTUAL: Record<string, Fase> = {
   'liga-betplay': 'cuadrangulares',
-  'torneo-betplay': 'todos-contra-todos'
+  'torneo-betplay': 'todos-contra-todos',
+  // 16 fechas a una vuelta más la fecha de clásicos; los ocho primeros pasan.
+  'liga-femenina': 'todos-contra-todos'
 };
 
 export const faseDe = (slug: string): Fase => FASE_ACTUAL[slug] ?? 'todos-contra-todos';

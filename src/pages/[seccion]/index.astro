@@ -16,7 +16,8 @@ import {
 } from '../../data/estadisticas-demo';
 import { tablaPosiciones } from '../../lib/apifootball';
 import { TORNEOS } from '../../data/torneos';
-import { faseDe, faseAlcanzada, NOMBRE_FASE, FASES_DEMO, cuadrangulares, FINAL_DEMO } from '../../data/fases';
+import { faseDe, faseAlcanzada, NOMBRE_FASE, FASE_ACTUAL, FASES_DEMO, cuadrangulares, FINAL_DEMO } from '../../data/fases';
+import { FEMENINA_DEMO, tablaFemenina, goleadorasFemenina, asistenciasFemenina } from '../../data/liga-femenina-demo';
 import { COLUMNISTAS_GENERALES, COLUMNISTAS_DE_EQUIPO } from '../../data/columnistas';
 import { EQUIPOS, escudoDe } from '../../data/equipos';
 import { urlNota } from '../../lib/rutas';
@@ -45,10 +46,17 @@ const filasReales = real.map((f) => ({
 
 const esLiga = seccion.formato === 'liga';
 const esGrupos = seccion.formato === 'grupos';
-const usarDemo = ESTADISTICAS_DEMO && !filasReales.length;
+const usarDemo = (ESTADISTICAS_DEMO || esFemenina) && !filasReales.length;
 
 // Tabla: liga -> una sola; copa -> grupos
-const tablaUnica = filasReales.length ? filasReales : esLiga && TABLA_DEMO && usarDemo ? tablaDemo : [];
+const esFemenina = seccion.slug === 'liga-femenina';
+const tablaUnica = filasReales.length
+  ? filasReales
+  : esFemenina && FEMENINA_DEMO
+    ? tablaFemenina
+    : esLiga && TABLA_DEMO && usarDemo
+      ? tablaDemo
+      : [];
 const grupos = esGrupos && GRUPOS_DEMO && usarDemo ? gruposDemo : [];
 
 // Goleadores y asistencias por competición
@@ -57,7 +65,11 @@ const anotadores: Record<string, { goles: any[]; asistencias: any[] }> = {
   'torneo-betplay': { goles: goleadoresTorneo, asistencias: asistenciasTorneo },
   'copa-betplay': { goles: goleadoresCopa, asistencias: asistenciasCopa }
 };
-const stats = usarDemo ? anotadores[seccion.slug] : undefined;
+const stats = esFemenina
+  ? (FEMENINA_DEMO ? { goles: goleadorasFemenina, asistencias: asistenciasFemenina } : undefined)
+  : usarDemo
+    ? anotadores[seccion.slug]
+    : undefined;
 
 // Tarjetas de rendimiento (colombianos en el exterior)
 const fmtDia = (d: Date) => {
@@ -81,7 +93,7 @@ const fichasExterior =
 // Un torneo largo pasa por tres momentos y cada uno se lee distinto. La fase
 // vigente va primero; las ya jugadas se conservan más abajo porque la gente
 // sigue consultando el todos contra todos durante los cuadrangulares.
-const esTorneoLargo = Boolean(torneo) && esLiga;
+const esTorneoLargo = esLiga && seccion.slug in FASE_ACTUAL;
 const fase = esTorneoLargo ? faseDe(seccion.slug) : 'todos-contra-todos';
 const hayCuadrangulares = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'cuadrangulares');
 const hayFinal = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'final');
@@ -142,7 +154,9 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
       <h2 class="seccion">{esTorneoLargo ? 'Todos contra todos' : 'Tabla de posiciones'}</h2>
       {esTorneoLargo && (
         <p class="nota-tabla">
-          19 fechas. Los ocho primeros clasifican a los cuadrangulares semifinales.
+          {esFemenina
+            ? '16 fechas a una vuelta más la fecha de clásicos. Los ocho primeros clasifican a los cuadrangulares.'
+            : '19 fechas. Los ocho primeros clasifican a los cuadrangulares semifinales.'}
         </p>
       )}
       <TablaPosiciones filas={tablaUnica} clasifican={8} />
@@ -163,9 +177,9 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
 
   {stats && (
     <>
-      <h2 class="seccion">Goleadores y asistencias</h2>
+      <h2 class="seccion">{esFemenina ? 'Goleadoras y asistencias' : 'Goleadores y asistencias'}</h2>
       <div class="grilla-stats">
-        <TablaAnotadores filas={stats.goles} titulo="Goleadores" unidad="Goles" />
+        <TablaAnotadores filas={stats.goles} titulo={esFemenina ? 'Goleadoras' : 'Goleadores'} unidad="Goles" />
         <TablaAnotadores filas={stats.asistencias} titulo="Asistencias" unidad="Asist." />
       </div>
     </>

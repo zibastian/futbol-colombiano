@@ -5,11 +5,13 @@ import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import { jugadorDestacadoPorSlug, JUGADORES_DESTACADOS } from '../../data/jugadores';
 import creditos from '../../data/fotos-creditos.json';
+import { estadisticasDeJugador } from '../../data/estadisticas-jugadores';
 import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
   const { slugify } = await import('../../lib/slug');
   const { JUGADORES_DESTACADOS } = await import('../../data/jugadores');
+  const { ESTADISTICAS_JUGADORES } = await import('../../data/estadisticas-jugadores');
   const notas = await getCollection('noticias', ({ data }) => !data.draft);
 
   const mapa = new Map<string, { nombre: string; notas: typeof notas }>();
@@ -23,6 +25,11 @@ export async function getStaticPaths() {
   // Las leyendas tienen ficha propia aunque todavía no tengan notas
   for (const j of JUGADORES_DESTACADOS) {
     if (!mapa.has(j.slug)) mapa.set(j.slug, { nombre: j.nombre, notas: [] });
+  }
+  // Y quien aparece en una tabla de goleadores o asistencias también: si no,
+  // el enlace de la tabla apunta a una página que no existe.
+  for (const e of ESTADISTICAS_JUGADORES) {
+    if (!mapa.has(e.slug)) mapa.set(e.slug, { nombre: e.nombre, notas: [] });
   }
 
   return [...mapa.entries()].map(([slug, { nombre, notas }]) => ({
@@ -39,6 +46,11 @@ const iniciales = (destacado?.nombre || nombre).split(' ').map((p) => p[0]).join
 // Foto de Wikimedia Commons (npm run fotos). La licencia exige mostrar el crédito.
 const credito = destacado ? (creditos as Record<string, any>)[destacado.slug] : undefined;
 const foto = credito ? `/jugadores/${destacado!.slug}.jpg` : null;
+
+const stats = estadisticasDeJugador(slug);
+// Ficha sin nota ni biografía es una página sin contenido propio: fuera del
+// índice hasta que tenga material. Los números solos no alcanzan.
+const sinMaterial = notas.length === 0 && !destacado;
 
 const jugadorLd = {
   '@context': 'https://schema.org',
@@ -65,6 +77,7 @@ const jugadorLd = {
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jugadorLd)} />
+    {sinMaterial && <meta name="robots" content="noindex, follow" />}
   </Fragment>
 
   {
@@ -116,6 +129,33 @@ const jugadorLd = {
     )
   }
 
+  {
+    stats && (
+      <section class="numeros">
+        <h2 class="seccion">Números en la temporada</h2>
+        <div class="tabla-wrap">
+          <table class="tabla-numeros">
+            <thead>
+              <tr><th>Torneo</th><th>Equipo</th><th>PJ</th><th>Goles</th><th>Asist.</th></tr>
+            </thead>
+            <tbody>
+              {stats.lineas.map((l) => (
+                <tr>
+                  <td><a href={`/${l.torneoSlug}`}>{l.torneo}</a></td>
+                  <td>{l.equipo}</td>
+                  <td class="num">{l.partidos}</td>
+                  <td class="num">{l.goles}</td>
+                  <td class="num">{l.asistencias}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+      </section>
+    )
+  }
+
   <Anuncio formato="horizontal" />
 
   <h2 class="seccion">{destacado ? `Noticias de ${destacado.nombre}` : 'Últimas noticias'}</h2>
@@ -153,6 +193,21 @@ const jugadorLd = {
 </Base>
 
 <style>
+  .numeros { margin-bottom: 1.6rem; }
+  .numeros .tabla-wrap { overflow-x: auto; border: 1px solid var(--borde); border-radius: 8px; }
+  .tabla-numeros { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  .tabla-numeros th, .tabla-numeros td { padding: 0.5rem 0.7rem; text-align: left; }
+  .tabla-numeros .num { text-align: center; font-weight: 700; }
+  .tabla-numeros thead th {
+    background: var(--azul); color: #fff; font-family: var(--condensada);
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+  }
+  .tabla-numeros thead th:nth-child(n + 3) { text-align: center; }
+  .tabla-numeros tbody tr:nth-child(even) { background: var(--fondo-suave); }
+  .aviso-demo {
+    margin: 0.6rem 0 0; padding: 0.5rem 0.8rem; background: #fdf6d8;
+    border-left: 4px solid var(--amarillo); font-size: 0.85rem; color: #6b5a10;
+  }
   .intro-seccion { color: var(--gris); margin: -0.4rem 0 1.4rem; }
   .ficha-jugador {
     display: flex; gap: 1.6rem; align-items: flex-start; background: var(--papel);

@@ -24,6 +24,10 @@ export const SECCIONES: Seccion[] = [
     descripcion: 'La segunda división del fútbol colombiano: tabla de posiciones, goleadores y la pelea por el ascenso.'
   },
   {
+    slug: 'liga-femenina', nombre: 'Liga Femenina BetPlay', enMenu: true, formato: 'liga',
+    descripcion: 'La Liga Femenina BetPlay: tabla de posiciones, goleadoras, asistencias y la actualidad del fútbol femenino colombiano.'
+  },
+  {
     slug: 'copa-betplay', nombre: 'Copa BetPlay', enMenu: true, formato: 'grupos',
     descripcion: 'La Copa Colombia: el torneo que se juega todo el año y cruza a los clubes de primera y segunda división.'
   },
@@ -65,6 +69,7 @@ export const MENU: ItemMenu[] = [
       { nombre: 'Liga BetPlay', url: '/liga-betplay' },
       { nombre: 'Torneo BetPlay', url: '/torneo-betplay' },
       { nombre: 'Copa BetPlay', url: '/copa-betplay' },
+      { nombre: 'Liga Femenina BetPlay', url: '/liga-femenina' },
       { nombre: 'Copa Libertadores', proximamente: true },
       { nombre: 'Copa Sudamericana', proximamente: true }
     ]
@@ -87,7 +92,12 @@ const ALIAS_TORNEO: Record<string, string> = {
   'primera-b': 'torneo-betplay',
   'copa-betplay': 'copa-betplay',
   'copa-colombia': 'copa-betplay',
-  'copa-betplay-dimayor': 'copa-betplay'
+  'copa-betplay-dimayor': 'copa-betplay',
+  'liga-femenina': 'liga-femenina',
+  'liga-femenina-betplay': 'liga-femenina',
+  'liga-femenina-betplay-dimayor': 'liga-femenina',
+  'liga-profesional-femenina': 'liga-femenina',
+  'futbol-femenino': 'liga-femenina'
 };
 
 /** Sección a la que pertenece una nota, derivada de su contenido. */
