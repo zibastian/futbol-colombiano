@@ -9,6 +9,13 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 const OUT = 'public/demo';
 await mkdir(OUT, { recursive: true });
 
+let colores = {};
+try {
+  colores = JSON.parse(await readFile('src/data/colores-equipos.json', 'utf8'));
+} catch {
+  console.warn('Sin src/data/colores-equipos.json — corre: python3 scripts/colores-escudos.py');
+}
+
 let escudos = [];
 try {
   escudos = JSON.parse(await readFile('src/data/escudos.json', 'utf8'));
@@ -38,6 +45,30 @@ async function escudoBase64(nombre) {
     return null;
   }
 }
+
+/** Color dominante del escudo, para teñir la franja. Si el club no tiene
+ *  escudo descargado, se cae al azul de la marca. */
+function colorDe(nombre) {
+  const eq = buscar(nombre);
+  return (eq && colores[String(eq.id)]?.[0]) || '#1B4C9E';
+}
+
+/* Lenguaje visual común a todas las portadas (variante C, la elegida):
+   fondo con degradado y trama diagonal, franja amarilla inclinada como eje, y
+   el dato principal en tinta oscura sobre el amarillo. La trama y el degradado
+   son lo que sacan a la pieza del color plano. */
+const TRAMA = `<defs>
+    <pattern id="rayas" width="26" height="26" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="13" height="26" fill="#FFFFFF" opacity="0.035"/>
+    </pattern>
+    <linearGradient id="fondoBase" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12305C"/><stop offset="1" stop-color="#08172D"/>
+    </linearGradient>
+  </defs>`;
+
+const fondoTramado = (bg) => `${TRAMA}
+  <rect width="1200" height="675" fill="${bg === '#0B2C5E' ? 'url(#fondoBase)' : bg}"/>
+  <rect width="1200" height="675" fill="url(#rayas)"/>`;
 
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
@@ -91,50 +122,57 @@ const marca = `<g transform="translate(80,585)">
     <text x="62" y="19" font-family="Barlow Condensed, Oswald, sans-serif" font-size="26" font-weight="700" fill="#F2C200" letter-spacing="1">COLOMBIANO</text>
   </g>`;
 
-/** Plantilla 1: enfrentamiento — escudo vs escudo (partidos y previas). */
+/** Plantilla 1: enfrentamiento — escudo vs escudo (partidos y previas).
+ *  El marcador manda: va enorme, en tinta oscura, sobre la franja amarilla. */
 async function piezaPartido({ kicker, local, visitante, marcador, sub, bg = '#0B2C5E' }) {
   const [a, b] = await Promise.all([escudoBase64(local), escudoBase64(visitante)]);
+  const [ca, cb] = [colorDe(local), colorDe(visitante)];
+  const tam = marcador.length > 3 ? 110 : 168;
   const img = (d, x) =>
     d
-      ? `<image href="${d}" x="${x}" y="250" width="190" height="190" preserveAspectRatio="xMidYMid meet"/>`
-      : `<circle cx="${x + 95}" cy="345" r="80" fill="none" stroke="#F2C200" stroke-width="3"/>`;
+      ? `<image href="${d}" x="${x}" y="290" width="160" height="160" preserveAspectRatio="xMidYMid meet"/>`
+      : `<circle cx="${x + 80}" cy="370" r="70" fill="none" stroke="#F2C200" stroke-width="3"/>`;
+  const nombreClub = (txt, x, y) =>
+    `<text x="${x}" y="${y}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#FFFFFF" opacity="0.85" textLength="${Math.min(anchoTitulo(txt, 30), 300)}" lengthAdjust="spacingAndGlyphs">${esc(txt.toUpperCase())}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="${bg}"/>
+  ${fondoTramado(bg)}
+  <polygon points="0,300 1200,215 1200,430 0,515" fill="#F2C200"/>
+  <polygon points="0,300 1200,215 1200,232 0,317" fill="${ca}" opacity="0.75"/>
+  <polygon points="0,498 1200,413 1200,430 0,515" fill="${cb}" opacity="0.75"/>
   <rect width="1200" height="8" fill="#F2C200"/>
-  <text x="600" y="150" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="40" font-weight="700" fill="#F2C200" letter-spacing="5">${esc(kicker)}</text>
-  ${img(a, 190)}
-  ${img(b, 820)}
-  <text x="600" y="380" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${marcador.length > 3 ? 76 : 104}" font-weight="700" fill="#FFFFFF">${esc(marcador)}</text>
-  <text x="600" y="470" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#C3CFE0"${limitar(sub, 30, 1040, 0.55)}>${esc(sub)}</text>
+  <text x="600" y="112" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200"${limitar(kicker, 38, 900, EM_ANCHA, kicker.length * 5)} letter-spacing="5">${esc(kicker)}</text>
+  ${img(a, 150)}
+  ${img(b, 890)}
+  ${nombreClub(local, 230, 505)}
+  ${nombreClub(visitante, 970, 490)}
+  <text x="600" y="405" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#0A1626" textLength="${anchoTitulo(marcador, tam)}" lengthAdjust="spacingAndGlyphs">${esc(marcador)}</text>
+  <text x="600" y="590" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="26" fill="#C7D6EC"${limitar(sub, 26, 900, 0.55)}>${esc(sub)}</text>
   ${marca}
 </svg>
 `;
 }
 
-/** Plantilla 2: un solo equipo o jugador (fichajes, notas de club). */
+/** Plantilla 2: un solo equipo o jugador (fichajes, notas de club).
+ *  Mismo lenguaje que la de partido: trama, franja inclinada y el titular
+ *  apoyado sobre ella, para que las dos plantillas se lean como una familia. */
 async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
   const d = equipo ? await escudoBase64(equipo) : null;
+  const acento = equipo ? colorDe(equipo) : '#1B4C9E';
   const lineas = partirTitulo(titulo, 15);
-  const tam = lineas.length === 1 ? 82 : 64;
-  const y0 = lineas.length === 1 ? 320 : 280;
+  const tam = lineas.length === 1 ? 76 : 60;
+  const y0 = lineas.length === 1 ? 330 : 300;
   const tspans = lineas
-    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 8)}" textLength="${Math.min(anchoTitulo(l, tam), 700)}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
+    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 6)}" textLength="${Math.min(anchoTitulo(l, tam), 720)}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
     .join('');
-  const marcaAgua = d
-    ? `<image href="${d}" x="820" y="230" width="300" height="300" opacity="0.9" preserveAspectRatio="xMidYMid meet"/>`
-    : `<clipPath id="bw"><circle cx="1020" cy="510" r="145"/></clipPath>
-       <g clip-path="url(#bw)" opacity="0.15">
-         <rect x="875" y="365" width="290" height="145" fill="#F2C200"/>
-         <rect x="875" y="510" width="290" height="73" fill="#1B4C9E"/>
-         <rect x="875" y="583" width="290" height="73" fill="#C8102E"/>
-       </g>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="${bg}"/>
+  ${fondoTramado(bg)}
+  <polygon points="0,232 1200,150 1200,205 0,287" fill="#F2C200"/>
+  <polygon points="0,287 1200,205 1200,222 0,304" fill="${acento}" opacity="0.8"/>
   <rect width="1200" height="8" fill="#F2C200"/>
-  ${marcaAgua}
-  <text x="80" y="180" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">${esc(kicker)}</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${tspans}</text>
-  <text x="80" y="${y0 + lineas.length * (tam + 8) + 14}" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#C3CFE0">${esc(sub)}</text>
+  ${d ? `<image href="${d}" x="850" y="330" width="270" height="270" opacity="0.95" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  <text x="80" y="196" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200"${limitar(kicker, 38, 700, EM_ANCHA, kicker.length * 4)} letter-spacing="4">${esc(kicker)}</text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#FFFFFF">${tspans}</text>
+  <text x="80" y="${y0 + lineas.length * (tam + 6) + 18}" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0"${limitar(sub, 28, 700, 0.55)}>${esc(sub)}</text>
   ${marca}
 </svg>
 `;
