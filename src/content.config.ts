@@ -32,7 +32,10 @@ const noticias = defineCollection({
     autor: z.string().default('Redacción'),
     // Sección de la URL (/{seccion}/{slug}). Si se omite, se deduce del contenido.
     seccion: z
-      .enum(['liga-betplay', 'torneo-betplay', 'copa-betplay', 'colombianos-en-el-exterior', 'fichajes', 'opinion', 'noticias'])
+      .enum([
+        'liga-betplay', 'torneo-betplay', 'copa-betplay', 'liga-femenina',
+        'colombianos-en-el-exterior', 'fichajes', 'opinion', 'noticias'
+      ])
       .optional(),
     // Foto de Getty embebida dentro del cuerpo de la nota (uso editorial).
     // Datos que entrega el botón "Insertar" de Getty Images.

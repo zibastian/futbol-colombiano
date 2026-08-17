@@ -8,7 +8,7 @@ y deploy automático a Cloudflare Pages. Base de la plataforma multi-proyecto.
 - **Astro 5** con colección de noticias tipada (`src/content.config.ts`) — el esquema exacto que usará la fábrica de agentes.
 - **SEO de serie**: JSON-LD (`Organization`, `WebSite`, `NewsArticle` con `datePublished`/`dateModified`, `BreadcrumbList`), Open Graph, canonical, sitemap XML, **sitemap de Google News** (últimas 48 h), RSS, robots.txt, fechas de creación y actualización visibles en cada nota.
 - **Hubs por tag** (fase 1.5): equipos, torneos y jugadores mencionados en el frontmatter generan páginas hub automáticamente (`/tags/...`).
-- **Sveltia CMS** en `/admin`: flujo editorial Borradores → En revisión → Listo (el gate humano).
+- **Panel editorial** en repo aparte ([futbol-colombiano-admin](https://github.com/zibastian/futbol-colombiano-admin)): Sveltia CMS escribiendo sobre este repo, con flujo Borradores → En revisión → Listo (el gate humano).
 - **Script de escudos** (`npm run escudos`): descarga los escudos de Primera A y B desde API-Football y los normaliza a 256×256 + 64×64 centrados.
 - **Deploy automático**: Cloudflare construye y publica con cada push a `main` (config en `wrangler.jsonc`).
 - **Nómina de columnistas** (`npm run columnistas:exportar`): exporta las 47 firmas a la fábrica de agentes, para que la voz que usa el agente sea la misma que se publica en la ficha.
@@ -74,10 +74,15 @@ el layout inyecta el beacon.
 
 No usa cookies, así que no requiere banner de consentimiento.
 
-### 5. Panel editorial (Sveltia)
-1. Editar `public/admin/config.yml`: cambiar `OWNER/REPO` por tu repo.
-2. Autenticación: desplegar [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) (un Worker de Cloudflare, gratis, ~10 min siguiendo su README), crear la GitHub OAuth App que pide, y poner la URL del worker en `base_url`.
-3. Entrar a `https://tu-sitio/admin` con tu cuenta de GitHub.
+### 5. Panel editorial
+Vive en su propio repo: **[futbol-colombiano-admin](https://github.com/zibastian/futbol-colombiano-admin)**,
+desplegado aparte en Cloudflare. Escribe sobre este repo vía la API de GitHub,
+así que el contenido sigue versionado acá. Las instrucciones de puesta en marcha
+están en el README de ese repo.
+
+> Se separó a propósito: tocar el panel no redespliega el sitio, y publicar una
+> nota no toca el panel.
+
 
 ### 6. Escudos
 ```bash
