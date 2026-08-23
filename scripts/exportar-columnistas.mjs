@@ -26,7 +26,15 @@ const salida = {
   // normalizar los nombres que devuelve el agente de SEO: si escribe "Atlético
   // Santa Fe" en vez de "Independiente Santa Fe", la nota queda sin escudo, sin
   // enlace a la ficha del club y sin columnista, en silencio.
-  equipos: EQUIPOS.map((e) => ({ slug: e.slug, nombre: e.nombre, alias: e.alias ?? [] })),
+  // Se exportan los datos completos, no solo el nombre: la fábrica se los pasa
+  // al redactor como CONTEXTO VERIFICADO. Es la forma honesta de que una nota
+  // sea más larga — con datos que salen de nuestra base, no de la memoria del
+  // modelo, que es exactamente lo que le tenemos prohibido usar.
+  equipos: EQUIPOS.map((e) => ({
+    slug: e.slug, nombre: e.nombre, alias: e.alias ?? [],
+    apodo: e.apodo ?? null, ciudad: e.ciudad, estadio: e.estadio ?? null,
+    fundacion: e.fundacion ?? null, division: e.division, descripcion: e.descripcion
+  })),
   equiposGrandes: EQUIPOS_GRANDES.map((slug) => ({ slug, nombre: nombreEquipo(slug) })),
   columnistas: COLUMNISTAS.map((c) => ({
     slug: c.slug,
