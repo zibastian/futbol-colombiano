@@ -22,6 +22,11 @@ const nombreEquipo = (slug) => EQUIPOS.find((e) => e.slug === slug)?.nombre ?? n
 const salida = {
   _generado: 'No editar a mano. Sale de futbol-colombiano/src/data/columnistas.ts',
   _fecha: new Date().toISOString().slice(0, 10),
+  // Diccionario canónico de clubes, con sus alias. La fábrica lo usa para
+  // normalizar los nombres que devuelve el agente de SEO: si escribe "Atlético
+  // Santa Fe" en vez de "Independiente Santa Fe", la nota queda sin escudo, sin
+  // enlace a la ficha del club y sin columnista, en silencio.
+  equipos: EQUIPOS.map((e) => ({ slug: e.slug, nombre: e.nombre, alias: e.alias ?? [] })),
   equiposGrandes: EQUIPOS_GRANDES.map((slug) => ({ slug, nombre: nombreEquipo(slug) })),
   columnistas: COLUMNISTAS.map((c) => ({
     slug: c.slug,
@@ -65,7 +70,7 @@ const porPerfil = salida.columnistas.reduce((acc, c) => {
   acc[c.perfil] = (acc[c.perfil] ?? 0) + 1;
   return acc;
 }, {});
-console.log(`${salida.columnistas.length} columnistas exportados -> ${escrito}`);
+console.log(`${salida.columnistas.length} columnistas y ${salida.equipos.length} clubes exportados -> ${escrito}`);
 console.log(`  ${Object.entries(porPerfil).map(([k, v]) => `${k}: ${v}`).join(' | ')}`);
 if (!escrito.includes('fc-plataforma')) {
   console.log('  (fc-plataforma no está al lado: copiá el archivo a fabrica/config/)');
