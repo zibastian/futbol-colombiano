@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
   <defs>
+    <!-- Sombra tenue en el texto claro. La geometría ya evita que el título
+         pise la franja, pero un escudo o un fondo claro pueden aparecer detrás
+         en cualquier momento: esto garantiza que el texto siempre se lea. -->
+    <filter id="sombraTexto" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
     <pattern id="rayas" width="26" height="26" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
       <rect width="13" height="26" fill="#FFFFFF" opacity="0.035"/>
     </pattern>
@@ -14,8 +20,8 @@
   <rect width="1200" height="8" fill="#F2C200"/>
   
   <text x="80" y="196" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">EXTERIOR</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF"><tspan x="80" y="300" textLength="330" lengthAdjust="spacingAndGlyphs">LUIS DÍAZ,</tspan><tspan x="80" y="366" textLength="198" lengthAdjust="spacingAndGlyphs">FIGURA</tspan></text>
-  <text x="80" y="450" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0">Bayern Múnich · Bundesliga</text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)"><tspan x="80" y="366" textLength="330" lengthAdjust="spacingAndGlyphs">LUIS DÍAZ,</tspan><tspan x="80" y="432" textLength="198" lengthAdjust="spacingAndGlyphs">FIGURA</tspan></text>
+  <text x="80" y="516" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0">Bayern Múnich · Bundesliga</text>
   <g transform="translate(80,585)">
     <clipPath id="l"><circle cx="24" cy="0" r="24"/></clipPath>
     <g clip-path="url(#l)">

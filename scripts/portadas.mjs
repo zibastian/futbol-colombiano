@@ -58,6 +58,12 @@ function colorDe(nombre) {
    el dato principal en tinta oscura sobre el amarillo. La trama y el degradado
    son lo que sacan a la pieza del color plano. */
 const TRAMA = `<defs>
+    <!-- Sombra tenue en el texto claro. La geometría ya evita que el título
+         pise la franja, pero un escudo o un fondo claro pueden aparecer detrás
+         en cualquier momento: esto garantiza que el texto siempre se lea. -->
+    <filter id="sombraTexto" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
     <pattern id="rayas" width="26" height="26" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
       <rect width="13" height="26" fill="#FFFFFF" opacity="0.035"/>
     </pattern>
@@ -65,6 +71,23 @@ const TRAMA = `<defs>
       <stop offset="0" stop-color="#12305C"/><stop offset="1" stop-color="#08172D"/>
     </linearGradient>
   </defs>`;
+
+/* Geometría de la franja inclinada.
+   El título NO puede empezar donde la franja todavía existe: letras blancas
+   sobre amarillo no se leen. Estos números son el contrato entre la franja y
+   el texto, y de acá sale el cálculo de la primera línea. */
+const FRANJA = {
+  equipo:  { yIzq: 232, alto: 55, subida: 82, acento: 17 },
+  partido: { yIzq: 300, alto: 215, subida: 85, acento: 17 }
+};
+
+/** Y del borde INFERIOR de la franja (acento incluido) a una X dada. */
+const bordeInferior = (f, x) => f.yIzq + f.alto + f.acento - (x / 1200) * f.subida;
+
+/** Primera línea de texto que no toca la franja, con aire suficiente.
+ *  0.72em es la altura de mayúscula: es lo que sube la letra desde la línea base. */
+const baseBajoFranja = (f, x, tam, aire = 24) =>
+  Math.round(bordeInferior(f, x) + aire + tam * 0.72);
 
 const fondoTramado = (bg) => `${TRAMA}
   <rect width="1200" height="675" fill="${bg === '#0B2C5E' ? 'url(#fondoBase)' : bg}"/>
@@ -132,8 +155,6 @@ async function piezaPartido({ kicker, local, visitante, marcador, sub, bg = '#0B
     d
       ? `<image href="${d}" x="${x}" y="290" width="160" height="160" preserveAspectRatio="xMidYMid meet"/>`
       : `<circle cx="${x + 80}" cy="370" r="70" fill="none" stroke="#F2C200" stroke-width="3"/>`;
-  const nombreClub = (txt, x, y) =>
-    `<text x="${x}" y="${y}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#FFFFFF" opacity="0.85" textLength="${Math.min(anchoTitulo(txt, 30), 300)}" lengthAdjust="spacingAndGlyphs">${esc(txt.toUpperCase())}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
   ${fondoTramado(bg)}
   <polygon points="0,300 1200,215 1200,430 0,515" fill="#F2C200"/>
@@ -143,8 +164,6 @@ async function piezaPartido({ kicker, local, visitante, marcador, sub, bg = '#0B
   <text x="600" y="112" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200"${limitar(kicker, 38, 900, EM_ANCHA, kicker.length * 5)} letter-spacing="5">${esc(kicker)}</text>
   ${img(a, 150)}
   ${img(b, 890)}
-  ${nombreClub(local, 230, 505)}
-  ${nombreClub(visitante, 970, 490)}
   <text x="600" y="405" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#0A1626" textLength="${anchoTitulo(marcador, tam)}" lengthAdjust="spacingAndGlyphs">${esc(marcador)}</text>
   <text x="600" y="590" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="26" fill="#C7D6EC"${limitar(sub, 26, 900, 0.55)}>${esc(sub)}</text>
   ${marca}
@@ -160,7 +179,9 @@ async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
   const acento = equipo ? colorDe(equipo) : '#1B4C9E';
   const lineas = partirTitulo(titulo, 15);
   const tam = lineas.length === 1 ? 76 : 60;
-  const y0 = lineas.length === 1 ? 330 : 300;
+  // Antes era un número fijo (330 / 300) y la primera línea caía ENCIMA de la
+  // franja amarilla: texto blanco sobre amarillo, ilegible. Ahora se calcula.
+  const y0 = baseBajoFranja(FRANJA.equipo, 80, tam);
   const tspans = lineas
     .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 6)}" textLength="${Math.min(anchoTitulo(l, tam), 720)}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
     .join('');
@@ -171,7 +192,7 @@ async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
   <rect width="1200" height="8" fill="#F2C200"/>
   ${d ? `<image href="${d}" x="850" y="330" width="270" height="270" opacity="0.95" preserveAspectRatio="xMidYMid meet"/>` : ''}
   <text x="80" y="196" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200"${limitar(kicker, 38, 700, EM_ANCHA, kicker.length * 4)} letter-spacing="4">${esc(kicker)}</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#FFFFFF">${tspans}</text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tam}" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)">${tspans}</text>
   <text x="80" y="${y0 + lineas.length * (tam + 6) + 18}" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0"${limitar(sub, 28, 700, 0.55)}>${esc(sub)}</text>
   ${marca}
 </svg>
