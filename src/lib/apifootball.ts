@@ -1,7 +1,15 @@
 // Cliente de API-Football para datos en tiempo de BUILD.
 // El sitio sigue siendo 100% estático: estos datos se hornean en el HTML
 // y se refrescan en cada build (cron / deploy hook).
-// Presupuesto: 2 requests por torneo por build (tabla + fixtures de la temporada).
+// Presupuesto: 4 requests por torneo por build (tabla, goleadores, asistencias
+// y fixtures de la temporada). Con 3 torneos son 12 por build.
+
+import { equipoPorApiId } from '../data/equipos';
+
+/** El nombre del club como lo escribe el sitio, no como lo escribe la API.
+ *  Si el id no está en nuestra base, se deja el nombre de la API tal cual. */
+const nombreClub = (id?: number, porDefecto = '') =>
+  equipoPorApiId(id)?.nombre ?? porDefecto;
 
 const BASE = 'https://v3.football.api-sports.io';
 const KEY = import.meta.env.API_FOOTBALL_KEY || process.env.API_FOOTBALL_KEY;
@@ -75,7 +83,7 @@ export interface Torneo {
 const aFila = (f: any): FilaTabla => ({
   posicion: f.rank,
   equipoId: f.team.id,
-  equipo: f.team.name,
+  equipo: nombreClub(f.team?.id, f.team?.name),
   logo: f.team.logo,
   puntos: f.points,
   jugados: f.all.played,
@@ -117,6 +125,47 @@ export function torneoVigente(torneos: Torneo[]): Torneo | null {
 export async function tablaPosiciones(ligaId: number, season: number): Promise<FilaTabla[]> {
   return torneoVigente(await torneosDeTemporada(ligaId, season))?.filas ?? [];
 }
+
+export interface Anotador {
+  jugador: string;
+  equipo: string;
+  cantidad: number;
+  partidos: number;
+}
+
+/** Goleadores o asistidores de un torneo.
+ *
+ *  La API devuelve el jugador con un arreglo `statistics` (un elemento por
+ *  club en el que jugó esa temporada). Se toma el primero, que es el club
+ *  actual, y se suma el total de la métrica pedida. */
+async function anotadores(
+  ligaId: number,
+  season: number,
+  metrica: 'goals' | 'assists',
+  limite: number
+): Promise<Anotador[]> {
+  const endpoint = metrica === 'goals' ? 'topscorers' : 'topassists';
+  const resp = await api(`/players/${endpoint}?league=${ligaId}&season=${season}`);
+  return resp
+    .map((p: any) => {
+      const st = p.statistics?.[0] ?? {};
+      const cantidad = metrica === 'goals' ? st.goals?.total : st.goals?.assists;
+      return {
+        jugador: p.player?.name ?? '',
+        equipo: nombreClub(st.team?.id, st.team?.name ?? ''),
+        cantidad: cantidad ?? 0,
+        partidos: st.games?.appearences ?? 0
+      };
+    })
+    .filter((a: Anotador) => a.jugador && a.cantidad > 0)
+    .slice(0, limite);
+}
+
+export const goleadores = (ligaId: number, season: number, limite = 10) =>
+  anotadores(ligaId, season, 'goals', limite);
+
+export const asistencias = (ligaId: number, season: number, limite = 10) =>
+  anotadores(ligaId, season, 'assists', limite);
 
 export async function fixturesTemporada(ligaId: number, season: number): Promise<Partido[]> {
   const resp = await api(`/fixtures?league=${ligaId}&season=${season}`);

@@ -58,6 +58,9 @@ export const EQUIPOS: Equipo[] = [
 ];
 
 const porSlug = new Map(EQUIPOS.map((e) => [e.slug, e]));
+const porApiId = new Map(
+  EQUIPOS.filter((e) => e.apiId).map((e) => [e.apiId as number, e])
+);
 
 const normaliza = (s: string) =>
   s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
@@ -73,6 +76,15 @@ for (const e of EQUIPOS) {
  *  (evita que "Cali" traiga a "América de Cali" o "Chicó" a otro club). */
 export function buscarEquipo(nombre: string): Equipo | undefined {
   return indiceNombres.get(normaliza(nombre));
+}
+
+/** Busca por el id de API-Football.
+ *
+ *  Es la vía preferida cuando el dato viene de la API: ahí los clubes se llaman
+ *  "Junior" o "Atletico Nacional" —sin tilde y sin el nombre completo— y buscar
+ *  por texto deja al club sin escudo y sin enlace a su ficha. El id no cambia. */
+export function equipoPorApiId(id?: number | null): Equipo | undefined {
+  return id == null ? undefined : porApiId.get(id);
 }
 
 export function equipoPorSlug(slug: string): Equipo | undefined {
