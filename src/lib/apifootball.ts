@@ -1,8 +1,14 @@
 // Cliente de API-Football para datos en tiempo de BUILD.
 // El sitio sigue siendo 100% estático: estos datos se hornean en el HTML
 // y se refrescan en cada build (cron / deploy hook).
-// Presupuesto: 4 requests por torneo por build (tabla, goleadores, asistencias
-// y fixtures de la temporada). Con 3 torneos son 12 por build.
+// PRESUPUESTO DE REQUESTS
+// Tabla y fixtures son 2 por torneo. Los goleadores son caros: cuando la
+// temporada tiene dos campeonatos (Apertura/Clausura) hay que contarlos gol por
+// gol, y eso es una llamada por partido jugado del torneo vigente —unas 50 a
+// mitad de torneo, ~190 al final—. Es el precio de que el número sea cierto:
+// /players/topscorers no sabe de torneos y devuelve el año entero.
+// Todas las respuestas se cachean por build, así que cada ruta se pide una vez
+// aunque la usen la sección, las 20 fichas de equipo y el índice de jugadores.
 
 import { equipoPorApiId } from '../data/equipos';
 
@@ -31,6 +37,9 @@ export interface FilaTabla {
 }
 
 export interface Partido {
+  id: number;
+  /** "Clausura - 5", "Apertura - 19". De acá sale a qué torneo pertenece. */
+  ronda: string;
   fecha: string;
   estado: string;
   localId: number;
@@ -43,7 +52,24 @@ export interface Partido {
 
 let avisado = false;
 
+// Un build pide la misma ruta muchas veces: /fixtures?league=239 lo necesitan la
+// pagina de la seccion, las 20 fichas de equipo y el indice de jugadores. Como
+// dentro de un build los datos no cambian, se guarda la promesa y se reusa.
+const enCurso = new Map<string, Promise<any[]>>();
+let pedidos = 0;
+
 async function api(path: string): Promise<any[]> {
+  const cacheada = enCurso.get(path);
+  if (cacheada) return cacheada;
+  const promesa = pedir(path);
+  enCurso.set(path, promesa);
+  return promesa;
+}
+
+/** Cuántas llamadas reales se hicieron en este build (el cache no cuenta). */
+export const requestsHechos = () => pedidos;
+
+async function pedir(path: string): Promise<any[]> {
   if (!KEY) {
     if (!avisado) {
       console.warn(
@@ -56,6 +82,7 @@ async function api(path: string): Promise<any[]> {
     return [];
   }
   try {
+    pedidos += 1;
     const res = await fetch(`${BASE}${path}`, { headers: { 'x-apisports-key': KEY } });
     if (!res.ok) {
       console.warn(`[api-football] ${res.status} en ${path}`);
@@ -170,15 +197,156 @@ export const asistencias = (ligaId: number, season: number, limite = 10) =>
 export async function fixturesTemporada(ligaId: number, season: number): Promise<Partido[]> {
   const resp = await api(`/fixtures?league=${ligaId}&season=${season}`);
   return resp.map((fx: any) => ({
+    id: fx.fixture.id,
+    ronda: fx.league?.round ?? '',
     fecha: fx.fixture.date,
     estado: fx.fixture.status.short,
     localId: fx.teams.home.id,
-    local: fx.teams.home.name,
+    local: nombreClub(fx.teams.home?.id, fx.teams.home?.name),
     visitanteId: fx.teams.away.id,
-    visitante: fx.teams.away.name,
+    visitante: nombreClub(fx.teams.away?.id, fx.teams.away?.name),
     golesLocal: fx.goals.home,
     golesVisitante: fx.goals.away
   }));
+}
+
+// ---------------------------------------------------------------------------
+// Goleadores y asistencias DEL TORNEO
+// ---------------------------------------------------------------------------
+
+/** Partidos ya terminados. Incluye alargue y penales: los goles cuentan igual
+ *  (los de la tanda no, pero esos la API los marca aparte). */
+const TERMINADO = ['FT', 'AET', 'PEN'];
+
+/** ¿A qué torneo pertenece esta ronda? La API las nombra "Clausura - 5". */
+const esDelTorneo = (ronda: string, torneo: string) =>
+  ronda.toLowerCase().startsWith(torneo.toLowerCase());
+
+/** Pide de a tandas para no abrir cien conexiones a la vez ni que la API corte. */
+async function enTandas<T, R>(items: T[], tamano: number, fn: (x: T) => Promise<R>): Promise<R[]> {
+  const salida: R[] = [];
+  for (let i = 0; i < items.length; i += tamano) {
+    salida.push(...(await Promise.all(items.slice(i, i + tamano).map(fn))));
+  }
+  return salida;
+}
+
+interface Acumulado {
+  jugador: string;
+  equipoId?: number;
+  equipoNombre: string;
+  goles: number;
+  asistencias: number;
+  partidos: Set<number>;
+}
+
+/** Goleadores y asistidores reconstruidos gol por gol.
+ *
+ *  POR QUÉ NO SE USA /players/topscorers
+ *  Ese endpoint solo recibe liga y temporada, y en Colombia una temporada tiene
+ *  DOS torneos. Devolvía a Rodallega con 13 goles en 27 partidos cuando el
+ *  Clausura llevaba 5 fechas: estaba sumando el Apertura. Al lado de una tabla
+ *  de posiciones que sí era del Clausura, la página se contradecía sola.
+ *
+ *  Las rondas vienen etiquetadas ("Clausura - 5"), así que se toman los partidos
+ *  terminados de ese torneo y se cuentan sus goles. Cuesta una llamada por
+ *  partido, que es el precio de que el número sea cierto. */
+async function anotadoresPorEventos(
+  ligaId: number,
+  season: number,
+  torneo: string,
+  limite: number
+): Promise<{ goles: Anotador[]; asistencias: Anotador[] }> {
+  const fixtures = await fixturesTemporada(ligaId, season);
+  const delTorneo = fixtures.filter(
+    (p) => esDelTorneo(p.ronda, torneo) && TERMINADO.includes(p.estado)
+  );
+  if (!delTorneo.length) return { goles: [], asistencias: [] };
+
+  console.log(
+    `[api-football] goleadores de "${torneo}": ${delTorneo.length} partidos terminados`
+  );
+  const eventos = await enTandas(delTorneo, 6, (p) => api(`/fixtures/events?fixture=${p.id}`));
+
+  const porJugador = new Map<string, Acumulado>();
+  const anotar = (
+    persona: any,
+    equipo: any,
+    campo: 'goles' | 'asistencias',
+    fixtureId: number
+  ) => {
+    const nombre = persona?.name;
+    if (!nombre) return;
+    const clave = String(persona.id ?? nombre);
+    if (!porJugador.has(clave)) {
+      porJugador.set(clave, {
+        jugador: nombre,
+        equipoId: equipo?.id,
+        equipoNombre: nombreClub(equipo?.id, equipo?.name ?? ''),
+        goles: 0,
+        asistencias: 0,
+        partidos: new Set()
+      });
+    }
+    const acc = porJugador.get(clave)!;
+    acc[campo] += 1;
+    acc.partidos.add(fixtureId);
+  };
+
+  delTorneo.forEach((partido, i) => {
+    for (const e of eventos[i] ?? []) {
+      if (e.type !== 'Goal') continue;
+      // El penal errado llega como evento de gol; el gol en contra no se le
+      // acredita a nadie como goleador.
+      if (e.detail === 'Missed Penalty' || e.detail === 'Own Goal') continue;
+      anotar(e.player, e.team, 'goles', partido.id);
+      if (e.assist?.name) anotar(e.assist, e.team, 'asistencias', partido.id);
+    }
+  });
+
+  const orden = (campo: 'goles' | 'asistencias') =>
+    [...porJugador.values()]
+      .filter((a) => a[campo] > 0)
+      .sort((a, b) => b[campo] - a[campo] || a.jugador.localeCompare(b.jugador))
+      .slice(0, limite)
+      .map((a) => ({
+        jugador: a.jugador,
+        equipo: a.equipoNombre,
+        cantidad: a[campo],
+        // Partidos en los que participó de un gol, NO partidos jugados: los
+        // eventos no dicen quién estuvo en cancha. Se marca con 0 cuando no
+        // se sabe, y la ficha del jugador muestra un guion.
+        partidos: 0
+      }));
+
+  return { goles: orden('goles'), asistencias: orden('asistencias') };
+}
+
+/** Goleadores y asistencias de la competición, ya acotados al torneo vigente.
+ *
+ *  Si la temporada tiene un solo torneo —una copa, una liga europea— alcanza con
+ *  /players/topscorers y son dos llamadas. Si tiene dos, hay que reconstruirlo. */
+export async function estadisticasDelTorneo(
+  ligaId: number,
+  season: number,
+  limite = 10
+): Promise<{ goles: Anotador[]; asistencias: Anotador[]; torneo: string | null }> {
+  const torneos = await torneosDeTemporada(ligaId, season);
+  const vigente = torneoVigente(torneos);
+
+  if (torneos.length > 1 && vigente) {
+    const r = await anotadoresPorEventos(ligaId, season, vigente.nombre, limite);
+    if (r.goles.length) return { ...r, torneo: vigente.nombre };
+    // Sin goles reconstruidos (torneo recién arrancado, o la API sin eventos)
+    // no se cae al total de la temporada: sería el número equivocado otra vez.
+    return { goles: [], asistencias: [], torneo: vigente.nombre };
+  }
+
+  const [goles, asis] = await Promise.all([
+    goleadores(ligaId, season, limite),
+    asistencias(ligaId, season, limite)
+  ]);
+  return { goles, asistencias: asis, torneo: vigente?.nombre ?? null };
 }
 
 /** Último partido jugado y próximo por jugar de un equipo, derivados localmente. */

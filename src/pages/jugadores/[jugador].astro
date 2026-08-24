@@ -5,7 +5,7 @@ import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import { jugadorDestacadoPorSlug, JUGADORES_DESTACADOS } from '../../data/jugadores';
 import creditos from '../../data/fotos-creditos.json';
-import { estadisticasDeJugador } from '../../data/estadisticas-jugadores';
+import { estadisticasDeJugador, ESTADISTICAS_SON_DEMO } from '../../data/estadisticas-jugadores';
 import { urlNota } from '../../lib/rutas';
 
 export async function getStaticPaths() {
@@ -143,7 +143,7 @@ const jugadorLd = {
                 <tr>
                   <td><a href={`/${l.torneoSlug}`}>{l.torneo}</a></td>
                   <td>{l.equipo}</td>
-                  <td class="num">{l.partidos}</td>
+                  <td class="num">{l.partidos || '—'}</td>
                   <td class="num">{l.goles}</td>
                   <td class="num">{l.asistencias}</td>
                 </tr>
@@ -151,7 +151,9 @@ const jugadorLd = {
             </tbody>
           </table>
         </div>
-        <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+        {ESTADISTICAS_SON_DEMO && (
+          <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+        )}
       </section>
     )
   }

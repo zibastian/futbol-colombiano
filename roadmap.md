@@ -27,12 +27,6 @@ con `scripts/portadas.mjs`, así que una nota recién publicada sale sin imagen
 propia. El generador ya existe y es determinístico; falta que la fábrica lo
 invoque al publicar, con el título y el tipo de nota.
 
-### Enlaces de jugadores
-En las tablas de goleadores cada nombre enlaza a `/jugadores/{slug}`, pero esa
-página solo se genera para jugadores que aparecen en alguna nota. Con datos
-reales de la API van a aparecer nombres sin página. Hay que decidir: o se generan
-las fichas desde la API, o el enlace se pinta solo cuando la página existe.
-
 ### Nombre del torneo visible y torneo anterior
 La temporada colombiana tiene **dos torneos** —Apertura y Clausura— y el sitio ya
 elige bien el vigente (ver "Dos torneos por año", abajo), pero no dice cuál está
@@ -81,6 +75,20 @@ El dominio bueno está tomado. Si se libera, se compra y se migra con 301 desde
 filas con cada club repetido y los puntos mezclados. Corregido: se separan y el
 vigente es **el último torneo que ya tenga partidos jugados**. Sale de los datos,
 así que no hay que mover ninguna constante a mitad de año.
+
+**Goleadores por torneo, no por temporada.** `/players/topscorers` solo recibe
+liga y temporada, y la temporada colombiana tiene dos campeonatos: devolvía a
+Rodallega con 13 goles en 27 partidos mientras el Clausura llevaba 5 fechas.
+Como las rondas vienen etiquetadas (`"Clausura - 5"`), los goleadores se
+reconstruyen gol por gol desde los eventos de los partidos del torneo vigente.
+Cuesta una llamada por partido jugado —unas 50 a mitad de torneo— y todas las
+respuestas se cachean dentro del build. Si algún día el torneo recién arranca y
+no hay goles reconstruidos, **no** se cae al total de la temporada: se muestra
+vacío, porque el número del año sería otra vez el equivocado.
+
+Efecto colateral: al reconstruir por eventos no se sabe cuántos partidos jugó
+cada uno —la API dice quién marcó, no quién estuvo en cancha—, así que la
+columna PJ de la ficha del jugador muestra un guion.
 
 **Nombres de club desde la API.** Se resuelven por `apiId`, nunca por texto: la
 API escribe "Junior" y "Atletico Nacional", y buscar por nombre dejaba al club

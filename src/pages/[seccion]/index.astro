@@ -14,7 +14,7 @@ import {
   ESTADISTICAS_DEMO, goleadoresLiga, asistenciasLiga, goleadoresTorneo,
   asistenciasTorneo, goleadoresCopa, asistenciasCopa, tablaDescenso
 } from '../../data/estadisticas-demo';
-import { tablaPosiciones, goleadores, asistencias } from '../../lib/apifootball';
+import { tablaPosiciones, estadisticasDelTorneo } from '../../lib/apifootball';
 import { TORNEOS } from '../../data/torneos';
 import { faseDe, faseAlcanzada, NOMBRE_FASE, FASE_ACTUAL, FASES_DEMO, cuadrangulares, FINAL_DEMO } from '../../data/fases';
 import { FEMENINA_DEMO, tablaFemenina, goleadorasFemenina, asistenciasFemenina } from '../../data/liga-femenina-demo';
@@ -39,11 +39,11 @@ const visibles = notas.slice(0, LIMITE);
 // --- Datos deportivos de la sección ---
 const torneo = TORNEOS.find((t) => t.slug === seccion.slug);
 const real = torneo ? await tablaPosiciones(torneo.ligaId, torneo.season) : [];
-// Goleadores y asistencias reales. Se piden junto con la tabla porque si hay
-// tabla real y estadísticas de ejemplo, la página queda contando dos historias
-// distintas sobre el mismo torneo.
-const golesReales = torneo ? await goleadores(torneo.ligaId, torneo.season) : [];
-const asistReales = torneo ? await asistencias(torneo.ligaId, torneo.season) : [];
+// Goleadores y asistencias reales, acotados al MISMO torneo que la tabla.
+// Si no, la página se contradice: tabla del Clausura y goleadores del año.
+const est = torneo
+  ? await estadisticasDelTorneo(torneo.ligaId, torneo.season)
+  : { goles: [], asistencias: [], torneo: null };
 const filasReales = real.map((f) => ({
   posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados, e: f.empatados,
   p: f.perdidos, gf: f.golesFavor, gc: f.golesContra, dg: f.diferencia, pts: f.puntos
@@ -73,8 +73,8 @@ const anotadores: Record<string, { goles: any[]; asistencias: any[] }> = {
 // La Liga Femenina no tiene tabla ni goleadoras en API-Football (verificado con
 // `fabrica.sh cobertura`): se cubre con noticias y crónicas hasta que la haya.
 // Antes que mostrar datos inventados, no se muestra nada. Ver roadmap.md
-const stats = golesReales.length
-  ? { goles: golesReales, asistencias: asistReales }
+const stats = est.goles.length
+  ? { goles: est.goles, asistencias: est.asistencias }
   : esFemenina
     ? undefined
     : usarDemo

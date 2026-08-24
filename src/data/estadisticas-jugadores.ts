@@ -7,13 +7,20 @@
 // Acá se cruza todo: quien aparece en una tabla de goleadores o asistencias
 // tiene ficha, y en su ficha se ven sus números por torneo. Es la misma fuente
 // que usa `getStaticPaths`, así que no puede haber un enlace sin página.
+//
+// LA FUENTE ES LA MISMA QUE LA DE LAS TABLAS
+// Este índice se arma con `estadisticasDelTorneo`, exactamente lo que muestran
+// las páginas de sección. Si acá se usara otra fuente, las tablas dirían un
+// número y la ficha del jugador otro. Los datos de ejemplo quedan solo como
+// respaldo para desarrollar sin clave de API.
 
 import { slugify } from '../lib/slug';
+import { TORNEOS } from './torneos';
+import { estadisticasDelTorneo } from '../lib/apifootball';
 import {
   goleadoresLiga, asistenciasLiga, goleadoresTorneo, asistenciasTorneo,
   goleadoresCopa, asistenciasCopa, type Anotador
 } from './estadisticas-demo';
-import { goleadorasFemenina, asistenciasFemenina } from './liga-femenina-demo';
 
 export interface LineaEstadistica {
   torneo: string;
@@ -21,6 +28,8 @@ export interface LineaEstadistica {
   equipo: string;
   goles: number;
   asistencias: number;
+  /** 0 = no se sabe. Al reconstruir por eventos la API no dice quién estuvo en
+   *  cancha, solo quién marcó, así que la ficha muestra un guion. */
   partidos: number;
 }
 
@@ -32,12 +41,43 @@ export interface FichaEstadistica {
   totalAsistencias: number;
 }
 
-const FUENTES: { torneo: string; torneoSlug: string; goles: Anotador[]; asistencias: Anotador[] }[] = [
-  { torneo: 'Liga BetPlay', torneoSlug: 'liga-betplay', goles: goleadoresLiga, asistencias: asistenciasLiga },
-  { torneo: 'Torneo BetPlay', torneoSlug: 'torneo-betplay', goles: goleadoresTorneo, asistencias: asistenciasTorneo },
-  { torneo: 'Copa BetPlay', torneoSlug: 'copa-betplay', goles: goleadoresCopa, asistencias: asistenciasCopa },
-  { torneo: 'Liga Femenina BetPlay', torneoSlug: 'liga-femenina', goles: goleadorasFemenina, asistencias: asistenciasFemenina }
-];
+interface Fuente {
+  torneo: string;
+  torneoSlug: string;
+  goles: Anotador[];
+  asistencias: Anotador[];
+}
+
+const DEMO: Record<string, { goles: Anotador[]; asistencias: Anotador[] }> = {
+  'liga-betplay': { goles: goleadoresLiga, asistencias: asistenciasLiga },
+  'torneo-betplay': { goles: goleadoresTorneo, asistencias: asistenciasTorneo },
+  'copa-betplay': { goles: goleadoresCopa, asistencias: asistenciasCopa }
+};
+
+let hayDatosReales = false;
+
+const FUENTES: Fuente[] = await Promise.all(
+  TORNEOS.map(async (t): Promise<Fuente> => {
+    const real = await estadisticasDelTorneo(t.ligaId, t.season);
+    if (real.goles.length) {
+      hayDatosReales = true;
+      // El nombre lleva el torneo: en Colombia "Liga BetPlay" sola es ambiguo,
+      // hay dos campeonatos por año y los números son de uno solo.
+      return {
+        torneo: real.torneo ? `${t.nombre} ${real.torneo}` : t.nombre,
+        torneoSlug: t.slug,
+        goles: real.goles,
+        asistencias: real.asistencias
+      };
+    }
+    const demo = DEMO[t.slug] ?? { goles: [], asistencias: [] };
+    return { torneo: t.nombre, torneoSlug: t.slug, ...demo };
+  })
+);
+
+/** ¿Los números que se están mostrando son de ejemplo? Decide el aviso de la
+ *  ficha del jugador: sin esto, un dato real seguiría rotulado como demo. */
+export const ESTADISTICAS_SON_DEMO = !hayDatosReales;
 
 const indice = new Map<string, FichaEstadistica>();
 
