@@ -28,7 +28,9 @@ export const NOMBRE_FASE: Record<Fase, string> = {
 
 /** Fase en la que está hoy cada torneo. */
 export const FASE_ACTUAL: Record<string, Fase> = {
-  'liga-betplay': 'cuadrangulares',
+  // El Clausura 2026 va por la fecha 5: todos contra todos.
+  // (El Apertura ya terminó; la API los devuelve como torneos separados.)
+  'liga-betplay': 'todos-contra-todos',
   'torneo-betplay': 'todos-contra-todos',
   // 16 fechas a una vuelta más la fecha de clásicos; los ocho primeros pasan.
   'liga-femenina': 'todos-contra-todos'

@@ -66,25 +66,56 @@ async function api(path: string): Promise<any[]> {
   }
 }
 
-export async function tablaPosiciones(ligaId: number, season: number): Promise<FilaTabla[]> {
+export interface Torneo {
+  /** Como lo llama la API: "Apertura", "Clausura", "Grupo A"... */
+  nombre: string;
+  filas: FilaTabla[];
+}
+
+const aFila = (f: any): FilaTabla => ({
+  posicion: f.rank,
+  equipoId: f.team.id,
+  equipo: f.team.name,
+  logo: f.team.logo,
+  puntos: f.points,
+  jugados: f.all.played,
+  ganados: f.all.win,
+  empatados: f.all.draw,
+  perdidos: f.all.lose,
+  golesFavor: f.all.goals.for,
+  golesContra: f.all.goals.against,
+  diferencia: f.goalsDiff,
+  racha: f.form || null
+});
+
+/** Los torneos de una temporada, sin mezclar.
+ *
+ *  En Colombia una temporada tiene DOS campeonatos —Apertura y Clausura— y la
+ *  API los devuelve como grupos dentro de la misma temporada. Antes esto hacía
+ *  `.flat()` y salía una tabla de 40 filas con cada club repetido y los puntos
+ *  de los dos torneos mezclados. */
+export async function torneosDeTemporada(ligaId: number, season: number): Promise<Torneo[]> {
   const resp = await api(`/standings?league=${ligaId}&season=${season}`);
-  const grupos = resp[0]?.league?.standings || [];
-  const filas = grupos.flat();
-  return filas.map((f: any) => ({
-    posicion: f.rank,
-    equipoId: f.team.id,
-    equipo: f.team.name,
-    logo: f.team.logo,
-    puntos: f.points,
-    jugados: f.all.played,
-    ganados: f.all.win,
-    empatados: f.all.draw,
-    perdidos: f.all.lose,
-    golesFavor: f.all.goals.for,
-    golesContra: f.all.goals.against,
-    diferencia: f.goalsDiff,
-    racha: f.form || null
-  }));
+  const grupos: any[][] = resp[0]?.league?.standings || [];
+  return grupos
+    .filter((g) => g && g.length)
+    .map((g, i) => ({ nombre: g[0]?.group || `Torneo ${i + 1}`, filas: g.map(aFila) }));
+}
+
+/** Cuál de los torneos está en curso.
+ *
+ *  Se toma el ÚLTIMO que ya tenga partidos jugados. En marzo el Clausura está
+ *  en cero y gana el Apertura; en agosto los dos tienen partidos y gana el
+ *  Clausura, que es el vigente. Se resuelve con los datos, sin fechas a mano
+ *  ni una constante que haya que acordarse de mover a mitad de año. */
+export function torneoVigente(torneos: Torneo[]): Torneo | null {
+  const conJuego = torneos.filter((t) => t.filas.some((f) => f.jugados > 0));
+  return conJuego.at(-1) ?? torneos[0] ?? null;
+}
+
+/** Tabla del torneo vigente. */
+export async function tablaPosiciones(ligaId: number, season: number): Promise<FilaTabla[]> {
+  return torneoVigente(await torneosDeTemporada(ligaId, season))?.filas ?? [];
 }
 
 export async function fixturesTemporada(ligaId: number, season: number): Promise<Partido[]> {
