@@ -20,7 +20,7 @@
   <rect width="1200" height="8" fill="#F2C200"/>
   
   <text x="80" y="196" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">EL PORTAL</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)"><tspan x="80" y="366" textLength="297" lengthAdjust="spacingAndGlyphs">VUELVE EL</tspan><tspan x="80" y="432" textLength="462" lengthAdjust="spacingAndGlyphs">FÚTBOL NUESTRO</tspan></text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)"><tspan x="80" y="366" textLength="289" lengthAdjust="spacingAndGlyphs">VUELVE EL</tspan><tspan x="80" y="432" textLength="462" lengthAdjust="spacingAndGlyphs">FÚTBOL NUESTRO</tspan></text>
   <text x="80" y="516" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0">Cobertura total del FPC</text>
   <g transform="translate(80,585)">
     <clipPath id="l"><circle cx="24" cy="0" r="24"/></clipPath>

@@ -113,6 +113,37 @@ const EM_ANCHA = 0.75;  // el mismo texto en la sans de reemplazo (Helvetica/Rob
 /** Ancho objetivo de una linea de titulo. */
 const anchoTitulo = (txt, tam) => Math.round(txt.length * tam * EM_TITULO);
 
+/* Ancho aproximado de cada letra en mayúscula, en fracción de em.
+   Contar caracteres no alcanza: "PROBLEMA" son ocho letras anchas y
+   "EL VAR NO ES EL" son quince, pero muchas angostas y con espacios. */
+const ANCHO_CARACTER = {
+  ...Object.fromEntries([...'BCEFKLPRSTXYZ'].map((c) => [c, 0.68])),
+  ...Object.fromEntries([...'ADGHNOQUV'].map((c) => [c, 0.78])),
+  ...Object.fromEntries([...'MW'].map((c) => [c, 1.0])),
+  ...Object.fromEntries([...'IJ'].map((c) => [c, 0.32])),
+  ...Object.fromEntries([...'0123456789'].map((c) => [c, 0.6])),
+  Á: 0.78, É: 0.68, Í: 0.32, Ó: 0.78, Ú: 0.78, Ñ: 0.78,
+  ' ': 0.28, ',': 0.3, '.': 0.3, '-': 0.35, ':': 0.3
+};
+
+const anchoNatural = (txt, tam) =>
+  [...txt.toUpperCase()].reduce((s, c) => s + (ANCHO_CARACTER[c] ?? 0.7), 0) * tam;
+
+/** textLength de cada línea de un título de varias líneas, con UNA SOLA escala.
+ *
+ *  Si cada línea se comprime por su cuenta, las que traen letras anchas se
+ *  achatan más que las otras y el título parece escrito en dos tipografías:
+ *  "EL VAR NO ES EL" quedaba al 92% y "PROBLEMA" al 74%. Acá se mide el ancho
+ *  real de cada línea, se calcula el factor con la más larga, y ese mismo
+ *  factor se aplica a todas. */
+function anchosDelBloque(lineas, tam, anchoMax) {
+  const naturales = lineas.map((l) => anchoNatural(l, tam));
+  const iMax = naturales.indexOf(Math.max(...naturales));
+  const objetivo = Math.min(anchoTitulo(lineas[iMax], tam), anchoMax);
+  const escala = objetivo / naturales[iMax];
+  return naturales.map((n) => Math.round(n * escala));
+}
+
 /** Cuerpo de texto que solo se comprime si no cabe (kicker, bajadas). */
 function limitar(txt, tam, anchoMax, em = EM_ANCHA, extra = 0) {
   const estimado = txt.length * tam * em + extra;
@@ -182,8 +213,9 @@ async function piezaEquipo({ kicker, titulo, sub, equipo, bg = '#14161A' }) {
   // Antes era un número fijo (330 / 300) y la primera línea caía ENCIMA de la
   // franja amarilla: texto blanco sobre amarillo, ilegible. Ahora se calcula.
   const y0 = baseBajoFranja(FRANJA.equipo, 80, tam);
+  const anchos = anchosDelBloque(lineas, tam, 720);
   const tspans = lineas
-    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 6)}" textLength="${Math.min(anchoTitulo(l, tam), 720)}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
+    .map((l, i) => `<tspan x="80" y="${y0 + i * (tam + 6)}" textLength="${anchos[i]}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
     .join('');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
   ${fondoTramado(bg)}
@@ -282,11 +314,9 @@ async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = 
 
   // Cada línea lleva su propio textLength: así ninguna se sale del banner y las
   // proporciones son las mismas en cualquier teléfono.
+  const anchos = anchosDelBloque(lineas, tamTitulo, util);
   const tspans = lineas
-    .map((l, i) => {
-      const ancho = Math.min(anchoTitulo(l, tamTitulo), util);
-      return `<tspan x="${W / 2}" y="${yTitulo + i * altoLinea}" textLength="${ancho}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`;
-    })
+    .map((l, i) => `<tspan x="${W / 2}" y="${yTitulo + i * altoLinea}" textLength="${anchos[i]}" lengthAdjust="spacingAndGlyphs">${esc(l)}</tspan>`)
     .join('');
 
   const paso = 78;

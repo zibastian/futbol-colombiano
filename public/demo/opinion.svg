@@ -20,7 +20,7 @@
   <rect width="1200" height="8" fill="#F2C200"/>
   
   <text x="80" y="196" font-family="Barlow Condensed, Oswald, sans-serif" font-size="38" font-weight="700" fill="#F2C200" letter-spacing="4">OPINIÓN</text>
-  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)"><tspan x="80" y="366" textLength="495" lengthAdjust="spacingAndGlyphs">EL VAR NO ES EL</tspan><tspan x="80" y="432" textLength="264" lengthAdjust="spacingAndGlyphs">PROBLEMA</tspan></text>
+  <text font-family="Barlow Condensed, Oswald, sans-serif" font-size="60" font-weight="700" fill="#FFFFFF" filter="url(#sombraTexto)"><tspan x="80" y="366" textLength="495" lengthAdjust="spacingAndGlyphs">EL VAR NO ES EL</tspan><tspan x="80" y="432" textLength="328" lengthAdjust="spacingAndGlyphs">PROBLEMA</tspan></text>
   <text x="80" y="516" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#C3CFE0">Columna</text>
   <g transform="translate(80,585)">
     <clipPath id="l"><circle cx="24" cy="0" r="24"/></clipPath>

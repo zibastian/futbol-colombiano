@@ -7,7 +7,7 @@
   </g>
   
   <text x="400" y="60" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="#F2C200" letter-spacing="5">SEGUIMIENTO DIARIO</text>
-  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="158" textLength="601" lengthAdjust="spacingAndGlyphs">COLOMBIANOS EN</tspan><tspan x="400" y="240" textLength="472" lengthAdjust="spacingAndGlyphs">EL EXTERIOR</tspan></text>
+  <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="78" font-weight="700" fill="#FFFFFF" letter-spacing="1"><tspan x="400" y="158" textLength="601" lengthAdjust="spacingAndGlyphs">COLOMBIANOS EN</tspan><tspan x="400" y="240" textLength="423" lengthAdjust="spacingAndGlyphs">EL EXTERIOR</tspan></text>
   <text x="400" y="278" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0">Europa, MLS, Brasil y Argentina</text>
   
 </svg>
