@@ -58,6 +58,17 @@ Pendiente evaluar para fase 2:
    contexto verificado de los agentes hasta que se pueda confiar en él.
 3. Cargar la tabla a mano desde el panel del CMS, si el torneo lo amerita.
 
+### Evaluar Sportmonks como proveedor de datos
+API-Football no sabe de torneos dentro de una temporada: `/players/topscorers`
+solo recibe liga y temporada, y por eso los goleadores hay que contarlos partido
+por partido. Sportmonks tiene *Topscorers by Stage ID* además de *by Season ID*,
+que resolvería esto con una sola llamada.
+
+**No es urgente**: el cache de la fábrica ya baja el costo a casi cero. Y antes
+de migrar habría que confirmar que la Primera A esté modelada con Apertura y
+Clausura como stages —la capacidad existe, que Colombia la use no está
+verificado—, además de rehacer ids de equipos, escudos y fixtures.
+
 ### Predictor
 API-Football trae `predictions` para la Liga BetPlay. Es material para una
 sección propia, no para meterlo dentro de una nota.
@@ -89,6 +100,22 @@ vacío, porque el número del año sería otra vez el equivocado.
 Efecto colateral: al reconstruir por eventos no se sabe cuántos partidos jugó
 cada uno —la API dice quién marcó, no quién estuvo en cancha—, así que la
 columna PJ de la ficha del jugador muestra un guion.
+
+**Los datos se calculan cuando termina el partido, no cuando se hace el build.**
+Los eventos de un partido terminado no cambian nunca, así que recalcularlos en
+cada build era pedir cincuenta veces lo mismo para obtener el mismo número. La
+fábrica los cuenta una vez (`./fabrica.sh eventos`) y deja
+`src/data/datos-api.json` en el repo del sitio; el build lo lee y no llama a la
+API. Un torneo entero pasa a costar ~190 llamadas en toda su vida en lugar de
+~190 por cada publicación. Si el JSON no existe, el sitio sigue funcionando
+consultando la API en vivo y lo avisa por consola.
+
+**El pitazo final es un evento con varias consecuencias.** `eventos.py` detecta
+los partidos terminados y corre manejadores sobre cada uno, anotando en el
+registro cuáles ya se hicieron. Hoy está activo `datos` (contar goles); quedan
+declarados `cronica`, `opinion` y `redes`. Los manejadores de contenido tienen
+una ventana de 36 horas: sin eso, el día que se active `cronica` la fábrica
+escribiría de golpe la crónica de los 190 partidos del semestre.
 
 **Nombres de club desde la API.** Se resuelven por `apiId`, nunca por texto: la
 API escribe "Junior" y "Atletico Nacional", y buscar por nombre dejaba al club

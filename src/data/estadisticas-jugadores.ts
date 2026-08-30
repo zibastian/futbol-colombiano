@@ -9,18 +9,19 @@
 // que usa `getStaticPaths`, así que no puede haber un enlace sin página.
 //
 // LA FUENTE ES LA MISMA QUE LA DE LAS TABLAS
-// Este índice se arma con `estadisticasDelTorneo`, exactamente lo que muestran
-// las páginas de sección. Si acá se usara otra fuente, las tablas dirían un
+// Este índice se arma con `datosDe`, la misma puerta de entrada que usan las
+// páginas de sección. Si acá se usara otra fuente, las tablas dirían un
 // número y la ficha del jugador otro. Los datos de ejemplo quedan solo como
 // respaldo para desarrollar sin clave de API.
 
 import { slugify } from '../lib/slug';
 import { TORNEOS } from './torneos';
-import { estadisticasDelTorneo } from '../lib/apifootball';
+import { datosDe } from './deportivos';
 import {
   goleadoresLiga, asistenciasLiga, goleadoresTorneo, asistenciasTorneo,
-  goleadoresCopa, asistenciasCopa, type Anotador
+  goleadoresCopa, asistenciasCopa
 } from './estadisticas-demo';
+import type { Anotador } from './deportivos';
 
 export interface LineaEstadistica {
   torneo: string;
@@ -58,15 +59,15 @@ let hayDatosReales = false;
 
 const FUENTES: Fuente[] = await Promise.all(
   TORNEOS.map(async (t): Promise<Fuente> => {
-    const real = await estadisticasDelTorneo(t.ligaId, t.season);
-    if (real.goles.length) {
+    const real = await datosDe(t.slug, t.ligaId, t.season);
+    if (real.goleadores.length) {
       hayDatosReales = true;
       // El nombre lleva el torneo: en Colombia "Liga BetPlay" sola es ambiguo,
       // hay dos campeonatos por año y los números son de uno solo.
       return {
-        torneo: real.torneo ? `${t.nombre} ${real.torneo}` : t.nombre,
+        torneo: real.torneoVigente ? `${t.nombre} ${real.torneoVigente}` : t.nombre,
         torneoSlug: t.slug,
-        goles: real.goles,
+        goles: real.goleadores,
         asistencias: real.asistencias
       };
     }
