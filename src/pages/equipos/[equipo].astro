@@ -13,6 +13,8 @@ import {
   goleadoresTorneo, asistenciasTorneo
 } from '../../data/estadisticas-demo';
 import { urlNota } from '../../lib/rutas';
+import { TORNEOS } from '../../data/torneos';
+import { datosDe } from '../../data/deportivos';
 
 export async function getStaticPaths() {
   const { EQUIPOS } = await import('../../data/equipos');
@@ -27,10 +29,37 @@ const notas = (await getCollection('noticias', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 12);
 
-// Tabla donde aparece el equipo, con su fila resaltada
+// Tabla donde aparece el equipo, con su fila resaltada.
+//
+// Sale de la MISMA fuente que la página de la competición. Antes esta ficha
+// leía solo los datos de ejemplo: un club recién ascendido —o uno nuevo, como
+// Independiente Yumbo— aparecía con números inventados aunque la sección de su
+// torneo ya mostrara los reales.
+const suTorneo = TORNEOS.find(
+  (t) => t.slug === (equipo.division === 'A' ? 'liga-betplay' : 'torneo-betplay')
+);
+const datos = suTorneo ? await datosDe(suTorneo.slug, suTorneo.ligaId, suTorneo.season) : null;
+
+const aFila = (f: any) => ({
+  posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados, e: f.empatados,
+  p: f.perdidos, gf: f.golesFavor, gc: f.golesContra, dg: f.diferencia, pts: f.puntos,
+  logo: f.logo || undefined
+});
+const estaAca = (filas: any[]) =>
+  filas.some((f) => f.equipoId === equipo.apiId || buscarEquipo(f.equipo)?.slug === equipo.slug);
+
 let tabla: any[] = [];
 let tituloTabla = '';
-if (equipo.division === 'A' && TABLA_DEMO) {
+const grupoReal = (datos?.grupos ?? []).find((g) => g.filas.length && estaAca(g.filas));
+if (grupoReal) {
+  // Se prefiere la tabla vigente si el club también está ahí: es la que importa.
+  const vigenteSirve = datos!.tabla.length > 0 && estaAca(datos!.tabla);
+  const elegido = vigenteSirve
+    ? { nombre: datos!.tablaNombre ?? '', filas: datos!.tabla }
+    : grupoReal;
+  tabla = elegido.filas.map(aFila);
+  tituloTabla = [suTorneo?.nombre, elegido.nombre].filter(Boolean).join(' · ');
+} else if (equipo.division === 'A' && TABLA_DEMO) {
   tabla = tablaDemo;
   tituloTabla = 'Liga BetPlay';
 } else if (GRUPOS_DEMO) {
@@ -44,12 +73,18 @@ if (equipo.division === 'A' && TABLA_DEMO) {
 // Goleadores y asistentes SOLO de este equipo
 const delEquipo = (lista: any[]) =>
   lista.filter((f) => buscarEquipo(f.equipo)?.slug === equipo.slug);
-const goles = ESTADISTICAS_DEMO
-  ? delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo)
-  : [];
-const asistencias = ESTADISTICAS_DEMO
-  ? delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
-  : [];
+const hayReales = Boolean(datos?.goleadores.length);
+const goles = hayReales
+  ? delEquipo(datos!.goleadores)
+  : ESTADISTICAS_DEMO
+    ? delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo)
+    : [];
+const asistencias = hayReales
+  ? delEquipo(datos!.asistencias)
+  : ESTADISTICAS_DEMO
+    ? delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
+    : [];
+const datosSonDemo = !grupoReal && !hayReales;
 
 const equipoLd = {
   '@context': 'https://schema.org',
@@ -97,7 +132,9 @@ const equipoLd = {
   {tabla.length > 0 && (
     <section class="bloque-tabla">
       <h2 class="seccion">Posición en el torneo</h2>
-      <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+      {datosSonDemo && (
+        <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
+      )}
       <TablaPosiciones filas={tabla} titulo={tituloTabla} destacar={equipo.slug} compacta={true} clasifican={equipo.division === 'A' ? 8 : 2} />
     </section>
   )}

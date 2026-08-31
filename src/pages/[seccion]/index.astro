@@ -118,14 +118,20 @@ const hayCuadrangulares = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.s
 const hayFinal = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'final');
 const gruposFase = hayCuadrangulares ? cuadrangulares() : [];
 
-// TODAS las etapas del torneo en la misma página. Cuando empiezan los
-// cuadrangulares la gente sigue queriendo ver el todos contra todos, y cuando
-// arranca el Clausura sigue consultando cómo terminó el Apertura. La vigente va
-// arriba; las demás quedan abajo, plegadas.
+// Las otras ETAPAS DEL MISMO TORNEO, para ver todo en una sola página: cuando
+// empiezan los cuadrangulares la gente sigue mirando el todos contra todos.
+//
+// El torneo ANTERIOR no entra acá. El Apertura ya terminó y es otro campeonato:
+// mostrarlo debajo del Clausura confunde más de lo que aporta. Cuando haya que
+// consultarlo irá en su propia página, no colgando de la del torneo en curso.
+const mismoTorneo = (nombreApi: string) =>
+  Boolean(datos?.torneoVigente) &&
+  nombreApi.toLowerCase().includes(datos!.torneoVigente!.toLowerCase());
+
 const otrasEtapas = esGrupos
   ? []
   : (datos?.grupos ?? [])
-      .filter((g) => g.nombre !== datos?.tablaNombre && g.filas.length)
+      .filter((g) => g.nombre !== datos?.tablaNombre && g.filas.length && mismoTorneo(g.nombreApi))
       .map((g) => ({ nombre: g.nombre, filas: g.filas.map(aFila) }));
 
 const hayDatos = tablaUnica.length > 0 || grupos.length > 0 || gruposFase.length > 0;
@@ -171,17 +177,6 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
 
   {hayFinal && <LlaveFinal final={FINAL_DEMO} />}
 
-  {otrasEtapas.length > 0 && (
-    <details class="otras-etapas">
-      <summary>Otras etapas del torneo ({otrasEtapas.length})</summary>
-      <div class="grilla-grupos">
-        {otrasEtapas.map((g) => (
-          <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={0} compacta={true} />
-        ))}
-      </div>
-    </details>
-  )}
-
   {gruposFase.length > 0 && (
     <>
       <h2 class="seccion">Cuadrangulares semifinales</h2>
@@ -209,6 +204,17 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
       )}
       <TablaPosiciones filas={tablaUnica} clasifican={8} />
     </>
+  )}
+
+  {otrasEtapas.length > 0 && (
+    <details class="otras-etapas">
+      <summary>Otras etapas de este torneo ({otrasEtapas.length})</summary>
+      <div class="grilla-grupos">
+        {otrasEtapas.map((g) => (
+          <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={0} compacta={true} />
+        ))}
+      </div>
+    </details>
   )}
 
   {grupos.length > 0 && (
@@ -372,6 +378,11 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
      que una tabla con nombres largos se estire y deje a la otra angosta. */
   .grilla-grupos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; align-items: start; }
   @media (max-width: 760px) { .grilla-grupos { grid-template-columns: 1fr; } }
+
+  /* La tabla trae `max-width: 760px` para no estirarse cuando va sola. Dentro
+     de la grilla eso la centraba en su celda y las dos quedaban con huecos
+     distintos: acá manda la celda. */
+  .grilla-grupos :global(.tabla-bloque) { max-width: none; margin-left: 0; margin-right: 0; width: 100%; }
 
   .otras-etapas { margin: 1.4rem 0 1.8rem; }
   .otras-etapas > summary {

@@ -78,8 +78,8 @@ export const MENU: ItemMenu[] = [
       { nombre: 'Torneo BetPlay', url: '/torneo-betplay' },
       { nombre: 'Copa BetPlay', url: '/copa-betplay' },
       { nombre: 'Liga Femenina BetPlay', url: '/liga-femenina' },
-      { nombre: 'Copa Libertadores', proximamente: true },
-      { nombre: 'Copa Sudamericana', proximamente: true }
+      { nombre: 'Copa Libertadores', url: '/libertadores' },
+      { nombre: 'Copa Sudamericana', url: '/sudamericana' }
     ]
   },
   { nombre: 'Colombianos en el exterior', url: '/colombianos-en-el-exterior' },
@@ -103,6 +103,12 @@ const ALIAS_TORNEO: Record<string, string> = {
   'copa-betplay-dimayor': 'copa-betplay',
   'liga-femenina': 'liga-femenina',
   'liga-femenina-betplay': 'liga-femenina',
+  'libertadores': 'libertadores',
+  'copa-libertadores': 'libertadores',
+  'conmebol-libertadores': 'libertadores',
+  'sudamericana': 'sudamericana',
+  'copa-sudamericana': 'sudamericana',
+  'conmebol-sudamericana': 'sudamericana',
   'liga-femenina-betplay-dimayor': 'liga-femenina',
   'liga-profesional-femenina': 'liga-femenina',
   'futbol-femenino': 'liga-femenina'
