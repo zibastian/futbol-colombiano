@@ -12,5 +12,10 @@ const SEASON =
 export const TORNEOS = [
   { slug: 'liga-betplay', nombre: 'Liga BetPlay', ligaId: 239, season: SEASON },
   { slug: 'torneo-betplay', nombre: 'Torneo BetPlay', ligaId: 240, season: SEASON },
-  { slug: 'copa-betplay', nombre: 'Copa BetPlay', ligaId: 241, season: SEASON }
+  { slug: 'copa-betplay', nombre: 'Copa BetPlay', ligaId: 241, season: SEASON },
+  // En estas juegan decenas de clubes extranjeros que no están en equipos.ts.
+  // La tabla igual funciona: el escudo sale del que manda la API y el nombre
+  // queda como ella lo escribe.
+  { slug: 'libertadores', nombre: 'Copa Libertadores', ligaId: 13, season: SEASON },
+  { slug: 'sudamericana', nombre: 'Copa Sudamericana', ligaId: 11, season: SEASON }
 ];

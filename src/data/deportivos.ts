@@ -26,8 +26,36 @@ export interface Anotador {
 }
 
 export interface Grupo {
+  /** Ya traducido y listo para mostrar. */
   nombre: string;
+  /** Como lo llama la API. Sirve para emparejar con `tablaVigente`. */
+  nombreApi: string;
   filas: FilaTabla[];
+}
+
+/** El nombre del grupo, en español y sin la ferretería de la API.
+ *
+ *  La API mezcla inglés y prefijos internos: "Round 1 - Group B",
+ *  "Primera B: Clausura", "Group Stage". Al hincha hay que mostrarle
+ *  "Grupo B" y "Clausura". Se traduce SOLO para mostrar: el emparejamiento
+ *  interno sigue usando el nombre original, que es el que no cambia. */
+export function nombreTorneo(nombre: string): string {
+  let n = (nombre || '').trim();
+  n = n.replace(/^Primera\s+[AB]:\s*/i, '');      // "Primera B: Clausura"
+  n = n.replace(/^Round\s+\d+\s*-\s*/i, '');      // "Round 1 - Group B"
+  // El ORDEN importa: "Quarter-finals" contiene "finals", y la traducción de
+  // "Play-offs" produce un "final" en español que la regla de Final volvería a
+  // capitalizar ("Fase Final"). Primero lo específico, después lo general.
+  n = n.replace(/\bQuarter-?finals?\b/gi, 'Cuartos de final');
+  n = n.replace(/\bSemi-?finals?\b/gi, 'Semifinales');
+  n = n.replace(/\bFinals?\b/g, 'Final');
+  n = n.replace(/\bGroup Stage\b/gi, 'Fase de grupos');
+  n = n.replace(/\bGroup\b/gi, 'Grupo');
+  n = n.replace(/\bPlay-?offs?\b/gi, 'Fase final');
+  n = n.replace(/\bQuadrangulars?\b/gi, 'Cuadrangulares');
+  n = n.replace(/\bTabla Anual\b/gi, 'Tabla anual');
+  n = n.replace(/\s*-\s*/g, ' · ').replace(/\s+/g, ' ').trim();
+  return n || nombre;
 }
 
 export interface DatosCompeticion {
@@ -36,6 +64,8 @@ export interface DatosCompeticion {
   torneoVigente: string | null;
   /** Tabla del grupo vigente. En una copa hay varios: ver `grupos`. */
   tabla: FilaTabla[];
+  /** Cómo se llama esa tabla, ya en español ("Clausura", "Tabla anual"). */
+  tablaNombre: string | null;
   /** Todos los grupos de la competición, para la fase de grupos de la copa. */
   grupos: Grupo[];
   goleadores: Anotador[];
@@ -75,7 +105,9 @@ const filaDeJson = (f: any): FilaTabla => ({
   posicion: f.posicion,
   equipoId: f.equipoId,
   equipo: club(f.equipoId, f.equipo ?? ''),
-  logo: '',
+  // Escudo de la API: es el que se usa para los clubes extranjeros de
+  // Libertadores y Sudamericana, que no están en nuestra base.
+  logo: f.logo ?? '',
   puntos: f.puntos,
   jugados: f.jugados,
   ganados: f.ganados,
@@ -108,8 +140,10 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
     return {
       torneoVigente: precalculado.torneoVigente ?? null,
       tabla: (vigente?.tabla ?? []).map(filaDeJson),
+      tablaNombre: vigente ? nombreTorneo(vigente.nombre) : null,
       grupos: torneos.map((t: any) => ({
-        nombre: t.nombre,
+        nombre: nombreTorneo(t.nombre),
+        nombreApi: t.nombre,
         filas: (t.tabla ?? []).map(filaDeJson)
       })),
       goleadores: (precalculado.goleadores ?? []).map(anotadorDeJson),
@@ -126,7 +160,10 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
   return {
     torneoVigente: vigente?.nombre ?? null,
     tabla: vigente?.filas ?? [],
-    grupos: torneos.map((t) => ({ nombre: t.nombre, filas: t.filas })),
+    tablaNombre: vigente ? nombreTorneo(vigente.nombre) : null,
+    grupos: torneos.map((t) => ({
+      nombre: nombreTorneo(t.nombre), nombreApi: t.nombre, filas: t.filas
+    })),
     goleadores: est.goles,
     asistencias: est.asistencias,
     fuente: vigente || est.goles.length ? 'api' : 'sin-datos'

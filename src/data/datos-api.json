@@ -1,10 +1,15 @@
 {
-  "generado": "2026-08-30T03:59:50+00:00",
+  "generado": "2026-08-31T02:58:27+00:00",
   "temporada": 2026,
   "competiciones": {
     "liga-betplay": {
       "ligaId": 239,
+      "fase": "todos-contra-todos",
+      "fasesJugadas": [
+        "todos-contra-todos"
+      ],
       "torneoVigente": "Clausura",
+      "tablaVigente": "Clausura",
       "torneos": [
         {
           "nombre": "Apertura",
@@ -21,7 +26,7 @@
               "golesFavor": 35,
               "golesContra": 15,
               "diferencia": 20,
-              "racha": "WWLWW"
+              "racha": "WWWLW"
             },
             {
               "posicion": 2,
@@ -119,7 +124,7 @@
               "golesFavor": 26,
               "golesContra": 26,
               "diferencia": 0,
-              "racha": "DDDLW"
+              "racha": "DDDDL"
             },
             {
               "posicion": 9,
@@ -147,7 +152,7 @@
               "golesFavor": 31,
               "golesContra": 23,
               "diferencia": 8,
-              "racha": "WDWWL"
+              "racha": "DWDWW"
             },
             {
               "posicion": 11,
@@ -161,7 +166,7 @@
               "golesFavor": 26,
               "golesContra": 24,
               "diferencia": 2,
-              "racha": "LWWWL"
+              "racha": "WLWWW"
             },
             {
               "posicion": 12,
@@ -175,7 +180,7 @@
               "golesFavor": 20,
               "golesContra": 25,
               "diferencia": -5,
-              "racha": "DDWWW"
+              "racha": "DDDWW"
             },
             {
               "posicion": 13,
@@ -203,7 +208,7 @@
               "golesFavor": 17,
               "golesContra": 20,
               "diferencia": -3,
-              "racha": "LWDWD"
+              "racha": "LLWDW"
             },
             {
               "posicion": 15,
@@ -245,7 +250,7 @@
               "golesFavor": 13,
               "golesContra": 27,
               "diferencia": -14,
-              "racha": "LDLLD"
+              "racha": "LLDLL"
             },
             {
               "posicion": 18,
@@ -259,7 +264,7 @@
               "golesFavor": 15,
               "golesContra": 32,
               "diferencia": -17,
-              "racha": "DLLLW"
+              "racha": "DDLLL"
             },
             {
               "posicion": 19,
@@ -310,34 +315,62 @@
             },
             {
               "posicion": 2,
-              "equipoId": 1464,
-              "equipo": "Llaneros",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "puntos": 12,
+              "jugados": 5,
+              "ganados": 4,
+              "empatados": 0,
+              "perdidos": 1,
+              "golesFavor": 12,
+              "golesContra": 4,
+              "diferencia": 8,
+              "racha": "WWWLW"
+            },
+            {
+              "posicion": 3,
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "puntos": 12,
+              "jugados": 5,
+              "ganados": 4,
+              "empatados": 0,
+              "perdidos": 1,
+              "golesFavor": 9,
+              "golesContra": 6,
+              "diferencia": 3,
+              "racha": "WLWWW"
+            },
+            {
+              "posicion": 4,
+              "equipoId": 1125,
+              "equipo": "Millonarios",
               "puntos": 11,
               "jugados": 6,
               "ganados": 3,
               "empatados": 2,
               "perdidos": 1,
-              "golesFavor": 7,
-              "golesContra": 5,
-              "diferencia": 2,
-              "racha": "LWDWD"
-            },
-            {
-              "posicion": 3,
-              "equipoId": 1125,
-              "equipo": "Millonarios",
-              "puntos": 10,
-              "jugados": 5,
-              "ganados": 3,
-              "empatados": 1,
-              "perdidos": 1,
               "golesFavor": 6,
               "golesContra": 2,
               "diferencia": 4,
-              "racha": "WDWWL"
+              "racha": "DWDWW"
             },
             {
-              "posicion": 4,
+              "posicion": 5,
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "puntos": 11,
+              "jugados": 7,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 2,
+              "golesFavor": 8,
+              "golesContra": 7,
+              "diferencia": 1,
+              "racha": "LLWDW"
+            },
+            {
+              "posicion": 6,
               "equipoId": 1142,
               "equipo": "Deportes Tolima",
               "puntos": 10,
@@ -351,35 +384,21 @@
               "racha": "DWLWW"
             },
             {
-              "posicion": 5,
-              "equipoId": 1137,
-              "equipo": "Atletico Nacional",
-              "puntos": 9,
-              "jugados": 4,
-              "ganados": 3,
-              "empatados": 0,
-              "perdidos": 1,
-              "golesFavor": 7,
-              "golesContra": 3,
-              "diferencia": 4,
-              "racha": "WWLWW"
-            },
-            {
-              "posicion": 6,
-              "equipoId": 1128,
-              "equipo": "Independiente Medellin",
-              "puntos": 9,
-              "jugados": 4,
-              "ganados": 3,
-              "empatados": 0,
-              "perdidos": 1,
-              "golesFavor": 7,
-              "golesContra": 5,
-              "diferencia": 2,
-              "racha": "LWWWL"
-            },
-            {
               "posicion": 7,
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "puntos": 9,
+              "jugados": 5,
+              "ganados": 2,
+              "empatados": 3,
+              "perdidos": 0,
+              "golesFavor": 8,
+              "golesContra": 6,
+              "diferencia": 2,
+              "racha": "DDDWW"
+            },
+            {
+              "posicion": 8,
               "equipoId": 1131,
               "equipo": "Bucaramanga",
               "puntos": 9,
@@ -391,20 +410,6 @@
               "golesContra": 4,
               "diferencia": 2,
               "racha": "DWDDW"
-            },
-            {
-              "posicion": 8,
-              "equipoId": 1144,
-              "equipo": "Águilas Doradas",
-              "puntos": 8,
-              "jugados": 4,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 0,
-              "golesFavor": 6,
-              "golesContra": 4,
-              "diferencia": 2,
-              "racha": "DDWWW"
             },
             {
               "posicion": 9,
@@ -436,6 +441,20 @@
             },
             {
               "posicion": 11,
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "puntos": 7,
+              "jugados": 7,
+              "ganados": 1,
+              "empatados": 4,
+              "perdidos": 2,
+              "golesFavor": 6,
+              "golesContra": 8,
+              "diferencia": -2,
+              "racha": "DDDDL"
+            },
+            {
+              "posicion": 12,
               "equipoId": 1136,
               "equipo": "Once Caldas",
               "puntos": 6,
@@ -449,7 +468,7 @@
               "racha": "DDLDW"
             },
             {
-              "posicion": 12,
+              "posicion": 13,
               "equipoId": 1139,
               "equipo": "Santa Fe",
               "puntos": 6,
@@ -463,7 +482,7 @@
               "racha": "DDWDL"
             },
             {
-              "posicion": 13,
+              "posicion": 14,
               "equipoId": 1147,
               "equipo": "Fortaleza FC",
               "puntos": 6,
@@ -475,20 +494,6 @@
               "golesContra": 6,
               "diferencia": -1,
               "racha": "DLWLD"
-            },
-            {
-              "posicion": 14,
-              "equipoId": 1134,
-              "equipo": "Internacional de Bogota",
-              "puntos": 6,
-              "jugados": 6,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 2,
-              "golesFavor": 6,
-              "golesContra": 8,
-              "diferencia": -2,
-              "racha": "DDDLW"
             },
             {
               "posicion": 15,
@@ -520,20 +525,6 @@
             },
             {
               "posicion": 17,
-              "equipoId": 1141,
-              "equipo": "Alianza Valledupar",
-              "puntos": 2,
-              "jugados": 5,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 3,
-              "golesFavor": 4,
-              "golesContra": 7,
-              "diferencia": -3,
-              "racha": "LDLLD"
-            },
-            {
-              "posicion": 18,
               "equipoId": 1135,
               "equipo": "Junior",
               "puntos": 2,
@@ -547,7 +538,35 @@
               "racha": "DLDLL"
             },
             {
+              "posicion": 18,
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "puntos": 2,
+              "jugados": 6,
+              "ganados": 0,
+              "empatados": 2,
+              "perdidos": 4,
+              "golesFavor": 5,
+              "golesContra": 12,
+              "diferencia": -7,
+              "racha": "LLDLL"
+            },
+            {
               "posicion": 19,
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "puntos": 2,
+              "jugados": 5,
+              "ganados": 0,
+              "empatados": 2,
+              "perdidos": 3,
+              "golesFavor": 2,
+              "golesContra": 12,
+              "diferencia": -10,
+              "racha": "DDLLL"
+            },
+            {
+              "posicion": 20,
               "equipoId": 1126,
               "equipo": "Deportivo Pasto",
               "puntos": 1,
@@ -559,20 +578,6 @@
               "golesContra": 11,
               "diferencia": -7,
               "racha": "DLLLL"
-            },
-            {
-              "posicion": 20,
-              "equipoId": 1132,
-              "equipo": "Chico",
-              "puntos": 1,
-              "jugados": 4,
-              "ganados": 0,
-              "empatados": 1,
-              "perdidos": 3,
-              "golesFavor": 0,
-              "golesContra": 10,
-              "diferencia": -10,
-              "racha": "DLLLW"
             }
           ]
         }
@@ -615,6 +620,12 @@
           "cantidad": 3
         },
         {
+          "jugador": "J. Montano",
+          "equipoId": 1128,
+          "equipo": "Independiente Medellin",
+          "cantidad": 3
+        },
+        {
           "jugador": "J. Peralta",
           "equipoId": 1470,
           "equipo": "Cucuta",
@@ -630,12 +641,6 @@
           "jugador": "C. Vergara",
           "equipoId": 1141,
           "equipo": "Alianza Valledupar",
-          "cantidad": 2
-        },
-        {
-          "jugador": "D. Moreno",
-          "equipoId": 1136,
-          "equipo": "Once Caldas",
           "cantidad": 2
         }
       ],
@@ -704,7 +709,12 @@
     },
     "torneo-betplay": {
       "ligaId": 240,
-      "torneoVigente": "Primera B: Clausura",
+      "fase": "todos-contra-todos",
+      "fasesJugadas": [
+        "todos-contra-todos"
+      ],
+      "torneoVigente": "Clausura",
+      "tablaVigente": "Primera B: Clausura",
       "torneos": [
         {
           "nombre": "Primera B: Tabla Anual",
@@ -714,28 +724,28 @@
               "equipoId": 1459,
               "equipo": "Real Cartagena",
               "puntos": 50,
-              "jugados": 28,
+              "jugados": 29,
               "ganados": 14,
               "empatados": 8,
-              "perdidos": 6,
+              "perdidos": 7,
               "golesFavor": 48,
-              "golesContra": 30,
-              "diferencia": 18,
-              "racha": "WWLDW"
+              "golesContra": 33,
+              "diferencia": 15,
+              "racha": "LWWLD"
             },
             {
               "posicion": 2,
               "equipoId": 23326,
               "equipo": "Internacional Palmira",
               "puntos": 50,
-              "jugados": 25,
+              "jugados": 26,
               "ganados": 14,
               "empatados": 8,
-              "perdidos": 3,
-              "golesFavor": 35,
-              "golesContra": 20,
-              "diferencia": 15,
-              "racha": "WDDLD"
+              "perdidos": 4,
+              "golesFavor": 36,
+              "golesContra": 23,
+              "diferencia": 13,
+              "racha": "LWDDL"
             },
             {
               "posicion": 3,
@@ -781,31 +791,31 @@
             },
             {
               "posicion": 6,
-              "equipoId": 1458,
-              "equipo": "Bogota FC",
-              "puntos": 33,
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "puntos": 34,
               "jugados": 26,
-              "ganados": 8,
-              "empatados": 9,
-              "perdidos": 9,
-              "golesFavor": 22,
-              "golesContra": 26,
-              "diferencia": -4,
-              "racha": "WLLDW"
+              "ganados": 9,
+              "empatados": 7,
+              "perdidos": 10,
+              "golesFavor": 25,
+              "golesContra": 24,
+              "diferencia": 1,
+              "racha": "WWWDL"
             },
             {
               "posicion": 7,
-              "equipoId": 1145,
-              "equipo": "Tigres FC",
-              "puntos": 31,
-              "jugados": 25,
+              "equipoId": 1458,
+              "equipo": "Bogota FC",
+              "puntos": 33,
+              "jugados": 27,
               "ganados": 8,
-              "empatados": 7,
+              "empatados": 9,
               "perdidos": 10,
-              "golesFavor": 22,
-              "golesContra": 24,
-              "diferencia": -2,
-              "racha": "WWDLD"
+              "golesFavor": 23,
+              "golesContra": 28,
+              "diferencia": -5,
+              "racha": "LWLLD"
             },
             {
               "posicion": 8,
@@ -909,29 +919,29 @@
               "posicion": 15,
               "equipoId": 1463,
               "equipo": "Real Santander",
-              "puntos": 13,
-              "jugados": 20,
-              "ganados": 2,
+              "puntos": 16,
+              "jugados": 21,
+              "ganados": 3,
               "empatados": 7,
               "perdidos": 11,
-              "golesFavor": 17,
-              "golesContra": 34,
-              "diferencia": -17,
-              "racha": "WDDDL"
+              "golesFavor": 20,
+              "golesContra": 35,
+              "diferencia": -15,
+              "racha": "WWDDD"
             },
             {
               "posicion": 16,
               "equipoId": 1468,
               "equipo": "Depor FC",
-              "puntos": 11,
-              "jugados": 19,
-              "ganados": 1,
+              "puntos": 14,
+              "jugados": 20,
+              "ganados": 2,
               "empatados": 8,
               "perdidos": 10,
-              "golesFavor": 16,
-              "golesContra": 31,
-              "diferencia": -15,
-              "racha": "LDDLL"
+              "golesFavor": 18,
+              "golesContra": 32,
+              "diferencia": -14,
+              "racha": "WLDDL"
             }
           ]
         },
@@ -1289,17 +1299,31 @@
               "equipoId": 1459,
               "equipo": "Real Cartagena",
               "puntos": 10,
+              "jugados": 6,
+              "ganados": 3,
+              "empatados": 1,
+              "perdidos": 2,
+              "golesFavor": 14,
+              "golesContra": 8,
+              "diferencia": 6,
+              "racha": "LWWLD"
+            },
+            {
+              "posicion": 2,
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "puntos": 10,
               "jugados": 5,
               "ganados": 3,
               "empatados": 1,
               "perdidos": 1,
-              "golesFavor": 14,
-              "golesContra": 5,
-              "diferencia": 9,
-              "racha": "WWLDW"
+              "golesFavor": 6,
+              "golesContra": 2,
+              "diferencia": 4,
+              "racha": "WWWDL"
             },
             {
-              "posicion": 2,
+              "posicion": 3,
               "equipoId": 27411,
               "equipo": "Ind. Yumbo",
               "puntos": 10,
@@ -1313,7 +1337,21 @@
               "racha": "WLWDW"
             },
             {
-              "posicion": 3,
+              "posicion": 4,
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "puntos": 9,
+              "jugados": 6,
+              "ganados": 2,
+              "empatados": 3,
+              "perdidos": 1,
+              "golesFavor": 11,
+              "golesContra": 12,
+              "diferencia": -1,
+              "racha": "WWDDD"
+            },
+            {
+              "posicion": 5,
               "equipoId": 1469,
               "equipo": "Orsomarso",
               "puntos": 8,
@@ -1327,7 +1365,7 @@
               "racha": "WDDW"
             },
             {
-              "posicion": 4,
+              "posicion": 6,
               "equipoId": 22099,
               "equipo": "Real Cundinamarca",
               "puntos": 8,
@@ -1341,7 +1379,7 @@
               "racha": "WLDWD"
             },
             {
-              "posicion": 5,
+              "posicion": 7,
               "equipoId": 1461,
               "equipo": "Quindio",
               "puntos": 8,
@@ -1355,7 +1393,7 @@
               "racha": "WWDDL"
             },
             {
-              "posicion": 6,
+              "posicion": 8,
               "equipoId": 1140,
               "equipo": "Patriotas",
               "puntos": 8,
@@ -1369,7 +1407,7 @@
               "racha": "LWDDW"
             },
             {
-              "posicion": 7,
+              "posicion": 9,
               "equipoId": 1143,
               "equipo": "Leones FC",
               "puntos": 8,
@@ -1383,63 +1421,49 @@
               "racha": "LLDWD"
             },
             {
-              "posicion": 8,
-              "equipoId": 1145,
-              "equipo": "Tigres FC",
-              "puntos": 7,
-              "jugados": 4,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 1,
-              "golesFavor": 3,
-              "golesContra": 2,
-              "diferencia": 1,
-              "racha": "WWDL"
-            },
-            {
-              "posicion": 9,
+              "posicion": 10,
               "equipoId": 1458,
               "equipo": "Bogota FC",
               "puntos": 7,
-              "jugados": 5,
+              "jugados": 6,
               "ganados": 2,
               "empatados": 1,
-              "perdidos": 2,
-              "golesFavor": 3,
-              "golesContra": 4,
-              "diferencia": -1,
-              "racha": "WLLDW"
-            },
-            {
-              "posicion": 10,
-              "equipoId": 1463,
-              "equipo": "Real Santander",
-              "puntos": 6,
-              "jugados": 5,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 1,
-              "golesFavor": 8,
-              "golesContra": 11,
-              "diferencia": -3,
-              "racha": "WDDDL"
+              "perdidos": 3,
+              "golesFavor": 4,
+              "golesContra": 6,
+              "diferencia": -2,
+              "racha": "LWLLD"
             },
             {
               "posicion": 11,
-              "equipoId": 23326,
-              "equipo": "Internacional Palmira",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
               "puntos": 5,
-              "jugados": 4,
+              "jugados": 5,
               "ganados": 1,
               "empatados": 2,
-              "perdidos": 1,
-              "golesFavor": 3,
-              "golesContra": 4,
-              "diferencia": -1,
-              "racha": "WDDL"
+              "perdidos": 2,
+              "golesFavor": 6,
+              "golesContra": 9,
+              "diferencia": -3,
+              "racha": "WLDDL"
             },
             {
               "posicion": 12,
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "puntos": 5,
+              "jugados": 5,
+              "ganados": 1,
+              "empatados": 2,
+              "perdidos": 2,
+              "golesFavor": 4,
+              "golesContra": 7,
+              "diferencia": -3,
+              "racha": "LWDDL"
+            },
+            {
+              "posicion": 13,
               "equipoId": 1129,
               "equipo": "Envigado",
               "puntos": 4,
@@ -1453,7 +1477,7 @@
               "racha": "LLDW"
             },
             {
-              "posicion": 13,
+              "posicion": 14,
               "equipoId": 1460,
               "equipo": "Popayan",
               "puntos": 4,
@@ -1467,7 +1491,7 @@
               "racha": "LLDW"
             },
             {
-              "posicion": 14,
+              "posicion": 15,
               "equipoId": 1466,
               "equipo": "Barranquilla",
               "puntos": 2,
@@ -1478,20 +1502,6 @@
               "golesFavor": 4,
               "golesContra": 6,
               "diferencia": -2,
-              "racha": "LDDL"
-            },
-            {
-              "posicion": 15,
-              "equipoId": 1468,
-              "equipo": "Depor FC",
-              "puntos": 2,
-              "jugados": 4,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 2,
-              "golesFavor": 4,
-              "golesContra": 8,
-              "diferencia": -4,
               "racha": "LDDL"
             },
             {
@@ -1511,12 +1521,79 @@
           ]
         }
       ],
-      "goleadores": [],
+      "goleadores": [
+        {
+          "jugador": "K. Alvarez",
+          "equipoId": 1140,
+          "equipo": "Patriotas",
+          "cantidad": 5
+        },
+        {
+          "jugador": "M. Diaz",
+          "equipoId": 1463,
+          "equipo": "Real Santander",
+          "cantidad": 5
+        },
+        {
+          "jugador": "A. Onate",
+          "equipoId": 1468,
+          "equipo": "Depor FC",
+          "cantidad": 3
+        },
+        {
+          "jugador": "B. Campaz",
+          "equipoId": 1469,
+          "equipo": "Orsomarso",
+          "cantidad": 3
+        },
+        {
+          "jugador": "C. Rodriguez Cespedes",
+          "equipoId": 1143,
+          "equipo": "Leones FC",
+          "cantidad": 3
+        },
+        {
+          "jugador": "P. Rodriguez",
+          "equipoId": 1463,
+          "equipo": "Real Santander",
+          "cantidad": 3
+        },
+        {
+          "jugador": "C. Restrepo",
+          "equipoId": 1468,
+          "equipo": "Depor FC",
+          "cantidad": 2
+        },
+        {
+          "jugador": "D. Rativa",
+          "equipoId": 1145,
+          "equipo": "Tigres FC",
+          "cantidad": 2
+        },
+        {
+          "jugador": "D. Tapia",
+          "equipoId": 1463,
+          "equipo": "Real Santander",
+          "cantidad": 2
+        },
+        {
+          "jugador": "E. Lopez",
+          "equipoId": 1459,
+          "equipo": "Real Cartagena",
+          "cantidad": 2
+        }
+      ],
       "asistencias": []
     },
     "copa-betplay": {
       "ligaId": 241,
-      "torneoVigente": "Round 1 - Group D",
+      "fase": "playoffs",
+      "fasesJugadas": [
+        "grupos",
+        "playoffs"
+      ],
+      "torneoVigente": null,
+      "tablaVigente": "Round 1 - Group D",
       "torneos": [
         {
           "nombre": "Round 1 - Group A",
@@ -1819,7 +1896,68 @@
           ]
         }
       ],
-      "goleadores": [],
+      "goleadores": [
+        {
+          "jugador": "D. Lopez",
+          "equipoId": 1133,
+          "equipo": "Jaguares",
+          "cantidad": 3
+        },
+        {
+          "jugador": "J. Hurtado",
+          "equipoId": 1125,
+          "equipo": "Millonarios",
+          "cantidad": 3
+        },
+        {
+          "jugador": "J. Molina",
+          "equipoId": 1132,
+          "equipo": "Chico",
+          "cantidad": 3
+        },
+        {
+          "jugador": "Jhon Vasquez",
+          "equipoId": 1464,
+          "equipo": "Llaneros",
+          "cantidad": 3
+        },
+        {
+          "jugador": "L. Castro",
+          "equipoId": 1125,
+          "equipo": "Millonarios",
+          "cantidad": 3
+        },
+        {
+          "jugador": "P. Urrutia",
+          "equipoId": 1460,
+          "equipo": "Popayan",
+          "cantidad": 3
+        },
+        {
+          "jugador": "B. Caicedo",
+          "equipoId": 1131,
+          "equipo": "Bucaramanga",
+          "cantidad": 2
+        },
+        {
+          "jugador": "E. Batalla",
+          "equipoId": 1131,
+          "equipo": "Bucaramanga",
+          "cantidad": 2
+        },
+        {
+          "jugador": "H. Mosquera",
+          "equipoId": 1460,
+          "equipo": "Popayan",
+          "cantidad": 2
+        },
+        {
+          "jugador": "I. Montano",
+          "equipoId": 1132,
+          "equipo": "Chico",
+          "cantidad": 2
+        }
+      ],
       "asistencias": []
     }
   }

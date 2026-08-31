@@ -43,10 +43,12 @@ const torneo = TORNEOS.find((t) => t.slug === seccion.slug);
 const datos = torneo
   ? await datosDe(torneo.slug, torneo.ligaId, torneo.season)
   : null;
-const filasReales = (datos?.tabla ?? []).map((f) => ({
+const aFila = (f: any) => ({
   posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados, e: f.empatados,
-  p: f.perdidos, gf: f.golesFavor, gc: f.golesContra, dg: f.diferencia, pts: f.puntos
-}));
+  p: f.perdidos, gf: f.golesFavor, gc: f.golesContra, dg: f.diferencia, pts: f.puntos,
+  logo: f.logo || undefined
+});
+const filasReales = (datos?.tabla ?? []).map(aFila);
 
 const esLiga = seccion.formato === 'liga';
 const esGrupos = seccion.formato === 'grupos';
@@ -66,14 +68,7 @@ const tablaUnica = esGrupos
 // La copa se juega en grupos: van todos, no uno solo.
 const gruposReales = esGrupos ? (datos?.grupos ?? []) : [];
 const grupos = gruposReales.length
-  ? gruposReales.map((g) => ({
-      nombre: g.nombre,
-      filas: g.filas.map((f) => ({
-        posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados,
-        e: f.empatados, p: f.perdidos, gf: f.golesFavor, gc: f.golesContra,
-        dg: f.diferencia, pts: f.puntos
-      }))
-    }))
+  ? gruposReales.map((g) => ({ nombre: g.nombre, filas: g.filas.map(aFila) }))
   : esGrupos && GRUPOS_DEMO && usarDemo
     ? gruposDemo
     : [];
@@ -123,6 +118,16 @@ const hayCuadrangulares = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.s
 const hayFinal = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'final');
 const gruposFase = hayCuadrangulares ? cuadrangulares() : [];
 
+// TODAS las etapas del torneo en la misma página. Cuando empiezan los
+// cuadrangulares la gente sigue queriendo ver el todos contra todos, y cuando
+// arranca el Clausura sigue consultando cómo terminó el Apertura. La vigente va
+// arriba; las demás quedan abajo, plegadas.
+const otrasEtapas = esGrupos
+  ? []
+  : (datos?.grupos ?? [])
+      .filter((g) => g.nombre !== datos?.tablaNombre && g.filas.length)
+      .map((g) => ({ nombre: g.nombre, filas: g.filas.map(aFila) }));
+
 const hayDatos = tablaUnica.length > 0 || grupos.length > 0 || gruposFase.length > 0;
 
 // Las firmas de club se agrupan por equipo: son 41 y en una sola grilla plana
@@ -165,6 +170,17 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
   )}
 
   {hayFinal && <LlaveFinal final={FINAL_DEMO} />}
+
+  {otrasEtapas.length > 0 && (
+    <details class="otras-etapas">
+      <summary>Otras etapas del torneo ({otrasEtapas.length})</summary>
+      <div class="grilla-grupos">
+        {otrasEtapas.map((g) => (
+          <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={0} compacta={true} />
+        ))}
+      </div>
+    </details>
+  )}
 
   {gruposFase.length > 0 && (
     <>
@@ -352,7 +368,18 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
   }
   .nota-tabla { font-size: 0.82rem; color: var(--gris); text-align: center; margin: -0.5rem auto 0.8rem; }
   .ver-mas { margin-top: 1.6rem; font-family: var(--condensada); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.5px; }
-  .grilla-grupos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; }
+  /* Dos por fila en desktop y del MISMO ancho: `minmax(0, 1fr)` es lo que evita
+     que una tabla con nombres largos se estire y deje a la otra angosta. */
+  .grilla-grupos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; align-items: start; }
+  @media (max-width: 760px) { .grilla-grupos { grid-template-columns: 1fr; } }
+
+  .otras-etapas { margin: 1.4rem 0 1.8rem; }
+  .otras-etapas > summary {
+    cursor: pointer; font-weight: 700; padding: 0.6rem 0.2rem;
+    border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde);
+  }
+  .otras-etapas > summary:hover { color: var(--acento); }
+  .otras-etapas > .grilla-grupos { margin-top: 1.1rem; }
   .grilla-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.6rem; }
 
   .tablero-exterior { margin-bottom: 1.6rem; }

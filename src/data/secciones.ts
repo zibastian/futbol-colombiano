@@ -32,6 +32,14 @@ export const SECCIONES: Seccion[] = [
     descripcion: 'La Copa Colombia: el torneo que se juega todo el año y cruza a los clubes de primera y segunda división.'
   },
   {
+    slug: 'libertadores', nombre: 'Copa Libertadores', enMenu: true, formato: 'grupos',
+    descripcion: 'La Copa Libertadores: grupos, resultados, goleadores y el camino de los equipos colombianos en el torneo más importante del continente.'
+  },
+  {
+    slug: 'sudamericana', nombre: 'Copa Sudamericana', enMenu: true, formato: 'grupos',
+    descripcion: 'La Copa Sudamericana: grupos, resultados, goleadores y la campaña de los clubes colombianos.'
+  },
+  {
     slug: 'colombianos-en-el-exterior', nombre: 'Colombianos en el exterior', enMenu: true,
     descripcion: 'El seguimiento diario de los futbolistas colombianos en Europa, MLS, Brasil, Argentina y México.'
   },

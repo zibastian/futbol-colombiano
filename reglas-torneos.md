@@ -88,6 +88,8 @@ Entre dos equipos de la A, manda la reclasificación del primer semestre.
 
 ### Libertadores y Sudamericana — se acumula POR TEMPORADA
 
+**Ya están conectadas** (`libertadores` id 13, `sudamericana` id 11).
+
 **Los goles de las fases previas SÍ cuentan** para la tabla de goleadores. Un
 jugador que marcó en la segunda fase clasificatoria llega a la fase de grupos con
 esos goles encima.
@@ -97,6 +99,11 @@ juega menos partidos que el que vino desde la fase 1. Si algún día el goleador
 ve raro, ése es el primer lugar donde mirar.
 
 En el código: `acumula: "temporada"`.
+
+**Los clubes extranjeros no están en `equipos.ts` y no hace falta que estén.**
+Son decenas y cambian cada año. La tabla usa el escudo que manda la API y el
+nombre como ella lo escribe. Solo los clubes colombianos tienen ficha, escudo
+propio y enlace.
 
 ### Liga Femenina BetPlay
 

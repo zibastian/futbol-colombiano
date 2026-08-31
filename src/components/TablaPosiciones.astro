@@ -4,6 +4,10 @@ import { buscarEquipo, escudoDe } from '../data/equipos';
 interface Fila {
   posicion: number; equipo: string; pj: number; g: number; e: number;
   p: number; gf: number; gc: number; dg: number; pts: number;
+  /** Escudo remoto de la API. Solo se usa para clubes que no tenemos en la
+   *  base: en Libertadores juegan decenas de equipos extranjeros y cargarlos
+   *  todos a mano no tiene sentido. */
+  logo?: string;
 }
 interface Props {
   filas: Fila[];
@@ -21,7 +25,7 @@ const filasPreparadas = filas.map((f) => {
   return {
     ...f,
     equipoRef: eq,
-    escudo: escudoDe(eq, 64),
+    escudo: escudoDe(eq, 64) ?? f.logo ?? null,
     clasifica: f.posicion <= clasifican,
     esDestacado: Boolean(eq && destacar && eq.slug === destacar),
     dgTexto: f.dg > 0 ? `+${f.dg}` : String(f.dg)

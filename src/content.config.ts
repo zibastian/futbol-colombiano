@@ -34,6 +34,7 @@ const noticias = defineCollection({
     seccion: z
       .enum([
         'liga-betplay', 'torneo-betplay', 'copa-betplay', 'liga-femenina',
+        'libertadores', 'sudamericana',
         'colombianos-en-el-exterior', 'fichajes', 'opinion', 'noticias'
       ])
       .optional(),
