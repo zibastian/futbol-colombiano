@@ -118,7 +118,7 @@ const fichasExterior =
 // vigente va primero; las ya jugadas se conservan más abajo porque la gente
 // sigue consultando el todos contra todos durante los cuadrangulares.
 const esTorneoLargo = esLiga && seccion.slug in FASE_ACTUAL;
-const fase = esTorneoLargo ? faseDe(seccion.slug) : 'todos-contra-todos';
+const fase = faseDe(seccion.slug);
 const hayCuadrangulares = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'cuadrangulares');
 const hayFinal = esTorneoLargo && FASES_DEMO && faseAlcanzada(seccion.slug, 'final');
 const gruposFase = hayCuadrangulares ? cuadrangulares() : [];

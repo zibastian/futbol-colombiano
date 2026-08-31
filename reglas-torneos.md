@@ -45,6 +45,10 @@ al mismo tiempo**. Cualquier `FASE_ACTUAL` escrita a mano queda mal sola.
 | Copa BetPlay | `Group Stage` | 40 |
 | | `Play-offs` | 15 |
 
+La fase en curso se deduce de esos nombres: hoy la Copa figura en `playoffs`
+habiendo jugado `grupos`, y la Liga en `todos-contra-todos`. El sitio lo lee de
+ahí, no de una constante.
+
 **Ojo con la puntuación**, porque de eso depende que los goles se sumen bien:
 `Apertura - Quarter-finals` lleva guion, `Apertura Quadrangular` **no**. Son dos
 convenciones distintas en la misma API. Por eso el código corta por guion *y*
@@ -73,21 +77,26 @@ Copa incluye todo: no se reinicia al pasar de instancia.
 
 En el código: `acumula: "temporada"`.
 
-**Formato 2026** (cambió sobre la marcha, después del sismo que obligó a
+**Estructura normal:** fase de grupos y, a partir de ahí, **llaves de ida y
+vuelta** hasta el campeón.
+
+**Excepción 2026** (cambió sobre la marcha, después del sismo que obligó a
 reprogramar): octavos y cuartos a **partido único**; semifinal y final siguen a
-ida y vuelta. Cuando un equipo de la B enfrenta a uno de la A, **la B es local**.
+ida y vuelta. Es un buen recordatorio de que hasta el formato de una copa se
+puede mover a mitad de camino. Cuando un equipo de la B enfrenta a uno de la A, **la B es local**.
 Entre dos equipos de la A, manda la reclasificación del primer semestre.
 
-### Libertadores y Sudamericana — pendiente de verificar
+### Libertadores y Sudamericana — se acumula POR TEMPORADA
 
-Todavía no están en el sitio. Antes de agregarlas hay que resolver **una sola
-pregunta**: si los goles de las fases previas cuentan para el goleador oficial.
-No lo pude confirmar con fuente seria, así que queda anotado en vez de
-adivinado.
+**Los goles de las fases previas SÍ cuentan** para la tabla de goleadores. Un
+jugador que marcó en la segunda fase clasificatoria llega a la fase de grupos con
+esos goles encima.
 
-Mientras tanto, el default razonable es `acumula: "temporada"` (todo el
-certamen), igual que la Copa BetPlay. Y verificarlo contra la tabla oficial de
-CONMEBOL antes de publicar.
+Es lo que más se presta a error, porque el equipo que entra directo a grupos
+juega menos partidos que el que vino desde la fase 1. Si algún día el goleador se
+ve raro, ése es el primer lugar donde mirar.
+
+En el código: `acumula: "temporada"`.
 
 ### Liga Femenina BetPlay
 

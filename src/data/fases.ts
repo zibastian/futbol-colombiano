@@ -15,16 +15,36 @@
 // cuadrangulares la gente sigue queriendo ver el todos contra todos, así que la
 // fase vigente va arriba y las anteriores quedan abajo, no desaparecen.
 //
-// `FASE_ACTUAL` es lo único que hay que mover cuando el torneo avanza. Cuando la
-// API entregue datos reales, esto sale del calendario en vez de escribirse a mano.
+// LA FASE YA NO SE ESCRIBE A MANO
+// Sale de `datos-api.json`, deducida de la ronda del último partido jugado.
+// Tiene que ser así: en 2026 la Liga jugó PLAYOFFS en el primer semestre y
+// cuadrangulares en el segundo, y el Torneo B jugó cuadrangulares mientras la A
+// jugaba playoffs. Cualquier constante escrita a mano queda mintiendo sola.
+//
+// `FASE_ACTUAL` queda solo como respaldo para desarrollar sin datos.
 
-export type Fase = 'todos-contra-todos' | 'cuadrangulares' | 'final';
+export type Fase =
+  | 'todos-contra-todos'
+  | 'grupos'
+  | 'cuadrangulares'
+  | 'playoffs'
+  | 'final';
 
 export const NOMBRE_FASE: Record<Fase, string> = {
   'todos-contra-todos': 'Todos contra todos',
+  grupos: 'Fase de grupos',
   cuadrangulares: 'Cuadrangulares semifinales',
+  playoffs: 'Cuartos, semis y final',
   final: 'Final'
 };
+
+const encontrados = import.meta.glob('./datos-api.json', { eager: true, import: 'default' });
+const JSON_DATOS = (Object.values(encontrados)[0] ?? null) as any;
+
+/** ¿Hay datos reales? Decide si se pueden mostrar los bloques de ejemplo. */
+export const HAY_FASES_REALES = Boolean(JSON_DATOS);
+
+const realDe = (slug: string) => JSON_DATOS?.competiciones?.[slug];
 
 /** Fase en la que está hoy cada torneo. */
 export const FASE_ACTUAL: Record<string, Fase> = {
@@ -36,18 +56,29 @@ export const FASE_ACTUAL: Record<string, Fase> = {
   'liga-femenina': 'todos-contra-todos'
 };
 
-export const faseDe = (slug: string): Fase => FASE_ACTUAL[slug] ?? 'todos-contra-todos';
+export const faseDe = (slug: string): Fase =>
+  (realDe(slug)?.fase as Fase) ?? FASE_ACTUAL[slug] ?? 'todos-contra-todos';
 
-/** ¿Ya se jugó esta fase? Sirve para decidir qué bloques se muestran. */
-const ORDEN: Fase[] = ['todos-contra-todos', 'cuadrangulares', 'final'];
-export const faseAlcanzada = (slug: string, fase: Fase) =>
-  ORDEN.indexOf(faseDe(slug)) >= ORDEN.indexOf(fase);
+/** ¿Ya se jugó esta fase?
+ *
+ *  Con datos reales se responde con la lista de fases efectivamente jugadas, no
+ *  con un orden supuesto: un torneo puede ir del todos contra todos directo a
+ *  playoffs sin pasar por cuadrangulares, y viceversa. */
+const ORDEN: Fase[] = ['todos-contra-todos', 'grupos', 'cuadrangulares', 'playoffs', 'final'];
+export const faseAlcanzada = (slug: string, fase: Fase): boolean => {
+  const jugadas = realDe(slug)?.fasesJugadas as Fase[] | undefined;
+  if (jugadas) return jugadas.includes(fase);
+  return ORDEN.indexOf(faseDe(slug)) >= ORDEN.indexOf(fase);
+};
 
 // ---------------------------------------------------------------------------
 // Datos de ejemplo (mientras el plan Free de API-Football no dé la temporada)
 // ---------------------------------------------------------------------------
 
-export const FASES_DEMO = true;
+// Los bloques de ejemplo (cuadrangulares y final inventados) solo se muestran
+// mientras NO haya datos reales. Con el JSON cargado, el sitio dibujaba unos
+// cuadrangulares que no se están jugando.
+export const FASES_DEMO = !HAY_FASES_REALES;
 
 export interface FilaCuadrangular {
   equipo: string;
