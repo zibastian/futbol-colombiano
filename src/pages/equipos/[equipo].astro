@@ -73,16 +73,38 @@ if (grupoReal) {
 // Goleadores y asistentes SOLO de este equipo
 const delEquipo = (lista: any[]) =>
   lista.filter((f) => buscarEquipo(f.equipo)?.slug === equipo.slug);
-const hayReales = Boolean(datos?.goleadores.length);
-const goles = hayReales
-  ? delEquipo(datos!.goleadores)
-  : ESTADISTICAS_DEMO
-    ? delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo)
-    : [];
-const asistencias = hayReales
-  ? delEquipo(datos!.asistencias)
-  : ESTADISTICAS_DEMO
-    ? delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
+// Los goleadores del CLUB en TODAS las competiciones que juega, no el top 10
+// del torneo filtrado: con el top casi ningún equipo tenía a nadie y la sección
+// desaparecía. Y separados por competición, porque los goles de la Liga y los
+// de la Copa no se suman: son certámenes distintos.
+const porCompeticion = (
+  await Promise.all(
+    TORNEOS.map(async (t) => {
+      const d = await datosDe(t.slug, t.ligaId, t.season);
+      const propios = equipo.apiId ? d.porEquipo?.[String(equipo.apiId)] : undefined;
+      return {
+        competencia: t.nombre,
+        slug: t.slug,
+        goles: propios?.goleadores ?? [],
+        asistencias: propios?.asistencias ?? []
+      };
+    })
+  )
+).filter((c) => c.goles.length > 0 || c.asistencias.length > 0);
+
+const hayReales = porCompeticion.length > 0;
+// Respaldo de ejemplo solo si no hay NADA real de este club.
+const bloques = hayReales
+  ? porCompeticion
+  : ESTADISTICAS_DEMO && !grupoReal
+    ? [
+        {
+          competencia: equipo.division === 'A' ? 'Liga BetPlay' : 'Torneo BetPlay',
+          slug: equipo.division === 'A' ? 'liga-betplay' : 'torneo-betplay',
+          goles: delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo),
+          asistencias: delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
+        }
+      ].filter((b) => b.goles.length || b.asistencias.length)
     : [];
 const datosSonDemo = !grupoReal && !hayReales;
 
@@ -139,13 +161,22 @@ const equipoLd = {
     </section>
   )}
 
-  {(goles.length > 0 || asistencias.length > 0) && (
+  {bloques.length > 0 && (
     <section class="bloque-stats">
       <h2 class="seccion">Goleadores y asistencias del equipo</h2>
-      <div class="grilla-stats">
-        {goles.length > 0 && <TablaAnotadores filas={goles} titulo="Goleadores" unidad="Goles" mostrarEquipo={false} />}
-        {asistencias.length > 0 && <TablaAnotadores filas={asistencias} titulo="Asistencias" unidad="Asist." mostrarEquipo={false} />}
-      </div>
+      {bloques.map((b) => (
+        <>
+          <h3 class="competencia-titulo"><a href={`/${b.slug}`}>{b.competencia}</a></h3>
+          <div class="grilla-stats">
+            {b.goles.length > 0 && (
+              <TablaAnotadores filas={b.goles} titulo="Goleadores" unidad="Goles" mostrarEquipo={false} />
+            )}
+            {b.asistencias.length > 0 && (
+              <TablaAnotadores filas={b.asistencias} titulo="Asistencias" unidad="Asist." mostrarEquipo={false} />
+            )}
+          </div>
+        </>
+      ))}
     </section>
   )}
 
@@ -191,6 +222,13 @@ const equipoLd = {
   .bloque-tabla { margin-bottom: 1.2rem; }
   .bloque-stats { margin-bottom: 1.4rem; }
   .grilla-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
+  .competencia-titulo {
+    font-size: 0.95rem; margin: 1.2rem 0 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--tenue);
+  }
+  .competencia-titulo a { color: inherit; text-decoration: none; }
+  .competencia-titulo a:hover { color: var(--acento); }
+
   .aviso-demo {
     background: #fff8e1; border-left: 4px solid var(--amarillo); padding: 0.5rem 0.85rem;
     font-size: 0.85rem; color: #6b5900; margin: 0 auto 0.9rem; max-width: 760px;

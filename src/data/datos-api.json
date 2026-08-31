@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-31T03:12:40+00:00",
+  "generado": "2026-08-31T03:49:45+00:00",
   "temporada": 2026,
   "competiciones": {
     "liga-betplay": {
@@ -745,7 +745,1095 @@
           "equipo": "Deportivo Cali",
           "cantidad": 2
         }
-      ]
+      ],
+      "porEquipo": {
+        "1464": {
+          "goleadores": [
+            {
+              "jugador": "F. Meza",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 2
+            },
+            {
+              "jugador": "N. Ospina",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Cortes",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Castaneda",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Contreras",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jhon Vasquez",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Ramirez",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Jhon Vasquez",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 2
+            },
+            {
+              "jugador": "L. Miranda",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Ospina",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1127": {
+          "goleadores": [
+            {
+              "jugador": "N. Benedetti",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Titi",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Bello",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. C. Caldera Alvis",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Martinez",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Cuellar",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Martinez",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Bello",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Viafara",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Chaverra",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1128": {
+          "goleadores": [
+            {
+              "jugador": "J. Montano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 3
+            },
+            {
+              "jugador": "D. Catano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Moreno",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Palacios",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cordoba",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Medina",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Fabra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Palacios",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Montano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Quintero",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Yony Gonzalez",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1126": {
+          "goleadores": [
+            {
+              "jugador": "J. Micolta Piedahita",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Obregon",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Perlaza",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Cordoba",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Chavez",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Leys",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Goyes",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Cordoba",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1131": {
+          "goleadores": [
+            {
+              "jugador": "E. Batalla",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 3
+            },
+            {
+              "jugador": "F. Charrupi",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Sambueza",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Pons",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Pons",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 2
+            },
+            {
+              "jugador": "B. Caicedo",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Batalla",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Sambueza",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Flores",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1142": {
+          "goleadores": [
+            {
+              "jugador": "J. Hurtado",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Parra Osorio",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Valencia",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Hernandez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Florez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Sandoval",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Parra Osorio",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Hurtado",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Valencia",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Hernandez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1135": {
+          "goleadores": [
+            {
+              "jugador": "G. Paiva",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 2
+            },
+            {
+              "jugador": "L. Muriel",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. S. Angel Bernal",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Caicedo",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Socarras",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Paiva",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1138": {
+          "goleadores": [
+            {
+              "jugador": "Y. Guzman",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 5
+            },
+            {
+              "jugador": "D. Rosero",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 3
+            },
+            {
+              "jugador": "K. Angulo",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Escobar",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Murillo",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Palacios",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Quinones",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 4
+            },
+            {
+              "jugador": "R. Carrascal",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 3
+            },
+            {
+              "jugador": "T. Angel",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Y. Guzman",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Escobar",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Murillo",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1144": {
+          "goleadores": [
+            {
+              "jugador": "R. Marquez",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Mosquera",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Ricaurte",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Vasquez",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Lozano",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Mena",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Ricaurte",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Arizalas",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Melendez",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1139": {
+          "goleadores": [
+            {
+              "jugador": "F. Fagundez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Rodallega",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Obrian",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Fagundez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Lovera",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1147": {
+          "goleadores": [
+            {
+              "jugador": "R. D. Rivas Torres",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Copete",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cajares",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Solis",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Copete",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. A. Balanta Carabali",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Navarro",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Vivas",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Diaz",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1141": {
+          "goleadores": [
+            {
+              "jugador": "C. Vergara",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Pardo",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Martinez",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Lasso",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Quinones",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1136": {
+          "goleadores": [
+            {
+              "jugador": "A. Roa",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Moreno",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. A. Zapata Ramirez",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Colorado",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Barrios",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Zuleta",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. D. Cuesta Santos",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Colorado",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Correa",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Roa",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Alvarado",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Barrios",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1470": {
+          "goleadores": [
+            {
+              "jugador": "J. Peralta",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 3
+            },
+            {
+              "jugador": "L. Rios",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Neneco",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Berdugo",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. B. Carabali Lopez",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Neneco",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1125": {
+          "goleadores": [
+            {
+              "jugador": "L. Castro",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Estupinan",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Llinas",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Chaverra",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Contreras",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Estupinan",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Ruiz",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Chaverra",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Contreras",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Valencia",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1137": {
+          "goleadores": [
+            {
+              "jugador": "M. Moreno",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 4
+            },
+            {
+              "jugador": "A. Morelos",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Sarmiento",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 3
+            },
+            {
+              "jugador": "E. Cardona",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rosa",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Morelos",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Roman",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Marin",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Poveda",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rengifo",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Moreno",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1134": {
+          "goleadores": [
+            {
+              "jugador": "F. Bone",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Dajome",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Duarte",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Sanguinetti",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Rodas",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Dajome",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 2
+            }
+          ]
+        },
+        "1133": {
+          "goleadores": [
+            {
+              "jugador": "A. Renteria",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Lopez",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Malagon",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Bustamante",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Cantillo",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jopito",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. R. Colpa Bolano",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            },
+            {
+              "jugador": "W. De La Rosa",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1132": {
+          "goleadores": [
+            {
+              "jugador": "J. Pimentel",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Salazar",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "E. Sarria",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            }
+          ]
+        }
+      }
     },
     "torneo-betplay": {
       "ligaId": 240,
@@ -1679,7 +2767,438 @@
           "cantidad": 2
         }
       ],
-      "asistencias": []
+      "asistencias": [],
+      "porEquipo": {
+        "1460": {
+          "goleadores": [
+            {
+              "jugador": "J. Cuero",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Aponza",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1143": {
+          "goleadores": [
+            {
+              "jugador": "C. Rodriguez Cespedes",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 3
+            },
+            {
+              "jugador": "D. Moreno",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Montoya",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1458": {
+          "goleadores": [
+            {
+              "jugador": "H. Sandoval Lasso",
+              "equipoId": 1458,
+              "equipo": "Bogota FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "K. Aladesanmi",
+              "equipoId": 1458,
+              "equipo": "Bogota FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Castro",
+              "equipoId": 1458,
+              "equipo": "Bogota FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1459": {
+          "goleadores": [
+            {
+              "jugador": "E. Lopez",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Montero",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Aleman",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. P. Gallego",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Manotas",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Melendez",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1463": {
+          "goleadores": [
+            {
+              "jugador": "M. Diaz",
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "cantidad": 5
+            },
+            {
+              "jugador": "P. Rodriguez",
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "cantidad": 3
+            },
+            {
+              "jugador": "D. Tapia",
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. D. Guillen Sanchez",
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "23326": {
+          "goleadores": [
+            {
+              "jugador": "J. Moreno",
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Mosquera",
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Gonzalez",
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Brochero",
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1140": {
+          "goleadores": [
+            {
+              "jugador": "K. Alvarez",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 5
+            },
+            {
+              "jugador": "C. Copete",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Torres",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Campana",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Gomez",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1469": {
+          "goleadores": [
+            {
+              "jugador": "B. Campaz",
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Caicedo",
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1129": {
+          "goleadores": [
+            {
+              "jugador": "G. Cuervo",
+              "equipoId": 1129,
+              "equipo": "Envigado",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rey",
+              "equipoId": 1129,
+              "equipo": "Envigado",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Marulanda",
+              "equipoId": 1129,
+              "equipo": "Envigado",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "27411": {
+          "goleadores": [
+            {
+              "jugador": "F. Pena",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. De Arco",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Palacios",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rubiano",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Farias",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "T. Diaz",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "22099": {
+          "goleadores": [
+            {
+              "jugador": "O. Acosta",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 2
+            },
+            {
+              "jugador": "B. de Castro",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Negrete",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Rios",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Fernandez",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rodriguez",
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1466": {
+          "goleadores": [
+            {
+              "jugador": "J. Cortez",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Gomez",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Bolivar",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. D. Garcia Garces",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1468": {
+          "goleadores": [
+            {
+              "jugador": "A. Onate",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Restrepo",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Delgado",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1461": {
+          "goleadores": [
+            {
+              "jugador": "F. Mosquera",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. F. Carabali R.",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Valencia",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Torres",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1145": {
+          "goleadores": [
+            {
+              "jugador": "D. Rativa",
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Ibarra",
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Martinez",
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Palacios",
+              "equipoId": 1145,
+              "equipo": "Tigres FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        }
+      }
     },
     "copa-betplay": {
       "ligaId": 241,
@@ -2074,7 +3593,870 @@
           "cantidad": 2
         }
       ],
-      "asistencias": []
+      "asistencias": [],
+      "porEquipo": {
+        "22099": {
+          "goleadores": [
+            {
+              "jugador": "J. Amaya",
+              "equipoId": 22099,
+              "equipo": "Real Soacha",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Negrete",
+              "equipoId": 22099,
+              "equipo": "Real Soacha",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Salcedo",
+              "equipoId": 22099,
+              "equipo": "Real Soacha",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Cuellar",
+              "equipoId": 22099,
+              "equipo": "Real Soacha",
+              "cantidad": 1
+            },
+            {
+              "jugador": "O. Acosta",
+              "equipoId": 22099,
+              "equipo": "Real Soacha",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1133": {
+          "goleadores": [
+            {
+              "jugador": "D. Lopez",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. Mejia",
+              "equipoId": 1133,
+              "equipo": "Jaguares",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1464": {
+          "goleadores": [
+            {
+              "jugador": "Jhon Vasquez",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Kelvin Osorio",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Medranda",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Miranda",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "27411": {
+          "goleadores": [
+            {
+              "jugador": "H. Mena",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Farias",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1462": {
+          "goleadores": [
+            {
+              "jugador": "S. Acosta",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Mosquera",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1131": {
+          "goleadores": [
+            {
+              "jugador": "B. Caicedo",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Batalla",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 2
+            },
+            {
+              "jugador": "K. Londono",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Garcia",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Pons",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1147": {
+          "goleadores": [
+            {
+              "jugador": "D. Ramirez",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Salas",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Cuero",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Navarro",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "T. Wilke",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1143": {
+          "goleadores": [
+            {
+              "jugador": "C. Rodriguez Cespedes",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Martinez",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Palacios",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Montoya",
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1141": {
+          "goleadores": [
+            {
+              "jugador": "J. Munoz",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Martinez",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Valoyes",
+              "equipoId": 1141,
+              "equipo": "Alianza Valledupar",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1460": {
+          "goleadores": [
+            {
+              "jugador": "P. Urrutia",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 3
+            },
+            {
+              "jugador": "H. Mosquera",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 2
+            },
+            {
+              "jugador": "H. Ortiz",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cuero",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Hurtado",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1470": {
+          "goleadores": [
+            {
+              "jugador": "J. Agudelo",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Berdugo",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1469": {
+          "goleadores": [
+            {
+              "jugador": "D. Matamba",
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Barreiro",
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Arrechea",
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1468": {
+          "goleadores": [
+            {
+              "jugador": "K. Angulo",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Saavedra",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1140": {
+          "goleadores": [
+            {
+              "jugador": "C. Copete",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Campana",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Alvarez",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Gomez",
+              "equipoId": 1140,
+              "equipo": "Patriotas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1128": {
+          "goleadores": [
+            {
+              "jugador": "D. Catano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Moreno",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Fabra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Montano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Chaverra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1127": {
+          "goleadores": [
+            {
+              "jugador": "J. Dinenno",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Titi",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Reynoso",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Aguilar",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Gomez",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Martinez",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1125": {
+          "goleadores": [
+            {
+              "jugador": "J. Hurtado",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 3
+            },
+            {
+              "jugador": "L. Castro",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. Angulo",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. Contreras",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "S. Valencia",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. S. Victoria Palacios",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1132": {
+          "goleadores": [
+            {
+              "jugador": "J. Molina",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 3
+            },
+            {
+              "jugador": "I. Montano",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 2
+            },
+            {
+              "jugador": "S. Salazar",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1144": {
+          "goleadores": [
+            {
+              "jugador": "J. Rivaldo",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Ricaurte",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Garcia",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Varela",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Arias",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. A. Benitez Hernandez",
+              "equipoId": 1144,
+              "equipo": "Águilas Doradas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1463": {
+          "goleadores": [
+            {
+              "jugador": "Rueda Juan",
+              "equipoId": 1463,
+              "equipo": "Real Santander",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1137": {
+          "goleadores": [
+            {
+              "jugador": "A. Morelos",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Zapata",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Rodriguez",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. A. Perlaza Perea",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1461": {
+          "goleadores": [
+            {
+              "jugador": "J. Lloreda",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. F. Carabali R.",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Valencia",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Ocampo",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Castano",
+              "equipoId": 1461,
+              "equipo": "Quindio",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1142": {
+          "goleadores": [
+            {
+              "jugador": "E. Lopez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Valencia",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. E. Martinez Yepez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Hernandez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Valencia",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1458": {
+          "goleadores": [
+            {
+              "jugador": "J. Velasco",
+              "equipoId": 1458,
+              "equipo": "Bogota FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1136": {
+          "goleadores": [
+            {
+              "jugador": "E. Torres",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. A. Zapata Ramirez",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Alvarado",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cardona",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Castano",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. D. Cuesta Santos",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1138": {
+          "goleadores": [
+            {
+              "jugador": "D. Valencia",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Carrascal",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Guzman",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1459": {
+          "goleadores": [
+            {
+              "jugador": "C. De Las Salas",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Manotas",
+              "equipoId": 1459,
+              "equipo": "Real Cartagena",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1135": {
+          "goleadores": [
+            {
+              "jugador": "L. Muriel",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Rivera",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Paiva",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Suarez",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1466": {
+          "goleadores": [
+            {
+              "jugador": "A. Orozco",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cortez",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Lozano",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Bolivar",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Borja",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1126": {
+          "goleadores": [
+            {
+              "jugador": "J. Perlaza",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Obregon",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1134": {
+          "goleadores": [
+            {
+              "jugador": "L. Vasquez",
+              "equipoId": 1134,
+              "equipo": "Internacional de Bogota",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "23326": {
+          "goleadores": [
+            {
+              "jugador": "C. A. Franco Bustillo",
+              "equipoId": 23326,
+              "equipo": "Internacional Palmira",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1139": {
+          "goleadores": [
+            {
+              "jugador": "F. Fagundez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Palacios",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        }
+      }
     },
     "copa-libertadores": {
       "ligaId": 13,
@@ -2731,7 +5113,2352 @@
           "equipo": "Palmeiras",
           "cantidad": 2
         }
-      ]
+      ],
+      "porEquipo": {
+        "3711": {
+          "goleadores": [
+            {
+              "jugador": "J. Arrascaita",
+              "equipoId": 3711,
+              "equipo": "The Strongest",
+              "cantidad": 1
+            },
+            {
+              "jugador": "V. Abrego",
+              "equipoId": 3711,
+              "equipo": "The Strongest",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "2807": {
+          "goleadores": [
+            {
+              "jugador": "C. Calzadilla",
+              "equipoId": 2807,
+              "equipo": "Deportivo Tachira FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Gonzalez",
+              "equipoId": 2807,
+              "equipo": "Deportivo Tachira FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Pollero",
+              "equipoId": 2807,
+              "equipo": "Deportivo Tachira FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Sosa",
+              "equipoId": 2807,
+              "equipo": "Deportivo Tachira FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Villalpando",
+              "equipoId": 2807,
+              "equipo": "Deportivo Tachira FC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2140": {
+          "goleadores": [
+            {
+              "jugador": "D. Acosta",
+              "equipoId": 2140,
+              "equipo": "2 de Mayo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. M. Caceres Aguero",
+              "equipoId": 2140,
+              "equipo": "2 de Mayo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "W. Ayala",
+              "equipoId": 2140,
+              "equipo": "2 de Mayo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "S. Fretes",
+              "equipoId": 2140,
+              "equipo": "2 de Mayo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "W. Ayala",
+              "equipoId": 2140,
+              "equipo": "2 de Mayo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1157": {
+          "goleadores": [
+            {
+              "jugador": "J. Fajardo",
+              "equipoId": 1157,
+              "equipo": "Universidad Catolica",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Jhon Chancellor",
+              "equipoId": 1157,
+              "equipo": "Universidad Catolica",
+              "cantidad": 2
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Diaz",
+              "equipoId": 1157,
+              "equipo": "Universidad Catolica",
+              "cantidad": 3
+            },
+            {
+              "jugador": "E. Rose",
+              "equipoId": 1157,
+              "equipo": "Universidad Catolica",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2553": {
+          "goleadores": [
+            {
+              "jugador": "L. Advincula",
+              "equipoId": 2553,
+              "equipo": "Alianza Lima",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "2353": {
+          "goleadores": [
+            {
+              "jugador": "F. Barrandeguy",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 3
+            },
+            {
+              "jugador": "B. Larregui",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Lago",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Pernicone",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Peralta",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Sanchez",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Barrandeguy",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Gomez",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2810": {
+          "goleadores": [
+            {
+              "jugador": "E. Castillo",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Tortolero",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Ramirez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "E. Ramirez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Berios",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Riasco",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Nunez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2546": {
+          "goleadores": [
+            {
+              "jugador": "Y. Yotun",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Cabellos",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Vizeu",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Cazonatti",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Gonzalez",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Castro",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Cazonatti",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Avila",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Gonzalez",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Iberico",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Sosa",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Yotun",
+              "equipoId": 2546,
+              "equipo": "Sporting Cristal",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1128": {
+          "goleadores": [
+            {
+              "jugador": "F. Fydriszewski",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 4
+            },
+            {
+              "jugador": "H. Palacios",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Serna",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "B. Perlaza",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Larrosa",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Chaverra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Fabra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Serna",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Catano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Chaverra",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Fydriszewski",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Loboa",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2358": {
+          "goleadores": [
+            {
+              "jugador": "S. Strasorier",
+              "equipoId": 2358,
+              "equipo": "Liverpool Montevideo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Romero",
+              "equipoId": 2358,
+              "equipo": "Liverpool Montevideo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2320": {
+          "goleadores": [
+            {
+              "jugador": "F. Gonzalez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Castillo",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Pavez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Martin Sarrafiore",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            }
+          ]
+        },
+        "458": {
+          "goleadores": [
+            {
+              "jugador": "D. Porcel",
+              "equipoId": 458,
+              "equipo": "Argentinos JRS",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Fernandez",
+              "equipoId": 458,
+              "equipo": "Argentinos JRS",
+              "cantidad": 1
+            }
+          ]
+        },
+        "3706": {
+          "goleadores": [
+            {
+              "jugador": "O. Baldomar",
+              "equipoId": 3706,
+              "equipo": "Nacional Potosí",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Rojas",
+              "equipoId": 3706,
+              "equipo": "Nacional Potosí",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1142": {
+          "goleadores": [
+            {
+              "jugador": "J. Gonzalez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Hernandez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "L. Sandoval",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
+              "jugador": "B. Rovira",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Mosquera",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. P. Torres Patino",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "B. Rovira",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Gonzalez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. P. Torres Patino",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Valencia",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Sandoval",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2328": {
+          "goleadores": [
+            {
+              "jugador": "C. Martinez",
+              "equipoId": 2328,
+              "equipo": "Huachipato",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. G. Torres Gaete",
+              "equipoId": 2328,
+              "equipo": "Huachipato",
+              "cantidad": 1
+            }
+          ]
+        },
+        "118": {
+          "goleadores": [
+            {
+              "jugador": "Willian Jose",
+              "equipoId": 118,
+              "equipo": "Bahia",
+              "cantidad": 2
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Ademir",
+              "equipoId": 118,
+              "equipo": "Bahia",
+              "cantidad": 1
+            }
+          ]
+        },
+        "120": {
+          "goleadores": [
+            {
+              "jugador": "Alex Telles",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Danilo",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Matheus Martins",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Danilo",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Barrera",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1152": {
+          "goleadores": [
+            {
+              "jugador": "H. Villalba",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Celiz",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. R. Quinonez Ruiz",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "T. Martinez",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. R. Quinonez Ruiz",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Celiz",
+              "equipoId": 1152,
+              "equipo": "Barcelona SC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1174": {
+          "goleadores": [
+            {
+              "jugador": "G. Servio",
+              "equipoId": 1174,
+              "equipo": "Club Guarani",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "135": {
+          "goleadores": [
+            {
+              "jugador": "Matheus Pereira",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 4
+            },
+            {
+              "jugador": "Christian",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Fagner",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Keny Arroyo",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Romero",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Sinisterra",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Fagner",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Kaio Jorge",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Gerson",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Kaiki",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Villalba",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Matheus Pereira",
+              "equipoId": 135,
+              "equipo": "Cruzeiro",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1158": {
+          "goleadores": [
+            {
+              "jugador": "Deyverson",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Y. Quinonez",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Cornejo",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Villamil",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Quintero",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Estrada",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Corozo",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. Medina",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Pretell",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Estrada",
+              "equipoId": 1158,
+              "equipo": "LDU de Quito",
+              "cantidad": 1
+            }
+          ]
+        },
+        "451": {
+          "goleadores": [
+            {
+              "jugador": "A. Bareiro",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Herrera",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Di Lollo",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Paredes",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Miguel Merentiel",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Ascacibar",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Blanco",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Velasco",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Paredes",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2994": {
+          "goleadores": [
+            {
+              "jugador": "F. Zampedri",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 4
+            },
+            {
+              "jugador": "C. Montes",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Diaz",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jimmy Martínez",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Justo Giani",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Montes",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Justo Giani",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Mena",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Fernando Zuqui",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jhojan Valencia",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Palavecino",
+              "equipoId": 2994,
+              "equipo": "U. Catolica",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2356": {
+          "goleadores": [
+            {
+              "jugador": "M. Gomez",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 3
+            },
+            {
+              "jugador": "S. Coates",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Silvera",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Lopez",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. dos Santos",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Lodeiro",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Lopez",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2330": {
+          "goleadores": [
+            {
+              "jugador": "G. Vadala",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Zavala",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Fernandez",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 2
+            },
+            {
+              "jugador": "N. Johansen",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 2
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "B. Chandia",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Zavala",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Salinas",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Vadala",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cornejo",
+              "equipoId": 2330,
+              "equipo": "Coquimbo Unido",
+              "cantidad": 1
+            }
+          ]
+        },
+        "7848": {
+          "goleadores": [
+            {
+              "jugador": "Eduardo",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Alesson",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Joao Victor",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Lucas Oliveira",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Nathan Fogaca",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Reinaldo",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Alesson",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Carlos Eduardo",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Edson Carioca",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Reinaldo",
+              "equipoId": 7848,
+              "equipo": "Mirassol",
+              "cantidad": 1
+            }
+          ]
+        },
+        "450": {
+          "goleadores": [
+            {
+              "jugador": "G. Carrillo",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 3
+            },
+            {
+              "jugador": "T. Palacios",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 3
+            },
+            {
+              "jugador": "F. Farias",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Burgos",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Correa",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Amondarain",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Amondarain",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Castro",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "B. Rodriguez",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Cetre",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Mancuso",
+              "equipoId": 450,
+              "equipo": "Estudiantes L.P.",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1135": {
+          "goleadores": [
+            {
+              "jugador": "L. Muriel",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 3
+            },
+            {
+              "jugador": "K. Perez",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "T. Gutierrez",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "E. Herrera",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Pena",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rivas",
+              "equipoId": 1135,
+              "equipo": "Junior",
+              "cantidad": 1
+            }
+          ]
+        },
+        "121": {
+          "goleadores": [
+            {
+              "jugador": "J. Arias",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. Lopez",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 3
+            },
+            {
+              "jugador": "R. Sosa",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Allan Elias",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Andreas Pereira",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Gomez",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Lopez",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 4
+            },
+            {
+              "jugador": "Allan Elias",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Arias",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Marlon Freitas",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Murilo",
+              "equipoId": 121,
+              "equipo": "Palmeiras",
+              "cantidad": 1
+            }
+          ]
+        },
+        "127": {
+          "goleadores": [
+            {
+              "jugador": "Bruno Henrique",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 4
+            },
+            {
+              "jugador": "G. de Arrascaeta",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Lucas Paqueta",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Pedro",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Luiz Araujo",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Samuel Lino",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Pedro",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Ayrton Lucas",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Bruno Henrique",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "G. de Arrascaeta",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Luiz Araujo",
+              "equipoId": 127,
+              "equipo": "Flamengo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2840": {
+          "goleadores": [
+            {
+              "jugador": "J. Cuesta",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 3
+            },
+            {
+              "jugador": "F. Sole",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Bolivar",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Zapata",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Murillo",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Gonzalez",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. De Sousa",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Sole",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Cuesta",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1179": {
+          "goleadores": [
+            {
+              "jugador": "L. Melgarejo",
+              "equipoId": 1179,
+              "equipo": "Libertad Asuncion",
+              "cantidad": 4
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Carrizo",
+              "equipoId": 1179,
+              "equipo": "Libertad Asuncion",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Gimenez",
+              "equipoId": 1179,
+              "equipo": "Libertad Asuncion",
+              "cantidad": 1
+            }
+          ]
+        },
+        "131": {
+          "goleadores": [
+            {
+              "jugador": "Gustavo Henrique",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Breno Bidon",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Lingard",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Kayke",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Raniele",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Yuri Alberto",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "R. Garro",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 4
+            },
+            {
+              "jugador": "Gustavo Henrique",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Depay",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Matheuzinho",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Yuri Alberto",
+              "equipoId": 131,
+              "equipo": "Corinthians",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1139": {
+          "goleadores": [
+            {
+              "jugador": "H. Rodallega",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Zapata",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Olivera",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Fagundez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. R. Scarpeta Silgado",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Obrian",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 2
+            },
+            {
+              "jugador": "O. Fernandez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Olivera",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2348": {
+          "goleadores": [
+            {
+              "jugador": "M. Arezo",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Batista",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Olivera",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Laxalt",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jesus Trindade",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Angulo",
+              "equipoId": 2348,
+              "equipo": "Penarol",
+              "cantidad": 1
+            }
+          ]
+        },
+        "10013": {
+          "goleadores": [
+            {
+              "jugador": "L. Colitto",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Fuentes",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Choi",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Soto",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Colman",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Colitto",
+              "equipoId": 10013,
+              "equipo": "Cusco",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1176": {
+          "goleadores": [
+            {
+              "jugador": "P. Vegetti",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Dominguez",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Torres",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Dominguez",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Morel",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Perez",
+              "equipoId": 1176,
+              "equipo": "Cerro Porteno",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2813": {
+          "goleadores": [
+            {
+              "jugador": "F. Londono",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Osio",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Ortiz",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Castellanos",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Meza",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Caceres",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Ortiz",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Gutierrez",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Meza",
+              "equipoId": 2813,
+              "equipo": "Deportivo La Guaira",
+              "cantidad": 1
+            }
+          ]
+        },
+        "3702": {
+          "goleadores": [
+            {
+              "jugador": "Robson Matheus",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. A. Melgar",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Romero",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Justiniano",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Cauteruccio",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. Romero",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Sagredo",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Pato Rodriguez",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Robson Matheus",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            }
+          ]
+        },
+        "437": {
+          "goleadores": [
+            {
+              "jugador": "A. Di Maria",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Copetti",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 2
+            },
+            {
+              "jugador": "I. Ovando",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Veliz",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Ruben",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "V. Pizarro",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Cantizano",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Coronel",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Campaz",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Fernandez",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Fernandez",
+              "equipoId": 437,
+              "equipo": "Rosario Central",
+              "cantidad": 1
+            }
+          ]
+        },
+        "124": {
+          "goleadores": [
+            {
+              "jugador": "John Kennedy",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Canobbio",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Guilherme Arana",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Hercules",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Savarino",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Serna",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Hercules",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Savarino",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Martinelli",
+              "equipoId": 124,
+              "equipo": "Fluminense",
+              "cantidad": 1
+            }
+          ]
+        },
+        "473": {
+          "goleadores": [
+            {
+              "jugador": "A. Arce",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 9
+            },
+            {
+              "jugador": "S. Villa",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 3
+            },
+            {
+              "jugador": "D. Crego",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Sartori",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Bucca",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Fernandez",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 4
+            },
+            {
+              "jugador": "S. Villa",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. I. Florentin Bobadilla",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. M. Elordi",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Costa",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Gomez",
+              "equipoId": 473,
+              "equipo": "Independ. Rivadavia",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1153": {
+          "goleadores": [
+            {
+              "jugador": "C. Gonzalez",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 7
+            },
+            {
+              "jugador": "J. Sornoza",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Rodriguez",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Reasco",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Daykol Romero",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Alcivar",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Loor",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Rodriguez",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Daykol Romero",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Pata",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Alcivar",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Sornoza",
+              "equipoId": 1153,
+              "equipo": "Independiente del Valle",
+              "cantidad": 1
+            }
+          ]
+        },
+        "446": {
+          "goleadores": [
+            {
+              "jugador": "A. Cardozo",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Medina",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Valois",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Marcelino Moreno",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            },
+            {
+              "jugador": "W. Bou",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1064": {
+          "goleadores": [
+            {
+              "jugador": "F. Zapiola",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Lagos",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Lotti",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Mainero",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Gimenez",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Mendia",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Mainero",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Zapiola",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Saborido",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            },
+            {
+              "jugador": "T. Silva",
+              "equipoId": 1064,
+              "equipo": "Platense",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2540": {
+          "goleadores": [
+            {
+              "jugador": "A. Valera",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Fara",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Carabali",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Alzugaray",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "H. Fertoli",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Concha",
+              "equipoId": 2540,
+              "equipo": "Universitario",
+              "cantidad": 1
+            }
+          ]
+        },
+        "3700": {
+          "goleadores": [
+            {
+              "jugador": "E. Triverio",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Nava",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Amoroso",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Maraude",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Suarez",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Gomez Miranda",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Saucedo",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Rodriguez",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Triverio",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Nava",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Cuellar",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Maraude",
+              "equipoId": 3700,
+              "equipo": "Always Ready",
+              "cantidad": 1
+            }
+          ]
+        }
+      }
     },
     "copa-sudamericana": {
       "ligaId": 11,
@@ -3388,7 +8115,2299 @@
           "equipo": "Olimpia",
           "cantidad": 3
         }
-      ]
+      ],
+      "porEquipo": {
+        "2365": {
+          "goleadores": [
+            {
+              "jugador": "S. Rodriguez",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 5
+            },
+            {
+              "jugador": "F. Pizzichillo",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 3
+            },
+            {
+              "jugador": "E. Aguero",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Romero",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Silvera",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "E. Obregon",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Silvera",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 2
+            },
+            {
+              "jugador": "G. Montes",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Busquets",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Pizzichillo",
+              "equipoId": 2365,
+              "equipo": "Atletico Torque",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1182": {
+          "goleadores": [
+            {
+              "jugador": "E. Matus",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Cardozo",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. Lezcano",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. F. Franco Zayas",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. F. Rodriguez Armoa",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Quintana",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "R. Benitez",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 3
+            },
+            {
+              "jugador": "E. Delmas",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Quintana",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "H. Sandoval",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Leguizamon",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Caceres",
+              "equipoId": 1182,
+              "equipo": "Olimpia",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2329": {
+          "goleadores": [
+            {
+              "jugador": "D. Coelho",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Pina",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Loyola",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Troyansky",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Fuentes",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "E. Ferrario",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Loyola",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Troyansky",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Rebolledo",
+              "equipoId": 2329,
+              "equipo": "A. Italiano",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2331": {
+          "goleadores": [
+            {
+              "jugador": "S. Pino",
+              "equipoId": 2331,
+              "equipo": "Cobresal",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Yanis",
+              "equipoId": 2331,
+              "equipo": "Cobresal",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2560": {
+          "goleadores": [
+            {
+              "jugador": "A. Munoz",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Coronel",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Flores",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "V. Robaldo",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Munoz",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. A. Larios Saavedra",
+              "equipoId": 2560,
+              "equipo": "Alianza Atletico",
+              "cantidad": 1
+            }
+          ]
+        },
+        "3701": {
+          "goleadores": [
+            {
+              "jugador": "A. Vasquez",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. Hinojosa",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Garces",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Villarroel",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Villarroel",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Bejarano",
+              "equipoId": 3701,
+              "equipo": "Blooming",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1125": {
+          "goleadores": [
+            {
+              "jugador": "R. Contreras",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 5
+            },
+            {
+              "jugador": "L. Castro",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "B. D. Castro Espinosa",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Quintero",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Hurtado",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Angulo",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Hurtado",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Urena",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Mosquera",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1137": {
+          "goleadores": [
+            {
+              "jugador": "N. Rodriguez",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Campuzano",
+              "equipoId": 1137,
+              "equipo": "Atletico Nacional",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2318": {
+          "goleadores": [
+            {
+              "jugador": "N. Da Silva",
+              "equipoId": 2318,
+              "equipo": "Palestino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "I. A. Garguez Gomez",
+              "equipoId": 2318,
+              "equipo": "Palestino",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Munder",
+              "equipoId": 2318,
+              "equipo": "Palestino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. Fernandez",
+              "equipoId": 2318,
+              "equipo": "Palestino",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2323": {
+          "goleadores": [
+            {
+              "jugador": "M. G. Guerrero Pena",
+              "equipoId": 2323,
+              "equipo": "Universidad de Chile",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Diaz",
+              "equipoId": 2323,
+              "equipo": "Universidad de Chile",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1154": {
+          "goleadores": [
+            {
+              "jugador": "D. Gonzalez",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Mosquera",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Mancinelli",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Diaz",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Leguizamon",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Rivero",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Mancinelli",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Boolsen",
+              "equipoId": 1154,
+              "equipo": "Deportivo Cuenca",
+              "cantidad": 1
+            }
+          ]
+        },
+        "10476": {
+          "goleadores": [
+            {
+              "jugador": "A. Wlk",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 2
+            },
+            {
+              "jugador": "P. Rios",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Galeano",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Noguera",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Parzajuk",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Ortiz",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Franco",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Rios",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Dominguez",
+              "equipoId": 10476,
+              "equipo": "Deportivo Recoleta",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1175": {
+          "goleadores": [
+            {
+              "jugador": "I. Valdez",
+              "equipoId": 1175,
+              "equipo": "Nacional Asuncion",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "H. A. Benitez",
+              "equipoId": 1175,
+              "equipo": "Nacional Asuncion",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2361": {
+          "goleadores": [
+            {
+              "jugador": "Y. Gonzalez",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Martinez",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Munoa",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Ramirez",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Hornos",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Bonfiglio",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 2
+            },
+            {
+              "jugador": "G. Reyna",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Munoa",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Gonzalez",
+              "equipoId": 2361,
+              "equipo": "Boston River",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1131": {
+          "goleadores": [
+            {
+              "jugador": "F. Sambueza",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1138": {
+          "goleadores": [
+            {
+              "jugador": "D. Valencia",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "T. Angel",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Y. Guzman",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Murillo",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Palacios",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "T. Angel",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Ramos",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2562": {
+          "goleadores": [
+            {
+              "jugador": "C. Garces",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 4
+            },
+            {
+              "jugador": "A. Hohberg",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 3
+            },
+            {
+              "jugador": "M. Succar",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 3
+            },
+            {
+              "jugador": "N. Bandiera",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 3
+            },
+            {
+              "jugador": "K. Becerra",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Martinich",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "C. Souza Espana",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 5
+            },
+            {
+              "jugador": "A. Hohberg",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. Garces",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 3
+            },
+            {
+              "jugador": "G. Barreto",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Amondarain",
+              "equipoId": 2562,
+              "equipo": "Cienciano",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2554": {
+          "goleadores": [
+            {
+              "jugador": "A. Ramos",
+              "equipoId": 2554,
+              "equipo": "FBC Melgar",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
+        },
+        "1155": {
+          "goleadores": [
+            {
+              "jugador": "F. Posse",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 3
+            },
+            {
+              "jugador": "F. Paz",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Blanc",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Miranda",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Viera",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Posse",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Estacio",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Miranda",
+              "equipoId": 1155,
+              "equipo": "Macara",
+              "cantidad": 1
+            }
+          ]
+        },
+        "436": {
+          "goleadores": [
+            {
+              "jugador": "Adrian Martinez",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 3
+            },
+            {
+              "jugador": "G. N. Martirena Torres",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Fernandez",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Vergara",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Sosa",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Miljevic",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "I. Rodriguez",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Fernandez",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Forneris",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "B. Rodriguez",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Cannavo",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Rojas",
+              "equipoId": 436,
+              "equipo": "Racing Club",
+              "cantidad": 1
+            }
+          ]
+        },
+        "15702": {
+          "goleadores": [
+            {
+              "jugador": "J. E. Cristaldo",
+              "equipoId": 15702,
+              "equipo": "Independiente Petrolero",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Rivas",
+              "equipoId": 15702,
+              "equipo": "Independiente Petrolero",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Thomaz",
+              "equipoId": 15702,
+              "equipo": "Independiente Petrolero",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "R. Cardozo",
+              "equipoId": 15702,
+              "equipo": "Independiente Petrolero",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Montero",
+              "equipoId": 15702,
+              "equipo": "Independiente Petrolero",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2320": {
+          "goleadores": [
+            {
+              "jugador": "F. Gonzalez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 4
+            },
+            {
+              "jugador": "A. Castillo",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Robledo",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "B. Yanez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Martin Sarrafiore",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Miguel Brizuela",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Gonzalez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 4
+            },
+            {
+              "jugador": "B. Yanez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Faundez",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Martin Sarrafiore",
+              "equipoId": 2320,
+              "equipo": "O'Higgins",
+              "cantidad": 1
+            }
+          ]
+        },
+        "126": {
+          "goleadores": [
+            {
+              "jugador": "Luciano",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Artur",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "D. Bobadilla",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jonathan Calleri",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Robert Arboleda",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Sabino",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Jonathan Calleri",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Andre Silva",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Artur",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "D. Bobadilla",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Danielzinho",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Ferreira",
+              "equipoId": 126,
+              "equipo": "Sao Paulo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "452": {
+          "goleadores": [
+            {
+              "jugador": "D. Romero",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 3
+            },
+            {
+              "jugador": "I. Russo",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Barrionuevo",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Cabrera",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Elias",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Saralegui",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "M. Garay",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Barrionuevo",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Cabrera",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Russo",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Mosqueira",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Banegas",
+              "equipoId": 452,
+              "equipo": "Tigre",
+              "cantidad": 1
+            }
+          ]
+        },
+        "460": {
+          "goleadores": [
+            {
+              "jugador": "R. Auzmendi",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Cuello",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Romana",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. De Ritis",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Tripichio",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Gulli",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Reali",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Cuello",
+              "equipoId": 460,
+              "equipo": "San Lorenzo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "435": {
+          "goleadores": [
+            {
+              "jugador": "S. Driussi",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 3
+            },
+            {
+              "jugador": "M. Salas",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Fausto Vera",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Martinez Quarta",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Pereyra",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Silva",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Martinez Quarta",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Bustos",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Gonzalez",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Montiel",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Quintero",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Paez",
+              "equipoId": 435,
+              "equipo": "River Plate",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2827": {
+          "goleadores": [
+            {
+              "jugador": "J. Castillo",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. D. Flores Barrios",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 2
+            },
+            {
+              "jugador": "G. Gonzalez",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Ramos",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "R. D. Flores Barrios",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 2
+            },
+            {
+              "jugador": "R. Rosales",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 2
+            },
+            {
+              "jugador": "G. Gonzalez",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Castillo",
+              "equipoId": 2827,
+              "equipo": "Puerto Cabello",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1062": {
+          "goleadores": [
+            {
+              "jugador": "Bernard",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Cuello",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Minda",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Dudu",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Cassierra",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Maycon",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Cuello",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 4
+            },
+            {
+              "jugador": "Gustavo Scarpa",
+              "equipoId": 1062,
+              "equipo": "Atletico-MG",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2808": {
+          "goleadores": [
+            {
+              "jugador": "W. Correa",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Fernandez",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Gudino",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Yendis",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Fernandez",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. E. Fereira Penaranda",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Gudino",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Mago",
+              "equipoId": 2808,
+              "equipo": "Caracas FC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "120": {
+          "goleadores": [
+            {
+              "jugador": "Arthur Cabral",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Danilo",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Montoro",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Medina",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Ramos",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Danilo Pereira",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Correa",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Barboza",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "A. Montoro",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Alex Telles",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Ramos",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Barria",
+              "equipoId": 120,
+              "equipo": "Botafogo",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2353": {
+          "goleadores": [
+            {
+              "jugador": "F. Mimbacas",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 2
+            },
+            {
+              "jugador": "L. Roldan",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 2
+            },
+            {
+              "jugador": "P. Lago",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Cecchini",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Perez",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Perez",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Cruz",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 4
+            },
+            {
+              "jugador": "E. Mas",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "F. Mimbacas",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Chagas",
+              "equipoId": 2353,
+              "equipo": "Juventud",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2810": {
+          "goleadores": [
+            {
+              "jugador": "E. Tortolero",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Neira",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Ramirez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Nunez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Mendoza",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Berios",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Perez",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Cova",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Orozco",
+              "equipoId": 2810,
+              "equipo": "Carabobo FC",
+              "cantidad": 1
+            }
+          ]
+        },
+        "130": {
+          "goleadores": [
+            {
+              "jugador": "Carlos Vinicius",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 2
+            },
+            {
+              "jugador": "F. Amuzu",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 2
+            },
+            {
+              "jugador": "M. Braithwaite",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Pavon",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Gabriel Mec",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Villasanti",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Arthur Melo",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Pavon",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Gabriel Mec",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Enamorado",
+              "equipoId": 130,
+              "equipo": "Gremio",
+              "cantidad": 1
+            }
+          ]
+        },
+        "133": {
+          "goleadores": [
+            {
+              "jugador": "Adson",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 4
+            },
+            {
+              "jugador": "C. Spinelli",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Thiago Mendes",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Brenner",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Cuesta",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            },
+            {
+              "jugador": "David",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Adson",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 3
+            },
+            {
+              "jugador": "J. Rodriguez",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 2
+            },
+            {
+              "jugador": "N. Moreira",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Cuiabano",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            },
+            {
+              "jugador": "David",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Rojas",
+              "equipoId": 133,
+              "equipo": "Vasco DA Gama",
+              "cantidad": 1
+            }
+          ]
+        },
+        "128": {
+          "goleadores": [
+            {
+              "jugador": "Gabriel Barbosa",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 5
+            },
+            {
+              "jugador": "Gabriel Bontempo",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Gabriel Menino",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Neymar",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Rony",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Miguelito",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "B. Rollheiser",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Gabriel Barbosa",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Neymar",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 2
+            },
+            {
+              "jugador": "C. Oliva",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Gabriel Bontempo",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Gabriel Menino",
+              "equipoId": 128,
+              "equipo": "Santos",
+              "cantidad": 1
+            }
+          ]
+        },
+        "794": {
+          "goleadores": [
+            {
+              "jugador": "Fernando Santos",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 3
+            },
+            {
+              "jugador": "I. Pitta",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Eduardo Sasha",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Rodriguinho",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Alix Vinicius",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Eric Ramires",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Lucas Barbosa",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 3
+            },
+            {
+              "jugador": "Fernando Santos",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Marcelinho",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Eric Ramires",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Gustavo Marques",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Pitta",
+              "equipoId": 794,
+              "equipo": "RB Bragantino",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2432": {
+          "goleadores": [
+            {
+              "jugador": "G. Morales",
+              "equipoId": 2432,
+              "equipo": "Barracas Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Bogarin",
+              "equipoId": 2432,
+              "equipo": "Barracas Central",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "G. Maroni",
+              "equipoId": 2432,
+              "equipo": "Barracas Central",
+              "cantidad": 1
+            },
+            {
+              "jugador": "I. Tapia",
+              "equipoId": 2432,
+              "equipo": "Barracas Central",
+              "cantidad": 1
+            }
+          ]
+        },
+        "476": {
+          "goleadores": [
+            {
+              "jugador": "J. Randazzo",
+              "equipoId": 476,
+              "equipo": "Deportivo Riestra",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Diaz",
+              "equipoId": 476,
+              "equipo": "Deportivo Riestra",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "F. Mino",
+              "equipoId": 476,
+              "equipo": "Deportivo Riestra",
+              "cantidad": 1
+            },
+            {
+              "jugador": "G. Obredor",
+              "equipoId": 476,
+              "equipo": "Deportivo Riestra",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Goitia",
+              "equipoId": 476,
+              "equipo": "Deportivo Riestra",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2840": {
+          "goleadores": [
+            {
+              "jugador": "G. Mottes",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Ruiz",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Sosa",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "D. De Sousa",
+              "equipoId": 2840,
+              "equipo": "UCV",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1128": {
+          "goleadores": [
+            {
+              "jugador": "J. Montano",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 2
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Medina",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Yony Gonzalez",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            }
+          ]
+        },
+        "446": {
+          "goleadores": [
+            {
+              "jugador": "F. N. Watson",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Carrera",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "L. Besozzi",
+              "equipoId": 446,
+              "equipo": "Lanus",
+              "cantidad": 1
+            }
+          ]
+        },
+        "3702": {
+          "goleadores": [
+            {
+              "jugador": "D. Asprilla",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 3
+            },
+            {
+              "jugador": "C. A. Melgar",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Cauteruccio",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Robson Matheus",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "Pato Rodriguez",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 2
+            },
+            {
+              "jugador": "J. Sagredo",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Robson Matheus",
+              "equipoId": 3702,
+              "equipo": "Bolívar",
+              "cantidad": 1
+            }
+          ]
+        },
+        "451": {
+          "goleadores": [
+            {
+              "jugador": "Miguel Merentiel",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 3
+            },
+            {
+              "jugador": "S. Ascacibar",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 2
+            },
+            {
+              "jugador": "A. Velasco",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jorge Nicolás Figal",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Flores",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Paredes",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "S. Villa",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 2
+            },
+            {
+              "jugador": "K. Zenon",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Paredes",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Delgado",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Miguel Merentiel",
+              "equipoId": 451,
+              "equipo": "Boca Juniors",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1139": {
+          "goleadores": [
+            {
+              "jugador": "F. Fagundez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 3
+            },
+            {
+              "jugador": "H. Rodallega",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 2
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "A. Zapata",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "C. Mafla",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Obrian",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            }
+          ]
+        },
+        "2356": {
+          "goleadores": [
+            {
+              "jugador": "M. Gomez",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            },
+            {
+              "jugador": "M. Silvera",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "T. Veron",
+              "equipoId": 2356,
+              "equipo": "Club Nacional",
+              "cantidad": 1
+            }
+          ]
+        }
+      }
     }
   }
 }

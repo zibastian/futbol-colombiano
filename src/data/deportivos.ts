@@ -70,6 +70,12 @@ export interface DatosCompeticion {
   grupos: Grupo[];
   goleadores: Anotador[];
   asistencias: Anotador[];
+  /** Goleadores y asistentes de CADA club, por apiId.
+   *
+   *  La ficha de equipo filtraba el top 10 del torneo y casi ningún club tiene
+   *  a alguien ahí, así que la sección quedaba vacía. La fábrica ya tiene a
+   *  todos contados: repartirlos por club no cuesta una llamada más. */
+  porEquipo: Record<string, { goleadores: Anotador[]; asistencias: Anotador[] }>;
   fuente: 'json' | 'api' | 'sin-datos';
 }
 
@@ -148,6 +154,15 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
       })),
       goleadores: (precalculado.goleadores ?? []).map(anotadorDeJson),
       asistencias: (precalculado.asistencias ?? []).map(anotadorDeJson),
+      porEquipo: Object.fromEntries(
+        Object.entries(precalculado.porEquipo ?? {}).map(([id, v]: [string, any]) => [
+          id,
+          {
+            goleadores: (v.goleadores ?? []).map(anotadorDeJson),
+            asistencias: (v.asistencias ?? []).map(anotadorDeJson)
+          }
+        ])
+      ),
       fuente: 'json'
     };
   }
@@ -166,6 +181,8 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
     })),
     goleadores: est.goles,
     asistencias: est.asistencias,
+    // La vía en vivo no reparte por club: es el respaldo de emergencia.
+    porEquipo: {},
     fuente: vigente || est.goles.length ? 'api' : 'sin-datos'
   };
 }
