@@ -25,10 +25,19 @@ export interface Anotador {
   partidos: number;
 }
 
+export interface Grupo {
+  nombre: string;
+  filas: FilaTabla[];
+}
+
 export interface DatosCompeticion {
-  /** Nombre del torneo en curso: "Clausura", "Apertura". Null si no aplica. */
+  /** Torneo de los GOLEADORES: "Clausura", "Apertura". Null en una copa, donde
+   *  los goles son de todo el certamen y no se reinician por instancia. */
   torneoVigente: string | null;
+  /** Tabla del grupo vigente. En una copa hay varios: ver `grupos`. */
   tabla: FilaTabla[];
+  /** Todos los grupos de la competición, para la fase de grupos de la copa. */
+  grupos: Grupo[];
   goleadores: Anotador[];
   asistencias: Anotador[];
   fuente: 'json' | 'api' | 'sin-datos';
@@ -91,11 +100,18 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
   const precalculado = JSON_DATOS?.competiciones?.[slug];
   if (precalculado) {
     const torneos = precalculado.torneos ?? [];
+    // OJO: el grupo de la tabla y el torneo de los goleadores NO se llaman
+    // igual. La tabla de la B dice "Primera B: Clausura" y sus partidos dicen
+    // "Clausura - 5". Por eso el JSON trae los dos nombres por separado.
     const vigente =
-      torneos.find((t: any) => t.nombre === precalculado.torneoVigente) ?? torneos.at(-1);
+      torneos.find((t: any) => t.nombre === precalculado.tablaVigente) ?? torneos.at(-1);
     return {
       torneoVigente: precalculado.torneoVigente ?? null,
       tabla: (vigente?.tabla ?? []).map(filaDeJson),
+      grupos: torneos.map((t: any) => ({
+        nombre: t.nombre,
+        filas: (t.tabla ?? []).map(filaDeJson)
+      })),
       goleadores: (precalculado.goleadores ?? []).map(anotadorDeJson),
       asistencias: (precalculado.asistencias ?? []).map(anotadorDeJson),
       fuente: 'json'
@@ -110,6 +126,7 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
   return {
     torneoVigente: vigente?.nombre ?? null,
     tabla: vigente?.filas ?? [],
+    grupos: torneos.map((t) => ({ nombre: t.nombre, filas: t.filas })),
     goleadores: est.goles,
     asistencias: est.asistencias,
     fuente: vigente || est.goles.length ? 'api' : 'sin-datos'

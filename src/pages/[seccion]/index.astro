@@ -54,14 +54,29 @@ const esFemenina = seccion.slug === 'liga-femenina';
 const usarDemo = ESTADISTICAS_DEMO && !esFemenina && !filasReales.length;
 
 // Tabla: liga -> una sola; copa -> grupos
-const tablaUnica = filasReales.length
+const tablaUnica = esGrupos
+  ? []
+  : filasReales.length
   ? filasReales
   : esFemenina
     ? []
     : esLiga && TABLA_DEMO && usarDemo
       ? tablaDemo
       : [];
-const grupos = esGrupos && GRUPOS_DEMO && usarDemo ? gruposDemo : [];
+// La copa se juega en grupos: van todos, no uno solo.
+const gruposReales = esGrupos ? (datos?.grupos ?? []) : [];
+const grupos = gruposReales.length
+  ? gruposReales.map((g) => ({
+      nombre: g.nombre,
+      filas: g.filas.map((f) => ({
+        posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados,
+        e: f.empatados, p: f.perdidos, gf: f.golesFavor, gc: f.golesContra,
+        dg: f.diferencia, pts: f.puntos
+      }))
+    }))
+  : esGrupos && GRUPOS_DEMO && usarDemo
+    ? gruposDemo
+    : [];
 
 // Goleadores y asistencias por competición
 const anotadores: Record<string, { goles: any[]; asistencias: any[] }> = {
