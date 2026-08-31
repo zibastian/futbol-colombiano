@@ -2076,7 +2076,7 @@
       ],
       "asistencias": []
     },
-    "libertadores": {
+    "copa-libertadores": {
       "ligaId": 13,
       "fase": "playoffs",
       "fasesJugadas": [
@@ -2733,7 +2733,7 @@
         }
       ]
     },
-    "sudamericana": {
+    "copa-sudamericana": {
       "ligaId": 11,
       "fase": "playoffs",
       "fasesJugadas": [

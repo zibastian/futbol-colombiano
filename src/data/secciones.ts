@@ -32,11 +32,11 @@ export const SECCIONES: Seccion[] = [
     descripcion: 'La Copa Colombia: el torneo que se juega todo el año y cruza a los clubes de primera y segunda división.'
   },
   {
-    slug: 'libertadores', nombre: 'Copa Libertadores', enMenu: true, formato: 'grupos',
+    slug: 'copa-libertadores', nombre: 'Copa Libertadores', enMenu: true, formato: 'grupos',
     descripcion: 'La Copa Libertadores: grupos, resultados, goleadores y el camino de los equipos colombianos en el torneo más importante del continente.'
   },
   {
-    slug: 'sudamericana', nombre: 'Copa Sudamericana', enMenu: true, formato: 'grupos',
+    slug: 'copa-sudamericana', nombre: 'Copa Sudamericana', enMenu: true, formato: 'grupos',
     descripcion: 'La Copa Sudamericana: grupos, resultados, goleadores y la campaña de los clubes colombianos.'
   },
   {
@@ -78,8 +78,8 @@ export const MENU: ItemMenu[] = [
       { nombre: 'Torneo BetPlay', url: '/torneo-betplay' },
       { nombre: 'Copa BetPlay', url: '/copa-betplay' },
       { nombre: 'Liga Femenina BetPlay', url: '/liga-femenina' },
-      { nombre: 'Copa Libertadores', url: '/libertadores' },
-      { nombre: 'Copa Sudamericana', url: '/sudamericana' }
+      { nombre: 'Copa Libertadores', url: '/copa-libertadores' },
+      { nombre: 'Copa Sudamericana', url: '/copa-sudamericana' }
     ]
   },
   { nombre: 'Colombianos en el exterior', url: '/colombianos-en-el-exterior' },
@@ -103,12 +103,12 @@ const ALIAS_TORNEO: Record<string, string> = {
   'copa-betplay-dimayor': 'copa-betplay',
   'liga-femenina': 'liga-femenina',
   'liga-femenina-betplay': 'liga-femenina',
-  'libertadores': 'libertadores',
-  'copa-libertadores': 'libertadores',
-  'conmebol-libertadores': 'libertadores',
-  'sudamericana': 'sudamericana',
-  'copa-sudamericana': 'sudamericana',
-  'conmebol-sudamericana': 'sudamericana',
+  'copa-libertadores': 'copa-libertadores',
+  'libertadores': 'copa-libertadores',
+  'conmebol-libertadores': 'copa-libertadores',
+  'copa-sudamericana': 'copa-sudamericana',
+  'sudamericana': 'copa-sudamericana',
+  'conmebol-sudamericana': 'copa-sudamericana',
   'liga-femenina-betplay-dimayor': 'liga-femenina',
   'liga-profesional-femenina': 'liga-femenina',
   'futbol-femenino': 'liga-femenina'
