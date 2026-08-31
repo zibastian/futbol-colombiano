@@ -1,13 +1,23 @@
-// Descarga y normalización de escudos de Primera A y B desde API-Football.
-// Uso:  API_FOOTBALL_KEY=xxxx npm run escudos
-// Ejecutar UNA VEZ (y al inicio de cada temporada si hay ascensos/descensos).
-// Consume ~4 requests de la cuota diaria (2 ligas x 1 página, + reintentos).
+// Descarga y normalización de escudos desde API-Football.
+// Uso:  npm run escudos          (solo los que faltan)
+//       FORZAR=1 npm run escudos (vuelve a bajar todos)
 //
-// Salida: public/escudos/{teamId}.png (256x256) y public/escudos/64/{teamId}.png
+// LA FUENTE ES equipos.ts, NO LA API
+// Antes este script pedía "los equipos de la liga 239 en la temporada 2024" y
+// bajaba lo que viniera. El problema es que la API cambia de identidad a un
+// club y el script ni se entera: Independiente Yumbo pasó a tener el id 27411
+// y acá se seguía bajando el escudo del Atlético Huila (1130), la ficha de la
+// que nació. El club quedaba sin escudo y sin enlace, en silencio.
+//
+// Ahora se recorre nuestra propia base de clubes y se pide cada escudo por su
+// apiId. Si un club de equipos.ts no tiene escudo, se ve en la salida.
+//
+// Salida: public/escudos/{apiId}.png (256x256) y public/escudos/64/{apiId}.png
 // Todos centrados en lienzo cuadrado transparente => nunca se descuadran.
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, access } from 'node:fs/promises';
 import sharp from 'sharp';
+import { EQUIPOS } from '../src/data/equipos.ts';
 
 const KEY = process.env.API_FOOTBALL_KEY;
 if (!KEY) {
@@ -15,13 +25,12 @@ if (!KEY) {
   process.exit(1);
 }
 
-// IDs de liga en API-Football: 239 = Primera A, 240 = Primera B (Colombia)
-const LIGAS = [239, 240];
-// Los escudos no cambian de una temporada a otra, así que usamos una temporada
-// accesible con el plan Free (que bloquea la actual: "try from 2022 to 2024").
-// Con plan Pro: SEASON=2026 npm run escudos
-const SEASON = process.env.SEASON || '2024';
 const OUT = 'public/escudos';
+const FORZAR = process.env.FORZAR === '1';
+
+const existe = async (ruta) => {
+  try { await access(ruta); return true; } catch { return false; }
+};
 
 async function api(path) {
   const res = await fetch(`https://v3.football.api-sports.io/${path}`, {
@@ -48,46 +57,49 @@ async function normalizar(buffer) {
 
 await mkdir(`${OUT}/64`, { recursive: true });
 await mkdir('src/data', { recursive: true });
-let total = 0;
+
 const manifiesto = [];
+let bajados = 0, saltados = 0;
+const sinApiId = [];
+const fallidos = [];
 
-const aSlug = (s) =>
-  s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+for (const equipo of EQUIPOS) {
+  if (!equipo.apiId) { sinApiId.push(equipo.nombre); continue; }
+  manifiesto.push({
+    id: equipo.apiId, nombre: equipo.nombre, slug: equipo.slug, division: equipo.division
+  });
 
-for (const liga of LIGAS) {
-  console.log(`Liga ${liga}, temporada ${SEASON}...`);
-  let equipos = [];
-  try {
-    equipos = await api(`teams?league=${liga}&season=${SEASON}`);
-  } catch (e) {
-    console.error(`  No se pudo consultar la liga ${liga}: ${e.message}`);
-    console.error('  Si el error es del plan, probar: SEASON=2024 npm run escudos');
+  const destino = `${OUT}/${equipo.apiId}.png`;
+  if (!FORZAR && (await existe(destino)) && (await existe(`${OUT}/64/${equipo.apiId}.png`))) {
+    saltados++;
     continue;
   }
-  for (const { team } of equipos) {
-    try {
-      const res = await fetch(team.logo);
-      const buffer = Buffer.from(await res.arrayBuffer());
-      const { grande, chico } = await normalizar(buffer);
-      await writeFile(`${OUT}/${team.id}.png`, grande);
-      await writeFile(`${OUT}/64/${team.id}.png`, chico);
-      manifiesto.push({ id: team.id, nombre: team.name, slug: aSlug(team.name), liga });
-      console.log(`  OK ${team.name} (id ${team.id})`);
-      total++;
-    } catch (e) {
-      console.warn(`  FALLO ${team.name}: ${e.message} — respaldo: buscar en TheSportsDB`);
-    }
+  try {
+    const [info] = await api(`teams?id=${equipo.apiId}`);
+    if (!info?.team?.logo) throw new Error('la API no devolvió escudo');
+    const res = await fetch(info.team.logo);
+    const { grande, chico } = await normalizar(Buffer.from(await res.arrayBuffer()));
+    await writeFile(destino, grande);
+    await writeFile(`${OUT}/64/${equipo.apiId}.png`, chico);
+    console.log(`  OK  ${equipo.nombre} (id ${equipo.apiId}) — la API lo llama "${info.team.name}"`);
+    bajados++;
+  } catch (e) {
+    fallidos.push(`${equipo.nombre} (id ${equipo.apiId}): ${e.message}`);
   }
 }
 
-// El manifiesto permite generar las fichas de equipo sin depender de la API
-// en cada build (nombre, slug y ruta del escudo por ID).
 manifiesto.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 await writeFile('src/data/escudos.json', JSON.stringify(manifiesto, null, 2));
-console.log(`Listo: ${total} escudos normalizados en ${OUT}/`);
-console.log(`Manifiesto: src/data/escudos.json (${manifiesto.length} equipos)`);
+
+console.log(`\nEscudos: ${bajados} bajados, ${saltados} ya estaban.`);
+console.log(`Manifiesto: src/data/escudos.json (${manifiesto.length} clubes)`);
+if (sinApiId.length) {
+  console.log(`\nSIN apiId en equipos.ts (nunca van a tener escudo):`);
+  for (const n of sinApiId) console.log(`  - ${n}`);
+}
+if (fallidos.length) {
+  console.log(`\nFALLARON:`);
+  for (const f of fallidos) console.log(`  - ${f}`);
+  console.log('  Revisá que el apiId sea el que usa la API HOY: un club puede');
+  console.log('  cambiar de identidad (fusión, traslado, cambio de nombre).');
+}

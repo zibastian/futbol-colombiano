@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "escudos": "node scripts/escudos.mjs",
+    "escudos": "node --experimental-strip-types --import ./scripts/registrar-ts.mjs scripts/escudos.mjs",
     "datos:test": "node scripts/diagnostico-api.mjs",
     "portadas": "node scripts/portadas.mjs",
     "fotos": "node scripts/fotos.mjs",
