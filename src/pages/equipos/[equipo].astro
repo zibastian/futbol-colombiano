@@ -35,10 +35,14 @@ const notas = (await getCollection('noticias', ({ data }) => !data.draft))
 // leía solo los datos de ejemplo: un club recién ascendido —o uno nuevo, como
 // Independiente Yumbo— aparecía con números inventados aunque la sección de su
 // torneo ya mostrara los reales.
-const suTorneo = TORNEOS.find(
-  (t) => t.slug === (equipo.division === 'A' ? 'liga-betplay' : 'torneo-betplay')
-);
-const datos = suTorneo ? await datosDe(suTorneo.slug, suTorneo.ligaId, suTorneo.season) : null;
+// UN BLOQUE POR TORNEO, en el orden en que le importan al hincha: primero lo
+// internacional, después su liga, y la copa doméstica al final. Cada bloque
+// lleva la tabla donde está el equipo y debajo sus goleadores.
+//
+// Los goles NO se suman entre torneos: son certámenes distintos. Un jugador con
+// 5 en Sudamericana y 2 en la Liga no tiene 7 de nada.
+const suLiga = equipo.division === 'A' ? 'liga-betplay' : 'torneo-betplay';
+const ORDEN_TORNEOS = ['copa-libertadores', 'copa-sudamericana', suLiga, 'copa-betplay'];
 
 const aFila = (f: any) => ({
   posicion: f.posicion, equipo: f.equipo, pj: f.jugados, g: f.ganados, e: f.empatados,
@@ -48,65 +52,68 @@ const aFila = (f: any) => ({
 const estaAca = (filas: any[]) =>
   filas.some((f) => f.equipoId === equipo.apiId || buscarEquipo(f.equipo)?.slug === equipo.slug);
 
-let tabla: any[] = [];
-let tituloTabla = '';
-const grupoReal = (datos?.grupos ?? []).find((g) => g.filas.length && estaAca(g.filas));
-if (grupoReal) {
-  // Se prefiere la tabla vigente si el club también está ahí: es la que importa.
-  const vigenteSirve = datos!.tabla.length > 0 && estaAca(datos!.tabla);
-  const elegido = vigenteSirve
-    ? { nombre: datos!.tablaNombre ?? '', filas: datos!.tabla }
-    : grupoReal;
-  tabla = elegido.filas.map(aFila);
-  tituloTabla = [suTorneo?.nombre, elegido.nombre].filter(Boolean).join(' · ');
-} else if (equipo.division === 'A' && TABLA_DEMO) {
-  tabla = tablaDemo;
-  tituloTabla = 'Liga BetPlay';
-} else if (GRUPOS_DEMO) {
-  const grupo = gruposDemo.find((g) => g.filas.some((f) => buscarEquipo(f.equipo)?.slug === equipo.slug));
-  if (grupo) {
-    tabla = grupo.filas;
-    tituloTabla = `Torneo BetPlay · ${grupo.nombre}`;
-  }
-}
-
-// Goleadores y asistentes SOLO de este equipo
-const delEquipo = (lista: any[]) =>
-  lista.filter((f) => buscarEquipo(f.equipo)?.slug === equipo.slug);
-// Los goleadores del CLUB en TODAS las competiciones que juega, no el top 10
-// del torneo filtrado: con el top casi ningún equipo tenía a nadie y la sección
-// desaparecía. Y separados por competición, porque los goles de la Liga y los
-// de la Copa no se suman: son certámenes distintos.
-const porCompeticion = (
+const bloques = (
   await Promise.all(
-    TORNEOS.map(async (t) => {
-      const d = await datosDe(t.slug, t.ligaId, t.season);
+    ORDEN_TORNEOS.map(async (slug) => {
+      const torneo = TORNEOS.find((x) => x.slug === slug);
+      if (!torneo) return null;
+      const d = await datosDe(torneo.slug, torneo.ligaId, torneo.season);
+
+      // La tabla que le sirve al hincha es donde está SU equipo. Se prefiere la
+      // vigente; si el club no está ahí —porque quedó en un grupo, o en una
+      // fase anterior— se busca en qué tabla aparece.
+      const enVigente = d.tabla.length > 0 && estaAca(d.tabla);
+      const elegida = enVigente
+        ? { nombre: d.tablaNombre ?? '', filas: d.tabla }
+        : d.grupos.find((g) => g.filas.length && estaAca(g.filas));
+
       const propios = equipo.apiId ? d.porEquipo?.[String(equipo.apiId)] : undefined;
+      if (!elegida && !propios) return null;
+
       return {
-        competencia: t.nombre,
-        slug: t.slug,
+        competencia: torneo.nombre,
+        slug: torneo.slug,
+        subtitulo: elegida?.nombre ?? '',
+        // Los grupos y cuadrangulares clasifican 2; una liga larga, 8.
+        clasifican: d.grupos.length > 2 ? 2 : 8,
+        tabla: (elegida?.filas ?? []).map(aFila),
         goles: propios?.goleadores ?? [],
         asistencias: propios?.asistencias ?? []
       };
     })
   )
-).filter((c) => c.goles.length > 0 || c.asistencias.length > 0);
+).filter((b): b is NonNullable<typeof b> => Boolean(b));
 
-const hayReales = porCompeticion.length > 0;
-// Respaldo de ejemplo solo si no hay NADA real de este club.
-const bloques = hayReales
-  ? porCompeticion
-  : ESTADISTICAS_DEMO && !grupoReal
-    ? [
-        {
-          competencia: equipo.division === 'A' ? 'Liga BetPlay' : 'Torneo BetPlay',
-          slug: equipo.division === 'A' ? 'liga-betplay' : 'torneo-betplay',
-          goles: delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo),
-          asistencias: delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo)
-        }
-      ].filter((b) => b.goles.length || b.asistencias.length)
-    : [];
-const datosSonDemo = !grupoReal && !hayReales;
+const hayReales = bloques.length > 0;
+
+// Respaldo de ejemplo, solo mientras no haya NADA real de este club.
+const delEquipo = (lista: any[]) =>
+  lista.filter((f) => buscarEquipo(f.equipo)?.slug === equipo.slug);
+if (!hayReales) {
+  const demoTabla = equipo.division === 'A' && TABLA_DEMO
+    ? { filas: tablaDemo, nombre: '' }
+    : GRUPOS_DEMO
+      ? (() => {
+          const g = gruposDemo.find((x) => x.filas.some((f) => buscarEquipo(f.equipo)?.slug === equipo.slug));
+          return g ? { filas: g.filas, nombre: g.nombre } : null;
+        })()
+      : null;
+  const goles = ESTADISTICAS_DEMO ? delEquipo(equipo.division === 'A' ? goleadoresLiga : goleadoresTorneo) : [];
+  const asis = ESTADISTICAS_DEMO ? delEquipo(equipo.division === 'A' ? asistenciasLiga : asistenciasTorneo) : [];
+  if (demoTabla || goles.length || asis.length) {
+    bloques.push({
+      competencia: equipo.division === 'A' ? 'Liga BetPlay' : 'Torneo BetPlay',
+      slug: suLiga,
+      subtitulo: demoTabla?.nombre ?? '',
+      clasifican: equipo.division === 'A' ? 8 : 2,
+      tabla: demoTabla?.filas ?? [],
+      goles,
+      asistencias: asis
+    });
+  }
+}
+
+const datosSonDemo = !hayReales;
 
 const equipoLd = {
   '@context': 'https://schema.org',
@@ -151,34 +158,39 @@ const equipoLd = {
 
   <Anuncio formato="horizontal" />
 
-  {tabla.length > 0 && (
-    <section class="bloque-tabla">
-      <h2 class="seccion">Posición en el torneo</h2>
-      {datosSonDemo && (
-        <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
-      )}
-      <TablaPosiciones filas={tabla} titulo={tituloTabla} destacar={equipo.slug} compacta={true} clasifican={equipo.division === 'A' ? 8 : 2} />
-    </section>
+  {datosSonDemo && bloques.length > 0 && (
+    <p class="aviso-demo">Datos de ejemplo para validar el diseño — aún no conectados en vivo.</p>
   )}
 
-  {bloques.length > 0 && (
-    <section class="bloque-stats">
-      <h2 class="seccion">Goleadores y asistencias del equipo</h2>
-      {bloques.map((b) => (
-        <>
-          <h3 class="competencia-titulo"><a href={`/${b.slug}`}>{b.competencia}</a></h3>
-          <div class="grilla-stats">
-            {b.goles.length > 0 && (
-              <TablaAnotadores filas={b.goles} titulo="Goleadores" unidad="Goles" mostrarEquipo={false} />
-            )}
-            {b.asistencias.length > 0 && (
-              <TablaAnotadores filas={b.asistencias} titulo="Asistencias" unidad="Asist." mostrarEquipo={false} />
-            )}
-          </div>
-        </>
-      ))}
+  {bloques.map((b, i) => (
+    <section class="bloque-torneo">
+      {/* La pauta va ENTRE torneos, no después del último: pegada al pie
+          rinde peor y encima el pie ya tiene la suya. */}
+      {i > 0 && <Anuncio formato="horizontal" />}
+      <h2 class="seccion">
+        <a href={`/${b.slug}`}>{b.competencia}</a>
+        {b.subtitulo && <span class="fase-torneo">{b.subtitulo}</span>}
+      </h2>
+      {b.tabla.length > 0 && (
+        <TablaPosiciones
+          filas={b.tabla}
+          destacar={equipo.slug}
+          compacta={true}
+          clasifican={b.clasifican}
+        />
+      )}
+      {(b.goles.length > 0 || b.asistencias.length > 0) && (
+        <div class="grilla-stats">
+          {b.goles.length > 0 && (
+            <TablaAnotadores filas={b.goles} titulo="Goleadores" unidad="Goles" mostrarEquipo={false} />
+          )}
+          {b.asistencias.length > 0 && (
+            <TablaAnotadores filas={b.asistencias} titulo="Asistencias" unidad="Asist." mostrarEquipo={false} />
+          )}
+        </div>
+      )}
     </section>
-  )}
+  ))}
 
   <Anuncio formato="horizontal" />
 
@@ -222,6 +234,14 @@ const equipoLd = {
   .bloque-tabla { margin-bottom: 1.2rem; }
   .bloque-stats { margin-bottom: 1.4rem; }
   .grilla-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
+  .bloque-torneo { margin-bottom: 2rem; }
+  .bloque-torneo .seccion a { color: inherit; text-decoration: none; }
+  .bloque-torneo .seccion a:hover { color: var(--acento); }
+  .fase-torneo {
+    display: block; font-size: 0.8rem; font-weight: 400; margin-top: 0.15rem;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--tenue);
+  }
+
   .competencia-titulo {
     font-size: 0.95rem; margin: 1.2rem 0 0.6rem; text-transform: uppercase;
     letter-spacing: 0.04em; color: var(--tenue);
