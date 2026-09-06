@@ -1,9 +1,19 @@
 ---
-import { buscarEquipo, escudoDe } from '../data/equipos';
+import { buscarEquipo, equipoPorApiId, escudoDe } from '../data/equipos';
 import { slugify } from '../lib/slug';
 import { tieneFichaPorEstadisticas } from '../data/estadisticas-jugadores';
 
-interface Fila { jugador: string; equipo: string; cantidad: number; partidos: number }
+interface Fila {
+  jugador: string;
+  equipo: string;
+  cantidad: number;
+  partidos: number;
+  /** Los clubes extranjeros no están en nuestra base: se resuelven por id y
+   *  usan el escudo que manda la API. Buscarlos por nombre solo encontraba a
+   *  los colombianos, así que los goleadores de Libertadores salían sin club. */
+  equipoId?: number | null;
+  logo?: string | null;
+}
 interface Props {
   filas: Fila[];
   titulo: string;
@@ -21,8 +31,9 @@ const visibles = filas.slice(0, limite);
       <h3 class="anotadores-titulo">{titulo}</h3>
       <ol class="lista-anotadores">
         {visibles.map((f, i) => {
-          const eq = buscarEquipo(f.equipo);
-          const escudo = escudoDe(eq, 64);
+          const eq = equipoPorApiId(f.equipoId) ?? buscarEquipo(f.equipo);
+          const escudo = escudoDe(eq, 64) ?? f.logo ?? null;
+          const nombreClub = eq?.nombre ?? f.equipo;
           // Solo se enlaza si la ficha existe: un enlace a un 404 es peor que
           // un nombre sin enlace, y además Google lo penaliza.
           const slug = slugify(f.jugador);
@@ -33,7 +44,7 @@ const visibles = filas.slice(0, limite);
               {escudo && <img src={escudo} alt="" width="20" height="20" loading="lazy" />}
               <span class="nombre">
                 {conFicha ? <a href={`/jugadores/${slug}`}>{f.jugador}</a> : f.jugador}
-                {mostrarEquipo && eq && <em>{eq.nombre}</em>}
+                {mostrarEquipo && nombreClub && <em>{nombreClub}</em>}
               </span>
               <span class="cantidad">{f.cantidad}<i>{unidad}</i></span>
             </li>

@@ -156,6 +156,8 @@ export async function tablaPosiciones(ligaId: number, season: number): Promise<F
 export interface Anotador {
   jugador: string;
   equipo: string;
+  equipoId?: number | null;
+  logo?: string | null;
   cantidad: number;
   partidos: number;
 }
@@ -180,6 +182,8 @@ async function anotadores(
       return {
         jugador: p.player?.name ?? '',
         equipo: nombreClub(st.team?.id, st.team?.name ?? ''),
+        equipoId: st.team?.id ?? null,
+        logo: st.team?.logo ?? null,
         cantidad: cantidad ?? 0,
         partidos: st.games?.appearences ?? 0
       };
@@ -235,6 +239,7 @@ interface Acumulado {
   jugador: string;
   equipoId?: number;
   equipoNombre: string;
+  equipoLogo?: string | null;
   goles: number;
   asistencias: number;
   partidos: Set<number>;
@@ -283,6 +288,7 @@ async function anotadoresPorEventos(
         jugador: nombre,
         equipoId: equipo?.id,
         equipoNombre: nombreClub(equipo?.id, equipo?.name ?? ''),
+        equipoLogo: equipo?.logo ?? null,
         goles: 0,
         asistencias: 0,
         partidos: new Set()
@@ -312,6 +318,8 @@ async function anotadoresPorEventos(
       .map((a) => ({
         jugador: a.jugador,
         equipo: a.equipoNombre,
+        equipoId: a.equipoId ?? null,
+        logo: a.equipoLogo ?? null,
         cantidad: a[campo],
         // Partidos en los que participó de un gol, NO partidos jugados: los
         // eventos no dicen quién estuvo en cancha. Se marca con 0 cuando no

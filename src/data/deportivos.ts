@@ -21,6 +21,12 @@ import { estadisticasDelTorneo, torneosDeTemporada, torneoVigente, type FilaTabl
 export interface Anotador {
   jugador: string;
   equipo: string;
+  /** id de API-Football del club. Resuelve la ficha sin depender del nombre.
+   *  Opcional: los datos de ejemplo y el respaldo en vivo no lo traen. */
+  equipoId?: number | null;
+  /** Escudo listo para usar: el nuestro si el club está en la base, si no el
+   *  de la API. Sin esto, los goleadores de Libertadores salían sin club. */
+  logo?: string | null;
   cantidad: number;
   partidos: number;
 }
@@ -129,9 +135,36 @@ if (!HAY_DATOS_PRECALCULADOS) {
 const club = (id?: number | null, porDefecto = '') =>
   equipoPorApiId(id)?.nombre ?? porDefecto;
 
+// Escudos de TODOS los clubes que aparecen en el JSON, por id.
+//
+// Los goleadores no traen escudo, pero las tablas sí, y es el mismo club. Se
+// arma el índice una vez y con eso los goleadores de Libertadores dejan de
+// salir sin equipo: buscarlos por nombre solo encontraba a los colombianos.
+const LOGOS: Record<number, string> = (() => {
+  const mapa: Record<number, string> = {};
+  for (const comp of Object.values(JSON_DATOS?.competiciones ?? {}) as any[]) {
+    for (const t of comp.torneos ?? []) {
+      for (const f of t.tabla ?? []) {
+        if (f.equipoId && f.logo && !mapa[f.equipoId]) mapa[f.equipoId] = f.logo;
+      }
+    }
+    for (const r of comp.llaves ?? []) {
+      for (const p of r.partidos ?? []) {
+        if (p.localId && p.logoLocal && !mapa[p.localId]) mapa[p.localId] = p.logoLocal;
+        if (p.visitanteId && p.logoVisitante && !mapa[p.visitanteId]) {
+          mapa[p.visitanteId] = p.logoVisitante;
+        }
+      }
+    }
+  }
+  return mapa;
+})();
+
 const anotadorDeJson = (a: any): Anotador => ({
   jugador: a.jugador,
   equipo: club(a.equipoId, a.equipo ?? ''),
+  equipoId: a.equipoId ?? null,
+  logo: escudoDeFila(a.equipoId, a.equipoId ? LOGOS[a.equipoId] : null),
   cantidad: a.cantidad,
   // Los eventos dicen quién marcó, no quién estuvo en cancha: PJ no se sabe.
   partidos: 0
