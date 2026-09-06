@@ -31,7 +31,9 @@ const salida = {
   // sea más larga — con datos que salen de nuestra base, no de la memoria del
   // modelo, que es exactamente lo que le tenemos prohibido usar.
   equipos: EQUIPOS.map((e) => ({
-    slug: e.slug, nombre: e.nombre, alias: e.alias ?? [],
+    // El apiId va porque la fábrica necesita saber qué clubes son NUESTROS:
+    // con eso decide de qué jugadores vale la pena pedir el nombre completo.
+    slug: e.slug, apiId: e.apiId ?? null, nombre: e.nombre, alias: e.alias ?? [],
     apodo: e.apodo ?? null, ciudad: e.ciudad, estadio: e.estadio ?? null,
     fundacion: e.fundacion ?? null, division: e.division, descripcion: e.descripcion
   })),

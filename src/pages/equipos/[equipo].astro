@@ -195,7 +195,7 @@ const equipoLd = {
         />
       )}
       {b.llaves.length > 0 && (
-        <Llaves rondas={b.llaves} destacarId={equipo.apiId ?? null} titulo="Camino en la llave" />
+        <Llaves rondas={b.llaves} destacarId={equipo.apiId ?? null} modo="camino" titulo="Camino en la llave" />
       )}
       {(b.goles.length > 0 || b.asistencias.length > 0) && (
         <div class="grilla-stats">

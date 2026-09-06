@@ -34,10 +34,11 @@ const visibles = filas.slice(0, limite);
           const eq = equipoPorApiId(f.equipoId) ?? buscarEquipo(f.equipo);
           const escudo = escudoDe(eq, 64) ?? f.logo ?? null;
           const nombreClub = eq?.nombre ?? f.equipo;
-          // Solo se enlaza si la ficha existe: un enlace a un 404 es peor que
-          // un nombre sin enlace, y además Google lo penaliza.
+          // Se enlaza solo al jugador de un club COLOMBIANO y que tenga ficha.
+          // Del resto sabemos apenas el nombre abreviado que manda la API
+          // ("A. Arce"): una página con eso solo no le sirve a nadie.
           const slug = slugify(f.jugador);
-          const conFicha = tieneFichaPorEstadisticas(slug);
+          const conFicha = Boolean(eq) && tieneFichaPorEstadisticas(slug);
           return (
             <li>
               <span class="puesto">{i + 1}</span>

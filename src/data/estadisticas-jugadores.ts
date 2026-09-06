@@ -17,6 +17,7 @@
 import { slugify } from '../lib/slug';
 import { TORNEOS } from './torneos';
 import { datosDe } from './deportivos';
+import { equipoPorApiId } from './equipos';
 import {
   goleadoresLiga, asistenciasLiga, goleadoresTorneo, asistenciasTorneo,
   goleadoresCopa, asistenciasCopa
@@ -36,7 +37,10 @@ export interface LineaEstadistica {
 
 export interface FichaEstadistica {
   slug: string;
+  /** El abreviado, tal como aparece en las tablas. */
   nombre: string;
+  /** El completo, para el título de su ficha. Cae al corto si no lo tenemos. */
+  nombreCompleto: string;
   lineas: LineaEstadistica[];
   totalGoles: number;
   totalAsistencias: number;
@@ -57,6 +61,13 @@ const DEMO: Record<string, { goles: Anotador[]; asistencias: Anotador[] }> = {
 
 let hayDatosReales = false;
 
+// SOLO JUGADORES DE CLUBES COLOMBIANOS
+// En Libertadores y Sudamericana el top de goleadores es casi todo extranjero.
+// Generarles ficha sería inventar páginas vacías —no tenemos ni su nombre
+// completo— y llenar el sitio de contenido flojo que Google castiga. De los
+// nuestros sí sabemos algo, así que ellos sí tienen página.
+const esDeClubNuestro = (a: Anotador) => Boolean(equipoPorApiId(a.equipoId));
+
 const FUENTES: Fuente[] = await Promise.all(
   TORNEOS.map(async (t): Promise<Fuente> => {
     const real = await datosDe(t.slug, t.ligaId, t.season);
@@ -67,8 +78,8 @@ const FUENTES: Fuente[] = await Promise.all(
       return {
         torneo: real.torneoVigente ? `${t.nombre} ${real.torneoVigente}` : t.nombre,
         torneoSlug: t.slug,
-        goles: real.goleadores,
-        asistencias: real.asistencias
+        goles: real.goleadores.filter(esDeClubNuestro),
+        asistencias: real.asistencias.filter(esDeClubNuestro)
       };
     }
     const demo = DEMO[t.slug] ?? { goles: [], asistencias: [] };
@@ -86,9 +97,16 @@ for (const fuente of FUENTES) {
   const registrar = (a: Anotador, campo: 'goles' | 'asistencias') => {
     const slug = slugify(a.jugador);
     if (!indice.has(slug)) {
-      indice.set(slug, { slug, nombre: a.jugador, lineas: [], totalGoles: 0, totalAsistencias: 0 });
+      indice.set(slug, {
+        slug, nombre: a.jugador, nombreCompleto: a.nombreCompleto || a.jugador,
+        lineas: [], totalGoles: 0, totalAsistencias: 0
+      });
     }
     const ficha = indice.get(slug)!;
+    // El completo puede venir en una competición y no en otra: vale el que haya.
+    if (a.nombreCompleto && ficha.nombreCompleto === ficha.nombre) {
+      ficha.nombreCompleto = a.nombreCompleto;
+    }
     let linea = ficha.lineas.find((l) => l.torneoSlug === fuente.torneoSlug && l.equipo === a.equipo);
     if (!linea) {
       linea = {

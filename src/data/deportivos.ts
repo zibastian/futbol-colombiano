@@ -27,6 +27,11 @@ export interface Anotador {
   /** Escudo listo para usar: el nuestro si el club está en la base, si no el
    *  de la API. Sin esto, los goleadores de Libertadores salían sin club. */
   logo?: string | null;
+  /** "Andrés Arce" en vez de "A. Arce". Los eventos del partido solo traen el
+   *  abreviado; el completo sale de /players y la fábrica lo pide una vez, y
+   *  solo de los jugadores de clubes colombianos. En las tablas se usa el
+   *  corto —entra en una línea— y en la ficha del jugador, el completo. */
+  nombreCompleto?: string | null;
   cantidad: number;
   partidos: number;
 }
@@ -75,6 +80,10 @@ export interface PartidoLlave {
   logoVisitante: string | null;
   golesLocal: number | null;
   golesVisitante: number | null;
+  /** Tanda de penales. `goles` trae el marcador de los 90 o del alargue, así
+   *  que sin esto una llave definida desde el punto blanco figura empatada. */
+  penalesLocal: number | null;
+  penalesVisitante: number | null;
 }
 
 export interface RondaLlave {
@@ -162,6 +171,7 @@ const LOGOS: Record<number, string> = (() => {
 
 const anotadorDeJson = (a: any): Anotador => ({
   jugador: a.jugador,
+  nombreCompleto: a.nombreCompleto ?? null,
   equipo: club(a.equipoId, a.equipo ?? ''),
   equipoId: a.equipoId ?? null,
   logo: escudoDeFila(a.equipoId, a.equipoId ? LOGOS[a.equipoId] : null),
@@ -230,7 +240,9 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
           visitante: club(p.visitanteId, p.visitante ?? ''),
           logoVisitante: escudoDeFila(p.visitanteId, p.logoVisitante),
           golesLocal: p.golesLocal ?? null,
-          golesVisitante: p.golesVisitante ?? null
+          golesVisitante: p.golesVisitante ?? null,
+          penalesLocal: p.penalesLocal ?? null,
+          penalesVisitante: p.penalesVisitante ?? null
         }))
       })),
       porEquipo: Object.fromEntries(

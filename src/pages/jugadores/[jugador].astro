@@ -29,7 +29,9 @@ export async function getStaticPaths() {
   // Y quien aparece en una tabla de goleadores o asistencias también: si no,
   // el enlace de la tabla apunta a una página que no existe.
   for (const e of ESTADISTICAS_JUGADORES) {
-    if (!mapa.has(e.slug)) mapa.set(e.slug, { nombre: e.nombre, notas: [] });
+    // Se registra con el nombre COMPLETO: la tabla lo abrevia por espacio, pero
+    // su propia página no tiene por qué llamarlo "A. Arce".
+    if (!mapa.has(e.slug)) mapa.set(e.slug, { nombre: e.nombreCompleto, notas: [] });
   }
 
   return [...mapa.entries()].map(([slug, { nombre, notas }]) => ({

@@ -1,127 +1,222 @@
 ---
-// Fase de eliminación directa: los cruces, ronda por ronda.
+// Fase de eliminación directa, como organigrama: una COLUMNA por ronda.
 //
 // POR QUÉ NO ALCANZA UNA TABLA
-// En la fase final no hay puntos, hay llaves. Y el equipo eliminado desaparece
+// En la fase final no hay puntos, hay cruces. Y el equipo eliminado desaparece
 // de las tablas de la API, así que sin esto la ficha de un club que llegó a
 // cuartos y perdió no puede decir dónde quedó: se queda muda.
 //
-// Cuando se filtra por un equipo (`destacarId`) se lee como su recorrido: las
-// llaves que jugó, en orden, con el resultado de cada una.
+// POR QUÉ SE AGRUPAN LOS PARTIDOS
+// La API manda cada partido por separado, pero una llave de ida y vuelta es UNA
+// sola cosa con un global. Listarlos sueltos obliga al lector a sumar de cabeza
+// quién pasó. Acá los dos partidos del mismo cruce se juntan y se muestra el
+// global; si hubo penales, mandan ellos.
+//
+// El modo `camino` es para la ficha de un club: ahí un organigrama de ocho
+// llaves no aporta, lo que importa es su recorrido.
 
-import type { RondaLlave } from '../data/deportivos';
+import type { RondaLlave, PartidoLlave } from '../data/deportivos';
 
 interface Props {
   rondas: RondaLlave[];
-  /** apiId del club a resaltar. Si se pasa, solo salen sus llaves. */
+  /** apiId del club a resaltar. En modo `camino`, además, solo salen sus llaves. */
   destacarId?: number | null;
+  modo?: 'bracket' | 'camino';
   titulo?: string;
 }
-const { rondas, destacarId = null, titulo } = Astro.props;
-
-const visibles = destacarId
-  ? rondas
-      .map((r) => ({
-        ...r,
-        partidos: r.partidos.filter(
-          (p) => p.localId === destacarId || p.visitanteId === destacarId
-        )
-      }))
-      .filter((r) => r.partidos.length > 0)
-  : rondas.filter((r) => r.partidos.length > 0);
+const { rondas, destacarId = null, modo = 'bracket', titulo } = Astro.props;
 
 const TERMINADO = ['FT', 'AET', 'PEN'];
 
-// Las comparaciones se resuelven acá: el compilador de Astro lee "<" como
-// apertura de etiqueta si aparecen en el template.
-const preparadas = visibles.map((r) => ({
-  ...r,
-  partidos: r.partidos.map((p) => {
+interface Llave {
+  a: { id: number | null; nombre: string; logo: string | null; goles: number; penales: number | null };
+  b: { id: number | null; nombre: string; logo: string | null; goles: number; penales: number | null };
+  hubopenales: boolean;
+  partidos: PartidoLlave[];
+  jugada: boolean;
+  completa: boolean;
+  fecha: string;
+}
+
+/** Los dos equipos de un cruce, sin importar quién fue local en cada partido. */
+const claveDelCruce = (p: PartidoLlave) =>
+  [p.localId ?? p.local, p.visitanteId ?? p.visitante]
+    .map(String)
+    .sort()
+    .join('|');
+
+function agrupar(partidos: PartidoLlave[]): Llave[] {
+  const cruces = new Map<string, Llave>();
+  for (const p of partidos) {
+    const clave = claveDelCruce(p);
+    if (!cruces.has(clave)) {
+      cruces.set(clave, {
+        a: { id: p.localId, nombre: p.local, logo: p.logoLocal, goles: 0, penales: null },
+        b: { id: p.visitanteId, nombre: p.visitante, logo: p.logoVisitante, goles: 0, penales: null },
+        partidos: [],
+        hubopenales: false,
+        jugada: false,
+        completa: false,
+        fecha: ''
+      });
+    }
+    const ll = cruces.get(clave)!;
+    ll.partidos.push(p);
     const jugado = Boolean(p.estado && TERMINADO.includes(p.estado));
-    const gl = p.golesLocal ?? 0;
-    const gv = p.golesVisitante ?? 0;
-    const fecha = p.fecha
-      ? new Date(p.fecha).toLocaleDateString('es-CO', {
-          day: 'numeric', month: 'short', timeZone: 'America/Bogota'
-        })
-      : '';
+    if (jugado) {
+      ll.jugada = true;
+      // El local de este partido puede ser cualquiera de los dos lados.
+      const esA = p.localId === ll.a.id;
+      ll.a.goles += (esA ? p.golesLocal : p.golesVisitante) ?? 0;
+      ll.b.goles += (esA ? p.golesVisitante : p.golesLocal) ?? 0;
+      // Los penales no se suman al global: definen la llave aparte.
+      if (p.penalesLocal !== null && p.penalesVisitante !== null) {
+        ll.hubopenales = true;
+        ll.a.penales = (esA ? p.penalesLocal : p.penalesVisitante) ?? null;
+        ll.b.penales = (esA ? p.penalesVisitante : p.penalesLocal) ?? null;
+      }
+    } else if (!ll.fecha && p.fecha) {
+      ll.fecha = new Date(p.fecha).toLocaleDateString('es-CO', {
+        day: 'numeric', month: 'short', timeZone: 'America/Bogota'
+      });
+    }
+  }
+  for (const ll of cruces.values()) {
+    ll.completa = ll.partidos.every((p) => p.estado && TERMINADO.includes(p.estado));
+  }
+  return [...cruces.values()];
+}
+
+const visibles = rondas
+  .map((r) => {
+    const llaves = agrupar(r.partidos).filter(
+      (ll) => modo !== 'camino' || !destacarId || ll.a.id === destacarId || ll.b.id === destacarId
+    );
+    return { ronda: r.ronda, llaves };
+  })
+  .filter((r) => r.llaves.length > 0);
+
+// Las comparaciones se resuelven acá: el compilador de Astro lee "<" como
+// apertura de etiqueta si aparecen dentro del template.
+const preparadas = visibles.map((r) => ({
+  ronda: r.ronda,
+  llaves: r.llaves.map((ll) => {
+    const porGlobal = ll.completa && ll.a.goles !== ll.b.goles;
+    const porPenales =
+      ll.completa && !porGlobal && ll.a.penales !== null && ll.b.penales !== null;
     return {
-      ...p,
-      jugado,
-      fecha,
-      ganoLocal: jugado && gl > gv,
-      ganoVisitante: jugado && gv > gl,
-      marcador: jugado ? `${gl} - ${gv}` : 'vs'
+      ...ll,
+      // Manda el global; si quedó empatado, la tanda. Y si la llave terminó
+      // igualada y no tenemos los penales, no se corona a nadie: antes eso que
+      // señalar al equivocado.
+      ganaA: (porGlobal && ll.a.goles > ll.b.goles) || (porPenales && ll.a.penales! > ll.b.penales!),
+      ganaB: (porGlobal && ll.b.goles > ll.a.goles) || (porPenales && ll.b.penales! > ll.a.penales!),
+      penalesTexto: porPenales ? `penales ${ll.a.penales}-${ll.b.penales}` : '',
+      empateGlobal: ll.completa && !porGlobal && !porPenales,
+      destacaA: destacarId !== null && ll.a.id === destacarId,
+      destacaB: destacarId !== null && ll.b.id === destacarId,
+      marcador: ll.jugada ? `${ll.a.goles}-${ll.b.goles}` : 'vs',
+      legs: ll.partidos
+        .filter((p) => p.estado && TERMINADO.includes(p.estado))
+        .map((p) => `${p.golesLocal}-${p.golesVisitante}`)
+        .join(' · ')
     };
   })
 }));
 ---
 
 {preparadas.length > 0 && (
-  <div class="llaves">
+  <div class={`llaves ${modo}`}>
     {titulo && <h3 class="llaves-titulo">{titulo}</h3>}
-    {preparadas.map((r) => (
-      <div class="ronda">
-        <h4 class="ronda-nombre">{r.ronda}</h4>
-        <ul class="cruces">
-          {r.partidos.map((p) => (
-            <li class={p.jugado ? 'cruce' : 'cruce por-jugar'}>
-              <span class={p.ganoLocal ? 'lado gano' : 'lado'}>
-                {p.logoLocal && <img src={p.logoLocal} alt="" width="20" height="20" loading="lazy" />}
-                <span class="nombre">{p.local}</span>
-              </span>
-              <span class="marcador">
-                {p.marcador}
-                {!p.jugado && p.fecha && <i>{p.fecha}</i>}
-              </span>
-              <span class={p.ganoVisitante ? 'lado derecha gano' : 'lado derecha'}>
-                <span class="nombre">{p.visitante}</span>
-                {p.logoVisitante && <img src={p.logoVisitante} alt="" width="20" height="20" loading="lazy" />}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
+    <div class="pista">
+      {preparadas.map((r) => (
+        <div class="ronda">
+          <h4 class="ronda-nombre">{r.ronda}</h4>
+          <div class="cruces">
+            {r.llaves.map((ll) => (
+              <div class={ll.jugada ? 'llave' : 'llave por-jugar'}>
+                <div class={`lado${ll.ganaA ? ' pasa' : ''}${ll.destacaA ? ' propio' : ''}`}>
+                  {ll.a.logo && <img src={ll.a.logo} alt="" width="22" height="22" loading="lazy" />}
+                  <span class="nombre">{ll.a.nombre}</span>
+                  <span class="goles">{ll.jugada ? ll.a.goles : ''}</span>
+                </div>
+                <div class={`lado${ll.ganaB ? ' pasa' : ''}${ll.destacaB ? ' propio' : ''}`}>
+                  {ll.b.logo && <img src={ll.b.logo} alt="" width="22" height="22" loading="lazy" />}
+                  <span class="nombre">{ll.b.nombre}</span>
+                  <span class="goles">{ll.jugada ? ll.b.goles : ''}</span>
+                </div>
+                <p class="pie">
+                  {ll.jugada ? ll.legs : ll.fecha}
+                  {ll.penalesTexto && <em> · {ll.penalesTexto}</em>}
+                  {ll.empateGlobal && <em> · definido por penales</em>}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 )}
 
 <style>
-  .llaves { margin: 0 0 1.4rem; }
+  .llaves { margin: 0 0 1.6rem; }
   .llaves-titulo { font-size: 1rem; margin: 0 0 0.7rem; }
 
-  .ronda { margin-bottom: 1.1rem; }
+  /* Una columna por ronda. En escritorio se leen de izquierda a derecha como
+     un organigrama; si no entran, la pista se desplaza en lugar de apretar las
+     cajas hasta romperlas. */
+  .pista {
+    display: flex; gap: 1.1rem; align-items: stretch;
+    overflow-x: auto; padding-bottom: 0.5rem;
+  }
+  .ronda { flex: 1 0 250px; min-width: 250px; display: flex; flex-direction: column; }
+
   .ronda-nombre {
-    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--gris); margin: 0 0 0.45rem; font-weight: 700;
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--gris); margin: 0 0 0.5rem; font-weight: 700;
+    padding-bottom: 0.35rem; border-bottom: 2px solid var(--borde);
   }
 
-  .cruces { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+  /* `space-around` es lo que da el efecto de árbol: con 8, 4, 2 y 1 llaves, cada
+     caja queda a la altura del centro de las dos que la alimentan. Sin líneas
+     dibujadas, la alineación sola ya cuenta de dónde viene cada equipo. */
+  .cruces {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-around; gap: 0.6rem;
+  }
 
-  .cruce {
-    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-    gap: 0.6rem; padding: 0.55rem 0.7rem;
+  .llave {
     border: 1px solid var(--borde); border-radius: 8px; background: #fff;
-    font-size: 0.88rem;
+    padding: 0.45rem 0.55rem 0.3rem;
   }
-  .cruce.por-jugar { background: transparent; border-style: dashed; }
+  .llave.por-jugar { background: transparent; border-style: dashed; }
 
-  .lado { display: flex; align-items: center; gap: 0.45rem; min-width: 0; }
-  .lado.derecha { justify-content: flex-end; }
+  .lado {
+    display: grid; grid-template-columns: 22px 1fr auto; align-items: center;
+    gap: 0.45rem; font-size: 0.86rem; color: var(--gris); padding: 0.12rem 0;
+  }
   .lado .nombre { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  /* El que pasó va en negrita: se lee la llave de un vistazo. */
-  .lado.gano { font-weight: 700; }
-  .lado:not(.gano) { color: var(--gris); }
-  .lado img { width: 20px; height: 20px; object-fit: contain; flex: none; }
+  .lado img { width: 22px; height: 22px; object-fit: contain; }
+  .lado .goles { font-family: var(--condensada); font-weight: 700; min-width: 1ch; text-align: right; }
+  /* El que pasó, en negro y en negrita: la llave se lee de un vistazo. */
+  .lado.pasa { color: var(--tinta); font-weight: 700; }
+  .lado.propio .nombre { color: var(--tinta); }
+  .lado.propio { background: #FFF8DC; border-radius: 4px; }
 
-  .marcador {
-    font-family: var(--condensada); font-weight: 700; white-space: nowrap;
-    text-align: center; min-width: 3.4rem;
+  .pie {
+    margin: 0.3rem 0 0; font-size: 0.7rem; color: var(--gris);
+    border-top: 1px solid var(--borde); padding-top: 0.25rem;
   }
-  .marcador i { display: block; font-size: 0.7rem; font-weight: 400; font-style: normal; color: var(--gris); }
+  .pie em { font-style: normal; }
 
-  @media (max-width: 520px) {
-    .cruce { font-size: 0.82rem; padding: 0.5rem 0.55rem; gap: 0.4rem; }
-    .lado img { width: 18px; height: 18px; }
+  /* En la ficha de un club el recorrido es una sola línea de llaves: no hay
+     árbol que dibujar, así que las columnas se vuelven filas. */
+  .camino .pista { flex-wrap: wrap; overflow-x: visible; }
+  .camino .ronda { flex: 0 1 260px; min-width: 220px; }
+
+  @media (max-width: 700px) {
+    .ronda { flex: 0 0 230px; min-width: 230px; }
+    .camino .ronda { flex: 1 1 100%; }
   }
 </style>
