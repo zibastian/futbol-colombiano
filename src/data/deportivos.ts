@@ -174,7 +174,7 @@ const anotadorDeJson = (a: any): Anotador => ({
   nombreCompleto: a.nombreCompleto ?? null,
   equipo: club(a.equipoId, a.equipo ?? ''),
   equipoId: a.equipoId ?? null,
-  logo: escudoDeFila(a.equipoId, a.equipoId ? LOGOS[a.equipoId] : null),
+  logo: escudoDeFila(a.equipoId, a.logo ?? (a.equipoId ? LOGOS[a.equipoId] : null)),
   cantidad: a.cantidad,
   // Los eventos dicen quién marcó, no quién estuvo en cancha: PJ no se sabe.
   partidos: 0

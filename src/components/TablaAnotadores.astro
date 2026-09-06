@@ -13,6 +13,8 @@ interface Fila {
    *  los colombianos, así que los goleadores de Libertadores salían sin club. */
   equipoId?: number | null;
   logo?: string | null;
+  /** El completo arma la URL; en la tabla se muestra el corto, que entra. */
+  nombreCompleto?: string | null;
 }
 interface Props {
   filas: Fila[];
@@ -37,7 +39,7 @@ const visibles = filas.slice(0, limite);
           // Se enlaza solo al jugador de un club COLOMBIANO y que tenga ficha.
           // Del resto sabemos apenas el nombre abreviado que manda la API
           // ("A. Arce"): una página con eso solo no le sirve a nadie.
-          const slug = slugify(f.jugador);
+          const slug = slugify(f.nombreCompleto || f.jugador);
           const conFicha = Boolean(eq) && tieneFichaPorEstadisticas(slug);
           return (
             <li>

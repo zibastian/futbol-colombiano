@@ -95,7 +95,11 @@ const indice = new Map<string, FichaEstadistica>();
 
 for (const fuente of FUENTES) {
   const registrar = (a: Anotador, campo: 'goles' | 'asistencias') => {
-    const slug = slugify(a.jugador);
+    // La URL lleva el nombre COMPLETO: /jugadores/hugo-rodallega posiciona y se
+    // entiende; /jugadores/h-rodallega no dice nada ni a Google ni a nadie.
+    // Además así coincide con el slug que genera una nota, que nombra al
+    // jugador completo, y las dos rutas caen en la misma página.
+    const slug = slugify(a.nombreCompleto || a.jugador);
     if (!indice.has(slug)) {
       indice.set(slug, {
         slug, nombre: a.jugador, nombreCompleto: a.nombreCompleto || a.jugador,

@@ -96,10 +96,63 @@ const visibles = rondas
   })
   .filter((r) => r.llaves.length > 0);
 
+/** Ordena las llaves para que las líneas digan la verdad.
+ *
+ *  La API no dice qué octavos alimenta a qué cuartos: los devuelve por fecha.
+ *  Dibujados en ese orden, el árbol queda lindo y miente, que es peor que no
+ *  dibujarlo.
+ *
+ *  Así que se reconstruye siguiendo a los equipos. Se recorre de la última
+ *  ronda hacia atrás: para cada cruce, se buscan en la ronda anterior los dos
+ *  cruces de donde salieron sus rivales y se los pone juntos, en ese orden. Lo
+ *  que no se puede rastrear —un equipo que entró desde otra fase, o una ronda
+ *  incompleta— queda al final, sin línea que prometa algo que no sabemos. */
+function ordenarComoArbol(rondas: { ronda: string; llaves: Llave[] }[]) {
+  for (let r = rondas.length - 2; r >= 0; r--) {
+    const previa = rondas[r].llaves;
+    const usadas = new Set<Llave>();
+    const ordenadas: Llave[] = [];
+
+    for (const siguiente of rondas[r + 1].llaves) {
+      for (const id of [siguiente.a.id, siguiente.b.id]) {
+        if (id === null) continue;
+        const origen = previa.find(
+          (ll) => !usadas.has(ll) && (ll.a.id === id || ll.b.id === id)
+        );
+        if (origen) {
+          usadas.add(origen);
+          ordenadas.push(origen);
+        }
+      }
+    }
+    // Las que no se pudieron rastrear conservan su orden original al final.
+    rondas[r].llaves = [...ordenadas, ...previa.filter((ll) => !usadas.has(ll))];
+  }
+  return rondas;
+}
+
+if (modo === 'bracket') ordenarComoArbol(visibles);
+
+// GEOMETRÍA DEL ORGANIGRAMA
+// `space-around` repartía las cajas parejo, pero eso NO es un bracket: la caja
+// de cuartos tiene que quedar a la altura del punto medio de las dos de octavos
+// que la alimentan, y con alturas distintas —unas llevan penales, otras no— el
+// reparto parejo las desalinea.
+//
+// La solución es una grilla de filas iguales, la misma en todas las columnas.
+// La primera ronda ocupa una fila por llave; la siguiente, dos; la siguiente,
+// cuatro. Cada caja se centra en su bloque y la alineación sale exacta.
+//
+// El factor se calcula, no se asume: acá hay rondas que no son potencia de dos
+// (la Copa BetPlay tiene 8 llaves y después 7), y suponer que cada ronda es la
+// mitad de la anterior dejaría huecos raros.
+const filasBase = Math.max(...visibles.map((r) => r.llaves.length), 1);
+
 // Las comparaciones se resuelven acá: el compilador de Astro lee "<" como
 // apertura de etiqueta si aparecen dentro del template.
 const preparadas = visibles.map((r) => ({
   ronda: r.ronda,
+  span: Math.max(1, Math.round(filasBase / r.llaves.length)),
   llaves: r.llaves.map((ll) => {
     const porGlobal = ll.completa && ll.a.goles !== ll.b.goles;
     const porPenales =
@@ -129,11 +182,15 @@ const preparadas = visibles.map((r) => ({
   <div class={`llaves ${modo}`}>
     {titulo && <h3 class="llaves-titulo">{titulo}</h3>}
     <div class="pista">
-      {preparadas.map((r) => (
+      {preparadas.map((r, iRonda) => (
         <div class="ronda">
           <h4 class="ronda-nombre">{r.ronda}</h4>
-          <div class="cruces">
-            {r.llaves.map((ll) => (
+          <div class="cruces" style={`grid-template-rows: repeat(${filasBase}, minmax(64px, auto))`}>
+            {r.llaves.map((ll, i) => (
+              <div
+                class={`celda${iRonda > 0 ? ' con-entrada' : ''}${iRonda < preparadas.length - 1 ? ' con-salida' : ''}`}
+                style={`grid-row: ${i * r.span + 1} / span ${r.span}`}
+              >
               <div class={ll.jugada ? 'llave' : 'llave por-jugar'}>
                 <div class={`lado${ll.ganaA ? ' pasa' : ''}${ll.destacaA ? ' propio' : ''}`}>
                   {ll.a.logo && <img src={ll.a.logo} alt="" width="22" height="22" loading="lazy" />}
@@ -150,6 +207,7 @@ const preparadas = visibles.map((r) => ({
                   {ll.penalesTexto && <em> · {ll.penalesTexto}</em>}
                   {ll.empateGlobal && <em> · definido por penales</em>}
                 </p>
+              </div>
               </div>
             ))}
           </div>
@@ -178,15 +236,30 @@ const preparadas = visibles.map((r) => ({
     padding-bottom: 0.35rem; border-bottom: 2px solid var(--borde);
   }
 
-  /* `space-around` es lo que da el efecto de árbol: con 8, 4, 2 y 1 llaves, cada
-     caja queda a la altura del centro de las dos que la alimentan. Sin líneas
-     dibujadas, la alineación sola ya cuenta de dónde viene cada equipo. */
-  .cruces {
-    flex: 1; display: flex; flex-direction: column;
-    justify-content: space-around; gap: 0.6rem;
+  /* Filas iguales en todas las columnas: es lo que hace que la caja de cuartos
+     caiga justo en el medio de las dos de octavos que la alimentan. */
+  .cruces { flex: 1; display: grid; }
+
+  /* La celda ocupa el alto de las llaves que alimentan a la suya; la caja se
+     centra dentro. De ahí salen las líneas: la vertical recorre exactamente el
+     tramo entre los dos rivales, así que no hay que calcular nada. */
+  .celda { position: relative; display: flex; align-items: center; padding: 0.3rem 0; }
+
+  .celda.con-entrada::before {
+    content: ''; position: absolute; left: calc(-0.55rem - 1px); top: 25%; bottom: 25%;
+    border-left: 2px solid var(--borde);
+  }
+  .celda.con-entrada::after {
+    content: ''; position: absolute; left: -0.55rem; width: 0.55rem; top: 50%;
+    border-top: 2px solid var(--borde);
+  }
+  .celda.con-salida .llave::after {
+    content: ''; position: absolute; right: -0.56rem; width: 0.55rem; top: 50%;
+    border-top: 2px solid var(--borde);
   }
 
   .llave {
+    position: relative; width: 100%;
     border: 1px solid var(--borde); border-radius: 8px; background: #fff;
     padding: 0.45rem 0.55rem 0.3rem;
   }
@@ -212,8 +285,13 @@ const preparadas = visibles.map((r) => ({
 
   /* En la ficha de un club el recorrido es una sola línea de llaves: no hay
      árbol que dibujar, así que las columnas se vuelven filas. */
+  /* En la ficha de un club no hay árbol que dibujar: es un recorrido. Se
+     apagan las líneas y las columnas se envuelven. */
   .camino .pista { flex-wrap: wrap; overflow-x: visible; }
   .camino .ronda { flex: 0 1 260px; min-width: 220px; }
+  .camino .cruces { display: flex; flex-direction: column; gap: 0.6rem; }
+  .camino .celda { display: block; }
+  .camino .celda::before, .camino .celda::after, .camino .llave::after { display: none; }
 
   @media (max-width: 700px) {
     .ronda { flex: 0 0 230px; min-width: 230px; }
