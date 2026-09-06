@@ -350,6 +350,13 @@ const banners = [
     equipos: ['Atletico Nacional', 'Cucuta', 'Junior', 'Patriotas', 'Once Caldas'] }],
   ['liga-femenina.svg', { slug: 'liga-femenina', kicker: 'FÚTBOL FEMENINO', titulo: 'LIGA FEMENINA', sub: 'Tabla, goleadoras y asistencias', bg: '#7E1B45',
     equipos: ['Atletico Nacional', 'America de Cali', 'Santa Fe', 'Deportivo Cali', 'Millonarios'] }],
+  // Las copas continentales se cuentan desde el ángulo del sitio: qué hacen
+  // los colombianos ahí. Por eso los escudos son los de los clubes nuestros
+  // que las juegan, no los de los favoritos del torneo.
+  ['copa-libertadores.svg', { slug: 'copa-libertadores', kicker: 'CONMEBOL', titulo: 'COPA LIBERTADORES', sub: 'El camino de los colombianos', bg: '#0E3B2E',
+    equipos: ['Independiente Medellin', 'Deportes Tolima', 'Santa Fe', 'Junior'] }],
+  ['copa-sudamericana.svg', { slug: 'copa-sudamericana', kicker: 'CONMEBOL', titulo: 'COPA SUDAMERICANA', sub: 'El camino de los colombianos', bg: '#7A4E12',
+    equipos: ['America de Cali', 'Millonarios', 'Independiente Medellin', 'Santa Fe'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
     equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Santa Fe'] }],
   ['colombianos-en-el-exterior.svg', { slug: 'colombianos-en-el-exterior', kicker: 'SEGUIMIENTO DIARIO', titulo: 'COLOMBIANOS EN EL EXTERIOR', sub: 'Europa, MLS, Brasil y Argentina', bg: '#B3271E', equipos: [] }],

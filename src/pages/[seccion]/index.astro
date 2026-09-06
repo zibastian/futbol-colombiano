@@ -22,6 +22,7 @@ import { FEMENINA_DEMO, tablaFemenina, goleadorasFemenina, asistenciasFemenina }
 import { COLUMNISTAS_GENERALES, COLUMNISTAS_DE_EQUIPO } from '../../data/columnistas';
 import { EQUIPOS, escudoDe } from '../../data/equipos';
 import { urlNota } from '../../lib/rutas';
+import { tieneBanner, avisarBannersFaltantes } from '../../data/banners';
 
 export async function getStaticPaths() {
   const { SECCIONES } = await import('../../data/secciones');
@@ -30,6 +31,11 @@ export async function getStaticPaths() {
 
 const { seccion } = Astro.props;
 const LIMITE = 18;
+
+// Sin banner no se dibuja un <img> roto: se muestra el título en texto, que es
+// justo lo que el banner reemplaza.
+const conBanner = tieneBanner(seccion.slug);
+avisarBannersFaltantes([seccion.slug]);
 
 const todas = (await getCollection('noticias', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -156,13 +162,15 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
   title={esLiga || esGrupos ? `${seccion.nombre}: tabla de posiciones, goleadores y noticias` : seccion.nombre}
   description={seccion.descripcion}
 >
-  <div class="banner-seccion">
-    <picture>
-      <source media="(max-width: 640px)" srcset={`/banners/${seccion.slug}-movil.svg`} />
-      <img src={`/banners/${seccion.slug}.svg`} alt={seccion.nombre} />
-    </picture>
-  </div>
-  <h1 class="seccion visualmente-oculto">{seccion.nombre}</h1>
+  {conBanner && (
+    <div class="banner-seccion">
+      <picture>
+        <source media="(max-width: 640px)" srcset={`/banners/${seccion.slug}-movil.svg`} />
+        <img src={`/banners/${seccion.slug}.svg`} alt={seccion.nombre} />
+      </picture>
+    </div>
+  )}
+  <h1 class={conBanner ? 'seccion visualmente-oculto' : 'seccion'}>{seccion.nombre}</h1>
   <p class="intro-seccion">{seccion.descripcion}</p>
 
   {usarDemo && (hayDatos || stats) && (
