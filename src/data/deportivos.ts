@@ -57,6 +57,10 @@ export function nombreTorneo(nombre: string): string {
   // El ORDEN importa: "Quarter-finals" contiene "finals", y la traducción de
   // "Play-offs" produce un "final" en español que la regla de Final volvería a
   // capitalizar ("Fase Final"). Primero lo específico, después lo general.
+  n = n.replace(/\bRound of 32\b/gi, 'Dieciseisavos de final');
+  n = n.replace(/\bRound of 16\b/gi, 'Octavos de final');
+  n = n.replace(/\b3rd Place Final\b/gi, 'Tercer puesto');
+  n = n.replace(/\bQualification Round\s*(\d+)\b/gi, 'Fase previa $1');
   n = n.replace(/\bQuarter-?finals?\b/gi, 'Cuartos de final');
   n = n.replace(/\bSemi-?finals?\b/gi, 'Semifinales');
   n = n.replace(/\bFinals?\b/g, 'Final');
