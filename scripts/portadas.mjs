@@ -242,8 +242,29 @@ async function logoTorneo(slug) {
   }
 }
 
+/** El logo del torneo sobre un disco claro.
+ *
+ *  POR QUÉ
+ *  El logo de CONMEBOL es un trofeo dorado oscuro sobre fondo transparente. Con
+ *  el fondo oscuro de los banners internacionales se perdía: se leía como una
+ *  mancha. El disco lo despega del fondo y funciona con cualquier logo, venga
+ *  claro u oscuro, que es lo que hace falta si mañana se agrega otra copa.
+ *
+ *  Y de paso dice algo: la Libertadores es oro y la Sudamericana es plata, así
+ *  que el aro del disco lleva ese color y la sección se reconoce por él.
+ *
+ *  `medalla` es null en los torneos locales, donde el logo ya contrastaba bien
+ *  y no hacía falta tocarlos. */
+function medallon(cx, cy, r, tam, logo, medalla, acento) {
+  const img = `<image href="${logo}" x="${cx - tam / 2}" y="${cy - tam / 2}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`;
+  if (!medalla) return img;
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${medalla}"/>
+  <circle cx="${cx}" cy="${cy}" r="${r - 4}" fill="none" stroke="${acento}" stroke-width="2.5" opacity="0.85"/>
+  ${img}`;
+}
+
 /** Banner de sección: título + franja con los escudos reales de los equipos. */
-async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200' }) {
+async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200', medalla = null }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.map(escudoBase64))).filter(Boolean);
 
@@ -283,7 +304,7 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
     <circle cx="600" cy="130" r="150" fill="none" stroke="#FFFFFF" stroke-width="3"/>
     <line x1="600" y1="-20" x2="600" y2="280" stroke="#FFFFFF" stroke-width="3"/>
   </g>
-  ${logo ? `<image href="${logo}" x="62" y="52" width="152" height="152" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  ${logo ? medallon(138, 130, 82, 118, logo, medalla, acento) : ''}
   <text x="${xTexto}" y="92" font-family="Barlow Condensed, Oswald, sans-serif" font-size="25" font-weight="700" fill="${acento}" letter-spacing="4"${limitar(kicker, 25, disponible, EM_ANCHA, kicker.length * 4)}>${esc(kicker)}</text>
   <text x="${xTexto}" y="${92 + tamTitulo + 8}" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" textLength="${anchoT}" lengthAdjust="spacingAndGlyphs">${esc(titulo)}</text>
   <text x="${xTexto}" y="${92 + tamTitulo + 46}" font-family="Inter, system-ui, sans-serif" font-size="21" fill="#C3CFE0"${limitar(sub, 21, disponible, 0.55)}>${esc(sub)}</text>
@@ -295,7 +316,7 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
 
 /** Banner en versión móvil: el alto se calcula sumando los bloques, así nada
  *  se pisa ni queda cortado por más largo que sea el nombre del torneo. */
-async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200' }) {
+async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200', medalla = null }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.slice(0, 5).map(escudoBase64))).filter(Boolean);
   const W = 800;
@@ -353,7 +374,7 @@ async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = 
     <circle cx="${W / 2}" cy="${H / 2}" r="${Math.min(W, H) * 0.42}" fill="none" stroke="#FFFFFF" stroke-width="4"/>
     <line x1="60" y1="${H / 2}" x2="${W - 60}" y2="${H / 2}" stroke="#FFFFFF" stroke-width="4"/>
   </g>
-  ${logo ? `<image href="${logo}" x="${W / 2 - LOGO / 2}" y="${yLogo}" width="${LOGO}" height="${LOGO}" preserveAspectRatio="xMidYMid meet"/>` : ''}
+  ${logo ? medallon(W / 2, yLogo + LOGO / 2, LOGO * 0.62, LOGO * 0.88, logo, medalla, acento) : ''}
   <text x="${W / 2}" y="${yKicker}" text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="30" font-weight="700" fill="${acento}" letter-spacing="5"${limitar(kicker, 30, util, EM_ANCHA, kicker.length * 5)}>${esc(kicker)}</text>
   <text text-anchor="middle" font-family="Barlow Condensed, Oswald, sans-serif" font-size="${tamTitulo}" font-weight="700" fill="#FFFFFF" letter-spacing="1">${tspans}</text>
   <text x="${W / 2}" y="${ySub}" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="25" fill="#C3CFE0"${limitar(sub, 25, util, 0.55)}>${esc(sub)}</text>
@@ -375,10 +396,10 @@ const banners = [
   // los colombianos ahí. Por eso los escudos son los de los clubes nuestros
   // que las juegan, no los de los favoritos del torneo.
   ['copa-libertadores.svg', { slug: 'copa-libertadores', kicker: 'CONMEBOL', titulo: 'COPA LIBERTADORES', sub: 'El camino de los colombianos',
-    bg: '#04150F', bg2: '#0B5138', acento: '#E8B542',
+    bg: '#06170F', bg2: '#0C5A3C', acento: '#E8B542', medalla: '#FBF3DC',
     equipos: ['Independiente Medellin', 'Deportes Tolima', 'Santa Fe', 'Junior'] }],
   ['copa-sudamericana.svg', { slug: 'copa-sudamericana', kicker: 'CONMEBOL', titulo: 'COPA SUDAMERICANA', sub: 'El camino de los colombianos',
-    bg: '#12060B', bg2: '#7A1230', acento: '#E8B542',
+    bg: '#0B1016', bg2: '#2C4257', acento: '#C9D6E2', medalla: '#F2F5F8',
     equipos: ['America de Cali', 'Millonarios', 'Independiente Medellin', 'Santa Fe'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
     equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Santa Fe'] }],
