@@ -50,3 +50,22 @@ exclusivas y sin límites de uso. Es la única forma de diferenciarse de verdad.
 3. `npm run portadas` — regenera los banners con el logo incorporado
 
 Slugs válidos: `liga-betplay`, `torneo-betplay`, `copa-betplay`.
+
+
+## Logos de torneo
+
+Los de la Liga, el Torneo y la Copa BetPlay se guardaron a mano en
+`public/torneos/originales/`. Eso no escalaba: cada competición nueva quedaba
+sin imagen hasta que alguien se acordara de buscar el PNG, y así salieron la
+Libertadores y la Sudamericana con la portada rota.
+
+Ahora `npm run logos` baja de API-Football el logo de cualquier competición que
+esté en `TORNEOS` y no tenga original guardado, y después le quita el fondo
+blanco exterior. Es la misma fuente de la que ya salen los escudos de los
+clubes.
+
+Si para alguna competición preferís una imagen propia, guardala en
+`public/torneos/originales/{slug}.png`: el script no pisa lo que ya existe.
+
+Son marcas registradas y se usan de forma editorial, para identificar la
+competición de la que habla la nota o la sección.

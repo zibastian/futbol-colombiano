@@ -2,9 +2,17 @@
 // transparente, conservando el blanco que forma parte del logo (el interior
 // del escudo, los contornos, etc.).
 //
-//   1. Guardar la imagen original en public/torneos/originales/{slug}.png (o .jpg)
-//   2. npm run logos
-//   3. npm run portadas
+//   1. npm run logos      (baja lo que falte de API-Football y limpia el fondo)
+//   2. npm run portadas
+//
+// Los logos de la Liga, el Torneo y la Copa BetPlay se guardaron a mano en
+// `originales/`. Eso no escala: cada competición nueva quedaba sin imagen hasta
+// que alguien se acordara de buscar el PNG. API-Football ya devuelve el logo de
+// cada competición en /leagues, y es la misma fuente de la que salen los
+// escudos de los clubes, así que ahora se baja solo.
+//
+// Si preferís una imagen propia para alguna, guardala en
+// `public/torneos/originales/{slug}.png` y el script no la pisa.
 //
 // Cómo funciona: en vez de borrar todos los píxeles blancos, hace un "relleno por
 // inundación" desde los bordes hacia adentro. Solo se vuelve transparente el blanco
@@ -14,7 +22,8 @@
 // Los logos de torneo son marcas registradas: uso editorial para identificar la
 // competición. Ver docs/imagenes.md
 
-import { readdir, mkdir } from 'node:fs/promises';
+import { readdir, mkdir, writeFile } from 'node:fs/promises';
+import { TORNEOS } from '../src/data/torneos.ts';
 import sharp from 'sharp';
 
 const ENTRADA = 'public/torneos/originales';
@@ -23,11 +32,42 @@ const UMBRAL = Number(process.env.UMBRAL || 236); // qué tan claro cuenta como 
 
 await mkdir(ENTRADA, { recursive: true });
 
-let archivos = [];
-try {
-  archivos = (await readdir(ENTRADA)).filter((f) => /\.(png|jpe?g|webp)$/i.test(f));
-} catch {}
+const existentes = async () => {
+  try {
+    return (await readdir(ENTRADA)).filter((f) => /\.(png|jpe?g|webp)$/i.test(f));
+  } catch {
+    return [];
+  }
+};
 
+// --- Bajar de API-Football lo que falte ------------------------------------
+// Una llamada por competición que no tenga logo, y solo la primera vez.
+const KEY = process.env.API_FOOTBALL_KEY;
+const yaEstan = new Set((await existentes()).map((f) => f.replace(/\.[^.]+$/, '')));
+const faltan = TORNEOS.filter((t) => !yaEstan.has(t.slug));
+
+if (faltan.length && !KEY) {
+  console.log(`Faltan logos (${faltan.map((t) => t.slug).join(', ')}) y no hay API_FOOTBALL_KEY.`);
+  console.log('Poné la clave en el entorno, o guardá el PNG a mano en', ENTRADA);
+} else {
+  for (const t of faltan) {
+    try {
+      const res = await fetch(`https://v3.football.api-sports.io/leagues?id=${t.ligaId}`, {
+        headers: { 'x-apisports-key': KEY }
+      });
+      const json = await res.json();
+      const url = json.response?.[0]?.league?.logo;
+      if (!url) throw new Error('la API no devolvió logo');
+      const img = await fetch(url);
+      await writeFile(`${ENTRADA}/${t.slug}.png`, Buffer.from(await img.arrayBuffer()));
+      console.log(`  bajado ${t.slug} (liga ${t.ligaId})`);
+    } catch (e) {
+      console.warn(`  FALLO ${t.slug}: ${e.message}`);
+    }
+  }
+}
+
+const archivos = await existentes();
 if (!archivos.length) {
   console.log(`Sin imágenes en ${ENTRADA}/`);
   console.log('Guardá ahí el logo (ej: liga-betplay.png) y volvé a correr: npm run logos');
