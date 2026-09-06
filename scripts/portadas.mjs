@@ -243,7 +243,7 @@ async function logoTorneo(slug) {
 }
 
 /** Banner de sección: título + franja con los escudos reales de los equipos. */
-async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
+async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200' }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.map(escudoBase64))).filter(Boolean);
 
@@ -265,9 +265,20 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
     .map((d, i) => `<image href="${d}" x="${panelX + 13 + i * paso}" y="${120 + (92 - tam) / 2}" width="${tam}" height="${tam}" preserveAspectRatio="xMidYMid meet"/>`)
     .join('\n  ');
 
+  // Los torneos internacionales llevan degradado y franja propia: no es
+  // decoración, es la señal de que ahí los nuestros juegan afuera. Los locales
+  // siguen planos, para que la diferencia se lea de un vistazo.
+  const idGrad = `g-${(slug || 'x').replace(/[^a-z0-9]/g, '')}`;
+  const fondo = bg2
+    ? `<defs><linearGradient id="${idGrad}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${bg}"/><stop offset="100%" stop-color="${bg2}"/>
+    </linearGradient></defs>
+  <rect width="1200" height="260" fill="url(#${idGrad})"/>`
+    : `<rect width="1200" height="260" fill="${bg}"/>`;
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260">
-  <rect width="1200" height="260" fill="${bg}"/>
-  <rect width="1200" height="6" fill="#F2C200"/>
+  ${fondo}
+  <rect width="1200" height="6" fill="${acento}"/>
   <g opacity="0.07">
     <circle cx="600" cy="130" r="150" fill="none" stroke="#FFFFFF" stroke-width="3"/>
     <line x1="600" y1="-20" x2="600" y2="280" stroke="#FFFFFF" stroke-width="3"/>
@@ -284,7 +295,7 @@ async function piezaBanner({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2
 
 /** Banner en versión móvil: el alto se calcula sumando los bloques, así nada
  *  se pisa ni queda cortado por más largo que sea el nombre del torneo. */
-async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', acento = '#F2C200' }) {
+async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = '#0B2C5E', bg2 = null, acento = '#F2C200' }) {
   const logo = slug ? await logoTorneo(slug) : null;
   const escudos = (await Promise.all(equipos.slice(0, 5).map(escudoBase64))).filter(Boolean);
   const W = 800;
@@ -325,8 +336,18 @@ async function piezaBannerMovil({ slug, kicker, titulo, sub, equipos = [], bg = 
     .map((d, i) => `<image href="${d}" x="${inicio + i * paso + 8}" y="${yEscudos}" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>`)
     .join('\n  ');
 
+  // El móvil lleva el mismo degradado que el de escritorio: si no, la misma
+  // sección se ve como dos marcas distintas según el dispositivo.
+  const idGrad = `gm-${(slug || 'x').replace(/[^a-z0-9]/g, '')}`;
+  const fondo = bg2
+    ? `<defs><linearGradient id="${idGrad}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${bg}"/><stop offset="100%" stop-color="${bg2}"/>
+    </linearGradient></defs>
+  <rect width="${W}" height="${H}" fill="url(#${idGrad})"/>`
+    : `<rect width="${W}" height="${H}" fill="${bg}"/>`;
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
-  <rect width="${W}" height="${H}" fill="${bg}"/>
+  ${fondo}
   <rect width="${W}" height="8" fill="#F2C200"/>
   <g opacity="0.06">
     <circle cx="${W / 2}" cy="${H / 2}" r="${Math.min(W, H) * 0.42}" fill="none" stroke="#FFFFFF" stroke-width="4"/>
@@ -353,9 +374,11 @@ const banners = [
   // Las copas continentales se cuentan desde el ángulo del sitio: qué hacen
   // los colombianos ahí. Por eso los escudos son los de los clubes nuestros
   // que las juegan, no los de los favoritos del torneo.
-  ['copa-libertadores.svg', { slug: 'copa-libertadores', kicker: 'CONMEBOL', titulo: 'COPA LIBERTADORES', sub: 'El camino de los colombianos', bg: '#0E3B2E',
+  ['copa-libertadores.svg', { slug: 'copa-libertadores', kicker: 'CONMEBOL', titulo: 'COPA LIBERTADORES', sub: 'El camino de los colombianos',
+    bg: '#04150F', bg2: '#0B5138', acento: '#E8B542',
     equipos: ['Independiente Medellin', 'Deportes Tolima', 'Santa Fe', 'Junior'] }],
-  ['copa-sudamericana.svg', { slug: 'copa-sudamericana', kicker: 'CONMEBOL', titulo: 'COPA SUDAMERICANA', sub: 'El camino de los colombianos', bg: '#7A4E12',
+  ['copa-sudamericana.svg', { slug: 'copa-sudamericana', kicker: 'CONMEBOL', titulo: 'COPA SUDAMERICANA', sub: 'El camino de los colombianos',
+    bg: '#12060B', bg2: '#7A1230', acento: '#E8B542',
     equipos: ['America de Cali', 'Millonarios', 'Independiente Medellin', 'Santa Fe'] }],
   ['fichajes.svg', { slug: 'fichajes', kicker: 'MERCADO DE PASES', titulo: 'FICHAJES', sub: 'Llegadas, salidas y rumores del FPC', bg: '#14161A',
     equipos: ['Millonarios', 'Atletico Nacional', 'America de Cali', 'Junior', 'Santa Fe'] }],

@@ -23,6 +23,7 @@
 // competición. Ver docs/imagenes.md
 
 import { readdir, mkdir, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { TORNEOS } from '../src/data/torneos.ts';
 import sharp from 'sharp';
 
@@ -42,13 +43,28 @@ const existentes = async () => {
 
 // --- Bajar de API-Football lo que falte ------------------------------------
 // Una llamada por competición que no tenga logo, y solo la primera vez.
-const KEY = process.env.API_FOOTBALL_KEY;
+//
+// La clave vive en el .env de la fábrica. Se lee de ahí si no está en el
+// entorno: tener que acordarse de exportarla era justo lo que hacía que el
+// script se fuera en silencio sin bajar nada.
+function claveDelEnv() {
+  for (const ruta of ['../fc-plataforma/fabrica/.env', '.env']) {
+    try {
+      const m = readFileSync(ruta, 'utf8').match(/^API_FOOTBALL_KEY=(.+)$/m);
+      if (m) return m[1].trim();
+    } catch {}
+  }
+  return null;
+}
+const KEY = process.env.API_FOOTBALL_KEY || claveDelEnv();
 const yaEstan = new Set((await existentes()).map((f) => f.replace(/\.[^.]+$/, '')));
 const faltan = TORNEOS.filter((t) => !yaEstan.has(t.slug));
 
+console.log(`Logos de torneo: ${yaEstan.size} ya estaban, faltan ${faltan.length}.`);
 if (faltan.length && !KEY) {
-  console.log(`Faltan logos (${faltan.map((t) => t.slug).join(', ')}) y no hay API_FOOTBALL_KEY.`);
-  console.log('Poné la clave en el entorno, o guardá el PNG a mano en', ENTRADA);
+  console.log(`  Sin API_FOOTBALL_KEY no puedo bajar: ${faltan.map((t) => t.slug).join(', ')}`);
+  console.log('  Buscá la clave en fc-plataforma/fabrica/.env, exportala, o guardá');
+  console.log('  el PNG a mano en', ENTRADA);
 } else {
   for (const t of faltan) {
     try {
