@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-31T03:49:45+00:00",
+  "generado": "2026-09-06T02:59:15+00:00",
   "temporada": 2026,
   "competiciones": {
     "liga-betplay": {
@@ -57,7 +57,7 @@
               "golesFavor": 29,
               "golesContra": 25,
               "diferencia": 4,
-              "racha": "DLLLL"
+              "racha": "DLDLL"
             },
             {
               "posicion": 4,
@@ -72,7 +72,7 @@
               "golesFavor": 25,
               "golesContra": 15,
               "diferencia": 10,
-              "racha": "DWDWW"
+              "racha": "WDWDW"
             },
             {
               "posicion": 5,
@@ -87,7 +87,7 @@
               "golesFavor": 31,
               "golesContra": 22,
               "diferencia": 9,
-              "racha": "DDLDW"
+              "racha": "LWDDL"
             },
             {
               "posicion": 6,
@@ -102,7 +102,7 @@
               "golesFavor": 27,
               "golesContra": 17,
               "diferencia": 10,
-              "racha": "DWLWW"
+              "racha": "WDWLW"
             },
             {
               "posicion": 7,
@@ -117,7 +117,7 @@
               "golesFavor": 29,
               "golesContra": 22,
               "diferencia": 7,
-              "racha": "DDWDL"
+              "racha": "DWDDW"
             },
             {
               "posicion": 8,
@@ -147,7 +147,7 @@
               "golesFavor": 20,
               "golesContra": 16,
               "diferencia": 4,
-              "racha": "LDWLW"
+              "racha": "DLDWL"
             },
             {
               "posicion": 10,
@@ -162,7 +162,7 @@
               "golesFavor": 31,
               "golesContra": 23,
               "diferencia": 8,
-              "racha": "DWDWW"
+              "racha": "LDWDW"
             },
             {
               "posicion": 11,
@@ -177,7 +177,7 @@
               "golesFavor": 26,
               "golesContra": 24,
               "diferencia": 2,
-              "racha": "WLWWW"
+              "racha": "WWLWW"
             },
             {
               "posicion": 12,
@@ -207,7 +207,7 @@
               "golesFavor": 26,
               "golesContra": 20,
               "diferencia": 6,
-              "racha": "DWDDW"
+              "racha": "DDWDD"
             },
             {
               "posicion": 14,
@@ -237,7 +237,7 @@
               "golesFavor": 22,
               "golesContra": 27,
               "diferencia": -5,
-              "racha": "DLWLD"
+              "racha": "DLDLW"
             },
             {
               "posicion": 16,
@@ -267,7 +267,7 @@
               "golesFavor": 13,
               "golesContra": 27,
               "diferencia": -14,
-              "racha": "LLDLL"
+              "racha": "LLLDL"
             },
             {
               "posicion": 18,
@@ -282,7 +282,7 @@
               "golesFavor": 15,
               "golesContra": 32,
               "diferencia": -17,
-              "racha": "DDLLL"
+              "racha": "WDDLL"
             },
             {
               "posicion": 19,
@@ -297,7 +297,7 @@
               "golesFavor": 22,
               "golesContra": 35,
               "diferencia": -13,
-              "racha": "WWDLD"
+              "racha": "DLWWD"
             },
             {
               "posicion": 20,
@@ -312,7 +312,7 @@
               "golesFavor": 15,
               "golesContra": 32,
               "diferencia": -17,
-              "racha": "DDLLW"
+              "racha": "LWDDL"
             }
           ]
         },
@@ -324,18 +324,48 @@
               "equipoId": 1138,
               "equipo": "America de Cali",
               "logo": "https://media.api-sports.io/football/teams/1138.png",
-              "puntos": 17,
-              "jugados": 7,
-              "ganados": 5,
+              "puntos": 20,
+              "jugados": 8,
+              "ganados": 6,
               "empatados": 2,
               "perdidos": 0,
-              "golesFavor": 17,
+              "golesFavor": 20,
               "golesContra": 4,
-              "diferencia": 13,
-              "racha": "DWDWW"
+              "diferencia": 16,
+              "racha": "WDWDW"
             },
             {
               "posicion": 2,
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "logo": "https://media.api-sports.io/football/teams/1128.png",
+              "puntos": 15,
+              "jugados": 6,
+              "ganados": 5,
+              "empatados": 0,
+              "perdidos": 1,
+              "golesFavor": 12,
+              "golesContra": 6,
+              "diferencia": 6,
+              "racha": "WWLWW"
+            },
+            {
+              "posicion": 3,
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "logo": "https://media.api-sports.io/football/teams/1142.png",
+              "puntos": 13,
+              "jugados": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "golesFavor": 10,
+              "golesContra": 7,
+              "diferencia": 3,
+              "racha": "WDWLW"
+            },
+            {
+              "posicion": 4,
               "equipoId": 1137,
               "equipo": "Atletico Nacional",
               "logo": "https://media.api-sports.io/football/teams/1137.png",
@@ -350,37 +380,22 @@
               "racha": "WWWLW"
             },
             {
-              "posicion": 3,
-              "equipoId": 1128,
-              "equipo": "Independiente Medellin",
-              "logo": "https://media.api-sports.io/football/teams/1128.png",
-              "puntos": 12,
-              "jugados": 5,
-              "ganados": 4,
-              "empatados": 0,
-              "perdidos": 1,
-              "golesFavor": 9,
-              "golesContra": 6,
-              "diferencia": 3,
-              "racha": "WLWWW"
-            },
-            {
-              "posicion": 4,
+              "posicion": 5,
               "equipoId": 1125,
               "equipo": "Millonarios",
               "logo": "https://media.api-sports.io/football/teams/1125.png",
               "puntos": 11,
-              "jugados": 6,
+              "jugados": 7,
               "ganados": 3,
               "empatados": 2,
-              "perdidos": 1,
-              "golesFavor": 6,
-              "golesContra": 2,
-              "diferencia": 4,
-              "racha": "DWDWW"
+              "perdidos": 2,
+              "golesFavor": 8,
+              "golesContra": 5,
+              "diferencia": 3,
+              "racha": "LDWDW"
             },
             {
-              "posicion": 5,
+              "posicion": 6,
               "equipoId": 1464,
               "equipo": "Llaneros",
               "logo": "https://media.api-sports.io/football/teams/1464.png",
@@ -395,22 +410,52 @@
               "racha": "LLWDW"
             },
             {
-              "posicion": 6,
-              "equipoId": 1142,
-              "equipo": "Deportes Tolima",
-              "logo": "https://media.api-sports.io/football/teams/1142.png",
+              "posicion": 7,
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "logo": "https://media.api-sports.io/football/teams/1131.png",
               "puntos": 10,
-              "jugados": 5,
-              "ganados": 3,
-              "empatados": 1,
-              "perdidos": 1,
-              "golesFavor": 8,
-              "golesContra": 6,
+              "jugados": 6,
+              "ganados": 2,
+              "empatados": 4,
+              "perdidos": 0,
+              "golesFavor": 7,
+              "golesContra": 5,
               "diferencia": 2,
-              "racha": "DWLWW"
+              "racha": "DDWDD"
             },
             {
-              "posicion": 7,
+              "posicion": 8,
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "logo": "https://media.api-sports.io/football/teams/1136.png",
+              "puntos": 9,
+              "jugados": 7,
+              "ganados": 2,
+              "empatados": 3,
+              "perdidos": 2,
+              "golesFavor": 11,
+              "golesContra": 9,
+              "diferencia": 2,
+              "racha": "LWDDL"
+            },
+            {
+              "posicion": 9,
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "logo": "https://media.api-sports.io/football/teams/1139.png",
+              "puntos": 9,
+              "jugados": 6,
+              "ganados": 2,
+              "empatados": 3,
+              "perdidos": 1,
+              "golesFavor": 9,
+              "golesContra": 7,
+              "diferencia": 2,
+              "racha": "DWDDW"
+            },
+            {
+              "posicion": 10,
               "equipoId": 1144,
               "equipo": "Águilas Doradas",
               "logo": "https://media.api-sports.io/football/teams/1144.png",
@@ -425,52 +470,37 @@
               "racha": "DDDWW"
             },
             {
-              "posicion": 8,
-              "equipoId": 1131,
-              "equipo": "Bucaramanga",
-              "logo": "https://media.api-sports.io/football/teams/1131.png",
-              "puntos": 9,
-              "jugados": 5,
-              "ganados": 2,
-              "empatados": 3,
-              "perdidos": 0,
-              "golesFavor": 6,
-              "golesContra": 4,
-              "diferencia": 2,
-              "racha": "DWDDW"
-            },
-            {
-              "posicion": 9,
-              "equipoId": 1470,
-              "equipo": "Cucuta",
-              "logo": "https://media.api-sports.io/football/teams/1470.png",
+              "posicion": 11,
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "logo": "https://media.api-sports.io/football/teams/1127.png",
               "puntos": 8,
               "jugados": 6,
               "ganados": 2,
               "empatados": 2,
               "perdidos": 2,
-              "golesFavor": 5,
-              "golesContra": 9,
-              "diferencia": -4,
-              "racha": "WWDLD"
-            },
-            {
-              "posicion": 10,
-              "equipoId": 1127,
-              "equipo": "Deportivo Cali",
-              "logo": "https://media.api-sports.io/football/teams/1127.png",
-              "puntos": 7,
-              "jugados": 5,
-              "ganados": 2,
-              "empatados": 1,
-              "perdidos": 2,
-              "golesFavor": 7,
-              "golesContra": 5,
+              "golesFavor": 8,
+              "golesContra": 6,
               "diferencia": 2,
-              "racha": "LDWLW"
+              "racha": "DLDWL"
             },
             {
-              "posicion": 11,
+              "posicion": 12,
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "logo": "https://media.api-sports.io/football/teams/1470.png",
+              "puntos": 8,
+              "jugados": 7,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 3,
+              "golesFavor": 6,
+              "golesContra": 11,
+              "diferencia": -5,
+              "racha": "DLWWD"
+            },
+            {
+              "posicion": 13,
               "equipoId": 1134,
               "equipo": "Internacional de Bogota",
               "logo": "https://media.api-sports.io/football/teams/1134.png",
@@ -485,52 +515,37 @@
               "racha": "DDDDL"
             },
             {
-              "posicion": 12,
-              "equipoId": 1136,
-              "equipo": "Once Caldas",
-              "logo": "https://media.api-sports.io/football/teams/1136.png",
-              "puntos": 6,
-              "jugados": 5,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 1,
-              "golesFavor": 9,
-              "golesContra": 6,
-              "diferencia": 3,
-              "racha": "DDLDW"
-            },
-            {
-              "posicion": 13,
-              "equipoId": 1139,
-              "equipo": "Santa Fe",
-              "logo": "https://media.api-sports.io/football/teams/1139.png",
-              "puntos": 6,
-              "jugados": 5,
-              "ganados": 1,
-              "empatados": 3,
-              "perdidos": 1,
-              "golesFavor": 6,
-              "golesContra": 5,
-              "diferencia": 1,
-              "racha": "DDWDL"
-            },
-            {
               "posicion": 14,
               "equipoId": 1147,
               "equipo": "Fortaleza FC",
               "logo": "https://media.api-sports.io/football/teams/1147.png",
               "puntos": 6,
-              "jugados": 6,
+              "jugados": 7,
               "ganados": 1,
               "empatados": 3,
-              "perdidos": 2,
-              "golesFavor": 5,
-              "golesContra": 6,
-              "diferencia": -1,
-              "racha": "DLWLD"
+              "perdidos": 3,
+              "golesFavor": 6,
+              "golesContra": 8,
+              "diferencia": -2,
+              "racha": "DLDLW"
             },
             {
               "posicion": 15,
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "logo": "https://media.api-sports.io/football/teams/1462.png",
+              "puntos": 5,
+              "jugados": 5,
+              "ganados": 1,
+              "empatados": 2,
+              "perdidos": 2,
+              "golesFavor": 2,
+              "golesContra": 5,
+              "diferencia": -3,
+              "racha": "LWDDL"
+            },
+            {
+              "posicion": 16,
               "equipoId": 1133,
               "equipo": "Jaguares",
               "logo": "https://media.api-sports.io/football/teams/1133.png",
@@ -545,22 +560,22 @@
               "racha": "DWDLL"
             },
             {
-              "posicion": 16,
-              "equipoId": 1462,
-              "equipo": "Deportivo Pereira",
-              "logo": "https://media.api-sports.io/football/teams/1462.png",
-              "puntos": 2,
-              "jugados": 3,
-              "ganados": 0,
+              "posicion": 17,
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "logo": "https://media.api-sports.io/football/teams/1132.png",
+              "puntos": 5,
+              "jugados": 6,
+              "ganados": 1,
               "empatados": 2,
-              "perdidos": 1,
-              "golesFavor": 0,
-              "golesContra": 1,
-              "diferencia": -1,
-              "racha": "DDLLW"
+              "perdidos": 3,
+              "golesFavor": 4,
+              "golesContra": 12,
+              "diferencia": -8,
+              "racha": "WDDLL"
             },
             {
-              "posicion": 17,
+              "posicion": 18,
               "equipoId": 1135,
               "equipo": "Junior",
               "logo": "https://media.api-sports.io/football/teams/1135.png",
@@ -575,34 +590,19 @@
               "racha": "DLDLL"
             },
             {
-              "posicion": 18,
+              "posicion": 19,
               "equipoId": 1141,
               "equipo": "Alianza Valledupar",
               "logo": "https://media.api-sports.io/football/teams/1141.png",
               "puntos": 2,
-              "jugados": 6,
+              "jugados": 7,
               "ganados": 0,
               "empatados": 2,
-              "perdidos": 4,
+              "perdidos": 5,
               "golesFavor": 5,
-              "golesContra": 12,
-              "diferencia": -7,
-              "racha": "LLDLL"
-            },
-            {
-              "posicion": 19,
-              "equipoId": 1132,
-              "equipo": "Chico",
-              "logo": "https://media.api-sports.io/football/teams/1132.png",
-              "puntos": 2,
-              "jugados": 5,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 3,
-              "golesFavor": 2,
-              "golesContra": 12,
+              "golesContra": 15,
               "diferencia": -10,
-              "racha": "DDLLL"
+              "racha": "LLLDL"
             },
             {
               "posicion": 20,
@@ -610,14 +610,14 @@
               "equipo": "Deportivo Pasto",
               "logo": "https://media.api-sports.io/football/teams/1126.png",
               "puntos": 1,
-              "jugados": 6,
+              "jugados": 7,
               "ganados": 0,
               "empatados": 1,
-              "perdidos": 5,
-              "golesFavor": 4,
-              "golesContra": 11,
-              "diferencia": -7,
-              "racha": "DLLLL"
+              "perdidos": 6,
+              "golesFavor": 5,
+              "golesContra": 13,
+              "diferencia": -8,
+              "racha": "DLDLL"
             }
           ]
         }
@@ -628,6 +628,12 @@
           "equipoId": 1138,
           "equipo": "America de Cali",
           "cantidad": 5
+        },
+        {
+          "jugador": "J. Montano",
+          "equipoId": 1128,
+          "equipo": "Independiente Medellin",
+          "cantidad": 4
         },
         {
           "jugador": "M. Moreno",
@@ -648,6 +654,12 @@
           "cantidad": 3
         },
         {
+          "jugador": "D. Moreno",
+          "equipoId": 1136,
+          "equipo": "Once Caldas",
+          "cantidad": 3
+        },
+        {
           "jugador": "D. Rosero",
           "equipoId": 1138,
           "equipo": "America de Cali",
@@ -660,42 +672,30 @@
           "cantidad": 3
         },
         {
-          "jugador": "J. Montano",
-          "equipoId": 1128,
-          "equipo": "Independiente Medellin",
+          "jugador": "F. Fagundez",
+          "equipoId": 1139,
+          "equipo": "Santa Fe",
           "cantidad": 3
         },
         {
-          "jugador": "J. Peralta",
-          "equipoId": 1470,
-          "equipo": "Cucuta",
-          "cantidad": 3
-        },
-        {
-          "jugador": "A. Roa",
+          "jugador": "J. A. Zapata Ramirez",
           "equipoId": 1136,
           "equipo": "Once Caldas",
-          "cantidad": 2
-        },
-        {
-          "jugador": "C. Vergara",
-          "equipoId": 1141,
-          "equipo": "Alianza Valledupar",
-          "cantidad": 2
+          "cantidad": 3
         }
       ],
       "asistencias": [
+        {
+          "jugador": "J. D. Cuesta Santos",
+          "equipoId": 1136,
+          "equipo": "Once Caldas",
+          "cantidad": 5
+        },
         {
           "jugador": "L. Quinones",
           "equipoId": 1138,
           "equipo": "America de Cali",
           "cantidad": 4
-        },
-        {
-          "jugador": "J. D. Cuesta Santos",
-          "equipoId": 1136,
-          "equipo": "Once Caldas",
-          "cantidad": 3
         },
         {
           "jugador": "R. Carrascal",
@@ -722,6 +722,18 @@
           "cantidad": 2
         },
         {
+          "jugador": "D. Chavez",
+          "equipoId": 1126,
+          "equipo": "Deportivo Pasto",
+          "cantidad": 2
+        },
+        {
+          "jugador": "E. Batalla",
+          "equipoId": 1131,
+          "equipo": "Bucaramanga",
+          "cantidad": 2
+        },
+        {
           "jugador": "G. Cuellar",
           "equipoId": 1127,
           "equipo": "Deportivo Cali",
@@ -731,18 +743,6 @@
           "jugador": "J. Hurtado",
           "equipoId": 1142,
           "equipo": "Deportes Tolima",
-          "cantidad": 2
-        },
-        {
-          "jugador": "J. Lasso",
-          "equipoId": 1141,
-          "equipo": "Alianza Valledupar",
-          "cantidad": 2
-        },
-        {
-          "jugador": "J. Martinez",
-          "equipoId": 1127,
-          "equipo": "Deportivo Cali",
           "cantidad": 2
         }
       ],
@@ -844,6 +844,12 @@
               "equipoId": 1127,
               "equipo": "Deportivo Cali",
               "cantidad": 1
+            },
+            {
+              "jugador": "L. Chaverra",
+              "equipoId": 1127,
+              "equipo": "Deportivo Cali",
+              "cantidad": 1
             }
           ],
           "asistencias": [
@@ -885,7 +891,7 @@
               "jugador": "J. Montano",
               "equipoId": 1128,
               "equipo": "Independiente Medellin",
-              "cantidad": 3
+              "cantidad": 4
             },
             {
               "jugador": "D. Catano",
@@ -920,6 +926,12 @@
           ],
           "asistencias": [
             {
+              "jugador": "Esneyder Mena",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
               "jugador": "F. Fabra",
               "equipoId": 1128,
               "equipo": "Independiente Medellin",
@@ -927,6 +939,12 @@
             },
             {
               "jugador": "H. Palacios",
+              "equipoId": 1128,
+              "equipo": "Independiente Medellin",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Medina",
               "equipoId": 1128,
               "equipo": "Independiente Medellin",
               "cantidad": 1
@@ -942,17 +960,17 @@
               "equipoId": 1128,
               "equipo": "Independiente Medellin",
               "cantidad": 1
-            },
-            {
-              "jugador": "Yony Gonzalez",
-              "equipoId": 1128,
-              "equipo": "Independiente Medellin",
-              "cantidad": 1
             }
           ]
         },
         "1126": {
           "goleadores": [
+            {
+              "jugador": "Patrick Preciado",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 2
+            },
             {
               "jugador": "J. Micolta Piedahita",
               "equipoId": 1126,
@@ -972,6 +990,12 @@
               "cantidad": 1
             },
             {
+              "jugador": "M. S. Jimenez",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
               "jugador": "S. Cordoba",
               "equipoId": 1126,
               "equipo": "Deportivo Pasto",
@@ -983,7 +1007,7 @@
               "jugador": "D. Chavez",
               "equipoId": 1126,
               "equipo": "Deportivo Pasto",
-              "cantidad": 1
+              "cantidad": 2
             },
             {
               "jugador": "F. Leys",
@@ -993,6 +1017,18 @@
             },
             {
               "jugador": "H. Goyes",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Jonathan Perlaza",
+              "equipoId": 1126,
+              "equipo": "Deportivo Pasto",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Nicolas Gil",
               "equipoId": 1126,
               "equipo": "Deportivo Pasto",
               "cantidad": 1
@@ -1026,6 +1062,12 @@
               "cantidad": 1
             },
             {
+              "jugador": "J. Garcia",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 1
+            },
+            {
               "jugador": "L. Pons",
               "equipoId": 1131,
               "equipo": "Bucaramanga",
@@ -1034,6 +1076,12 @@
           ],
           "asistencias": [
             {
+              "jugador": "E. Batalla",
+              "equipoId": 1131,
+              "equipo": "Bucaramanga",
+              "cantidad": 2
+            },
+            {
               "jugador": "L. Pons",
               "equipoId": 1131,
               "equipo": "Bucaramanga",
@@ -1041,12 +1089,6 @@
             },
             {
               "jugador": "B. Caicedo",
-              "equipoId": 1131,
-              "equipo": "Bucaramanga",
-              "cantidad": 1
-            },
-            {
-              "jugador": "E. Batalla",
               "equipoId": 1131,
               "equipo": "Bucaramanga",
               "cantidad": 1
@@ -1074,6 +1116,12 @@
               "cantidad": 2
             },
             {
+              "jugador": "K. Florez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 2
+            },
+            {
               "jugador": "A. Parra Osorio",
               "equipoId": 1142,
               "equipo": "Deportes Tolima",
@@ -1092,13 +1140,7 @@
               "cantidad": 1
             },
             {
-              "jugador": "K. Florez",
-              "equipoId": 1142,
-              "equipo": "Deportes Tolima",
-              "cantidad": 1
-            },
-            {
-              "jugador": "L. Sandoval",
+              "jugador": "L. Sanchez",
               "equipoId": 1142,
               "equipo": "Deportes Tolima",
               "cantidad": 1
@@ -1125,6 +1167,18 @@
             },
             {
               "jugador": "J. Hernandez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "K. Florez",
+              "equipoId": 1142,
+              "equipo": "Deportes Tolima",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Guzman",
               "equipoId": 1142,
               "equipo": "Deportes Tolima",
               "cantidad": 1
@@ -1194,19 +1248,19 @@
               "cantidad": 2
             },
             {
+              "jugador": "T. Angel",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Cristian Tovar",
+              "equipoId": 1138,
+              "equipo": "America de Cali",
+              "cantidad": 1
+            },
+            {
               "jugador": "J. Escobar",
-              "equipoId": 1138,
-              "equipo": "America de Cali",
-              "cantidad": 1
-            },
-            {
-              "jugador": "J. Murillo",
-              "equipoId": 1138,
-              "equipo": "America de Cali",
-              "cantidad": 1
-            },
-            {
-              "jugador": "J. Palacios",
               "equipoId": 1138,
               "equipo": "America de Cali",
               "cantidad": 1
@@ -1317,6 +1371,18 @@
               "jugador": "F. Fagundez",
               "equipoId": 1139,
               "equipo": "Santa Fe",
+              "cantidad": 3
+            },
+            {
+              "jugador": "N. Bustos",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 2
+            },
+            {
+              "jugador": "E. Rodriguez",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
               "cantidad": 1
             },
             {
@@ -1332,13 +1398,19 @@
               "cantidad": 1
             },
             {
-              "jugador": "N. Bustos",
+              "jugador": "J. Torres",
               "equipoId": 1139,
               "equipo": "Santa Fe",
               "cantidad": 1
             }
           ],
           "asistencias": [
+            {
+              "jugador": "D. Torres",
+              "equipoId": 1139,
+              "equipo": "Santa Fe",
+              "cantidad": 1
+            },
             {
               "jugador": "F. Fagundez",
               "equipoId": 1139,
@@ -1384,11 +1456,29 @@
               "equipoId": 1147,
               "equipo": "Fortaleza FC",
               "cantidad": 1
+            },
+            {
+              "jugador": "Jordan Garcia",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Navarro",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
             }
           ],
           "asistencias": [
             {
               "jugador": "A. Copete",
+              "equipoId": 1147,
+              "equipo": "Fortaleza FC",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Franco Pulicastro",
               "equipoId": 1147,
               "equipo": "Fortaleza FC",
               "cantidad": 1
@@ -1458,19 +1548,19 @@
         "1136": {
           "goleadores": [
             {
-              "jugador": "A. Roa",
-              "equipoId": 1136,
-              "equipo": "Once Caldas",
-              "cantidad": 2
-            },
-            {
               "jugador": "D. Moreno",
               "equipoId": 1136,
               "equipo": "Once Caldas",
-              "cantidad": 2
+              "cantidad": 3
             },
             {
               "jugador": "J. A. Zapata Ramirez",
+              "equipoId": 1136,
+              "equipo": "Once Caldas",
+              "cantidad": 3
+            },
+            {
+              "jugador": "A. Roa",
               "equipoId": 1136,
               "equipo": "Once Caldas",
               "cantidad": 2
@@ -1499,7 +1589,7 @@
               "jugador": "J. D. Cuesta Santos",
               "equipoId": 1136,
               "equipo": "Once Caldas",
-              "cantidad": 3
+              "cantidad": 5
             },
             {
               "jugador": "A. Colorado",
@@ -1542,13 +1632,25 @@
               "cantidad": 3
             },
             {
-              "jugador": "L. Rios",
+              "jugador": "Neneco",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 2
+            },
+            {
+              "jugador": "Brayan Montano",
               "equipoId": 1470,
               "equipo": "Cucuta",
               "cantidad": 1
             },
             {
-              "jugador": "Neneco",
+              "jugador": "G. Torres",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Rios",
               "equipoId": 1470,
               "equipo": "Cucuta",
               "cantidad": 1
@@ -1557,6 +1659,12 @@
           "asistencias": [
             {
               "jugador": "L. Berdugo",
+              "equipoId": 1470,
+              "equipo": "Cucuta",
+              "cantidad": 2
+            },
+            {
+              "jugador": "K. Tamayo",
               "equipoId": 1470,
               "equipo": "Cucuta",
               "cantidad": 1
@@ -1578,19 +1686,25 @@
         "1125": {
           "goleadores": [
             {
+              "jugador": "A. Estupinan",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 2
+            },
+            {
               "jugador": "L. Castro",
               "equipoId": 1125,
               "equipo": "Millonarios",
               "cantidad": 2
             },
             {
-              "jugador": "A. Estupinan",
+              "jugador": "A. Llinas",
               "equipoId": 1125,
               "equipo": "Millonarios",
               "cantidad": 1
             },
             {
-              "jugador": "A. Llinas",
+              "jugador": "D. Ruiz",
               "equipoId": 1125,
               "equipo": "Millonarios",
               "cantidad": 1
@@ -1623,6 +1737,12 @@
             },
             {
               "jugador": "F. Chaverra",
+              "equipoId": 1125,
+              "equipo": "Millonarios",
+              "cantidad": 1
+            },
+            {
+              "jugador": "L. Castro",
               "equipoId": 1125,
               "equipo": "Millonarios",
               "cantidad": 1
@@ -1812,7 +1932,19 @@
         "1132": {
           "goleadores": [
             {
+              "jugador": "Felipe Cifuentes",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            },
+            {
               "jugador": "J. Pimentel",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Mera",
               "equipoId": 1132,
               "equipo": "Chico",
               "cantidad": 1
@@ -1830,10 +1962,248 @@
               "equipoId": 1132,
               "equipo": "Chico",
               "cantidad": 1
+            },
+            {
+              "jugador": "S. Salazar",
+              "equipoId": 1132,
+              "equipo": "Chico",
+              "cantidad": 1
+            }
+          ]
+        },
+        "1462": {
+          "goleadores": [
+            {
+              "jugador": "J. Largacha",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "J. Monroy",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": [
+            {
+              "jugador": "J. Largacha",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 1
+            },
+            {
+              "jugador": "S. Urrea",
+              "equipoId": 1462,
+              "equipo": "Deportivo Pereira",
+              "cantidad": 1
             }
           ]
         }
-      }
+      },
+      "llaves": [
+        {
+          "torneo": "Apertura",
+          "ronda": "Quarter-finals",
+          "partidos": [
+            {
+              "id": 1544223,
+              "fecha": "2026-05-09T21:00:00+00:00",
+              "estado": "FT",
+              "localId": 1134,
+              "local": "Internacional de Bogota",
+              "logoLocal": "https://media.api-sports.io/football/teams/1134.png",
+              "visitanteId": 1137,
+              "visitante": "Atletico Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1137.png",
+              "golesLocal": 1,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1544224,
+              "fecha": "2026-05-09T23:10:00+00:00",
+              "estado": "FT",
+              "localId": 1142,
+              "local": "Deportes Tolima",
+              "logoLocal": "https://media.api-sports.io/football/teams/1142.png",
+              "visitanteId": 1126,
+              "visitante": "Deportivo Pasto",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1126.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1544225,
+              "fecha": "2026-05-10T01:20:00+00:00",
+              "estado": "FT",
+              "localId": 1138,
+              "local": "America de Cali",
+              "logoLocal": "https://media.api-sports.io/football/teams/1138.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1544226,
+              "fecha": "2026-05-10T23:10:00+00:00",
+              "estado": "FT",
+              "localId": 1136,
+              "local": "Once Caldas",
+              "logoLocal": "https://media.api-sports.io/football/teams/1136.png",
+              "visitanteId": 1135,
+              "visitante": "Junior",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1135.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1544227,
+              "fecha": "2026-05-12T23:20:00+00:00",
+              "estado": "FT",
+              "localId": 1137,
+              "local": "Atletico Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/1137.png",
+              "visitanteId": 1134,
+              "visitante": "Internacional de Bogota",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1134.png",
+              "golesLocal": 7,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1544228,
+              "fecha": "2026-05-13T01:30:00+00:00",
+              "estado": "FT",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 1138,
+              "visitante": "America de Cali",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1138.png",
+              "golesLocal": 4,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1544229,
+              "fecha": "2026-05-13T23:00:00+00:00",
+              "estado": "FT",
+              "localId": 1126,
+              "local": "Deportivo Pasto",
+              "logoLocal": "https://media.api-sports.io/football/teams/1126.png",
+              "visitanteId": 1142,
+              "visitante": "Deportes Tolima",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1142.png",
+              "golesLocal": 0,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1544230,
+              "fecha": "2026-05-14T01:15:00+00:00",
+              "estado": "FT",
+              "localId": 1135,
+              "local": "Junior",
+              "logoLocal": "https://media.api-sports.io/football/teams/1135.png",
+              "visitanteId": 1136,
+              "visitante": "Once Caldas",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1136.png",
+              "golesLocal": 2,
+              "golesVisitante": 2
+            }
+          ]
+        },
+        {
+          "torneo": "Apertura",
+          "ronda": "Semi-finals",
+          "partidos": [
+            {
+              "id": 1545166,
+              "fecha": "2026-05-16T23:00:00+00:00",
+              "estado": "FT",
+              "localId": 1142,
+              "local": "Deportes Tolima",
+              "logoLocal": "https://media.api-sports.io/football/teams/1142.png",
+              "visitanteId": 1137,
+              "visitante": "Atletico Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1137.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545167,
+              "fecha": "2026-05-17T01:30:00+00:00",
+              "estado": "FT",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 1135,
+              "visitante": "Junior",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1135.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545168,
+              "fecha": "2026-05-23T23:00:00+00:00",
+              "estado": "FT",
+              "localId": 1137,
+              "local": "Atletico Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/1137.png",
+              "visitanteId": 1142,
+              "visitante": "Deportes Tolima",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1142.png",
+              "golesLocal": 3,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545169,
+              "fecha": "2026-05-24T01:30:00+00:00",
+              "estado": "PEN",
+              "localId": 1135,
+              "local": "Junior",
+              "logoLocal": "https://media.api-sports.io/football/teams/1135.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            }
+          ]
+        },
+        {
+          "torneo": "Apertura",
+          "ronda": "Final",
+          "partidos": [
+            {
+              "id": 1546412,
+              "fecha": "2026-06-03T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1135,
+              "local": "Junior",
+              "logoLocal": "https://media.api-sports.io/football/teams/1135.png",
+              "visitanteId": 1137,
+              "visitante": "Atletico Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1137.png",
+              "golesLocal": 3,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1546413,
+              "fecha": "2026-06-08T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1137,
+              "local": "Atletico Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/1137.png",
+              "visitanteId": 1135,
+              "visitante": "Junior",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1135.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            }
+          ]
+        }
+      ]
     },
     "torneo-betplay": {
       "ligaId": 240,
@@ -1852,15 +2222,15 @@
               "equipoId": 1459,
               "equipo": "Real Cartagena",
               "logo": "https://media.api-sports.io/football/teams/1459.png",
-              "puntos": 50,
-              "jugados": 29,
-              "ganados": 14,
+              "puntos": 53,
+              "jugados": 30,
+              "ganados": 15,
               "empatados": 8,
               "perdidos": 7,
-              "golesFavor": 48,
+              "golesFavor": 49,
               "golesContra": 33,
-              "diferencia": 15,
-              "racha": "LWWLD"
+              "diferencia": 16,
+              "racha": "WLWWL"
             },
             {
               "posicion": 2,
@@ -1868,14 +2238,14 @@
               "equipo": "Internacional Palmira",
               "logo": "https://media.api-sports.io/football/teams/23326.png",
               "puntos": 50,
-              "jugados": 26,
+              "jugados": 27,
               "ganados": 14,
               "empatados": 8,
-              "perdidos": 4,
+              "perdidos": 5,
               "golesFavor": 36,
-              "golesContra": 23,
-              "diferencia": 13,
-              "racha": "LWDDL"
+              "golesContra": 25,
+              "diferencia": 11,
+              "racha": "LLWDD"
             },
             {
               "posicion": 3,
@@ -1898,29 +2268,29 @@
               "equipo": "Envigado",
               "logo": "https://media.api-sports.io/football/teams/1129.png",
               "puntos": 48,
-              "jugados": 27,
+              "jugados": 28,
               "ganados": 14,
               "empatados": 6,
-              "perdidos": 7,
+              "perdidos": 8,
               "golesFavor": 37,
-              "golesContra": 24,
-              "diferencia": 13,
-              "racha": "LLDWD"
+              "golesContra": 25,
+              "diferencia": 12,
+              "racha": "LLLDW"
             },
             {
               "posicion": 5,
               "equipoId": 1465,
               "equipo": "Union Magdalena",
               "logo": "https://media.api-sports.io/football/teams/1465.png",
-              "puntos": 42,
-              "jugados": 25,
-              "ganados": 12,
+              "puntos": 45,
+              "jugados": 26,
+              "ganados": 13,
               "empatados": 6,
               "perdidos": 7,
-              "golesFavor": 35,
+              "golesFavor": 36,
               "golesContra": 23,
-              "diferencia": 12,
-              "racha": "LLDLD"
+              "diferencia": 13,
+              "racha": "WLLDL"
             },
             {
               "posicion": 6,
@@ -1943,44 +2313,44 @@
               "equipo": "Bogota FC",
               "logo": "https://media.api-sports.io/football/teams/1458.png",
               "puntos": 33,
-              "jugados": 27,
+              "jugados": 28,
               "ganados": 8,
               "empatados": 9,
-              "perdidos": 10,
+              "perdidos": 11,
               "golesFavor": 23,
-              "golesContra": 28,
-              "diferencia": -5,
-              "racha": "LWLLD"
+              "golesContra": 30,
+              "diferencia": -7,
+              "racha": "LLWLL"
             },
             {
               "posicion": 8,
               "equipoId": 27411,
               "equipo": "Ind. Yumbo",
               "logo": "https://media.api-sports.io/football/teams/27411.png",
-              "puntos": 29,
-              "jugados": 20,
-              "ganados": 7,
+              "puntos": 32,
+              "jugados": 21,
+              "ganados": 8,
               "empatados": 8,
               "perdidos": 5,
-              "golesFavor": 19,
+              "golesFavor": 21,
               "golesContra": 16,
-              "diferencia": 3,
-              "racha": "WLWDW"
+              "diferencia": 5,
+              "racha": "WWLWD"
             },
             {
               "posicion": 9,
               "equipoId": 1466,
               "equipo": "Barranquilla",
               "logo": "https://media.api-sports.io/football/teams/1466.png",
-              "puntos": 28,
-              "jugados": 25,
-              "ganados": 7,
+              "puntos": 31,
+              "jugados": 26,
+              "ganados": 8,
               "empatados": 7,
               "perdidos": 11,
-              "golesFavor": 30,
-              "golesContra": 32,
-              "diferencia": -2,
-              "racha": "LDDLL"
+              "golesFavor": 32,
+              "golesContra": 33,
+              "diferencia": -1,
+              "racha": "WLDDL"
             },
             {
               "posicion": 10,
@@ -1988,14 +2358,14 @@
               "equipo": "Orsomarso",
               "logo": "https://media.api-sports.io/football/teams/1469.png",
               "puntos": 25,
-              "jugados": 19,
+              "jugados": 20,
               "ganados": 6,
               "empatados": 7,
-              "perdidos": 6,
+              "perdidos": 7,
               "golesFavor": 17,
-              "golesContra": 18,
-              "diferencia": -1,
-              "racha": "WDDWD"
+              "golesContra": 19,
+              "diferencia": -2,
+              "racha": "LWDDW"
             },
             {
               "posicion": 11,
@@ -2017,15 +2387,15 @@
               "equipoId": 22099,
               "equipo": "Real Cundinamarca",
               "logo": "https://media.api-sports.io/football/teams/22099.png",
-              "puntos": 21,
-              "jugados": 21,
-              "ganados": 4,
+              "puntos": 24,
+              "jugados": 22,
+              "ganados": 5,
               "empatados": 9,
               "perdidos": 8,
-              "golesFavor": 23,
+              "golesFavor": 25,
               "golesContra": 26,
-              "diferencia": -3,
-              "racha": "WLDWD"
+              "diferencia": -1,
+              "racha": "WWLDW"
             },
             {
               "posicion": 13,
@@ -2033,14 +2403,14 @@
               "equipo": "Leones FC",
               "logo": "https://media.api-sports.io/football/teams/1143.png",
               "puntos": 18,
-              "jugados": 21,
+              "jugados": 22,
               "ganados": 4,
               "empatados": 6,
-              "perdidos": 11,
+              "perdidos": 12,
               "golesFavor": 13,
-              "golesContra": 33,
-              "diferencia": -20,
-              "racha": "LLDWD"
+              "golesContra": 36,
+              "diferencia": -23,
+              "racha": "LLLDW"
             },
             {
               "posicion": 14,
@@ -2048,17 +2418,32 @@
               "equipo": "Popayan",
               "logo": "https://media.api-sports.io/football/teams/1460.png",
               "puntos": 17,
-              "jugados": 19,
+              "jugados": 20,
               "ganados": 3,
               "empatados": 8,
-              "perdidos": 8,
-              "golesFavor": 18,
-              "golesContra": 25,
-              "diferencia": -7,
-              "racha": "LLDWL"
+              "perdidos": 9,
+              "golesFavor": 19,
+              "golesContra": 27,
+              "diferencia": -8,
+              "racha": "LLLDW"
             },
             {
               "posicion": 15,
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "logo": "https://media.api-sports.io/football/teams/1468.png",
+              "puntos": 17,
+              "jugados": 21,
+              "ganados": 3,
+              "empatados": 8,
+              "perdidos": 10,
+              "golesFavor": 21,
+              "golesContra": 32,
+              "diferencia": -11,
+              "racha": "WWLDD"
+            },
+            {
+              "posicion": 16,
               "equipoId": 1463,
               "equipo": "Real Santander",
               "logo": "https://media.api-sports.io/football/teams/1463.png",
@@ -2071,21 +2456,6 @@
               "golesContra": 35,
               "diferencia": -15,
               "racha": "WWDDD"
-            },
-            {
-              "posicion": 16,
-              "equipoId": 1468,
-              "equipo": "Depor FC",
-              "logo": "https://media.api-sports.io/football/teams/1468.png",
-              "puntos": 14,
-              "jugados": 20,
-              "ganados": 2,
-              "empatados": 8,
-              "perdidos": 10,
-              "golesFavor": 18,
-              "golesContra": 32,
-              "diferencia": -14,
-              "racha": "WLDDL"
             }
           ]
         },
@@ -2467,18 +2837,48 @@
               "equipoId": 1459,
               "equipo": "Real Cartagena",
               "logo": "https://media.api-sports.io/football/teams/1459.png",
-              "puntos": 10,
-              "jugados": 6,
-              "ganados": 3,
+              "puntos": 13,
+              "jugados": 7,
+              "ganados": 4,
               "empatados": 1,
               "perdidos": 2,
-              "golesFavor": 14,
+              "golesFavor": 15,
               "golesContra": 8,
-              "diferencia": 6,
-              "racha": "LWWLD"
+              "diferencia": 7,
+              "racha": "WLWWL"
             },
             {
               "posicion": 2,
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "logo": "https://media.api-sports.io/football/teams/27411.png",
+              "puntos": 13,
+              "jugados": 6,
+              "ganados": 4,
+              "empatados": 1,
+              "perdidos": 1,
+              "golesFavor": 8,
+              "golesContra": 2,
+              "diferencia": 6,
+              "racha": "WWLWD"
+            },
+            {
+              "posicion": 3,
+              "equipoId": 22099,
+              "equipo": "Real Cundinamarca",
+              "logo": "https://media.api-sports.io/football/teams/22099.png",
+              "puntos": 11,
+              "jugados": 7,
+              "ganados": 3,
+              "empatados": 2,
+              "perdidos": 2,
+              "golesFavor": 11,
+              "golesContra": 7,
+              "diferencia": 4,
+              "racha": "WWLDW"
+            },
+            {
+              "posicion": 4,
               "equipoId": 1145,
               "equipo": "Tigres FC",
               "logo": "https://media.api-sports.io/football/teams/1145.png",
@@ -2493,22 +2893,7 @@
               "racha": "WWWDL"
             },
             {
-              "posicion": 3,
-              "equipoId": 27411,
-              "equipo": "Ind. Yumbo",
-              "logo": "https://media.api-sports.io/football/teams/27411.png",
-              "puntos": 10,
-              "jugados": 5,
-              "ganados": 3,
-              "empatados": 1,
-              "perdidos": 1,
-              "golesFavor": 6,
-              "golesContra": 2,
-              "diferencia": 4,
-              "racha": "WLWDW"
-            },
-            {
-              "posicion": 4,
+              "posicion": 5,
               "equipoId": 1463,
               "equipo": "Real Santander",
               "logo": "https://media.api-sports.io/football/teams/1463.png",
@@ -2523,37 +2908,7 @@
               "racha": "WWDDD"
             },
             {
-              "posicion": 5,
-              "equipoId": 1469,
-              "equipo": "Orsomarso",
-              "logo": "https://media.api-sports.io/football/teams/1469.png",
-              "puntos": 8,
-              "jugados": 4,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 0,
-              "golesFavor": 4,
-              "golesContra": 1,
-              "diferencia": 3,
-              "racha": "WDDW"
-            },
-            {
               "posicion": 6,
-              "equipoId": 22099,
-              "equipo": "Real Cundinamarca",
-              "logo": "https://media.api-sports.io/football/teams/22099.png",
-              "puntos": 8,
-              "jugados": 6,
-              "ganados": 2,
-              "empatados": 2,
-              "perdidos": 2,
-              "golesFavor": 9,
-              "golesContra": 7,
-              "diferencia": 2,
-              "racha": "WLDWD"
-            },
-            {
-              "posicion": 7,
               "equipoId": 1461,
               "equipo": "Quindio",
               "logo": "https://media.api-sports.io/football/teams/1461.png",
@@ -2566,6 +2921,21 @@
               "golesContra": 3,
               "diferencia": 2,
               "racha": "WWDDL"
+            },
+            {
+              "posicion": 7,
+              "equipoId": 1469,
+              "equipo": "Orsomarso",
+              "logo": "https://media.api-sports.io/football/teams/1469.png",
+              "puntos": 8,
+              "jugados": 5,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 1,
+              "golesFavor": 4,
+              "golesContra": 2,
+              "diferencia": 2,
+              "racha": "LWDDW"
             },
             {
               "posicion": 8,
@@ -2584,128 +2954,134 @@
             },
             {
               "posicion": 9,
-              "equipoId": 1143,
-              "equipo": "Leones FC",
-              "logo": "https://media.api-sports.io/football/teams/1143.png",
+              "equipoId": 1468,
+              "equipo": "Depor FC",
+              "logo": "https://media.api-sports.io/football/teams/1468.png",
               "puntos": 8,
               "jugados": 6,
               "ganados": 2,
               "empatados": 2,
               "perdidos": 2,
-              "golesFavor": 5,
+              "golesFavor": 9,
               "golesContra": 9,
-              "diferencia": -4,
-              "racha": "LLDWD"
+              "diferencia": 0,
+              "racha": "WWLDD"
             },
             {
               "posicion": 10,
+              "equipoId": 1143,
+              "equipo": "Leones FC",
+              "logo": "https://media.api-sports.io/football/teams/1143.png",
+              "puntos": 8,
+              "jugados": 7,
+              "ganados": 2,
+              "empatados": 2,
+              "perdidos": 3,
+              "golesFavor": 5,
+              "golesContra": 12,
+              "diferencia": -7,
+              "racha": "LLLDW"
+            },
+            {
+              "posicion": 11,
               "equipoId": 1458,
               "equipo": "Bogota FC",
               "logo": "https://media.api-sports.io/football/teams/1458.png",
               "puntos": 7,
-              "jugados": 6,
+              "jugados": 7,
               "ganados": 2,
               "empatados": 1,
-              "perdidos": 3,
+              "perdidos": 4,
               "golesFavor": 4,
-              "golesContra": 6,
-              "diferencia": -2,
-              "racha": "LWLLD"
+              "golesContra": 8,
+              "diferencia": -4,
+              "racha": "LLWLL"
             },
             {
-              "posicion": 11,
-              "equipoId": 1468,
-              "equipo": "Depor FC",
-              "logo": "https://media.api-sports.io/football/teams/1468.png",
+              "posicion": 12,
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "logo": "https://media.api-sports.io/football/teams/1466.png",
               "puntos": 5,
               "jugados": 5,
               "ganados": 1,
               "empatados": 2,
               "perdidos": 2,
               "golesFavor": 6,
-              "golesContra": 9,
-              "diferencia": -3,
+              "golesContra": 7,
+              "diferencia": -1,
               "racha": "WLDDL"
             },
             {
-              "posicion": 12,
+              "posicion": 13,
               "equipoId": 23326,
               "equipo": "Internacional Palmira",
               "logo": "https://media.api-sports.io/football/teams/23326.png",
               "puntos": 5,
-              "jugados": 5,
+              "jugados": 6,
               "ganados": 1,
               "empatados": 2,
-              "perdidos": 2,
+              "perdidos": 3,
               "golesFavor": 4,
-              "golesContra": 7,
-              "diferencia": -3,
-              "racha": "LWDDL"
+              "golesContra": 9,
+              "diferencia": -5,
+              "racha": "LLWDD"
             },
             {
-              "posicion": 13,
+              "posicion": 14,
               "equipoId": 1129,
               "equipo": "Envigado",
               "logo": "https://media.api-sports.io/football/teams/1129.png",
               "puntos": 4,
-              "jugados": 4,
+              "jugados": 5,
               "ganados": 1,
               "empatados": 1,
-              "perdidos": 2,
+              "perdidos": 3,
               "golesFavor": 3,
-              "golesContra": 4,
-              "diferencia": -1,
-              "racha": "LLDW"
+              "golesContra": 5,
+              "diferencia": -2,
+              "racha": "LLLDW"
             },
             {
-              "posicion": 14,
+              "posicion": 15,
               "equipoId": 1460,
               "equipo": "Popayan",
               "logo": "https://media.api-sports.io/football/teams/1460.png",
               "puntos": 4,
-              "jugados": 4,
+              "jugados": 5,
               "ganados": 1,
               "empatados": 1,
-              "perdidos": 2,
-              "golesFavor": 3,
-              "golesContra": 5,
-              "diferencia": -2,
-              "racha": "LLDW"
-            },
-            {
-              "posicion": 15,
-              "equipoId": 1466,
-              "equipo": "Barranquilla",
-              "logo": "https://media.api-sports.io/football/teams/1466.png",
-              "puntos": 2,
-              "jugados": 4,
-              "ganados": 0,
-              "empatados": 2,
-              "perdidos": 2,
+              "perdidos": 3,
               "golesFavor": 4,
-              "golesContra": 6,
-              "diferencia": -2,
-              "racha": "LDDL"
+              "golesContra": 7,
+              "diferencia": -3,
+              "racha": "LLLDW"
             },
             {
               "posicion": 16,
               "equipoId": 1465,
               "equipo": "Union Magdalena",
               "logo": "https://media.api-sports.io/football/teams/1465.png",
-              "puntos": 1,
-              "jugados": 4,
-              "ganados": 0,
+              "puntos": 4,
+              "jugados": 5,
+              "ganados": 1,
               "empatados": 1,
               "perdidos": 3,
-              "golesFavor": 0,
+              "golesFavor": 1,
               "golesContra": 4,
-              "diferencia": -4,
-              "racha": "LLDL"
+              "diferencia": -3,
+              "racha": "WLLDL"
             }
           ]
         }
       ],
       "goleadores": [
+        {
+          "jugador": "A. Onate",
+          "equipoId": 1468,
+          "equipo": "Depor FC",
+          "cantidad": 6
+        },
         {
           "jugador": "K. Alvarez",
           "equipoId": 1140,
@@ -2719,12 +3095,6 @@
           "cantidad": 5
         },
         {
-          "jugador": "A. Onate",
-          "equipoId": 1468,
-          "equipo": "Depor FC",
-          "cantidad": 3
-        },
-        {
           "jugador": "B. Campaz",
           "equipoId": 1469,
           "equipo": "Orsomarso",
@@ -2734,6 +3104,12 @@
           "jugador": "C. Rodriguez Cespedes",
           "equipoId": 1143,
           "equipo": "Leones FC",
+          "cantidad": 3
+        },
+        {
+          "jugador": "F. Montero",
+          "equipoId": 1459,
+          "equipo": "Real Cartagena",
           "cantidad": 3
         },
         {
@@ -2759,12 +3135,6 @@
           "equipoId": 1463,
           "equipo": "Real Santander",
           "cantidad": 2
-        },
-        {
-          "jugador": "E. Lopez",
-          "equipoId": 1459,
-          "equipo": "Real Cartagena",
-          "cantidad": 2
         }
       ],
       "asistencias": [],
@@ -2779,6 +3149,12 @@
             },
             {
               "jugador": "J. Aponza",
+              "equipoId": 1460,
+              "equipo": "Popayan",
+              "cantidad": 1
+            },
+            {
+              "jugador": "P. Urrutia",
               "equipoId": 1460,
               "equipo": "Popayan",
               "cantidad": 1
@@ -2835,13 +3211,13 @@
         "1459": {
           "goleadores": [
             {
-              "jugador": "E. Lopez",
+              "jugador": "F. Montero",
               "equipoId": 1459,
               "equipo": "Real Cartagena",
-              "cantidad": 2
+              "cantidad": 3
             },
             {
-              "jugador": "F. Montero",
+              "jugador": "E. Lopez",
               "equipoId": 1459,
               "equipo": "Real Cartagena",
               "cantidad": 2
@@ -3009,6 +3385,18 @@
         "27411": {
           "goleadores": [
             {
+              "jugador": "J. Palacios",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 2
+            },
+            {
+              "jugador": "T. Diaz",
+              "equipoId": 27411,
+              "equipo": "Ind. Yumbo",
+              "cantidad": 2
+            },
+            {
               "jugador": "F. Pena",
               "equipoId": 27411,
               "equipo": "Ind. Yumbo",
@@ -3021,12 +3409,6 @@
               "cantidad": 1
             },
             {
-              "jugador": "J. Palacios",
-              "equipoId": 27411,
-              "equipo": "Ind. Yumbo",
-              "cantidad": 1
-            },
-            {
               "jugador": "J. Rubiano",
               "equipoId": 27411,
               "equipo": "Ind. Yumbo",
@@ -3034,12 +3416,6 @@
             },
             {
               "jugador": "L. Farias",
-              "equipoId": 27411,
-              "equipo": "Ind. Yumbo",
-              "cantidad": 1
-            },
-            {
-              "jugador": "T. Diaz",
               "equipoId": 27411,
               "equipo": "Ind. Yumbo",
               "cantidad": 1
@@ -3091,6 +3467,18 @@
         "1466": {
           "goleadores": [
             {
+              "jugador": "D. Torres",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
+              "jugador": "E. Herazo",
+              "equipoId": 1466,
+              "equipo": "Barranquilla",
+              "cantidad": 1
+            },
+            {
               "jugador": "J. Cortez",
               "equipoId": 1466,
               "equipo": "Barranquilla",
@@ -3109,7 +3497,7 @@
               "cantidad": 1
             },
             {
-              "jugador": "Y. D. Garcia Garces",
+              "jugador": "P. Oviedo",
               "equipoId": 1466,
               "equipo": "Barranquilla",
               "cantidad": 1
@@ -3123,7 +3511,7 @@
               "jugador": "A. Onate",
               "equipoId": 1468,
               "equipo": "Depor FC",
-              "cantidad": 3
+              "cantidad": 6
             },
             {
               "jugador": "C. Restrepo",
@@ -3197,8 +3585,59 @@
             }
           ],
           "asistencias": []
+        },
+        "1465": {
+          "goleadores": [
+            {
+              "jugador": "J. Lerma",
+              "equipoId": 1465,
+              "equipo": "Union Magdalena",
+              "cantidad": 1
+            },
+            {
+              "jugador": "R. Blanco",
+              "equipoId": 1465,
+              "equipo": "Union Magdalena",
+              "cantidad": 1
+            }
+          ],
+          "asistencias": []
         }
-      }
+      },
+      "llaves": [
+        {
+          "torneo": "Apertura",
+          "ronda": "Final",
+          "partidos": [
+            {
+              "id": 1546056,
+              "fecha": "2026-05-26T01:00:00+00:00",
+              "estado": "FT",
+              "localId": 1459,
+              "local": "Real Cartagena",
+              "logoLocal": "https://media.api-sports.io/football/teams/1459.png",
+              "visitanteId": 1129,
+              "visitante": "Envigado",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1129.png",
+              "golesLocal": 2,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1546057,
+              "fecha": "2026-05-29T20:00:00+00:00",
+              "estado": "FT",
+              "localId": 1129,
+              "local": "Envigado",
+              "logoLocal": "https://media.api-sports.io/football/teams/1129.png",
+              "visitanteId": 1459,
+              "visitante": "Real Cartagena",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1459.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            }
+          ]
+        }
+      ]
     },
     "copa-betplay": {
       "ligaId": 241,
@@ -3321,7 +3760,7 @@
               "golesFavor": 7,
               "golesContra": 2,
               "diferencia": 5,
-              "racha": "WWLW"
+              "racha": "WWWLW"
             },
             {
               "posicion": 3,
@@ -3545,6 +3984,12 @@
           "cantidad": 3
         },
         {
+          "jugador": "J. Lloreda",
+          "equipoId": 1461,
+          "equipo": "Quindio",
+          "cantidad": 3
+        },
+        {
           "jugador": "J. Molina",
           "equipoId": 1132,
           "equipo": "Chico",
@@ -3584,12 +4029,6 @@
           "jugador": "H. Mosquera",
           "equipoId": 1460,
           "equipo": "Popayan",
-          "cantidad": 2
-        },
-        {
-          "jugador": "I. Montano",
-          "equipoId": 1132,
-          "equipo": "Chico",
           "cantidad": 2
         }
       ],
@@ -3669,6 +4108,12 @@
             },
             {
               "jugador": "L. Miranda",
+              "equipoId": 1464,
+              "equipo": "Llaneros",
+              "cantidad": 1
+            },
+            {
+              "jugador": "Y. Mena",
               "equipoId": 1464,
               "equipo": "Llaneros",
               "cantidad": 1
@@ -4180,7 +4625,7 @@
               "jugador": "J. Lloreda",
               "equipoId": 1461,
               "equipo": "Quindio",
-              "cantidad": 2
+              "cantidad": 3
             },
             {
               "jugador": "A. F. Carabali R.",
@@ -4456,7 +4901,411 @@
           ],
           "asistencias": []
         }
-      }
+      },
+      "llaves": [
+        {
+          "torneo": "",
+          "ronda": "Play-offs",
+          "partidos": [
+            {
+              "id": 1545505,
+              "fecha": "2026-07-21T21:00:00+00:00",
+              "estado": "FT",
+              "localId": 1137,
+              "local": "Atletico Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/1137.png",
+              "visitanteId": 1145,
+              "visitante": "Tigres FC",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1145.png",
+              "golesLocal": 2,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1545508,
+              "fecha": "2026-07-21T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1134,
+              "local": "Internacional de Bogota",
+              "logoLocal": "https://media.api-sports.io/football/teams/1134.png",
+              "visitanteId": 23326,
+              "visitante": "Internacional Palmira",
+              "logoVisitante": "https://media.api-sports.io/football/teams/23326.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1545506,
+              "fecha": "2026-07-21T23:00:00+00:00",
+              "estado": "FT",
+              "localId": 1142,
+              "local": "Deportes Tolima",
+              "logoLocal": "https://media.api-sports.io/football/teams/1142.png",
+              "visitanteId": 1461,
+              "visitante": "Quindio",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1461.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545507,
+              "fecha": "2026-07-22T00:00:00+00:00",
+              "estado": "FT",
+              "localId": 1126,
+              "local": "Deportivo Pasto",
+              "logoLocal": "https://media.api-sports.io/football/teams/1126.png",
+              "visitanteId": 1458,
+              "visitante": "Bogota FC",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1458.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545510,
+              "fecha": "2026-07-22T00:00:00+00:00",
+              "estado": "FT",
+              "localId": 1136,
+              "local": "Once Caldas",
+              "logoLocal": "https://media.api-sports.io/football/teams/1136.png",
+              "visitanteId": 1129,
+              "visitante": "Envigado",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1129.png",
+              "golesLocal": 3,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1545504,
+              "fecha": "2026-07-22T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1138,
+              "local": "America de Cali",
+              "logoLocal": "https://media.api-sports.io/football/teams/1138.png",
+              "visitanteId": 1459,
+              "visitante": "Real Cartagena",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1459.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545509,
+              "fecha": "2026-07-23T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1135,
+              "local": "Junior",
+              "logoLocal": "https://media.api-sports.io/football/teams/1135.png",
+              "visitanteId": 1466,
+              "visitante": "Barranquilla",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1466.png",
+              "golesLocal": 2,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1545517,
+              "fecha": "2026-07-28T23:15:00+00:00",
+              "estado": "PEN",
+              "localId": 1461,
+              "local": "Quindio",
+              "logoLocal": "https://media.api-sports.io/football/teams/1461.png",
+              "visitanteId": 1142,
+              "visitante": "Deportes Tolima",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1142.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545513,
+              "fecha": "2026-07-29T00:00:00+00:00",
+              "estado": "FT",
+              "localId": 1458,
+              "local": "Bogota FC",
+              "logoLocal": "https://media.api-sports.io/football/teams/1458.png",
+              "visitanteId": 1126,
+              "visitante": "Deportivo Pasto",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1126.png",
+              "golesLocal": 0,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1545518,
+              "fecha": "2026-07-29T01:30:00+00:00",
+              "estado": "FT",
+              "localId": 1145,
+              "local": "Tigres FC",
+              "logoLocal": "https://media.api-sports.io/football/teams/1145.png",
+              "visitanteId": 1137,
+              "visitante": "Atletico Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1137.png",
+              "golesLocal": 0,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1545516,
+              "fecha": "2026-07-29T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 23326,
+              "local": "Internacional Palmira",
+              "logoLocal": "https://media.api-sports.io/football/teams/23326.png",
+              "visitanteId": 1134,
+              "visitante": "Internacional de Bogota",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1134.png",
+              "golesLocal": 1,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1545512,
+              "fecha": "2026-07-29T22:30:00+00:00",
+              "estado": "PEN",
+              "localId": 1466,
+              "local": "Barranquilla",
+              "logoLocal": "https://media.api-sports.io/football/teams/1466.png",
+              "visitanteId": 1135,
+              "visitante": "Junior",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1135.png",
+              "golesLocal": 3,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1545514,
+              "fecha": "2026-07-30T01:00:00+00:00",
+              "estado": "FT",
+              "localId": 1459,
+              "local": "Real Cartagena",
+              "logoLocal": "https://media.api-sports.io/football/teams/1459.png",
+              "visitanteId": 1138,
+              "visitante": "America de Cali",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1138.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1545515,
+              "fecha": "2026-07-30T20:30:00+00:00",
+              "estado": "FT",
+              "localId": 1129,
+              "local": "Envigado",
+              "logoLocal": "https://media.api-sports.io/football/teams/1129.png",
+              "visitanteId": 1136,
+              "visitante": "Once Caldas",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1136.png",
+              "golesLocal": 0,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1545511,
+              "fecha": "2026-08-06T00:00:00+00:00",
+              "estado": "FT",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 1465,
+              "visitante": "Union Magdalena",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1465.png",
+              "golesLocal": 2,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1545519,
+              "fecha": "2026-09-10T20:00:00+00:00",
+              "estado": "NS",
+              "localId": 1465,
+              "local": "Union Magdalena",
+              "logoLocal": "https://media.api-sports.io/football/teams/1465.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            }
+          ]
+        },
+        {
+          "torneo": "",
+          "ronda": "Round of 16",
+          "partidos": [
+            {
+              "id": 1607185,
+              "fecha": "2026-08-13T01:00:00+00:00",
+              "estado": "PST",
+              "localId": 1127,
+              "local": "Deportivo Cali",
+              "logoLocal": "https://media.api-sports.io/football/teams/1127.png",
+              "visitanteId": 1137,
+              "visitante": "Atletico Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1137.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1611287,
+              "fecha": "2026-08-14T00:00:00+00:00",
+              "estado": "PST",
+              "localId": 1141,
+              "local": "Alianza Valledupar",
+              "logoLocal": "https://media.api-sports.io/football/teams/1141.png",
+              "visitanteId": 1136,
+              "visitante": "Once Caldas",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1136.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607639,
+              "fecha": "2026-08-15T01:10:00+00:00",
+              "estado": "PST",
+              "localId": 1125,
+              "local": "Millonarios",
+              "logoLocal": "https://media.api-sports.io/football/teams/1125.png",
+              "visitanteId": 1466,
+              "visitante": "Barranquilla",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1466.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607187,
+              "fecha": "2026-08-19T00:00:00+00:00",
+              "estado": "CANC",
+              "localId": 1464,
+              "local": "Llaneros",
+              "logoLocal": "https://media.api-sports.io/football/teams/1464.png",
+              "visitanteId": 1461,
+              "visitante": "Quindio",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1461.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607640,
+              "fecha": "2026-08-19T23:00:00+00:00",
+              "estado": "CANC",
+              "localId": 1134,
+              "local": "Internacional de Bogota",
+              "logoLocal": "https://media.api-sports.io/football/teams/1134.png",
+              "visitanteId": 22099,
+              "visitante": "Real Cundinamarca",
+              "logoVisitante": "https://media.api-sports.io/football/teams/22099.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607186,
+              "fecha": "2026-08-21T01:00:00+00:00",
+              "estado": "CANC",
+              "localId": 1128,
+              "local": "Independiente Medellin",
+              "logoLocal": "https://media.api-sports.io/football/teams/1128.png",
+              "visitanteId": 1126,
+              "visitante": "Deportivo Pasto",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1126.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607190,
+              "fecha": "2026-09-02T22:30:00+00:00",
+              "estado": "PEN",
+              "localId": 1461,
+              "local": "Quindio",
+              "logoLocal": "https://media.api-sports.io/football/teams/1461.png",
+              "visitanteId": 1464,
+              "visitante": "Llaneros",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1464.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607188,
+              "fecha": "2026-09-08T01:15:00+00:00",
+              "estado": "NS",
+              "localId": 1137,
+              "local": "Atletico Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/1137.png",
+              "visitanteId": 1127,
+              "visitante": "Deportivo Cali",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1127.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607638,
+              "fecha": "2026-09-09T23:00:00+00:00",
+              "estado": "NS",
+              "localId": 1138,
+              "local": "America de Cali",
+              "logoLocal": "https://media.api-sports.io/football/teams/1138.png",
+              "visitanteId": 1462,
+              "visitante": "Deportivo Pereira",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1462.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607643,
+              "fecha": "2026-09-09T23:00:00+00:00",
+              "estado": "NS",
+              "localId": 22099,
+              "local": "Real Cundinamarca",
+              "logoLocal": "https://media.api-sports.io/football/teams/22099.png",
+              "visitanteId": 1134,
+              "visitante": "Internacional de Bogota",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1134.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1611288,
+              "fecha": "2026-09-10T00:00:00+00:00",
+              "estado": "NS",
+              "localId": 1136,
+              "local": "Once Caldas",
+              "logoLocal": "https://media.api-sports.io/football/teams/1136.png",
+              "visitanteId": 1141,
+              "visitante": "Alianza Valledupar",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1141.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1635082,
+              "fecha": "2026-09-10T01:10:00+00:00",
+              "estado": "NS",
+              "localId": 1126,
+              "local": "Deportivo Pasto",
+              "logoLocal": "https://media.api-sports.io/football/teams/1126.png",
+              "visitanteId": 1128,
+              "visitante": "Independiente Medellin",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1128.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607642,
+              "fecha": "2026-09-16T01:00:00+00:00",
+              "estado": "NS",
+              "localId": 1138,
+              "local": "America de Cali",
+              "logoLocal": "https://media.api-sports.io/football/teams/1138.png",
+              "visitanteId": 1462,
+              "visitante": "Deportivo Pereira",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1462.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1607641,
+              "fecha": "2026-09-17T01:30:00+00:00",
+              "estado": "NS",
+              "localId": 1466,
+              "local": "Barranquilla",
+              "logoLocal": "https://media.api-sports.io/football/teams/1466.png",
+              "visitanteId": 1125,
+              "visitante": "Millonarios",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1125.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            }
+          ]
+        }
+      ]
     },
     "copa-libertadores": {
       "ligaId": 13,
@@ -7458,7 +8307,333 @@
             }
           ]
         }
-      }
+      },
+      "llaves": [
+        {
+          "torneo": "",
+          "ronda": "Round of 16",
+          "partidos": [
+            {
+              "id": 1547760,
+              "fecha": "2026-08-11T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 124,
+              "local": "Fluminense",
+              "logoLocal": "https://media.api-sports.io/football/teams/124.png",
+              "visitanteId": 473,
+              "visitante": "Independ. Rivadavia",
+              "logoVisitante": "https://media.api-sports.io/football/teams/473.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547759,
+              "fecha": "2026-08-12T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 450,
+              "local": "Estudiantes L.P.",
+              "logoLocal": "https://media.api-sports.io/football/teams/450.png",
+              "visitanteId": 2994,
+              "visitante": "U. Catolica",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2994.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547762,
+              "fecha": "2026-08-12T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 121,
+              "local": "Palmeiras",
+              "logoLocal": "https://media.api-sports.io/football/teams/121.png",
+              "visitanteId": 1176,
+              "visitante": "Cerro Porteno",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1176.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547763,
+              "fecha": "2026-08-12T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1064,
+              "local": "Platense",
+              "logoLocal": "https://media.api-sports.io/football/teams/1064.png",
+              "visitanteId": 2330,
+              "visitante": "Coquimbo Unido",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2330.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547757,
+              "fecha": "2026-08-13T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 135,
+              "local": "Cruzeiro",
+              "logoLocal": "https://media.api-sports.io/football/teams/135.png",
+              "visitanteId": 127,
+              "visitante": "Flamengo",
+              "logoVisitante": "https://media.api-sports.io/football/teams/127.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547761,
+              "fecha": "2026-08-13T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 7848,
+              "local": "Mirassol",
+              "logoLocal": "https://media.api-sports.io/football/teams/7848.png",
+              "visitanteId": 1158,
+              "visitante": "LDU de Quito",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1158.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547764,
+              "fecha": "2026-08-14T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 437,
+              "local": "Rosario Central",
+              "logoLocal": "https://media.api-sports.io/football/teams/437.png",
+              "visitanteId": 131,
+              "visitante": "Corinthians",
+              "logoVisitante": "https://media.api-sports.io/football/teams/131.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547770,
+              "fecha": "2026-08-18T22:00:00+00:00",
+              "estado": "PEN",
+              "localId": 473,
+              "local": "Independ. Rivadavia",
+              "logoLocal": "https://media.api-sports.io/football/teams/473.png",
+              "visitanteId": 124,
+              "visitante": "Fluminense",
+              "logoVisitante": "https://media.api-sports.io/football/teams/124.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547758,
+              "fecha": "2026-08-19T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1142,
+              "local": "Deportes Tolima",
+              "logoLocal": "https://media.api-sports.io/football/teams/1142.png",
+              "visitanteId": 1153,
+              "visitante": "Independiente del Valle",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1153.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547772,
+              "fecha": "2026-08-19T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2994,
+              "local": "U. Catolica",
+              "logoLocal": "https://media.api-sports.io/football/teams/2994.png",
+              "visitanteId": 450,
+              "visitante": "Estudiantes L.P.",
+              "logoVisitante": "https://media.api-sports.io/football/teams/450.png",
+              "golesLocal": 0,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1547765,
+              "fecha": "2026-08-19T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1176,
+              "local": "Cerro Porteno",
+              "logoLocal": "https://media.api-sports.io/football/teams/1176.png",
+              "visitanteId": 121,
+              "visitante": "Palmeiras",
+              "logoVisitante": "https://media.api-sports.io/football/teams/121.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547766,
+              "fecha": "2026-08-19T22:00:00+00:00",
+              "estado": "PEN",
+              "localId": 2330,
+              "local": "Coquimbo Unido",
+              "logoLocal": "https://media.api-sports.io/football/teams/2330.png",
+              "visitanteId": 1064,
+              "visitante": "Platense",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1064.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547768,
+              "fecha": "2026-08-20T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 127,
+              "local": "Flamengo",
+              "logoLocal": "https://media.api-sports.io/football/teams/127.png",
+              "visitanteId": 135,
+              "visitante": "Cruzeiro",
+              "logoVisitante": "https://media.api-sports.io/football/teams/135.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547771,
+              "fecha": "2026-08-20T22:00:00+00:00",
+              "estado": "PEN",
+              "localId": 1158,
+              "local": "LDU de Quito",
+              "logoLocal": "https://media.api-sports.io/football/teams/1158.png",
+              "visitanteId": 7848,
+              "visitante": "Mirassol",
+              "logoVisitante": "https://media.api-sports.io/football/teams/7848.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547767,
+              "fecha": "2026-08-21T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 131,
+              "local": "Corinthians",
+              "logoLocal": "https://media.api-sports.io/football/teams/131.png",
+              "visitanteId": 437,
+              "visitante": "Rosario Central",
+              "logoVisitante": "https://media.api-sports.io/football/teams/437.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547769,
+              "fecha": "2026-08-26T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1153,
+              "local": "Independiente del Valle",
+              "logoLocal": "https://media.api-sports.io/football/teams/1153.png",
+              "visitanteId": 1142,
+              "visitante": "Deportes Tolima",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1142.png",
+              "golesLocal": 3,
+              "golesVisitante": 1
+            }
+          ]
+        },
+        {
+          "torneo": "",
+          "ronda": "Quarter-finals",
+          "partidos": [
+            {
+              "id": 1630777,
+              "fecha": "2026-09-08T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 124,
+              "local": "Fluminense",
+              "logoLocal": "https://media.api-sports.io/football/teams/124.png",
+              "visitanteId": 1064,
+              "visitante": "Platense",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1064.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631507,
+              "fecha": "2026-09-09T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 121,
+              "local": "Palmeiras",
+              "logoLocal": "https://media.api-sports.io/football/teams/121.png",
+              "visitanteId": 1158,
+              "visitante": "LDU de Quito",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1158.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631506,
+              "fecha": "2026-09-10T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 450,
+              "local": "Estudiantes L.P.",
+              "logoLocal": "https://media.api-sports.io/football/teams/450.png",
+              "visitanteId": 131,
+              "visitante": "Corinthians",
+              "logoVisitante": "https://media.api-sports.io/football/teams/131.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1635386,
+              "fecha": "2026-09-11T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 1153,
+              "local": "Independiente del Valle",
+              "logoLocal": "https://media.api-sports.io/football/teams/1153.png",
+              "visitanteId": 127,
+              "visitante": "Flamengo",
+              "logoVisitante": "https://media.api-sports.io/football/teams/127.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1630778,
+              "fecha": "2026-09-15T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 1064,
+              "local": "Platense",
+              "logoLocal": "https://media.api-sports.io/football/teams/1064.png",
+              "visitanteId": 124,
+              "visitante": "Fluminense",
+              "logoVisitante": "https://media.api-sports.io/football/teams/124.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631509,
+              "fecha": "2026-09-16T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 1158,
+              "local": "LDU de Quito",
+              "logoLocal": "https://media.api-sports.io/football/teams/1158.png",
+              "visitanteId": 121,
+              "visitante": "Palmeiras",
+              "logoVisitante": "https://media.api-sports.io/football/teams/121.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631508,
+              "fecha": "2026-09-17T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 131,
+              "local": "Corinthians",
+              "logoLocal": "https://media.api-sports.io/football/teams/131.png",
+              "visitanteId": 450,
+              "visitante": "Estudiantes L.P.",
+              "logoVisitante": "https://media.api-sports.io/football/teams/450.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1635387,
+              "fecha": "2026-09-18T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 127,
+              "local": "Flamengo",
+              "logoLocal": "https://media.api-sports.io/football/teams/127.png",
+              "visitanteId": 1153,
+              "visitante": "Independiente del Valle",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1153.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            }
+          ]
+        }
+      ]
     },
     "copa-sudamericana": {
       "ligaId": 11,
@@ -10407,7 +11582,547 @@
             }
           ]
         }
-      }
+      },
+      "llaves": [
+        {
+          "torneo": "",
+          "ronda": "Round of 32",
+          "partidos": [
+            {
+              "id": 1547777,
+              "fecha": "2026-07-21T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 2356,
+              "local": "Club Nacional",
+              "logoLocal": "https://media.api-sports.io/football/teams/2356.png",
+              "visitanteId": 452,
+              "visitante": "Tigre",
+              "logoVisitante": "https://media.api-sports.io/football/teams/452.png",
+              "golesLocal": 0,
+              "golesVisitante": 3
+            },
+            {
+              "id": 1547780,
+              "fecha": "2026-07-22T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2840,
+              "local": "UCV",
+              "logoLocal": "https://media.api-sports.io/football/teams/2840.png",
+              "visitanteId": 128,
+              "visitante": "Santos",
+              "logoVisitante": "https://media.api-sports.io/football/teams/128.png",
+              "golesLocal": 1,
+              "golesVisitante": 4
+            },
+            {
+              "id": 1547775,
+              "fecha": "2026-07-22T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1128,
+              "local": "Independiente Medellin",
+              "logoLocal": "https://media.api-sports.io/football/teams/1128.png",
+              "visitanteId": 133,
+              "visitante": "Vasco DA Gama",
+              "logoVisitante": "https://media.api-sports.io/football/teams/133.png",
+              "golesLocal": 2,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1547776,
+              "fecha": "2026-07-23T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 446,
+              "local": "Lanus",
+              "logoLocal": "https://media.api-sports.io/football/teams/446.png",
+              "visitanteId": 2562,
+              "visitante": "Cienciano",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2562.png",
+              "golesLocal": 2,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547779,
+              "fecha": "2026-07-23T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2546,
+              "local": "Sporting Cristal",
+              "logoLocal": "https://media.api-sports.io/football/teams/2546.png",
+              "visitanteId": 794,
+              "visitante": "RB Bragantino",
+              "logoVisitante": "https://media.api-sports.io/football/teams/794.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547774,
+              "fecha": "2026-07-23T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 3702,
+              "local": "Bolívar",
+              "logoLocal": "https://media.api-sports.io/football/teams/3702.png",
+              "visitanteId": 130,
+              "visitante": "Gremio",
+              "logoVisitante": "https://media.api-sports.io/football/teams/130.png",
+              "golesLocal": 3,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1547773,
+              "fecha": "2026-07-24T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 451,
+              "local": "Boca Juniors",
+              "logoLocal": "https://media.api-sports.io/football/teams/451.png",
+              "visitanteId": 2320,
+              "visitante": "O'Higgins",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2320.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547778,
+              "fecha": "2026-07-24T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 2808,
+              "visitante": "Caracas FC",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2808.png",
+              "golesLocal": 2,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547787,
+              "fecha": "2026-07-28T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 452,
+              "local": "Tigre",
+              "logoLocal": "https://media.api-sports.io/football/teams/452.png",
+              "visitanteId": 2356,
+              "visitante": "Club Nacional",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2356.png",
+              "golesLocal": 1,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1547786,
+              "fecha": "2026-07-29T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 128,
+              "local": "Santos",
+              "logoLocal": "https://media.api-sports.io/football/teams/128.png",
+              "visitanteId": 2840,
+              "visitante": "UCV",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2840.png",
+              "golesLocal": 4,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1547788,
+              "fecha": "2026-07-29T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 133,
+              "local": "Vasco DA Gama",
+              "logoLocal": "https://media.api-sports.io/football/teams/133.png",
+              "visitanteId": 1128,
+              "visitante": "Independiente Medellin",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1128.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547781,
+              "fecha": "2026-07-30T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 794,
+              "local": "RB Bragantino",
+              "logoLocal": "https://media.api-sports.io/football/teams/794.png",
+              "visitanteId": 2546,
+              "visitante": "Sporting Cristal",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2546.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547783,
+              "fecha": "2026-07-30T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2562,
+              "local": "Cienciano",
+              "logoLocal": "https://media.api-sports.io/football/teams/2562.png",
+              "visitanteId": 446,
+              "visitante": "Lanus",
+              "logoVisitante": "https://media.api-sports.io/football/teams/446.png",
+              "golesLocal": 4,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547784,
+              "fecha": "2026-07-30T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 130,
+              "local": "Gremio",
+              "logoLocal": "https://media.api-sports.io/football/teams/130.png",
+              "visitanteId": 3702,
+              "visitante": "Bolívar",
+              "logoVisitante": "https://media.api-sports.io/football/teams/3702.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1547785,
+              "fecha": "2026-07-31T00:30:00+00:00",
+              "estado": "PEN",
+              "localId": 2320,
+              "local": "O'Higgins",
+              "logoLocal": "https://media.api-sports.io/football/teams/2320.png",
+              "visitanteId": 451,
+              "visitante": "Boca Juniors",
+              "logoVisitante": "https://media.api-sports.io/football/teams/451.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1547782,
+              "fecha": "2026-07-31T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2808,
+              "local": "Caracas FC",
+              "logoLocal": "https://media.api-sports.io/football/teams/2808.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": 0,
+              "golesVisitante": 3
+            }
+          ]
+        },
+        {
+          "torneo": "",
+          "ronda": "Round of 16",
+          "partidos": [
+            {
+              "id": 1607648,
+              "fecha": "2026-08-11T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 451,
+              "local": "Boca Juniors",
+              "logoLocal": "https://media.api-sports.io/football/teams/451.png",
+              "visitanteId": 10476,
+              "visitante": "Deportivo Recoleta",
+              "logoVisitante": "https://media.api-sports.io/football/teams/10476.png",
+              "golesLocal": 3,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607649,
+              "fecha": "2026-08-12T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 3702,
+              "local": "Bolívar",
+              "logoLocal": "https://media.api-sports.io/football/teams/3702.png",
+              "visitanteId": 126,
+              "visitante": "Sao Paulo",
+              "logoVisitante": "https://media.api-sports.io/football/teams/126.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1606077,
+              "fecha": "2026-08-12T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 452,
+              "local": "Tigre",
+              "logoLocal": "https://media.api-sports.io/football/teams/452.png",
+              "visitanteId": 2365,
+              "visitante": "Atletico Torque",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2365.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607197,
+              "fecha": "2026-08-12T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 794,
+              "local": "RB Bragantino",
+              "logoLocal": "https://media.api-sports.io/football/teams/794.png",
+              "visitanteId": 1062,
+              "visitante": "Atletico-MG",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1062.png",
+              "golesLocal": 0,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1606076,
+              "fecha": "2026-08-13T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 128,
+              "local": "Santos",
+              "logoLocal": "https://media.api-sports.io/football/teams/128.png",
+              "visitanteId": 1155,
+              "visitante": "Macara",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1155.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607199,
+              "fecha": "2026-08-13T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 133,
+              "local": "Vasco DA Gama",
+              "logoLocal": "https://media.api-sports.io/football/teams/133.png",
+              "visitanteId": 1182,
+              "visitante": "Olimpia",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1182.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1607198,
+              "fecha": "2026-08-14T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2562,
+              "local": "Cienciano",
+              "logoLocal": "https://media.api-sports.io/football/teams/2562.png",
+              "visitanteId": 120,
+              "visitante": "Botafogo",
+              "logoVisitante": "https://media.api-sports.io/football/teams/120.png",
+              "golesLocal": 6,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607651,
+              "fecha": "2026-08-18T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 10476,
+              "local": "Deportivo Recoleta",
+              "logoLocal": "https://media.api-sports.io/football/teams/10476.png",
+              "visitanteId": 451,
+              "visitante": "Boca Juniors",
+              "logoVisitante": "https://media.api-sports.io/football/teams/451.png",
+              "golesLocal": 0,
+              "golesVisitante": 4
+            },
+            {
+              "id": 1607653,
+              "fecha": "2026-08-19T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 126,
+              "local": "Sao Paulo",
+              "logoLocal": "https://media.api-sports.io/football/teams/126.png",
+              "visitanteId": 3702,
+              "visitante": "Bolívar",
+              "logoVisitante": "https://media.api-sports.io/football/teams/3702.png",
+              "golesLocal": 3,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1607200,
+              "fecha": "2026-08-19T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1062,
+              "local": "Atletico-MG",
+              "logoLocal": "https://media.api-sports.io/football/teams/1062.png",
+              "visitanteId": 794,
+              "visitante": "RB Bragantino",
+              "logoVisitante": "https://media.api-sports.io/football/teams/794.png",
+              "golesLocal": 2,
+              "golesVisitante": 2
+            },
+            {
+              "id": 1607650,
+              "fecha": "2026-08-20T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 435,
+              "visitante": "River Plate",
+              "logoVisitante": "https://media.api-sports.io/football/teams/435.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1606079,
+              "fecha": "2026-08-20T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 2365,
+              "local": "Atletico Torque",
+              "logoLocal": "https://media.api-sports.io/football/teams/2365.png",
+              "visitanteId": 452,
+              "visitante": "Tigre",
+              "logoVisitante": "https://media.api-sports.io/football/teams/452.png",
+              "golesLocal": 2,
+              "golesVisitante": 1
+            },
+            {
+              "id": 1606078,
+              "fecha": "2026-08-20T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1155,
+              "local": "Macara",
+              "logoLocal": "https://media.api-sports.io/football/teams/1155.png",
+              "visitanteId": 128,
+              "visitante": "Santos",
+              "logoVisitante": "https://media.api-sports.io/football/teams/128.png",
+              "golesLocal": 0,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1607202,
+              "fecha": "2026-08-20T22:00:00+00:00",
+              "estado": "FT",
+              "localId": 1182,
+              "local": "Olimpia",
+              "logoLocal": "https://media.api-sports.io/football/teams/1182.png",
+              "visitanteId": 133,
+              "visitante": "Vasco DA Gama",
+              "logoVisitante": "https://media.api-sports.io/football/teams/133.png",
+              "golesLocal": 1,
+              "golesVisitante": 4
+            },
+            {
+              "id": 1607201,
+              "fecha": "2026-08-21T00:30:00+00:00",
+              "estado": "FT",
+              "localId": 120,
+              "local": "Botafogo",
+              "logoLocal": "https://media.api-sports.io/football/teams/120.png",
+              "visitanteId": 2562,
+              "visitante": "Cienciano",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2562.png",
+              "golesLocal": 1,
+              "golesVisitante": 0
+            },
+            {
+              "id": 1607652,
+              "fecha": "2026-08-27T00:30:00+00:00",
+              "estado": "PEN",
+              "localId": 435,
+              "local": "River Plate",
+              "logoLocal": "https://media.api-sports.io/football/teams/435.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": 1,
+              "golesVisitante": 1
+            }
+          ]
+        },
+        {
+          "torneo": "",
+          "ronda": "Quarter-finals",
+          "partidos": [
+            {
+              "id": 1635576,
+              "fecha": "2026-09-08T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 1139,
+              "local": "Santa Fe",
+              "logoLocal": "https://media.api-sports.io/football/teams/1139.png",
+              "visitanteId": 133,
+              "visitante": "Vasco DA Gama",
+              "logoVisitante": "https://media.api-sports.io/football/teams/133.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1629830,
+              "fecha": "2026-09-09T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 451,
+              "local": "Boca Juniors",
+              "logoLocal": "https://media.api-sports.io/football/teams/451.png",
+              "visitanteId": 126,
+              "visitante": "Sao Paulo",
+              "logoVisitante": "https://media.api-sports.io/football/teams/126.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631510,
+              "fecha": "2026-09-09T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 128,
+              "local": "Santos",
+              "logoLocal": "https://media.api-sports.io/football/teams/128.png",
+              "visitanteId": 1062,
+              "visitante": "Atletico-MG",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1062.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631511,
+              "fecha": "2026-09-11T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 2562,
+              "local": "Cienciano",
+              "logoLocal": "https://media.api-sports.io/football/teams/2562.png",
+              "visitanteId": 2365,
+              "visitante": "Atletico Torque",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2365.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1635577,
+              "fecha": "2026-09-15T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 133,
+              "local": "Vasco DA Gama",
+              "logoLocal": "https://media.api-sports.io/football/teams/133.png",
+              "visitanteId": 1139,
+              "visitante": "Santa Fe",
+              "logoVisitante": "https://media.api-sports.io/football/teams/1139.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1629831,
+              "fecha": "2026-09-16T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 126,
+              "local": "Sao Paulo",
+              "logoLocal": "https://media.api-sports.io/football/teams/126.png",
+              "visitanteId": 451,
+              "visitante": "Boca Juniors",
+              "logoVisitante": "https://media.api-sports.io/football/teams/451.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631513,
+              "fecha": "2026-09-16T22:00:00+00:00",
+              "estado": "NS",
+              "localId": 1062,
+              "local": "Atletico-MG",
+              "logoLocal": "https://media.api-sports.io/football/teams/1062.png",
+              "visitanteId": 128,
+              "visitante": "Santos",
+              "logoVisitante": "https://media.api-sports.io/football/teams/128.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            },
+            {
+              "id": 1631512,
+              "fecha": "2026-09-18T00:30:00+00:00",
+              "estado": "NS",
+              "localId": 2365,
+              "local": "Atletico Torque",
+              "logoLocal": "https://media.api-sports.io/football/teams/2365.png",
+              "visitanteId": 2562,
+              "visitante": "Cienciano",
+              "logoVisitante": "https://media.api-sports.io/football/teams/2562.png",
+              "golesLocal": null,
+              "golesVisitante": null
+            }
+          ]
+        }
+      ]
     }
   }
 }
