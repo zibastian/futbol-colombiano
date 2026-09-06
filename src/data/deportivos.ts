@@ -58,6 +58,27 @@ export function nombreTorneo(nombre: string): string {
   return n || nombre;
 }
 
+export interface PartidoLlave {
+  fecha: string | null;
+  estado: string | null;
+  localId: number | null;
+  local: string;
+  logoLocal: string | null;
+  visitanteId: number | null;
+  visitante: string;
+  logoVisitante: string | null;
+  golesLocal: number | null;
+  golesVisitante: number | null;
+}
+
+export interface RondaLlave {
+  /** Campeonato al que pertenece la llave ("Clausura"). Vacío en una copa,
+   *  donde las rondas no cuelgan de ningún campeonato. */
+  torneo: string;
+  ronda: string;
+  partidos: PartidoLlave[];
+}
+
 export interface DatosCompeticion {
   /** Torneo de los GOLEADORES: "Clausura", "Apertura". Null en una copa, donde
    *  los goles son de todo el certamen y no se reinician por instancia. */
@@ -76,8 +97,17 @@ export interface DatosCompeticion {
    *  a alguien ahí, así que la sección quedaba vacía. La fábrica ya tiene a
    *  todos contados: repartirlos por club no cuesta una llamada más. */
   porEquipo: Record<string, { goleadores: Anotador[]; asistencias: Anotador[] }>;
+  /** Fase de eliminación directa. Una tabla no sirve para contarla: no hay
+   *  puntos, hay cruces, y el eliminado desaparece de las tablas. */
+  llaves: RondaLlave[];
   fuente: 'json' | 'api' | 'sin-datos';
 }
+
+/** Escudo de un club: el nuestro si lo tenemos, si no el que manda la API. */
+export const escudoDeFila = (id?: number | null, logo?: string | null) => {
+  const e = equipoPorApiId(id);
+  return e?.apiId ? `/escudos/64/${e.apiId}.png` : logo || null;
+};
 
 // El JSON puede no existir todavía. `import.meta.glob` devuelve {} en ese caso;
 // un import normal rompería el build.
@@ -154,6 +184,22 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
       })),
       goleadores: (precalculado.goleadores ?? []).map(anotadorDeJson),
       asistencias: (precalculado.asistencias ?? []).map(anotadorDeJson),
+      llaves: (precalculado.llaves ?? []).map((r: any) => ({
+        torneo: r.torneo ?? '',
+        ronda: nombreTorneo(r.ronda),
+        partidos: (r.partidos ?? []).map((p: any) => ({
+          fecha: p.fecha ?? null,
+          estado: p.estado ?? null,
+          localId: p.localId ?? null,
+          local: club(p.localId, p.local ?? ''),
+          logoLocal: escudoDeFila(p.localId, p.logoLocal),
+          visitanteId: p.visitanteId ?? null,
+          visitante: club(p.visitanteId, p.visitante ?? ''),
+          logoVisitante: escudoDeFila(p.visitanteId, p.logoVisitante),
+          golesLocal: p.golesLocal ?? null,
+          golesVisitante: p.golesVisitante ?? null
+        }))
+      })),
       porEquipo: Object.fromEntries(
         Object.entries(precalculado.porEquipo ?? {}).map(([id, v]: [string, any]) => [
           id,
@@ -181,8 +227,9 @@ async function resolver(slug: string, ligaId: number, season: number): Promise<D
     })),
     goleadores: est.goles,
     asistencias: est.asistencias,
-    // La vía en vivo no reparte por club: es el respaldo de emergencia.
+    // La vía en vivo no reparte por club ni arma llaves: es el respaldo.
     porEquipo: {},
+    llaves: [],
     fuente: vigente || est.goles.length ? 'api' : 'sin-datos'
   };
 }

@@ -56,7 +56,13 @@ const filasPreparadas = filas.map((f) => {
                     <span>{f.equipoRef.nombre}</span>
                   </a>
                 ) : (
-                  <span class="sin-ficha">{f.equipo}</span>
+                  <span class="sin-ficha">
+                    {/* El escudo también acá: los clubes extranjeros no tienen
+                        ficha propia, y sin esto la tabla de Libertadores salía
+                        con una sola imagen, la del equipo colombiano. */}
+                    {f.escudo && <img src={f.escudo} alt="" width="22" height="22" loading="lazy" />}
+                    <span>{f.equipo}</span>
+                  </span>
                 )}
               </td>
               <td class="col-pj">{f.pj}</td>
@@ -99,7 +105,10 @@ const filasPreparadas = filas.map((f) => {
   .equipo-col { text-align: left !important; min-width: 190px; }
   .equipo-col a { display: flex; align-items: center; gap: 0.5rem; color: var(--tinta); font-weight: 600; }
   .equipo-col img { width: 22px; height: 22px; object-fit: contain; }
-  .sin-ficha { color: var(--gris); font-weight: 600; }
+  .sin-ficha {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    color: var(--gris); font-weight: 600;
+  }
   .pos { font-family: var(--condensada); font-weight: 700; color: var(--gris); }
   .pos.clasifica { color: #fff; background: var(--azul); }
   .pts { font-weight: 700; }

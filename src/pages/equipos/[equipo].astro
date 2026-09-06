@@ -5,6 +5,7 @@ import NotaCard from '../../components/NotaCard.astro';
 import Anuncio from '../../components/Anuncio.astro';
 import TablaPosiciones from '../../components/TablaPosiciones.astro';
 import TablaAnotadores from '../../components/TablaAnotadores.astro';
+import Llaves from '../../components/Llaves.astro';
 import { EQUIPOS, buscarEquipo, escudoDe } from '../../data/equipos';
 import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
 import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
@@ -68,15 +69,28 @@ const bloques = (
         : d.grupos.find((g) => g.filas.length && estaAca(g.filas));
 
       const propios = equipo.apiId ? d.porEquipo?.[String(equipo.apiId)] : undefined;
-      if (!elegida && !propios) return null;
+      // Las llaves que jugó ESTE club. Es lo que contesta "dónde quedaron":
+      // el eliminado desaparece de las tablas, pero su cruce queda.
+      const susLlaves = d.llaves
+        .map((r) => ({
+          ...r,
+          partidos: r.partidos.filter(
+            (x) => x.localId === equipo.apiId || x.visitanteId === equipo.apiId
+          )
+        }))
+        .filter((r) => r.partidos.length > 0);
+      if (!elegida && !propios && !susLlaves.length) return null;
 
       return {
-        competencia: torneo.nombre,
+        // El año va en el nombre: "Copa Libertadores 2026". Sin él, dentro de
+        // unos meses no se sabe de qué edición habla la ficha.
+        competencia: `${torneo.nombre} ${torneo.season}`,
         slug: torneo.slug,
         subtitulo: elegida?.nombre ?? '',
         // Los grupos y cuadrangulares clasifican 2; una liga larga, 8.
         clasifican: d.grupos.length > 2 ? 2 : 8,
         tabla: (elegida?.filas ?? []).map(aFila),
+        llaves: susLlaves,
         goles: propios?.goleadores ?? [],
         asistencias: propios?.asistencias ?? []
       };
@@ -107,6 +121,7 @@ if (!hayReales) {
       subtitulo: demoTabla?.nombre ?? '',
       clasifican: equipo.division === 'A' ? 8 : 2,
       tabla: demoTabla?.filas ?? [],
+      llaves: [],
       goles,
       asistencias: asis
     });
@@ -178,6 +193,9 @@ const equipoLd = {
           compacta={true}
           clasifican={b.clasifican}
         />
+      )}
+      {b.llaves.length > 0 && (
+        <Llaves rondas={b.llaves} destacarId={equipo.apiId ?? null} titulo="Camino en la llave" />
       )}
       {(b.goles.length > 0 || b.asistencias.length > 0) && (
         <div class="grilla-stats">

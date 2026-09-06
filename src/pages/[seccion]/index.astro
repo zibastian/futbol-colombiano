@@ -7,6 +7,7 @@ import TablaPosiciones from '../../components/TablaPosiciones.astro';
 import TablaAnotadores from '../../components/TablaAnotadores.astro';
 import TablaDescenso from '../../components/TablaDescenso.astro';
 import LlaveFinal from '../../components/LlaveFinal.astro';
+import Llaves from '../../components/Llaves.astro';
 import { seccionDeNota } from '../../data/secciones';
 import { TABLA_DEMO, tablaDemo } from '../../data/tabla-demo';
 import { GRUPOS_DEMO, gruposDemo } from '../../data/grupos-demo';
@@ -134,6 +135,13 @@ const otrasEtapas = esGrupos
       .filter((g) => g.nombre !== datos?.tablaNombre && g.filas.length && mismoTorneo(g.nombreApi))
       .map((g) => ({ nombre: g.nombre, filas: g.filas.map(aFila) }));
 
+// La fase final DEL TORNEO EN CURSO. En la Liga, `llaves` trae también los
+// playoffs del Apertura, que ya terminó: mostrarlos junto al Clausura sería el
+// mismo error que ya corregimos con las tablas.
+const llavesVigentes = (datos?.llaves ?? []).filter(
+  (r) => !r.torneo || !datos?.torneoVigente || r.torneo === datos.torneoVigente
+);
+
 const hayDatos = tablaUnica.length > 0 || grupos.length > 0 || gruposFase.length > 0;
 
 // Las firmas de club se agrupan por equipo: son 41 y en una sola grilla plana
@@ -224,6 +232,16 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
         {grupos.map((g) => <TablaPosiciones filas={g.filas} titulo={g.nombre} clasifican={2} compacta={true} />)}
       </div>
       <p class="nota-tabla">Los dos primeros de cada grupo avanzan a la siguiente fase.</p>
+    </>
+  )}
+
+  {llavesVigentes.length > 0 && (
+    <>
+      <h2 class="seccion">
+        Fase final
+        {torneo && <span class="anio-torneo">{torneo.nombre} {torneo.season}</span>}
+      </h2>
+      <Llaves rondas={llavesVigentes} />
     </>
   )}
 
@@ -383,6 +401,11 @@ const firmasPorEquipo = EQUIPOS.map((eq) => ({
      de la grilla eso la centraba en su celda y las dos quedaban con huecos
      distintos: acá manda la celda. */
   .grilla-grupos :global(.tabla-bloque) { max-width: none; margin-left: 0; margin-right: 0; width: 100%; }
+
+  .anio-torneo {
+    display: block; font-size: 0.8rem; font-weight: 400; margin-top: 0.15rem;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--tenue);
+  }
 
   .otras-etapas { margin: 1.4rem 0 1.8rem; }
   .otras-etapas > summary {
