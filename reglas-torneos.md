@@ -109,26 +109,32 @@ propio y enlace.
 
 **`/standings` no está mal: llega tarde.** Y para nosotros es lo mismo.
 
-Lo medido el 6 de septiembre de 2026, con Millonarios 1-1 Pereira (pitazo final
-20:15 Colombia):
+**Medido con cronómetro** el 6 de septiembre de 2026, Tigres FC vs Patriotas
+(Torneo BetPlay, pitazo final ~22:09 Colombia), consultando cada cinco minutos:
 
-| Momento | `/fixtures` | `/standings` |
+| Minutos del pitazo | `/fixtures` | `/standings` |
 |---|---|---|
-| **1 hora** después del pitazo | terminado, 1-1 | 7 PJ, 11 pts — **sin el partido** |
-| A la mañana siguiente | igual | 8 PJ, 12 pts — al día |
+| 0 | terminado, 6 PJ | 5 PJ — sin el partido |
+| 5 | igual | sin el partido |
+| 10 | igual | sin el partido |
+| **15** | igual | **sin el partido** |
 
-Los dos endpoints de la misma API se contradecían entre sí, y después la tabla
-se puso sola al día. No hay un error del proveedor que reportar: hay una
-latencia. Sabemos que es **mayor a una hora**; el techo no lo medimos.
+El mismo día, con Millonarios 1-1 Pereira, seguía atrasada **una hora** después
+del pitazo, y estaba al día a la mañana siguiente.
 
-Para medirlo cuando haga falta: `./fabrica.sh cobertura --latencia 239` compara
-los partidos terminados de `/fixtures` contra los que dice `/standings`, y
-muestra hace cuánto terminó el que falta.
+Dos observaciones y las dos apuntan a lo mismo: **el resultado del partido está
+en `/fixtures` de inmediato, y la tabla tarda bastante más que nuestra ventana
+de publicación.**
 
-**Por qué eso alcanza para no depender de ella.** El vigía corre a los ~15
-minutos del pitazo final y ahí publica. Si en ese momento la tabla todavía no
-incorporó el partido, el sitio sale con la tabla vieja al lado de una crónica
-que cuenta ese mismo partido. La contradicción la ve el hincha, no el proveedor.
+**Por qué eso decide.** El vigía corre a los ~15 minutos del pitazo y ahí
+publica. En ese preciso momento, medido, la tabla de la API todavía no tenía el
+partido. Copiarla habría sacado el sitio con la tabla vieja al lado de una
+crónica que cuenta ese mismo partido. La contradicción la ve el hincha, no el
+proveedor.
+
+Para volver a medirlo: `./fabrica.sh cobertura --latencia 240` compara, tabla
+por tabla, los partidos terminados de `/fixtures` contra los que dice
+`/standings`.
 
 Los goles ya se cuentan partido por partido. La tabla sale de los mismos
 partidos, así que se calcula igual: se actualiza en el mismo instante que todo
