@@ -119,13 +119,15 @@ propio y enlace.
 | 10 | igual | sin el partido |
 | **15** | igual | **sin el partido** |
 | 20 | igual | sin el partido |
+| **45** | igual | sin el partido |
 
 El mismo día, con Millonarios 1-1 Pereira, seguía atrasada **una hora** después
 del pitazo, y estaba al día a la mañana siguiente.
 
 Dos observaciones y las dos apuntan a lo mismo: **el resultado del partido está
 en `/fixtures` de inmediato, y la tabla tarda bastante más que nuestra ventana
-de publicación.**
+de publicación.** A los 45 minutos todavía no había llegado, lo que hace pensar
+que no es un refresco continuo sino uno programado cada varias horas.
 
 **Por qué eso decide.** El vigía corre a los ~15 minutos del pitazo y ahí
 publica. En ese preciso momento, medido, la tabla de la API todavía no tenía el
