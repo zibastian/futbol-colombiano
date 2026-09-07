@@ -105,6 +105,27 @@ Son decenas y cambian cada año. La tabla usa el escudo que manda la API y el
 nombre como ella lo escribe. Solo los clubes colombianos tienen ficha, escudo
 propio y enlace.
 
+### La tabla se calcula, no se copia
+
+`/standings` viene lista, pero la recalcula el proveedor cuando quiere. El 6 de
+septiembre Millonarios empató con Pereira: el partido figuraba terminado, sus
+goles ya estaban contados y la tabla seguía diciendo 7 partidos y 11 puntos. Un
+torneo entero de datos correctos y la tabla —lo primero que mira el hincha— una
+fecha atrasada.
+
+Los goles ya se cuentan partido por partido. La tabla sale de los mismos
+partidos, así que se calcula igual: se actualiza en el mismo instante que todo
+lo demás. Comprobado contra la tabla de la API: 19 de 20 filas idénticas, y la
+única diferencia era justo el partido que faltaba.
+
+**Solo aplica a las competiciones que acumulan por torneo.** En una copa la
+tabla va por grupos y los partidos no dicen quién está en cuál, así que ahí se
+sigue usando la de la API.
+
+**Lo que no sabe: las sanciones.** Si la Dimayor le descuenta puntos a un club,
+eso no está en ningún partido. Por eso cada corrida compara las dos tablas y
+avisa cuando un equipo tiene los mismos partidos jugados y distintos puntos.
+
 ### Liga Femenina BetPlay
 
 Se juega a una vuelta con fecha de clásicos y clasifican los ocho primeros.
