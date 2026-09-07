@@ -118,6 +118,7 @@ propio y enlace.
 | 5 | igual | sin el partido |
 | 10 | igual | sin el partido |
 | **15** | igual | **sin el partido** |
+| 20 | igual | sin el partido |
 
 El mismo día, con Millonarios 1-1 Pereira, seguía atrasada **una hora** después
 del pitazo, y estaba al día a la mañana siguiente.
