@@ -107,11 +107,23 @@ propio y enlace.
 
 ### La tabla se calcula, no se copia
 
-`/standings` viene lista, pero la recalcula el proveedor cuando quiere. El 6 de
-septiembre Millonarios empató con Pereira: el partido figuraba terminado, sus
-goles ya estaban contados y la tabla seguía diciendo 7 partidos y 11 puntos. Un
-torneo entero de datos correctos y la tabla —lo primero que mira el hincha— una
-fecha atrasada.
+**`/standings` no está mal: llega tarde.** Y para nosotros es lo mismo.
+
+Lo medido el 6 de septiembre de 2026, con Millonarios 1-1 Pereira:
+
+| Momento | `/fixtures` | `/standings` |
+|---|---|---|
+| 02:15 UTC (≈3 h del pitazo) | terminado, 1-1 | 7 PJ, 11 pts — **sin el partido** |
+| Unas horas después | igual | 8 PJ, 12 pts — al día |
+
+O sea que los dos endpoints de la misma API se contradecían entre sí, y después
+la tabla se puso sola al día. No hay un error del proveedor que reportar: hay
+una latencia, y no sabemos cuánta.
+
+**Por qué eso alcanza para no depender de ella.** El vigía corre a los ~15
+minutos del pitazo final y ahí publica. Si en ese momento la tabla todavía no
+incorporó el partido, el sitio sale con la tabla vieja al lado de una crónica
+que cuenta ese mismo partido. La contradicción la ve el hincha, no el proveedor.
 
 Los goles ya se cuentan partido por partido. La tabla sale de los mismos
 partidos, así que se calcula igual: se actualiza en el mismo instante que todo
