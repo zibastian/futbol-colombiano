@@ -396,7 +396,7 @@ const banners = [
   // los colombianos ahí. Por eso los escudos son los de los clubes nuestros
   // que las juegan, no los de los favoritos del torneo.
   ['copa-libertadores.svg', { slug: 'copa-libertadores', kicker: 'CONMEBOL', titulo: 'COPA LIBERTADORES', sub: 'El camino de los colombianos',
-    bg: '#06170F', bg2: '#0C5A3C', acento: '#E8B542', medalla: '#FBF3DC',
+    bg: '#000000', bg2: '#141210', acento: '#E8B542', medalla: '#FBF3DC',
     equipos: ['Independiente Medellin', 'Deportes Tolima', 'Santa Fe', 'Junior'] }],
   ['copa-sudamericana.svg', { slug: 'copa-sudamericana', kicker: 'CONMEBOL', titulo: 'COPA SUDAMERICANA', sub: 'El camino de los colombianos',
     bg: '#0B1016', bg2: '#2C4257', acento: '#C9D6E2', medalla: '#F2F5F8',
